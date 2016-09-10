@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>SARP_Web</display-name>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>/pages/home.jsf</welcome-file>
+	</welcome-file-list>
+
+
+	<!-- Protected Areas -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Only admins</web-resource-name>
+			<url-pattern>/pages/page1.xhtml</url-pattern>
+			<url-pattern>/pages/page1.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+
+	<!-- Validation By Form -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>ApplicationRealm</realm-name>
+		<form-login-config>
+			<form-login-page>/pages/login.xhtml</form-login-page>
+			<form-error-page>/pages/loginError.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<!-- Allowed Roles -->
+	<security-role>
+		<role-name>ADMIN</role-name>
+	</security-role>
+	<security-role>
+		<role-name>USER</role-name>
+	</security-role>
+
+
+	
+
+
+</web-app>

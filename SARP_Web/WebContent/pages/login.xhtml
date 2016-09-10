@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	>
+<head>
+<title>Login JAAS</title>
+<style>
+/*  Maquetación y otros estilos del formulario  */
+.formulario p {
+	width: 400px;
+	margin: 0;
+	padding: 8px 0;
+	padding-left: 255px; /*Distancia a la cual comienza la etiqueta*/
+	border-top: 1px solid #ddd;
+}
+
+.formulario label {
+	font-weight: bold;
+	float: left;
+	text-align: right;
+	margin-left: -255px; /*Ancho de la columna*/
+	width: 240px;
+	/*Ancho de la etiqueta. Para que se genere un margen derecho, esta medida debe ser menor que el margen izquierdo.*/
+}
+
+.formulario input[type="text"] { /*ancho de las cajas de texto*/
+	width: 250px;
+}
+
+.formulario textarea {
+	width: 250px;
+	height: 150px;
+	font: normal 14px arial, helvetica, sans-serif;
+}
+
+#botones {
+	margin-left: 255px;
+}
+</style>
+
+
+</head>
+
+
+<body>
+
+	<div id="central">
+
+		<h2>Login via JAAS</h2>
+
+
+		<h:form>
+			<h:panelGrid columns="2">
+
+				<h:outputLabel for="uname" value="Enter User Name :  " />
+				<h:inputText id="uname" value="#{loginBean.username}" />
+				<h:outputLabel for="pass" value="Enter Password  :" />
+				<h:inputSecret id="pass" value="#{loginBean.password}" />
+				<h:outputText />
+				<h:outputText />
+				<h:outputText />
+				<h:commandButton id="login" value="Login"
+					action="#{loginBean.Login()}" />
+			</h:panelGrid>
+		</h:form>
+<h:form>
+			<h:commandButton action="formulario?faces-redirect=true" value="Formulario" />
+		</h:form>
+
+	</div>
+</body>
+</html>
