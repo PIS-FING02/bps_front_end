@@ -14,12 +14,13 @@ public class HelloWorld {
    private String message;
 
    public HelloWorld() {
-      System.out.println("HelloWorld started!");
+      System.out.println("PRUEBA DE REBASE");
    }
    
    public String getMessage() {
       if(messageBean != null){
          message = messageBean.getMessage();
+         
       }       
       return message;
    }
