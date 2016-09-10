@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://java.sun.com/jsf/html">
+<head>
+<title>Formulario</title>
+<style>
+/*  Maquetación y otros estilos del formulario  */
+.formulario p {
+	width: 400px;
+	margin: 0;
+	padding: 8px 0;
+	padding-left: 255px; /*Distancia a la cual comienza la etiqueta*/
+	border-top: 1px solid #ddd;
+}
+
+.formulario label {
+	font-weight: bold;
+	float: left;
+	text-align: right;
+	margin-left: -255px; /*Ancho de la columna*/
+	width: 240px;
+	/*Ancho de la etiqueta. Para que se genere un margen derecho, esta medida debe ser menor que el margen izquierdo.*/
+}
+
+.formulario input[type="text"] { /*ancho de las cajas de texto*/
+	width: 250px;
+}
+
+.formulario textarea {
+	width: 250px;
+	height: 150px;
+	font: normal 14px arial, helvetica, sans-serif;
+}
+
+#botones {
+	margin-left: 255px;
+}
+</style>
+
+
+</head>
+
+
+<body>
+
+	<div id="central">
+
+		<h2>Formulario</h2>
+		<form id="miformulario" class="formulario" action="">
+			<p>
+
+				<label for="login">Login:</label>
+				<h:inputText id="login" value="#{formulario.login}"></h:inputText>
+			</p>
+			<p>
+				<label for="nombre">Nombre:</label>
+				<h:inputText id="nombre" value="#{formulario.nombre}"></h:inputText>
+			</p>
+			<p>
+				<label for="apellido">Apellido:</label>
+				<h:inputText id="apellido" value="#{formulario.apellido}"></h:inputText>
+			</p>
+			<p>
+				<label for="email">Email:</label>
+				<h:inputText id="email" value="#{formulario.email}"></h:inputText>
+			</p>
+			<p>
+				<label for="contrasena">Contraseña:</label>
+				<h:inputText id="contrasena" value="#{formulario.contrasena}"></h:inputText>
+			</p>
+
+			<div id="botones">
+				<h:form>
+					<h:commandButton action="#{formulario.submit}" value="Submit" />
+				</h:form>
+			</div>
+
+		</form>
+
+		<h:form>
+			<h:commandButton action="login?faces-redirect=true" value="Login" />
+		</h:form>
+
+
+	</div>
+</body>
+</html>
