@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="PIS-Front_End">
+    <wb-module deploy-name="SARPFront-End">
         <dependent-module archiveName="SARP_Web.war" deploy-path="/" handle="module:/resource/SARP_Web/SARP_Web">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
