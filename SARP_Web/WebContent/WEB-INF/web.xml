@@ -6,7 +6,7 @@
 	<display-name>SARP_Web</display-name>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class> 
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

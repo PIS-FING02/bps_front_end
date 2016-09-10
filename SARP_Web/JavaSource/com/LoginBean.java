@@ -41,12 +41,12 @@ public class LoginBean {
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             request.login(username, password);
             if(request.isUserInRole("ADMIN"))
-                return "/pages/formulario.xhtml";
+                return "/pages/page1.xhtml";
             else if(request.isUserInRole("USER"))
                 return "/pages/page2.xhtml";
             else {
                 message= "Either Login or Password is wrong";
-                return "/index.xhtml";
+                return "/loginError.xhtml";
             }
 
         } catch(Exception e) {
