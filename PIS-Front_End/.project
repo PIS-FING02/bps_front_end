@@ -3,7 +3,8 @@
 	<name>PIS-Front_End</name>
 	<comment></comment>
 	<projects>
-		<project>PISWeb</project>
+		<project>SARP_Logica</project>
+		<project>SARP_Web</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

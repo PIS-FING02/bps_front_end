@@ -3,6 +3,8 @@ package com;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+//import com.controladores.ControladorREST;
+
 @ManagedBean(name = "formulario", eager = true)
 @RequestScoped
 public class Formulario {
@@ -45,8 +47,11 @@ public class Formulario {
 	}
 	
 	public void submit(){
-		System.out.println("\nNombre: "+this.nombre + "\nApellido: "+this.apellido+
+		System.out.println("\nLogin: "+this.login +"\nNombre: "+this.nombre + "\nApellido: "+this.apellido+
 				"\nEmail: "+this.email+"\nContraseña: "+this.contrasena);
+		//ControladorREST c = new ControladorREST();
+		System.out.println("Ejecutando controlador...");
+		//c.Consumir();
 	}
 	
 }
