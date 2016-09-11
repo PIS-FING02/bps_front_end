@@ -4,6 +4,9 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.jboss.security.SecurityContextAssociation;
 
 
 @ManagedBean(name = "loginBean", eager = true)
@@ -54,6 +57,22 @@ public class LoginBean {
         }
         return null;
     }
+    
+    public String Logout(){
+    	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    	HttpSession session= request.getSession(false);
+        SecurityContextAssociation.clearSecurityContext();
+             session= request.getSession(false);
+            if(session != null) {
+                session.invalidate();
+                System.out.println("Se cerro la sesion correctamente");
+	
+            }
+            return "Todo ok";
+
+    }
+    	
+    
 	
 	
 }

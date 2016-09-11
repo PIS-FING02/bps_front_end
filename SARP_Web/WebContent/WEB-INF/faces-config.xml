@@ -19,27 +19,6 @@
 			<var>msgs</var>
 		</resource-bundle>
 	</application>
-
-	<managed-bean>
-		<managed-bean-name>helloWorld</managed-bean-name>
-		<managed-bean-class>com.HelloWorld</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>message</managed-bean-name>
-		<managed-bean-class>com.Message</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>navigationController</managed-bean-name>
-		<managed-bean-class>com.NavigationController</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>userData</managed-bean-name>
-		<managed-bean-class>com.UserData</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>formulario</managed-bean-name>
 		<managed-bean-class>com.Formulario</managed-bean-class>
