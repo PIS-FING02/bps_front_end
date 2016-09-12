@@ -49,38 +49,63 @@
 
 	<div id="central">
 
-		<h2>Formulario</h2>
+		<h1>SARP</h1>
+		<h:form>
+			<h:commandButton action="page1?faces-redirect=true" value="Solo Administrador" />
+		</h:form>
+		<h:form>
+			<h:commandButton action="page2?faces-redirect=true" value="Usuario o Admin"/>
+		</h:form>
+		<br></br>
 		<form id="miformulario" class="formulario" action="">
 			<p>
-
-				<label for="tramite">Tramite:</label>
-				<h:inputText id="tramite" value="#{formulario.tramite}"></h:inputText>
-			</p>
-			<p>
-				<label for="nombre">Nombre:</label>
-				<h:inputText id="nombre" value="#{formulario.nombre}"></h:inputText>
-			</p>
-			<p>
 				<label for="sector">Sector:</label>
-				<h:inputText id="sector" value="#{formulario.numero}"></h:inputText>
+				<h:inputText id="sector2" value="#{formulario.sector}"></h:inputText>
 			</p>
 
 			<div id="botones">
 				<h:form>
-					<h:commandButton action="#{formulario.submit}" value="Submit" />
+					<h:commandButton action="#{formulario.submit}" value="Crear sector" />
+				</h:form>
+				<h:form>
+					<h:commandButton action="#{formulario.listar}" value="Listar sectores" />
 				</h:form>
 			</div>
 
 		</form>
+		<p>#{formulario.resultado}</p>
+		
+		<form id="miformulario2" class="formulario" action="">
+			<p>
+				<label for="tramite">Tramite:</label>
+				<h:inputText id="tramite2" value="#{formulario.tramite}"></h:inputText>
+			</p>
+			<p>
+			<label for="sector2">IdSector:</label>
+				<h:inputText id="secto2" value="#{formulario.sector}"></h:inputText>
+			</p>
+
+			<div id="botones">
+				<h:form>
+					<h:commandButton action="#{formulario.submitTramites}" value="Crear tramite" />
+				</h:form>
+				<h:form>
+					<h:commandButton action="#{formulario.listarTramites}" value="Listar tramites" />
+				</h:form>
+			</div>
+
+		</form>
+		<p>#{formulario.resultado2}</p>
 
 		<h:form>
 			<h:commandButton action="login?faces-redirect=true" value="Login" />
+		</h:form>
+		<h:form>
 			<h:commandButton id="logout" value="Logout" action="#{loginBean.Logout()}" />
 		</h:form>
-		<br></br>
-		<br></br>
-		<p>#{formulario.resultado}</p>
-
+		<br></br> <br></br>
+		
+	
 
 	</div>
 </body>

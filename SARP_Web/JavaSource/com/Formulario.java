@@ -1,5 +1,7 @@
 package com;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -15,6 +17,8 @@ public class Formulario {
 	private String nombre ;
 	private String numero;
 	private String resultado;
+	private String sector;
+	private String resultado2;
 
 
 
@@ -46,17 +50,7 @@ public class Formulario {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-
-
-	public  void submit(){
-		System.out.println("\nTramite: "+this.tramite +"\nNombre: "+this.nombre + "\nNumero: "+this.numero);
-		ControladorREST c = new ControladorREST();
-		System.out.println("Ejecutando controlador...");
-		this.resultado= c.Consumir();
-
-	}
-
-
+	
 	public String getResultado() {
 		return resultado;
 	}
@@ -65,5 +59,69 @@ public class Formulario {
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
 	}
+
+
+	public String getSector() {
+		return sector;
+	}
+
+
+	public void setSector(String sector) {
+		this.sector = sector;
+	}
+	
+
+
+	public  void submit(){
+		ControladorREST c = new ControladorREST();
+		System.out.println("Ejecutando controlador...");
+		try {
+			c.Agregar(sector);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.sector="";
+
+
+	}
+	
+	public  void listar(){
+		System.out.println("\nTramite: "+this.tramite +"\nNombre: "+this.nombre + "\nNumero: "+this.numero);
+		ControladorREST c = new ControladorREST();
+		System.out.println("Ejecutando controlador...");
+		this.resultado= c.Consumir();
+
+	}
+	
+	public  void submitTramites(){
+		ControladorREST c = new ControladorREST();
+		System.out.println("Ejecutando controlador...");
+		c.Agregar(tramite,sector);
+		this.sector="";
+
+
+	}
+	
+	public  void listarTramites(){
+		System.out.println("\nTramite: "+this.tramite +"\nNombre: "+this.nombre + "\nNumero: "+this.numero);
+		ControladorREST c = new ControladorREST();
+		System.out.println("Ejecutando controlador...");
+		this.resultado2= c.ConsumirTramites();
+
+	}
+
+
+	public String getResultado2() {
+		return resultado2;
+	}
+
+
+	public void setResultado2(String resultado2) {
+		this.resultado2 = resultado2;
+	}
+
+
+
 	
 }
