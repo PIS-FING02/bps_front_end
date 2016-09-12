@@ -21,15 +21,12 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
-		<welcome-file-list>
-		<welcome-file>index.jsf</welcome-file>
-	</welcome-file-list>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>/pages/formulario.jsf</welcome-file>
+		<welcome-file>pages/index.xhtml</welcome-file>
 	</welcome-file-list>
 
 
@@ -39,9 +36,22 @@
 			<web-resource-name>Only admins</web-resource-name>
 			<url-pattern>/pages/page1.xhtml</url-pattern>
 			<url-pattern>/pages/page1.jsf</url-pattern>
+			<url-pattern>/pages/formulario.jsf</url-pattern>
+			<url-pattern>/pages/formulario.xhtml</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Admin or User</web-resource-name>
+			<url-pattern>/pages/page2.xhtml</url-pattern>
+			<url-pattern>/pages/page2.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>ADMIN</role-name>
+			<role-name>USER</role-name>
 		</auth-constraint>
 	</security-constraint>
 
