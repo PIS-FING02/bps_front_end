@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://java.sun.com/jsf/html">
 <head>
-<title>Formulario</title>
+<title>Administrador</title>
 <style>
 /*  Maquetación y otros estilos del formulario  */
 .formulario p {
@@ -49,10 +49,7 @@
 
 	<div id="central">
 
-		<h1>SARP</h1>
-		<h:form>
-			<h:commandButton action="page1?faces-redirect=true" value="Solo Administrador" />
-		</h:form>
+		<h1>SARP - Administrador</h1>
 		<h:form>
 			<h:commandButton action="page2?faces-redirect=true" value="Usuario o Admin"/>
 		</h:form>
@@ -97,9 +94,6 @@
 		</form>
 		<p>#{formulario.resultado2}</p>
 
-		<h:form>
-			<h:commandButton action="login?faces-redirect=true" value="Login" />
-		</h:form>
 		<h:form>
 			<h:commandButton id="logout" value="Logout" action="#{loginBean.Logout()}" />
 		</h:form>

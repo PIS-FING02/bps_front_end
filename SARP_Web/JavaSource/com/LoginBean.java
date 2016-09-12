@@ -44,12 +44,12 @@ public class LoginBean {
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             request.login(username, password);
             if(request.isUserInRole("ADMIN"))
-                return "/pages/page1.xhtml";
+                return "/pages/formulario.xhtml";
             else if(request.isUserInRole("USER"))
                 return "/pages/page2.xhtml";
             else {
                 message= "Either Login or Password is wrong";
-                return "/loginError.xhtml";
+                return "pages/loginError.xhtml";
             }
 
         } catch(Exception e) {
@@ -62,13 +62,13 @@ public class LoginBean {
     	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     	HttpSession session= request.getSession(false);
         SecurityContextAssociation.clearSecurityContext();
-             session= request.getSession(false);
-            if(session != null) {
-                session.invalidate();
-                System.out.println("Se cerro la sesion correctamente");
+        session= request.getSession(false);
+        if(session != null) {
+        	session.invalidate();
+        	System.out.println("Se cerro la sesion correctamente");
 	
-            }
-            return "Todo ok";
+        }
+        return "/pages/index.xhtml";
 
     }
     	

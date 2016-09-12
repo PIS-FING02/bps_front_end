@@ -6,10 +6,13 @@
    <title>Pagina de usuarios</title>
 </head>
 <body>
-	<p>acceso de usuarios</p>
+	<h1>Acceso rol Usuario o Administrador</h1>
 	<h:form>
-			<h:commandButton action="formulario?faces-redirect=true"
+			<h:commandButton action="index?faces-redirect=true"
 				value="Inicio" />
+		</h:form>
+			<h:form>
+			<h:commandButton id="logout" value="Logout" action="#{loginBean.Logout()}" />
 		</h:form>
 </body>
 </html>
