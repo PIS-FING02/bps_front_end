@@ -11,49 +11,59 @@ import com.controladores.ControladorREST;
 @RequestScoped
 public class Formulario {
 	
-	private String login ;
+	private String tramite ;
 	private String nombre ;
-	private String apellido;
-	private String email;
-	private String contrasena;
-	
-	public String getLogin() {
-		return login;
+	private String numero;
+	private String resultado;
+
+
+
+	public String getTramite() {
+		return tramite;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+
+
+	public void setTramite(String tramite) {
+		this.tramite = tramite;
 	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getApellido() {
-		return apellido;
+
+
+	public String getNumero() {
+		return numero;
 	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getContrasena() {
-		return contrasena;
-	}
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-	
-	public void submit(){
-		System.out.println("\nLogin: "+this.login +"\nNombre: "+this.nombre + "\nApellido: "+this.apellido+
-				"\nEmail: "+this.email+"\nContraseña: "+this.contrasena);
+
+
+	public  void submit(){
+		System.out.println("\nTramite: "+this.tramite +"\nNombre: "+this.nombre + "\nNumero: "+this.numero);
 		ControladorREST c = new ControladorREST();
 		System.out.println("Ejecutando controlador...");
-		c.Consumir();
+		this.resultado= c.Consumir();
+
+	}
+
+
+	public String getResultado() {
+		return resultado;
+	}
+
+
+	public void setResultado(String resultado) {
+		this.resultado = resultado;
 	}
 	
 }

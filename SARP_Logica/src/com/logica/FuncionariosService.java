@@ -9,7 +9,8 @@ import java.net.URL;
 
 public class FuncionariosService {
 
-	public void ConsumirServicio() {
+	public String ConsumirServicio() {
+		String resultado="";
 		try {
 
 			URL url = new URL("https://httpbin.org/get");
@@ -27,9 +28,12 @@ public class FuncionariosService {
 			System.out.println("Output from Server .... \n");
 			while ((output = br.readLine()) != null) {
 				System.out.println(output);
+				resultado=resultado+output;
+				
 			}
 
 			conn.disconnect();
+			return resultado;
 
 		} catch (MalformedURLException e) {
 
@@ -40,6 +44,7 @@ public class FuncionariosService {
 			e.printStackTrace();
 
 		}
+		return resultado;
 
 	}
 }
