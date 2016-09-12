@@ -3,6 +3,7 @@
 	<name>SARP_Web</name>
 	<comment></comment>
 	<projects>
+		<project>SARP_Logica</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

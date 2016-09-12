@@ -53,24 +53,16 @@
 		<form id="miformulario" class="formulario" action="">
 			<p>
 
-				<label for="login">Login:</label>
-				<h:inputText id="login" value="#{formulario.login}"></h:inputText>
+				<label for="tramite">Tramite:</label>
+				<h:inputText id="tramite" value="#{formulario.tramite}"></h:inputText>
 			</p>
 			<p>
 				<label for="nombre">Nombre:</label>
 				<h:inputText id="nombre" value="#{formulario.nombre}"></h:inputText>
 			</p>
 			<p>
-				<label for="apellido">Apellido:</label>
-				<h:inputText id="apellido" value="#{formulario.apellido}"></h:inputText>
-			</p>
-			<p>
-				<label for="email">Email:</label>
-				<h:inputText id="email" value="#{formulario.email}"></h:inputText>
-			</p>
-			<p>
-				<label for="contrasena">Contraseña:</label>
-				<h:inputText id="contrasena" value="#{formulario.contrasena}"></h:inputText>
+				<label for="sector">Sector:</label>
+				<h:inputText id="sector" value="#{formulario.numero}"></h:inputText>
 			</p>
 
 			<div id="botones">
@@ -85,6 +77,9 @@
 			<h:commandButton action="login?faces-redirect=true" value="Login" />
 			<h:commandButton id="logout" value="Logout" action="#{loginBean.Logout()}" />
 		</h:form>
+		<br></br>
+		<br></br>
+		<p>#{formulario.resultado}</p>
 
 
 	</div>

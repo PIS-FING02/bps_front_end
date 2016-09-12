@@ -10,8 +10,8 @@ public class ControladorREST {
 		this.fs = new FuncionariosService();
 	}
 	
-	public void Consumir(){
-		this.fs.ConsumirServicio();
+	public String Consumir(){
+		return this.fs.ConsumirServicio();
 	}
 	
 }
