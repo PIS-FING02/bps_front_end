@@ -56,11 +56,13 @@ public class FuncionariosService {
 
 	public void AgregarSector(String sector) throws IOException{
 
-			String url = "http://52.52.100.160:8080/SARPService/rest/sectores/"+sector;
+			String encodedSector = java.net.URLEncoder.encode(sector,"UTF-8");
+			String url = "http://52.52.100.160:8080/SARPService/rest/sectores/"+encodedSector;
+			
 			URL obj = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-			//add reuqest header
+			//add request header
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
@@ -83,9 +85,10 @@ public class FuncionariosService {
 	}
 
 
-	public void AgregarTramite(String tramite, String sector) {
+	public void AgregarTramite(String tramite, String idSector) {
 		try {
-		String url = "http://52.52.100.160:8080/SARPService/rest/tramites/"+sector +"/"+tramite;
+		String encodedTramite = java.net.URLEncoder.encode(tramite, "UTF-8");	
+		String url = "http://52.52.100.160:8080/SARPService/rest/tramites/"+idSector +"/"+encodedTramite;
 		URL obj;
 		obj = new URL(url);
 		

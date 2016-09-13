@@ -59,8 +59,9 @@
 				<h:outputLabel for="pass" value="Enter Password  :" />
 				<h:inputSecret id="pass" value="#{loginBean.password}" />
 				<h:outputText />
+				<h:outputText id="mensajeError" value="#{loginBean.message}" />
 				<h:outputText />
-				<h:outputText />
+				
 				<h:commandButton id="login" value="Login"
 					action="#{loginBean.Login()}" />
 			</h:panelGrid>
