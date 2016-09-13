@@ -80,6 +80,7 @@ public class Formulario {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		this.sector="";
 
