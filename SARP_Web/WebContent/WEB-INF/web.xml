@@ -74,7 +74,11 @@
 		<role-name>USER</role-name>
 	</security-role>
 
-
+	<error-page>
+		<!-- Forbidden directory listing -->
+		<error-code>403</error-code>
+		<location>/pages/sinAutorizacion.xhtml</location>
+	</error-page>
 
 
 
