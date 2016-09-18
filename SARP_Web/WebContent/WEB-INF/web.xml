@@ -26,7 +26,7 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>pages/index.xhtml</welcome-file>
+		<welcome-file>pages/login.xhtml</welcome-file>
 	</welcome-file-list>
 
 
@@ -45,16 +45,54 @@
 	</security-constraint>
 	<security-constraint>
 		<web-resource-collection>
-			<web-resource-name>Admin or User</web-resource-name>
-			<url-pattern>/pages/page2.xhtml</url-pattern>
-			<url-pattern>/pages/page2.jsf</url-pattern>
+			<web-resource-name>Responsable de Sector</web-resource-name>
+			<url-pattern>/pages/respSector.xhtml</url-pattern>
+			<url-pattern>/pages/respSector.jsf</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
-			<role-name>ADMIN</role-name>
-			<role-name>USER</role-name>
+			<role-name>RESPSEC</role-name>
 		</auth-constraint>
 	</security-constraint>
-
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Consultor</web-resource-name>
+			<url-pattern>/pages/consultor.xhtml</url-pattern>
+			<url-pattern>/pages/consultor.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>CONSULTOR</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Operador</web-resource-name>
+			<url-pattern>/pages/operador.xhtml</url-pattern>
+			<url-pattern>/pages/operador.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>OPERADOR</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Operador Senior</web-resource-name>
+			<url-pattern>/pages/operadorsr.xhtml</url-pattern>
+			<url-pattern>/pages/operadorsr.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>OPERADORSR</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Recepcionista</web-resource-name>
+			<url-pattern>/pages/recepcion.xhtml</url-pattern>
+			<url-pattern>/pages/recepcion.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>RECEPCION</role-name>
+		</auth-constraint>
+	</security-constraint>
 
 	<!-- Validation By Form -->
 	<login-config>
@@ -71,7 +109,19 @@
 		<role-name>ADMIN</role-name>
 	</security-role>
 	<security-role>
-		<role-name>USER</role-name>
+		<role-name>RESPSEC</role-name>
+	</security-role>
+	<security-role>
+		<role-name>CONSULTOR</role-name>
+	</security-role>
+	<security-role>
+		<role-name>OPERADOR</role-name>
+	</security-role>
+	<security-role>
+		<role-name>OPERADORSR</role-name>
+	</security-role>
+	<security-role>
+		<role-name>RECEPCION</role-name>
 	</security-role>
 
 	<error-page>
@@ -79,7 +129,5 @@
 		<error-code>403</error-code>
 		<location>/pages/sinAutorizacion.xhtml</location>
 	</error-page>
-
-
 
 </web-app>

@@ -20,4 +20,9 @@
 		<managed-bean-class>com.LoginBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>recepcionistaBean</managed-bean-name>
+		<managed-bean-class>com.RecepcionistaBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
 </faces-config>
