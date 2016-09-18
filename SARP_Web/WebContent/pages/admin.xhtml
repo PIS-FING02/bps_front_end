@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+<title>Pantalla Administrador</title>
+<ui:include src="header.xhtml" />
+<style>
+
+.page-frame{
+	background-color: #fff;
+    width: 75%;
+    display: block;
+    margin: 25px auto;
+    padding: 10px;
+    min-height: 300px;
+}
+
+.btn-admin {
+	background-color: #4e769b;
+    color: #fff;
+    border: none;
+    padding: 10px 10px;
+    float: right;
+    border-radius: 4px;
+    margin: 8px;
+    max-width: 120px;
+}
+
+.btns-frame{
+	width: 70%;
+    display: block;
+    margin: 100px 10px;
+    padding: 10px;
+}
+
+</style>
+</head> 
+
+<body> 
+	<div class="text-page"> 
+		<div class="page-frame">
+			<h:form class="btns-frame">
+				<button class="btn-admin" action="#{tramiteBean.Tramites()}" > Trámites </button>
+				<button class="btn-admin" action="#{sectoresGAFUBean.SectoresGAFU()}" > Importar Sectores GAFU </button>
+				<button class="btn-admin" action="#{displayBean.Display()}"> Display </button>
+				<button class="btn-admin" action="#{nrosSistemaBean.NrosSistema()}"> Listar Números del Sistema </button>
+			</h:form>
+		</div>
+	</div>
+</body> 
+</html>

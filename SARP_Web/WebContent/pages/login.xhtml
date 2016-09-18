@@ -5,72 +5,79 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
-<title>Login JAAS</title>
+<title>Iniciar Sesión</title>
+<ui:include src="header.xhtml" />
 <style>
-/*  Maquetación y otros estilos del formulario  */
-.formulario p {
-	width: 400px;
-	margin: 0;
-	padding: 8px 0;
-	padding-left: 255px; /*Distancia a la cual comienza la etiqueta*/
-	border-top: 1px solid #ddd;
+
+.text-page{
+	font-size: 14px;
+	font-family: arial,sans-serif;
+	font-style: normal;
 }
 
-.formulario label {
-	font-weight: bold;
+.form-container {
+	width: 50%;
+	display: inline;
+}
+
+.form-line {
+	width: 100%;
+	line-height: 21px;
+	margin-bottom: 7px;
+}
+
+.form-input { 
+    margin-left: 10px;
+    float: right;
+}
+
+.body-login {
 	float: left;
-	text-align: right;
-	margin-left: -255px; /*Ancho de la columna*/
-	width: 240px;
-	/*Ancho de la etiqueta. Para que se genere un margen derecho, esta medida debe ser menor que el margen izquierdo.*/
 }
 
-.formulario input[type="text"] { /*ancho de las cajas de texto*/
-	width: 250px;
+.title-body{
+	color: #253f66;
 }
 
-.formulario textarea {
-	width: 250px;
-	height: 150px;
-	font: normal 14px arial, helvetica, sans-serif;
+.btn-login {
+	background-color:#508110; 
+	color: #fff;
+	border: none;	
+	padding: 8px 8px;
+	float: right;
+	border-radius: 4px;
 }
 
-#botones {
-	margin-left: 255px;
-}
 </style>
-
-
 </head>
 
-
 <body>
-
-	<div id="central">
-
-		<h2>Login via JAAS</h2>
-
-
-		<h:form>
-			<h:panelGrid columns="2">
-
-				<h:outputLabel for="uname" value="Enter User Name :  " />
-				<h:inputText id="uname" value="#{loginBean.username}" />
-				<h:outputLabel for="pass" value="Enter Password  :" />
-				<h:inputSecret id="pass" value="#{loginBean.password}" />
-				<h:outputText />
-				<h:outputText id="mensajeError" value="#{loginBean.message}" />
-				<h:outputText />
+	<div class="text-page"> 
 				
-				<h:commandButton id="login" value="Login"
-					action="#{loginBean.Login()}" />
-			</h:panelGrid>
-		</h:form>
-		<h:form>
-			<h:commandButton action="index?faces-redirect=true"
-				value="Inicio" />
-		</h:form>
-
+		<div class="body-login"> 
+			<br></br><h2 class="title-body">Inicio de Sesión via JAAS</h2>
+	
+			<h:form>
+				<div class="form-container">
+					<div class="form-line">
+						<h:outputLabel for="uname" value="Ingrese Nombre de Usuario:  " />
+						<h:inputText id="uname" class="form-input" value="#{loginBean.username}" />
+					</div>
+					<div class="form-line">
+						<h:outputLabel for="pass" value="Ingrese Contraseña:" />
+						<h:inputSecret id="pass" class="form-input" value="#{loginBean.password}" />
+					</div>
+					<h:outputText />
+					<h:outputText id="mensajeError" value="#{loginBean.message}" />
+					<h:outputText />
+					<br></br>
+				</div>
+				
+				<h:commandButton class="btn-login" value="Iniciar Sesión"
+						action="#{loginBean.Login()}" />
+			</h:form>
+			
+		</div>
 	</div>
 </body>
 </html>
