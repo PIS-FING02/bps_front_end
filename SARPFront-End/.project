@@ -3,8 +3,8 @@
 	<name>SARPFront-End</name>
 	<comment></comment>
 	<projects>
-		<project>SARP_Logica</project>
-		<project>SARP_Web</project>
+		<project>SARPWeb</project>
+		<project>SARPBusiness</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
