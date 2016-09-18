@@ -26,26 +26,21 @@ public class Formulario {
 		return tramite;
 	}
 
-
 	public void setTramite(String tramite) {
 		this.tramite = tramite;
 	}
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
 	public String getNumero() {
 		return numero;
 	}
-
 
 	public void setNumero(String numero) {
 		this.numero = numero;
@@ -54,7 +49,6 @@ public class Formulario {
 	public String getResultado() {
 		return resultado;
 	}
-
 
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
@@ -70,8 +64,6 @@ public class Formulario {
 		this.sector = sector;
 	}
 	
-
-
 	public  void submit(){
 		ControladorREST c = new ControladorREST();
 		System.out.println("Ejecutando controlador...");

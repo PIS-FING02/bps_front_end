@@ -1,4 +1,5 @@
-package com.logica;
+package com.sarp.facade;
+
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -9,12 +10,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class FuncionariosService {
+public class FuncionarioFacade {
 
 	private static final String USER_AGENT = null;
 
 
-	public String ConsumirServicio() {
+	public String consumirServicio() {
 		String resultado="";
 		try {
 
@@ -54,7 +55,7 @@ public class FuncionariosService {
 	}
 	
 
-	public void AgregarSector(String sector) throws IOException{
+	public void agregarSector(String sector) throws IOException{
 
 			String encodedSector = java.net.URLEncoder.encode(sector,"UTF-8");
 			String url = "http://52.52.100.160:8080/SARPService/rest/sectores/"+encodedSector;
@@ -85,7 +86,7 @@ public class FuncionariosService {
 	}
 
 
-	public void AgregarTramite(String tramite, String idSector) {
+	public void agregarTramite(String tramite, String idSector) {
 		try {
 		String encodedTramite = java.net.URLEncoder.encode(tramite, "UTF-8");	
 		String url = "http://52.52.100.160:8080/SARPService/rest/tramites/"+idSector +"/"+encodedTramite;
@@ -125,7 +126,7 @@ public class FuncionariosService {
 	
 }
 
-	public String ConsumirTramite() {
+	public String consumirTramite() {
 		String resultado="";
 		try {
 
