@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		ControladorREST c = new ControladorREST();
-		String resultado =c.Consumir();
+		String resultado = c.Consumir();
 		System.out.println(resultado);
 		c.Agregar("prueba");
 		
