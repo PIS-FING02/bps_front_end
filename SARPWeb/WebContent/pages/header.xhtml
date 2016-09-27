@@ -5,58 +5,64 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-<title> Header </title>
-<style>
-
-.background-page{
-	background-color: #f0f2f4;
-}
-
-.text-page{
-	font-size: 14px;
-	font-family: arial,sans-serif;
-	font-style: normal;
-}
-
-.header-login {
-	background-color: #153975;
-	color: #fff;
-	padding: 1px 10px 1px 10px;
-}	
-
-.header-text {
-	display: inline-flex;
-}
-
-.image {
-	width: 400px; 
-	height: 65px;	
-	float: left;
-}
-
-.title{
-	font-size: 20px;
-	width: 550px;
-	text-align: center;
-}
-
-.time {
-	float: right;
-	font-size: 10px;
-	line-height: 65px;
-    margin: 0px 88px;
-}
-</style>
+	<title> Header </title>
+	<link rel="stylesheet" type="text/css" href="generalPageStyles.css"/>
+	<style>
+		
+		.confHeader {
+			background-color: #153975;
+			color: #fff;
+			padding: 15px 15px 15px 15px;
+		}	
+		
+		.headerText {
+			display: inline;
+		}
+		
+		.image {
+			width: 94px;
+		    height: 38px;
+		    float: left;
+		}
+		
+		.title{
+			width: 100%;
+		    font-size: 20px;
+		    text-align: center;
+		    margin-left: 182px;
+		}
+		
+		.time {
+			float: right;
+			font-size: 10px;
+		    padding: 1px 11px 1px 174px;
+		}
+	</style>
 </head> 
-<body class="background-page"> 
-	<div class="text-page"> 
-		<div class="header-login">
-			<div class="header-text image"> 
-	 				<img src="C:\Users\Martina\workspace\Front-end\bps_front_end\SARP_Web\WebContent\images\logo-bps-azul.png" alt="Fotografía de un paisaje" />
-			</div>
-			<h3 class="header-text title">Sistema de Atención y Reservas al Público</h3>
-			<h3 class="header-text time"> Hora | Fecha </h3>
-		</div> 
+<body class="backgroundPage textPage"> 
+	<!-- div class="confHeader">
+	<div>  
+	 				<img class="headerText image" src="../images/logo-bps-azul.png" alt="BPS" />
+			<h3 class="headerText title">Sistema de Atención y Reservas al Público</h3>
+			<h3 class="headerText time">Fecha y Hora</h3>
 	</div>
+	</div-->
+
+	<div class="confHeader">
+	<table>
+		<tr>  
+	 		<td>		
+	 			<img class="headerText image" src="../images/logo-bps-azul.png" alt="BPS" />
+			</td>
+			<td>	
+				<h3 class="headerText title">Sistema de Atención y Reservas al Público</h3>
+			</td>
+			<td>	
+				<h3 class="headerText time">Fecha y Hora</h3>
+			</td>		
+		</tr>
+	</table>
+	</div>	
+	
 </body> 
 </html>

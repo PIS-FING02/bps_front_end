@@ -5,49 +5,47 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-<title>Pantalla Administrador</title>
-<ui:include src="header.xhtml" />
-<style>
-
-.page-frame{
-	background-color: #fff;
-    width: 75%;
-    display: block;
-    margin: 25px auto;
-    padding: 10px;
-    min-height: 300px;
-}
-
-.btn-admin {
-	background-color: #4e769b;
-    color: #fff;
-    border: none;
-    padding: 10px 10px;
-    float: right;
-    border-radius: 4px;
-    margin: 8px;
-    max-width: 120px;
-}
-
-.btns-frame{
-	width: 70%;
-    display: block;
-    margin: 100px 10px;
-    padding: 10px;
-}
-
-</style>
+	<title>Pantalla Administrador</title>
+	<ui:include src="header.xhtml" />
+	<style>
+		
+		.btnsFrame{ 
+			margin: 0px 0px;
+			width: 88%;
+		}
+		
+		.btnMainPage{
+			width: 140px;
+    		height: 100px;
+		}
+		
+		.titleBody{
+			margin: 0px 0px 15px -15px;
+		}
+		
+		.btnVerde{
+			margin: -33px 0px;
+		}
+	</style>
 </head> 
 
 <body> 
-	<div class="text-page"> 
-		<div class="page-frame">
-			<h:form class="btns-frame">
-				<button class="btn-admin" action="#{tramiteBean.Tramites()}" > Trámites </button>
-				<button class="btn-admin" action="#{sectoresGAFUBean.SectoresGAFU()}" > Importar Sectores GAFU </button>
-				<button class="btn-admin" action="#{displayBean.Display()}"> Display </button>
-				<button class="btn-admin" action="#{nrosSistemaBean.NrosSistema()}"> Listar Números del Sistema </button>
+	<div class="textPage"> 
+		<div class="logoutFrame">
+			<h2 class="titleBody"> Menú Principal ➨  Administración </h2>
+			<h:form>
+				<h:commandButton class="btnVerde" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
+		</div>
+		<div class="pageFrame">
+			<div class="btnsFrame">
+				<h:form>
+					<button class="btnMainPage" action="#{tramiteBean.Tramites()}" > Trámites </button>
+					<button class="btnMainPage" action="#{sectoresGAFUBean.SectoresGAFU()}" > Importar Sectores GAFU </button>
+					<button class="btnMainPage" action="#{displayBean.Display()}"> Display </button>
+					<button class="btnMainPage" action="#{nrosSistemaBean.NrosSistema()}"> Listar Números del Sistema </button>
+				</h:form>
+			</div>
 		</div>
 	</div>
 </body> 

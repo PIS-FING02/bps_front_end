@@ -1,13 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
 <head>
-</head>
-<body>
-	<h1>Responsable Sector</h1>
-	<h:form>
-		<h:commandButton id="logout" value="Logout" action="#{loginBean.Logout()}" />
-	</h:form>
-</body>
+	<title>Pantalla Responsable Sector</title>
+	<ui:include src="header.xhtml" />
+	<style>
+		
+		.btnsFrame{ 
+			margin: 0px 0px;
+			width: 91%;
+		}
+		
+		.btnMainPage{
+			width: 140px;
+    		height: 100px;
+		}
+		
+		.titleBody{
+			margin: 0px 0px 15px -15px;
+		}
+		
+		.btnVerde{
+			margin: -33px 0px;
+		}
+	</style>
+</head> 
+
+<body> 
+	<div class="textPage"> 
+		<div class="logoutFrame">
+			<h2 class="titleBody"> Menú Principal ➨ Responsable Sector </h2>
+			<h:form>
+				<h:commandButton class="btnVerde" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			</h:form>
+		</div>
+		<div class="pageFrame">
+			<div class="btnsFrame">
+				<h:form>
+					<button class="btnMainPage" action="#{puestoBean.Puestos()}" > Puestos </button>
+					<button class="btnMainPage" action="#{listarnrosBean.NrosEspera()}" > Listar Números en Espera </button>
+					<button class="btnMainPage" action="#{listarnrosBean.NrosPausados()}"> Listar Números Pausados </button>
+					<button class="btnMainPage" action="#{listarnrosBean.NrosAtrasados()}"> Listar Números Atrasados </button>
+					<button class="btnMainPage" action="#{sectoresBean.MisSectoresResponsableSector()}" > Obtener mis Sectores </button>
+				</h:form>
+			</div>
+		</div>
+	</div>
+</body> 
 </html>

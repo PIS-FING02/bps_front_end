@@ -5,78 +5,55 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
-<title>Iniciar Sesión</title>
-<ui:include src="header.xhtml" />
-<style>
-
-.text-page{
-	font-size: 14px;
-	font-family: arial,sans-serif;
-	font-style: normal;
-}
-
-.form-container {
-	width: 50%;
-	display: inline;
-}
-
-.form-line {
-	width: 100%;
-	line-height: 21px;
-	margin-bottom: 7px;
-}
-
-.form-input { 
-    margin-left: 10px;
-    float: right;
-}
-
-.body-login {
-	float: left;
-}
-
-.title-body{
-	color: #253f66;
-}
-
-.btn-login {
-	background-color:#508110; 
-	color: #fff;
-	border: none;	
-	padding: 8px 8px;
-	float: right;
-	border-radius: 4px;
-}
-
-</style>
+	<title>Iniciar Sesión</title>
+	<ui:include src="header.xhtml" />
+	<style>
+	
+		.bodyLogin {
+			margin: 6% 31%;
+		}
+		
+		.formContainer {
+			width: 50%;
+			display: inline;
+		}
+		
+		.formLine {
+			width: 100%;
+			line-height: 21px;
+			margin-bottom: 7px;
+		}
+		
+		.formInput { 
+		    /*margin-left: 10px;*/
+		    float: right;
+		    width: 150px;
+		}
+	
+	</style>
 </head>
 
 <body>
-	<div class="text-page"> 
-				
-		<div class="body-login"> 
-			<br></br><h2 class="title-body">Inicio de Sesión via JAAS</h2>
-	
+	<div class="textPage"> 
+		<div class="bodyLogin"> 
+			<h2 class="titleBody">Inicio de Sesión via JAAS</h2>
 			<h:form>
-				<div class="form-container">
-					<div class="form-line">
-						<h:outputLabel for="uname" value="Ingrese Nombre de Usuario:  " />
-						<h:inputText id="uname" class="form-input" value="#{loginBean.username}" />
+				<div class="formContainer">
+					<div class="formLine">
+						<h:outputLabel for="uname" value="Ingrese Nombre de Usuario: " />
+						<h:inputText id="uname" class="formInput" value="#{loginBean.username}" />
 					</div>
-					<div class="form-line">
-						<h:outputLabel for="pass" value="Ingrese Contraseña:" />
-						<h:inputSecret id="pass" class="form-input" value="#{loginBean.password}" />
+					<div class="formLine">
+						<h:outputLabel for="pass" value="Ingrese Contraseña: "/>
+						<h:inputSecret id="pass" class="formInput" value="#{loginBean.password}"/>
 					</div>
 					<h:outputText />
-					<h:outputText id="mensajeError" value="#{loginBean.message}" />
+					<h:outputText id="mensajeError" value="#{loginBean.message}"/>
 					<h:outputText />
 					<br></br>
 				</div>
-				
-				<h:commandButton class="btn-login" value="Iniciar Sesión"
-						action="#{loginBean.Login()}" />
+				<h:commandButton class="btnVerde" value="Iniciar Sesión" action="#{loginBean.Login()}" /> 
 			</h:form>
-			
 		</div>
 	</div>
 </body>
