@@ -1,11 +1,13 @@
-package com;
+package com.sarp;
 
 import java.io.IOException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import com.controladores.ControladorREST;
+import com.sarp.controladores.ControladorREST;
+
+
 
 //import com.controladores.ControladorREST;
 
@@ -68,7 +70,7 @@ public class Formulario {
 		ControladorREST c = new ControladorREST();
 		System.out.println("Ejecutando controlador...");
 		try {
-			c.Agregar(sector);
+			c.agregar(sector);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,14 +85,14 @@ public class Formulario {
 		System.out.println("\nTramite: "+this.tramite +"\nNombre: "+this.nombre + "\nNumero: "+this.numero);
 		ControladorREST c = new ControladorREST();
 		System.out.println("Ejecutando controlador...");
-		this.resultado= c.Consumir();
+		this.resultado= c.consumir();
 
 	}
 	
 	public  void submitTramites(){
 		ControladorREST c = new ControladorREST();
 		System.out.println("Ejecutando controlador...");
-		c.Agregar(tramite,sector);
+		c.agregar(tramite,sector);
 		this.sector="";
 
 
@@ -100,7 +102,7 @@ public class Formulario {
 		System.out.println("\nTramite: "+this.tramite +"\nNombre: "+this.nombre + "\nNumero: "+this.numero);
 		ControladorREST c = new ControladorREST();
 		System.out.println("Ejecutando controlador...");
-		this.resultado2= c.ConsumirTramites();
+		this.resultado2= c.consumirTramites();
 
 	}
 
