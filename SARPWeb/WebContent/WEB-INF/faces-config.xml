@@ -12,17 +12,17 @@
 	</application>
 	<managed-bean>
 		<managed-bean-name>formulario</managed-bean-name>
-		<managed-bean-class>com.Formulario</managed-bean-class>
+		<managed-bean-class>com.sarp.Formulario</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>loginBean</managed-bean-name>
-		<managed-bean-class>com.LoginBean</managed-bean-class>
+		<managed-bean-class>com.sarp.LoginBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>recepcionistaBean</managed-bean-name>
-		<managed-bean-class>com.RecepcionistaBean</managed-bean-class>
+		<managed-bean-class>com.sarp.RecepcionistaBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 </faces-config>
