@@ -1,6 +1,14 @@
-
-.backgroundPage{
+body{
 	background-color: #f0f2f4;
+	font-size: 14px;
+	font-family: arial,sans-serif;
+	font-style: normal;
+}
+
+.title{
+	color: #253f66;
+	margin: 10px 0;
+	font-size: 20px;
 }
 
 .pageFrame{
@@ -12,12 +20,6 @@
     min-height: 375px;
 }
 
-.textPage{
-	font-size: 14px;
-	font-family: arial,sans-serif;
-	font-style: normal;
-}
-
 .btnVerde {
 	background-color:#508110; 
 	color: #fff;
@@ -25,16 +27,11 @@
 	padding: 8px 8px;
 	float: right;
 	border-radius: 4px;
-	/*margin: -33px 0px;*/
 }
 
 .logoutFrame{
 	height: 35px;
     margin: 25px 150px;
-}
-
-.titleBody{
-	color: #253f66;
 }
 
 .btnsFrame{ 

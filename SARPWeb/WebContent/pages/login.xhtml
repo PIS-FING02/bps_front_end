@@ -5,55 +5,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
+	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
 	<title>Iniciar Sesión</title>
 	<ui:include src="header.xhtml" />
-	<style>
-	
-		.bodyLogin {
-			margin: 6% 31%;
-		}
-		
-		.formContainer {
-			width: 50%;
-			display: inline;
-		}
-		
-		.formLine {
-			width: 100%;
-			line-height: 21px;
-			margin-bottom: 7px;
-		}
-		
-		.formInput { 
-		    /*margin-left: 10px;*/
-		    float: right;
-		    width: 150px;
-		}
-	
-	</style>
 </head>
 
 <body>
-	<div class="textPage"> 
-		<div class="bodyLogin"> 
-			<h2 class="titleBody">Inicio de Sesión via JAAS</h2>
-			<h:form>
-				<div class="formContainer">
-					<div class="formLine">
+	<div id="login"> 
+		<div class="form-container"> 
+			<div class="title">Inicio de Sesión via JAAS</div>
+				<div class="form">
+					<div class="form-line">
 						<h:outputLabel for="uname" value="Ingrese Nombre de Usuario: " />
 						<h:inputText id="uname" class="formInput" value="#{loginBean.username}" />
 					</div>
-					<div class="formLine">
+					<div class="form-line">
 						<h:outputLabel for="pass" value="Ingrese Contraseña: "/>
 						<h:inputSecret id="pass" class="formInput" value="#{loginBean.password}"/>
 					</div>
 					<h:outputText />
 					<h:outputText id="mensajeError" value="#{loginBean.message}"/>
 					<h:outputText />
-					<br></br>
 				</div>
 				<h:commandButton class="btnVerde" value="Iniciar Sesión" action="#{loginBean.Login()}" /> 
-			</h:form>
 		</div>
 	</div>
 </body>

@@ -42,7 +42,7 @@ public class LoginBean {
 	}
 	
     public String Login() {
-    	try {
+    	try { 
             message="";
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             request.login(username, password);
