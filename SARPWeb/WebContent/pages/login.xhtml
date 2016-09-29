@@ -5,15 +5,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
-	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
 	<title>Iniciar Sesión</title>
 	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
 </head>
 
 <body>
 	<div id="login"> 
 		<div class="form-container"> 
 			<div class="title">Inicio de Sesión via JAAS</div>
+			<h:form>
 				<div class="form">
 					<div class="form-line">
 						<h:outputLabel for="uname" value="Ingrese Nombre de Usuario: " />
@@ -26,8 +28,10 @@
 					<h:outputText />
 					<h:outputText id="mensajeError" value="#{loginBean.message}"/>
 					<h:outputText />
+					<br></br>
 				</div>
 				<h:commandButton class="btnVerde" value="Iniciar Sesión" action="#{loginBean.Login()}" /> 
+			</h:form>
 		</div>
 	</div>
 </body>
