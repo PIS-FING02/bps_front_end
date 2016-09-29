@@ -1,0 +1,75 @@
+body{
+	background-color: #f0f2f4;
+	font-size: 14px;
+	font-family: arial,sans-serif;
+	font-style: normal;
+	margin: 0;
+}
+
+.page-container {
+    width: 624px;
+    float: left;
+    position: relative;
+    left: calc((100% - 624px)/2);
+    margin-top: 50px;
+}
+
+.title {
+	color: #253f66;
+	margin: 10px 0;
+	font-size: 20px;
+}
+
+.page-title-container{
+	height: 35px;
+    margin: 20px auto;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.page-title {
+    display: inline;
+    float: left;
+    margin: 0;
+    line-height: 35px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pageFrame{    
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    float: left;
+    left: calc((100% - 624px)/2);
+}
+
+.btnVerde {
+	background-color:#508110; 
+	color: #fff;
+	border: none;	
+	padding: 10px 8px;
+	float: right;
+	border-radius: 4px;
+}
+
+.btnsFrame{ 
+    margin: 0px 0px;
+    float: left;
+}
+
+.btnMainPage {
+	background-color: #4e769b;
+    color: #fff;
+    border: none;
+    padding: 10px 10px;
+    float: left;
+    border-radius: 4px;
+    margin: 8px;
+	width: 135px;
+    height: 100px;
+    font-weight: bold;
+    font-size: 14px;
+}

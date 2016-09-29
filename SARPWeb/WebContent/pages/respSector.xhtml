@@ -7,32 +7,13 @@
 <head>
 	<title>Pantalla Responsable Sector</title>
 	<ui:include src="header.xhtml" />
-	<style>
-		
-		.btnsFrame{ 
-			margin: 0px 0px;
-			width: 91%;
-		}
-		
-		.btnMainPage{
-			width: 140px;
-    		height: 100px;
-		}
-		
-		.titleBody{
-			margin: 0px 0px 15px -15px;
-		}
-		
-		.btnVerde{
-			margin: -33px 0px;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="../styles/respSec.css"/>
 </head> 
 
 <body> 
-	<div class="textPage"> 
-		<div class="logoutFrame">
-			<h2 class="titleBody"> Menú Principal ➨ Responsable Sector </h2>
+	<div class="page-container">
+		<div class="page-title-container">
+			<div class="page-title"> Menú Principal ➨ Responsable Sector </div>
 			<h:form>
 				<h:commandButton class="btnVerde" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
