@@ -2,7 +2,6 @@
 	background-color: #153975;
 	color: #fff;
 	padding: 15px 15px 15px 15px;
-	margin: -8px;
 	height: 35px;
 }	
 
@@ -20,7 +19,7 @@
 }
 
 .header-container .title{
-	width: calc(100% - 142px);
+	width: calc(100% - 145px);
 	float: left;
     font-size: 20px !important;
     color: white;

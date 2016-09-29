@@ -16,7 +16,7 @@
 		<div class="form-container"> 
 			<div class="title">Inicio de Sesión via JAAS</div>
 			<h:form>
-				<div class="form">
+				<div class="login-form">
 					<div class="form-line">
 						<h:outputLabel for="uname" value="Ingrese Nombre de Usuario: " />
 						<h:inputText id="uname" class="formInput" value="#{loginBean.username}" />
@@ -28,7 +28,6 @@
 					<h:outputText />
 					<h:outputText id="mensajeError" value="#{loginBean.message}"/>
 					<h:outputText />
-					<br></br>
 				</div>
 				<h:commandButton class="btnVerde" value="Iniciar Sesión" action="#{loginBean.Login()}" /> 
 			</h:form>

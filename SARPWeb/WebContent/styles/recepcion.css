@@ -1,0 +1,136 @@
+.btnsFrame{
+	padding: 10px 35px 0px 20px;
+	height: 500px;
+	margin: 0px 65px;
+	width:80%;
+}
+
+.blackTitle{
+	color: black;
+    width: 50%;
+    margin: 10px 10px;
+    padding: 0px 5px;
+	padding-left: 50px;
+}	
+
+a{
+	text-align: center;
+	text-decoration: none;
+}
+
+a:active {
+	background-color: #1d304d;
+    text-align: center;
+	text-decoration: none;
+}	
+
+a:target {
+	background-color: #1d304d;
+    text-align: center;
+    text-decoration: none;
+}	
+
+.titleFrame{
+	display: inline;
+}
+
+.tableTitle{
+	width: 100%;
+	padding-top: 15px;
+}
+
+.btnConfNum{
+	padding-right: 25px;
+	padding-top: 40px;
+}
+
+.btnMainPage{
+	width: 77px;
+  		height: 70px;
+}
+
+.refNoSeleccionado{
+	height: 15px;
+    width: 40px;
+    background-color: #4e769b;
+    margin: 30px 0px;
+}
+
+.refSeleccionado{
+	height: 15px;
+	width: 40px;
+	background-color: #1d304d;
+	margin: 30px 0px;
+}
+
+.textNoSelec{
+	margin-bottom: 15px;
+}
+
+.titleBody{
+	margin: 0px 0px 15px -15px;
+}
+
+.btnVerdeRight{
+	margin: -33px 0px;
+	cursor: pointer;
+			transition: all 0.3s ease-out;			
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
+}
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+	margin-top: 0;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	text-decoration: none;
+	color: black;
+}
+
+.popup .close:hover {
+	color: #0059b2;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}	
+.titlePopup{
+	color: #253f66;
+	text-align: center;
+	background-color: #f5f5f5;
+}	
+
+.linkCancelar{
+	color: #ea0303;
+	font-weight: bold;
+}

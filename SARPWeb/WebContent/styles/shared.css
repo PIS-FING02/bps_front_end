@@ -3,42 +3,61 @@ body{
 	font-size: 14px;
 	font-family: arial,sans-serif;
 	font-style: normal;
+	margin: 0;
 }
 
-.title{
+.page-container {
+    width: 624px;
+    float: left;
+    position: relative;
+    left: calc((100% - 624px)/2);
+    margin-top: 50px;
+}
+
+.title {
 	color: #253f66;
 	margin: 10px 0;
 	font-size: 20px;
 }
 
-.pageFrame{
-	background-color: #fff;
-    width: 75%;
-    display: block;
-    margin: 10px auto;
+.page-title-container{
+	height: 35px;
+    margin: 20px auto;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.page-title {
+    display: inline;
+    float: left;
+    margin: 0;
+    line-height: 35px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pageFrame{    
+    background-color: #fff;
+    margin: 0 auto;
     padding: 10px;
-    min-height: 375px;
+    position: relative;
+    float: left;
+    left: calc((100% - 624px)/2);
 }
 
 .btnVerde {
 	background-color:#508110; 
 	color: #fff;
 	border: none;	
-	padding: 8px 8px;
+	padding: 10px 8px;
 	float: right;
 	border-radius: 4px;
 }
 
-.logoutFrame{
-	height: 35px;
-    margin: 25px 150px;
-}
-
 .btnsFrame{ 
-    width: 80%;
-    padding: 100px 35px 0px 35px;
-    height: 200px;
-	margin: 0px 65px;
+    margin: 0px 0px;
+    float: left;
 }
 
 .btnMainPage {
@@ -49,8 +68,8 @@ body{
     float: left;
     border-radius: 4px;
     margin: 8px;
-	width: 160px;
-    height: 80px;
+	width: 135px;
+    height: 100px;
     font-weight: bold;
     font-size: 14px;
 }
