@@ -1,17 +1,33 @@
+.options-footer {
+	float: left;
+	width: calc(100% - 20px);
+	padding: 10px;
+}
+
+.reference-container {
+	margin-bottom: 15px;
+}
+	
+.color-reference {
+	height: 15px;
+    width: 40px;
+    background-color: #4e769b;
+    float: left;
+    display: inline;
+    margin-right: 10px;
+}
+
+.no-select-color-reference {
+	background-color: #1d304d;
+	margin-bottom: 10px;
+}
+
 .btnsFrame{
 	padding: 10px 35px 0px 20px;
 	height: 500px;
 	margin: 0px 65px;
 	width:80%;
 }
-
-.blackTitle{
-	color: black;
-    width: 50%;
-    margin: 10px 10px;
-    padding: 0px 5px;
-	padding-left: 50px;
-}	
 
 a{
 	text-align: center;
@@ -30,10 +46,6 @@ a:target {
     text-decoration: none;
 }	
 
-.titleFrame{
-	display: inline;
-}
-
 .tableTitle{
 	width: 100%;
 	padding-top: 15px;
@@ -49,32 +61,8 @@ a:target {
   		height: 70px;
 }
 
-.refNoSeleccionado{
-	height: 15px;
-    width: 40px;
-    background-color: #4e769b;
-    margin: 30px 0px;
-}
-
-.refSeleccionado{
-	height: 15px;
-	width: 40px;
-	background-color: #1d304d;
-	margin: 30px 0px;
-}
-
-.textNoSelec{
-	margin-bottom: 15px;
-}
-
 .titleBody{
 	margin: 0px 0px 15px -15px;
-}
-
-.btnVerdeRight{
-	margin: -33px 0px;
-	cursor: pointer;
-			transition: all 0.3s ease-out;			
 }
 
 .overlay {

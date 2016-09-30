@@ -11,100 +11,84 @@
 </head> 
 
 <body> 
-	<div class="textPage"> 
-		<div class="logoutFrame">
 			<a class="page-title" href="menuPrincipal.xhtml"> Menú Principal </a>
-			<div class="page-title"> ➨  Recepción </div>
+
+	<div class="page-container recepcion-page">
+		<div class="page-title-container">
+			<h2 class="page-title"> Menú Principal ➨  Recepción </h2>
 			<h:form>
 				<h:commandButton class="btnVerde btnVerdeRight" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div>
-		<div class="pageFrame">
-			<div class="titleFrame">
-				<table class="tableTitle">
-					<tr>
-						<td>
-							<h3 class="blackTitle"> Nuevo Número </h3>
-						</td>
-						<td class="btnConfNum">
-								<a class="btnVerde btnVerdeRight" href="#popupConfNum">Confirmar Número</a>
-								<div id="popupConfNum" class="overlay">
-									<div class="popup">
-										<h2 class="titlePopup">Confirmar Número</h2>
-										<a class="close" href="#">&times;</a>
-										<div class="content">
-											Número para: Obtener sector y tramite del click
-											Datos Adicionales
-											<h:form>
-												<div class="formLine">
-													<h:outputLabel for="name" value="Nombre: " />
-													<h:inputText id="name" class="formInput" value="#{confNumBean.name}" />
-												</div>
-												<div class="formLine">
-													<h:outputLabel for="lastname" value="Apellido: " />
-													<h:inputText id="lastname" class="formInput" value="#{confNumBean.lastname}" />
-												</div>
-												<div class="formLine">
-													<h:outputLabel for="typedoc" value="Tipo de Doc.: " />
-													<h:inputText id="typedoc" class="formInput" value="#{confNumBean.typedoc}" />
-												</div>
-												<div class="formLine">
-													<h:outputLabel for="numdoc" value="Núm. Doc.: " />
-													<h:inputText id="numdoc" class="formInput" value="#{confNumBean.numdoc}" />
-												</div>
-												<h:commandButton class="btnVerde" value="Imprimir" action="#{confNumBean.print()}" /> 
-											</h:form>
-											<a class="linkCancelar" href="#popupCancelar">Cancelar</a>
-										</div>
-									</div>
-								</div>
-						</td>
-					</tr>
-				</table>				
-			</div>
+		<div class="page-frame">
+			<div class="frame-title"> Nuevo Número </div>	
 			
-			<div class="btnsFrame">
-				<table>
-					<tr>
-						<td>
-							<h:form>
-								<a class="btnMainPage" id="secATram4" href="#secATram4"><br></br>Sector A Trámite 4 </a>
-								<a class="btnMainPage" id="secATram3" href="#secATram3"><br></br>Sector A Trámite 3 </a>
-								<a class="btnMainPage" id="secATram2" href="#secATram2"><br></br>Sector A Trámite 2 </a>
-								<a class="btnMainPage" id="secATram1" href="#secATram1"><br></br>Sector A Trámite 1 </a>
-								
-								<a class="btnMainPage" id="secBTram4" href="#secBTram4"><br></br>Sector B Trámite 4 </a>
-								<a class="btnMainPage" id="secBTram3" href="#secBTram3"><br></br>Sector B Trámite 3 </a>
-								<a class="btnMainPage" id="secBTram2" href="#secBTram2"><br></br>Sector B Trámite 2 </a>
-								<a class="btnMainPage" id="secBTram1" href="#secBTram1"><br></br>Sector B Trámite 1 </a>
-								
-								<a class="btnMainPage" id="secCTram4" href="#secCTram4"><br></br>Sector C Trámite 4 </a>
-								<a class="btnMainPage" id="secCTram3" href="#secCTram3"><br></br>Sector C Trámite 3 </a>
-								<a class="btnMainPage" id="secCTram2" href="#secCTram2"><br></br>Sector C Trámite 2 </a>
-								<a class="btnMainPage" id="secCTram1" href="#secCTram1"><br></br>Sector C Trámite 1 </a>
-								
-								<a class="btnMainPage" id="secDTram4" href="#secDTram4"><br></br>Sector D Trámite 4 </a>
-								<a class="btnMainPage" id="secDTram3" href="#secDTram3"><br></br>Sector D Trámite 3 </a>
-								<a class="btnMainPage" id="secDTram2" href="#secDTram2"><br></br>Sector D Trámite 2 </a>
-								<a class="btnMainPage" id="secDTram1" href="#secDTram1"><br></br>Sector D Trámite 1 </a>			
-							</h:form>
-						</td>
-						<td>
-							<div> 
-								<div class="refNoSeleccionado"></div>
-							</div>
-							<div>
-								<div class="refSeleccionado"></div>
-							</div>
-						</td>
-						<td>
-							<p class="textNoSelec"> No seleccionado</p>
-							<p> Seleccionado</p>
-						</td>
-					</tr>
-				</table>
+			<div class="options-buttons-container">
+				<button class="option-button" id="secATram4">Sector A Trámite 4 </button>
+				<button class="option-button" id="secATram3">Sector A Trámite 3 </button>
+				<button class="option-button" id="secATram2">Sector A Trámite 2 </button>
+				<button class="option-button" id="secATram1">Sector A Trámite 1 </button>
+				
+				<button class="option-button" id="secBTram4">Sector B Trámite 4 </button>
+				<button class="option-button" id="secBTram3">Sector B Trámite 3 </button>
+				<button class="option-button" id="secBTram2">Sector B Trámite 2 </button>
+				<button class="option-button" id="secBTram1">Sector B Trámite 1 </button>
+				
+				<button class="option-button" id="secCTram4">Sector C Trámite 4 </button>
+				<button class="option-button" id="secCTram3">Sector C Trámite 3 </button>
+				<button class="option-button" id="secCTram2">Sector C Trámite 2 </button>
+				<button class="option-button" id="secCTram1">Sector C Trámite 1 </button>
+				
+				<button class="option-button" id="secDTram4">Sector D Trámite 4 </button>
+				<button class="option-button" id="secDTram3">Sector D Trámite 3 </button>
+				<button class="option-button" id="secDTram2">Sector D Trámite 2 </button>
+				<button class="option-button" id="secDTram1">Sector D Trámite 1 </button>	
 			</div>
+				
+			<div class="options-footer">
+				<div class="reference-container"> 
+					<div class="color-reference no-select-color-reference"></div>
+					<div> No seleccionado</div>
+				</div>
+				<div class="reference-container">
+					<div class="color-reference"></div>
+				<div> Seleccionado</div>
+				</div>
+				<a class="btnVerde btnVerdeRight" href="#popupConfNum">Confirmar Número</a>
+			</div>	
 		</div>
-	</div>
+		
+		<div id="popupConfNum" class="overlay">
+			<div class="popup">
+				<h2 class="titlePopup">Confirmar Número</h2>
+				<a class="close" href="#">&times;</a>
+				<div class="content">
+					Número para: Obtener sector y tramite del click
+					Datos Adicionales
+					<h:form>
+						<div class="formLine">
+							<h:outputLabel for="name" value="Nombre: " />
+							<h:inputText id="name" class="formInput" value="#{confNumBean.name}" />
+						</div>
+						<div class="formLine">
+							<h:outputLabel for="lastname" value="Apellido: " />
+							<h:inputText id="lastname" class="formInput" value="#{confNumBean.lastname}" />
+						</div>
+						<div class="formLine">
+							<h:outputLabel for="typedoc" value="Tipo de Doc.: " />
+							<h:inputText id="typedoc" class="formInput" value="#{confNumBean.typedoc}" />
+						</div>
+						<div class="formLine">
+							<h:outputLabel for="numdoc" value="Núm. Doc.: " />
+							<h:inputText id="numdoc" class="formInput" value="#{confNumBean.numdoc}" />
+						</div>
+						<h:commandButton class="btnVerde" value="Imprimir" action="#{confNumBean.print()}" /> 
+					</h:form>
+					<a class="linkCancelar" href="#popupCancelar">Cancelar</a>
+				</div>
+			</div>
+		</div>	
+</div>	
+<script type="text/javascript" src="../scripts/shared.js"></script>
 </body> 
 </html>
