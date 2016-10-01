@@ -15,26 +15,26 @@
 <body> 
 	<div class="page-container"> 
 		<div class="page-title-container">
-			<a class="page-title" href="menuPrincipal.xhtml"> Menú Principal </a>
+			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
 			<div class="page-title"> ➨  Administración </div>
 			<h:form>
-				<h:commandButton class="btnVerde" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div>
-		<div class="pageFrame">
-			<div class="btnsFrame">
+		<div class="page-frame">
+			<div class="options-buttons-container">
 				<h:form>
-					<button class="btnMainPage" action="#{tramiteBean.AltaTramite()}" > Alta Trámite </button>
-					<button class="btnMainPage" action="#{tramiteBean.BajaTramite()}" > Baja Trámite </button>
-					<button class="btnMainPage" action="#{tramiteBean.AltaModificarTramite()}" > Modificar Trámite </button>
-					<button class="btnMainPage" action="#{sectoresGAFUBean.ImportarSectoresGAFU()}" > Importar Sectores GAFU </button>
-					<button class="btnMainPage" action="#{tramiteBean.AsignarSector()}" > Asignar Sector a Trámite </button>
-					<button class="btnMainPage" action="#{tramiteBean.DesasignarSector()}" > Desasignar Sector a Trámite </button>
-					<button class="btnMainPage" action="#{displayBean.AltaDisplay()}" > Alta Display </button>
-					<button class="btnMainPage" action="#{displayBean.BajaDisplay()}" > Baja Display </button>
-					<button class="btnMainPage" action="#{displayBean.AsignarSector()}"> Asignar Sector a Display </button>
-					<button class="btnMainPage" action="#{displayBean.DesasignarSector()}"> Desasignar Sector a Display </button>
-					<button class="btnMainPage" action="#{numerosBean.ListarNrosSistema()}"> Listar Números del Sistema </button>
+					<button class="option-button" action="#{tramiteBean.AltaTramite()}" > Alta Trámite </button>
+					<button class="option-button" action="#{tramiteBean.BajaTramite()}" > Baja Trámite </button>
+					<button class="option-button" action="#{tramiteBean.AltaModificarTramite()}" > Modificar Trámite </button>
+					<button class="option-button" action="#{sectoresGAFUBean.ImportarSectoresGAFU()}" > Importar Sectores GAFU </button>
+					<button class="option-button" action="#{tramiteBean.AsignarSector()}" > Asignar Sector a Trámite </button>
+					<button class="option-button" action="#{tramiteBean.DesasignarSector()}" > Desasignar Sector a Trámite </button>
+					<button class="option-button" action="#{displayBean.AltaDisplay()}" > Alta Display </button>
+					<button class="option-button" action="#{displayBean.BajaDisplay()}" > Baja Display </button>
+					<button class="option-button" action="#{displayBean.AsignarSector()}"> Asignar Sector a Display </button>
+					<button class="option-button" action="#{displayBean.DesasignarSector()}"> Desasignar Sector a Display </button>
+					<button class="option-button" action="#{numerosBean.ListarNrosSistema()}"> Listar Números del Sistema </button>
 				</h:form>
 			</div>
 		</div>

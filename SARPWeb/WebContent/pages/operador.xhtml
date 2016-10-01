@@ -11,13 +11,13 @@
 <body>
 	<div class="page-container">
 		<div class="page-title-container">
-			<a class="page-title" href="menuPrincipal.xhtml"> Menú Principal </a>
+			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
 			<div class="page-title"> ➨  Atención </div>
 			<h:form>
-				<h:commandButton class="btnVerde" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>	
 		</div>
-		<div class="pageFrame">
+		<div class="page-frame">
 				<div class="right-frame"> 
 					<div> Numeros en espera: </div>
 					<h:form>
@@ -43,9 +43,9 @@
 					</div>
 				</div>
 			<h:form class="bottom-buttons-form">
-				<h:commandButton class="btnVerde" value="Ver Atrasados" action="#{atrasadosBean.VerAtrasados()}" /> 
+				<h:commandButton class="action-button" value="Ver Atrasados" action="#{atrasadosBean.VerAtrasados()}" /> 
 				<h:commandButton class="btn-azul" value="Ver Pausados" action="#{pausadosBean.VerPausados()}" /> 
-				<h:commandButton class="btnVerde" value="Llamar Siguiente" action="#{sgteBean.LlamarSiguiente()}" /> 
+				<h:commandButton class="action-button" value="Llamar Siguiente" action="#{sgteBean.LlamarSiguiente()}" /> 
 			</h:form>
 		</div>
 	</div>

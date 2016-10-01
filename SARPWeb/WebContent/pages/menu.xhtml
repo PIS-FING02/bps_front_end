@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+	<title>Menú Principal</title>
+	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/menu.css"/>
+</head> 
+
+<body> 
+	<div class="page-container">
+		<div class="page-title-container">
+			<div class="page-title"> Menú Principal </div>
+			<h:form>
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			</h:form>
+		</div>
+		<div class="page-frame">
+			<div class="options-buttons-container">
+				<!-- if operador u operadorsr, por separado o junto? -->
+				<a class="option-button" href="operador.xhtml" > Atención Operador </a>
+				<!-- if operadorsr -->
+				<a class="option-button" href="operadorsr.xhtml" > Atención OperSr </a>
+				<!-- if recepcion -->
+				<a class="option-button" href="recepcion.xhtml"  > Recepción </a>
+				<!-- if admin -->
+				<a class="option-button" href="admin.xhtml" > Administración </a>
+				<!-- if consultor -->
+				<a class="option-button" href="consultor.xhtml" > Consultas </a>
+				<!-- if respsector -->
+				<a class="option-button" href="respSector.xhtml" > Configurar Sector </a>
+			</div>
+		</div>
+	</div>
+</body> 
+</html>
