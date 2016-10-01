@@ -1,4 +1,6 @@
 body{
+	position: absolute;
+	width: 100%;
 	background-color: #f0f2f4;
 	font-size: 14px;
 	font-family: arial,sans-serif;
@@ -14,13 +16,7 @@ body{
     margin-top: 50px;
 }
 
-.title {
-	color: #253f66;
-	margin: 10px 0;
-	font-size: 20px;
-}
-
-.page-title-container{
+.page-title-container {
 	height: 35px;
     margin: 20px auto;
     position: relative;
@@ -31,59 +27,127 @@ body{
 .page-title {
     display: inline;
     float: left;
-    margin: 0;
+    margin: 0 10px 0 0;
     line-height: 35px;
     font-size: 20px;
     font-weight: bold;
     color: #1d304d;
 }
 
-.pageFrame{    
+.page-title:first-child {
+	text-decoration: underline;
+}
+
+.page-frame{    
     background-color: #fff;
     margin: 0 auto;
     padding: 10px;
+    border-radius: 3px;
     position: relative;
     float: left;
     left: calc((100% - 624px)/2);
     min-width: 600px;
 }
 
-.btnVerde {
-	background-color:#508110; 
-	color: #fff;
-	border: none;	
-	padding: 10px 8px;
-	float: right;
-	border-radius: 4px;
-}
+.frame-title{
+	text-align: center;
+    margin: 0;
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}	
 
-.btnsFrame{ 
+.options-buttons-container { 
     margin: 0px 0px;
     float: left;
 }
 
-.btnMainPage {
-	background-color: #4e769b;
-    color: #fff;
-    border: none;
-    padding: 10px 10px;
-    float: left;
-    border-radius: 4px;
-    margin: 8px;
-	width: 135px;
+.option-button {
+	width: 131px;
     height: 100px;
+    margin: 10px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
     font-weight: bold;
     font-size: 14px;
+    color: #fff;
+	background-color: #4e769b;
 }
 
-a{
-	text-decoration: none;
+.option-button:hover {
+	background-color: #3e5c77;
 }
 
-a:active {
-	text-decoration: none;
+.option-button-selected {
+	background-color: #1d304d !important;
+}
+
+.form-line {
+	margin-bottom: 10px;
+}
+
+label {
+	width: calc(100% - 180px);
+    line-height: 25px;
+    text-align: left;
+    display: inline-block;
+}
+
+input { 
+    margin-left: 20px;
+    float: right;
+    width: 150px;
+    height: 20px;
+    padding-left: 5px;
+    border: 1px solid #a9a9a9;
+}
+
+.sub-title {
+	color: #253f66;
+	line-height: 35px;
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	background-color: #f5f5f5;
 }	
 
-a:target {
-    text-decoration: none;
+.action-button {
+	width: initial !important;
+	background-color:#508110; 
+	color: #fff;
+	border: none;	
+	height: 35px !important;
+	line-height: 35px;
+	padding: 0 10px;
+	float: right;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.action-button:hover {
+	background-color: #609c12;
+}
+
+.deactivated {
+	background-color: #abde69;
+	cursor: default;
+}
+
+
+.deactivated:hover {
+	background-color: #abde69;
+}
+
+
+.hidden {
+	display: none !important;
+}
+
+a, a:active, a:target {
+	text-decoration: none;
 }	

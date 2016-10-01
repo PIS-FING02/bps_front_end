@@ -1,0 +1,18 @@
+a{
+	text-align: center;
+	line-height: 100px;
+}
+
+a:hover {
+	background-color: #3e5c77;
+}	
+
+.page-container {
+	width: 537px;
+	left: calc((100% - 537px)/2);
+}
+
+.page-frame {
+	min-width: 513px;
+	left: calc((100% - 537px)/2);
+}
