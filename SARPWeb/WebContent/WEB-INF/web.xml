@@ -28,13 +28,26 @@
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Only admins</web-resource-name>
-      <url-pattern>/pages/page1.xhtml</url-pattern>
-      <url-pattern>/pages/page1.jsf</url-pattern>
-      <url-pattern>/pages/formulario.jsf</url-pattern>
-      <url-pattern>/pages/formulario.xhtml</url-pattern>
+      <url-pattern>/pages/admin.jsf</url-pattern>
+      <url-pattern>/pages/admin.xhtml</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>ADMIN</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Menu Principal</web-resource-name>
+      <url-pattern>/pages/menuPrincipal.xhtml</url-pattern>
+      <url-pattern>/pages/menuPrincipal.jsf</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>ADMIN</role-name>
+      <role-name>RESPSEC</role-name>
+      <role-name>CONSULTOR</role-name>
+      <role-name>OPERADOR</role-name>
+      <role-name>OPERADORSR</role-name>
+      <role-name>RECEPCION</role-name>
     </auth-constraint>
   </security-constraint>
   <security-constraint>

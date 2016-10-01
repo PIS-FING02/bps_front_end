@@ -1,13 +1,63 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
 <head>
+	<title>Pantalla de Atención</title>
+	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/operador.css"/>
 </head>
 <body>
-	<h1>Operador Senior</h1>
-	<h:form>
-		<h:commandButton id="logout" value="Logout" action="#{loginBean.Logout()}" />
-	</h:form>
+	<div class="page-container">
+		<div class="page-title-container">
+			<a class="page-title" href="menuPrincipal.xhtml"> Menú Principal </a>
+			<div class="page-title"> ➨  Atención(Sr) </div>
+			<h:form>
+				<h:commandButton class="btnVerde" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			</h:form>	
+		</div>
+		<div class="pageFrame">
+				<div class="right-frame"> 
+					<div> Numeros en espera: </div>
+					<h:form>
+						<h:commandButton class="btn-azul abrir-cerrar-puesto-btn" value="Abrir Puesto" action="#{puestoBean.AbrirPuesto()}" /> 
+					</h:form>
+					<div class="label"> Próx. Números: </div>
+					<div class="data-line text-box"> 
+						<div> SD1001  </div> 
+						<div> SD1004 </div>
+						<div> SD701 </div>
+						<div> SD453 </div>
+					</div>
+					<h:form>
+						<h:commandButton class="btnVerde" value="Llamar Núm" action="#{numerosBean.Llamar(seleccionado)}" /> 
+					</h:form>
+				</div>
+				<div class="left-frame">
+					<div class="data-line">
+						<div class="label"> Número llamado: </div>
+					</div>
+					<div class="data-line">
+						<div class="label"> Datos adicionales: </div>
+						<div class="text-box"> 
+							<div> Nombre: Martina </div> 
+							<div> Apellido: De Luca </div>
+							<div> Tipo Doc: CI </div>
+							<div> Núm Doc: 4904514-4 </div>
+						</div>
+					</div>
+					<div class="data-line">
+						<div class="label"> Trámites: </div>
+						<div class="text-box"> Trámite1 </div>
+					</div>
+				</div>
+			<h:form class="bottom-buttons-form">
+				<h:commandButton class="btnVerde" value="Ver Atrasados" action="#{atrasadosBean.VerAtrasados()}" /> 
+				<h:commandButton class="btn-azul" value="Ver Pausados" action="#{pausadosBean.VerPausados()}" /> 
+				<h:commandButton class="btnVerde" value="Llamar Siguiente" action="#{sgteBean.LlamarSiguiente()}" /> 
+			</h:form>
+		</div>
+	</div>
 </body>
 </html>

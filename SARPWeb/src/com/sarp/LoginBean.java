@@ -42,30 +42,30 @@ public class LoginBean {
 	}
 	
     public String Login() {
-    	try { 
-            message="";
-            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-            request.login(username, password);
-            if(request.isUserInRole("ADMIN"))
-                return "/pages/formulario.xhtml?faces-redirect=true";
-            else if(request.isUserInRole("RESPSEC"))
-                return "/pages/respSector.xhtml?faces-redirect=true";
-            else if(request.isUserInRole("CONSULTOR"))
-                return "/pages/consultor.xhtml?faces-redirect=true";
-            else if(request.isUserInRole("OPERADOR"))
-                return "/pages/operador.xhtml?faces-redirect=true";
-            else if(request.isUserInRole("OPERADORSR"))
-                return "/pages/operadorsr.xhtml?faces-redirect=true";
-            else if(request.isUserInRole("RECEPCION"))
-                return "/pages/recepcion.xhtml?faces-redirect=true";
-            else {
-                message= "Either Login or Password is wrong";
-            }
-        } catch(Exception e) {
-            message= "Datos incorrectos!";
-        }
-        return null;
-    }
+		try { 
+	        message="";
+	        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+	        request.login(username, password);
+	        if(request.isUserInRole("ADMIN"))
+	            return "/pages/menuPrincipal.xhtml?faces-redirect=true";
+	        else if(request.isUserInRole("RESPSEC"))
+	            return "/pages/menuPrincipal.xhtml?faces-redirect=true";
+	        else if(request.isUserInRole("CONSULTOR"))
+	            return "/pages/menuPrincipal.xhtml?faces-redirect=true";
+	        else if(request.isUserInRole("OPERADOR"))
+	            return "/pages/menuPrincipal.xhtml?faces-redirect=true";
+	        else if(request.isUserInRole("OPERADORSR"))
+	            return "/pages/menuPrincipal.xhtml?faces-redirect=true";
+	        else if(request.isUserInRole("RECEPCION"))
+	            return "/pages/menuPrincipal.xhtml?faces-redirect=true";
+	        else {
+	            message= "Either Login or Password is wrong";
+	        }
+	    } catch(Exception e) {
+	        message= "Datos incorrectos!";
+	    }
+	    return null;
+	}
     
     public String Logout(){
     	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

@@ -1,0 +1,55 @@
+.right-frame{
+	float: right;
+	width: 30%;
+}
+
+.btn-azul{
+	background-color:#153975; 
+	color: #fff;
+	border: none;	
+	padding: 10px 8px;
+	float: right;
+	border-radius: 4px;
+	margin-right: 10px;
+    margin-left: 10px;
+}
+
+.abrir-cerrar-puesto-btn{
+	margin-top: 10px;	
+	display: block;
+}
+
+.left-frame{
+	float: left;
+	width: 60%
+}
+
+.data-line{
+	display: inline-block;
+	width: 100%;
+	margin: 10px;
+}
+
+.label{
+	display: inline;
+	vertical-align: top;
+}
+
+.text-box{ 
+    border: 1px solid black;
+    display: inline;
+    padding: 5px;
+    float: right;
+    width: 50%;
+}
+
+.bottom-buttons-form{
+	display: inline-block;
+    margin: 10% 20% 0% 20%;
+}
+
+/*.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}*/
+
