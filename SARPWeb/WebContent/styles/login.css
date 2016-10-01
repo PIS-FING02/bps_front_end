@@ -17,22 +17,3 @@
     margin-top: 100px;
     border-radius: 4px;
 }
-
-.form-line {
-	margin-bottom: 10px;
-}
-
-.login-form label {
-	width: calc(100% - 180px);
-    line-height: 25px;
-    text-align: left;
-    display: inline-block;
-}
-
-.login-form input { 
-    margin-left: 20px;
-    float: right;
-    width: 150px;
-    height: 20px;
-    padding-left: 5px;
-}

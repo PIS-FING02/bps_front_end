@@ -6,18 +6,19 @@
 
 <head>
 	<title>Recepción</title>
-	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/recepcion.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
 </head> 
 
 <body> 
+	<ui:include src="header.xhtml" />
 			<a class="page-title" href="menuPrincipal.xhtml"> Menú Principal </a>
 
 	<div class="page-container recepcion-page">
 		<div class="page-title-container">
 			<h2 class="page-title"> Menú Principal ➨  Recepción </h2>
 			<h:form>
-				<h:commandButton class="btnVerde btnVerdeRight" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div>
 		<div class="page-frame">
@@ -54,41 +55,42 @@
 					<div class="color-reference"></div>
 				<div> Seleccionado</div>
 				</div>
-				<a class="btnVerde btnVerdeRight" href="#popupConfNum">Confirmar Número</a>
+				<div class="action-button deactivated" id="open-popup-button">Confirmar Número</div>
 			</div>	
 		</div>
-		
-		<div id="popupConfNum" class="overlay">
-			<div class="popup">
-				<h2 class="titlePopup">Confirmar Número</h2>
-				<a class="close" href="#">&times;</a>
-				<div class="content">
-					Número para: Obtener sector y tramite del click
-					Datos Adicionales
-					<h:form>
-						<div class="formLine">
-							<h:outputLabel for="name" value="Nombre: " />
-							<h:inputText id="name" class="formInput" value="#{confNumBean.name}" />
-						</div>
-						<div class="formLine">
-							<h:outputLabel for="lastname" value="Apellido: " />
-							<h:inputText id="lastname" class="formInput" value="#{confNumBean.lastname}" />
-						</div>
-						<div class="formLine">
-							<h:outputLabel for="typedoc" value="Tipo de Doc.: " />
-							<h:inputText id="typedoc" class="formInput" value="#{confNumBean.typedoc}" />
-						</div>
-						<div class="formLine">
-							<h:outputLabel for="numdoc" value="Núm. Doc.: " />
-							<h:inputText id="numdoc" class="formInput" value="#{confNumBean.numdoc}" />
-						</div>
-						<h:commandButton class="btnVerde" value="Imprimir" action="#{confNumBean.print()}" /> 
-					</h:form>
-					<a class="linkCancelar" href="#popupCancelar">Cancelar</a>
-				</div>
+	</div>	
+	<div id="nuevo-numero-popup" class="hidden popup-overlay">
+		<div class="popup">
+			<h2 class="sub-title">Confirmar Número</h2>
+			<div id="popup-close-button" class="close-x">&times;</div>
+			<div class="content">
+				<div class="form-line">Número para: Obtener sector y tramite del click</div>
+				<h:form>
+					<div class="form-line">
+						<h:outputLabel for="name" value="Nombre: " />
+						<h:inputText id="name" class="formInput" value="#{confNumBean.name}" />
+					</div>
+					<div class="form-line">
+						<h:outputLabel for="lastname" value="Apellido: " />
+						<h:inputText id="lastname" class="formInput" value="#{confNumBean.lastname}" />
+					</div>
+					<div class="form-line">
+						<h:outputLabel for="typedoc" value="Tipo de Doc.: " />
+						<h:inputText id="typedoc" class="formInput" value="#{confNumBean.typedoc}" />
+					</div>
+					<div class="form-line">
+						<h:outputLabel for="numdoc" value="Núm. Doc.: " />
+						<h:inputText id="numdoc" class="formInput" value="#{confNumBean.numdoc}" />
+					</div>
+					<div class="buttons-container">
+						<h:commandButton class="action-button" value="Imprimir" action="#{confNumBean.print()}" /> 
+						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
+					</div>
+				</h:form>
 			</div>
-		</div>	
-</div>	
+		</div>
+	</div>	
 <script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/recepcion.js"></script>
 </body> 
 </html>

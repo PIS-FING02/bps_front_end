@@ -1,4 +1,6 @@
 body{
+	position: absolute;
+	width: 100%;
 	background-color: #f0f2f4;
 	font-size: 14px;
 	font-family: arial,sans-serif;
@@ -79,15 +81,56 @@ body{
 	background-color: #1d304d !important;
 }
 
-.btnVerde {
+.form-line {
+	margin-bottom: 10px;
+}
+
+label {
+	width: calc(100% - 180px);
+    line-height: 25px;
+    text-align: left;
+    display: inline-block;
+}
+
+input { 
+    margin-left: 20px;
+    float: right;
+    width: 150px;
+    height: 20px;
+    padding-left: 5px;
+    border: 1px solid #a9a9a9;
+}
+
+.sub-title {
+	color: #253f66;
+	line-height: 35px;
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	background-color: #f5f5f5;
+}	
+
+.action-button {
+	width: initial !important;
 	background-color:#508110; 
 	color: #fff;
 	border: none;	
-	padding: 10px 8px;
+	height: 35px !important;
+	line-height: 35px;
+	padding: 0 10px;
 	float: right;
 	border-radius: 4px;
 	cursor: pointer;
-	transition: all 0.3s ease-out;	
+	margin-left: 10px;
+}
+
+.action-button:hover {
+	background-color: #609c12;
+}
+
+.hidden {
+	display: none !important;
 }
 
 a{
