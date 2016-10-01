@@ -9,7 +9,7 @@
 	display: inline;
     text-align: center;
     margin: auto 0;
-    line-height: 35px;
+    line-height: 17px;
 	font-size: 10px;
 }	
 
@@ -23,4 +23,11 @@
 	float: left;
     font-size: 20px !important;
     color: white;
+    line-height: 35px;
+}
+
+.header-container .user-time-container{
+	line-height: 35px;
+	width: 65px;
+	float: right;
 }
