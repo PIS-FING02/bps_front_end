@@ -16,6 +16,7 @@ public class LoginBean {
 	private String username;
 	private String password;
 	private String message;
+	private String role;
 	
 	public String getUsername() {
 		return username;
@@ -46,18 +47,30 @@ public class LoginBean {
 	        message="";
 	        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	        request.login(username, password);
-	        if(request.isUserInRole("ADMIN"))
+	        if(request.isUserInRole("ADMIN")){
+	        	role = "Administración";
+	        	return "/pages/menu.xhtml?faces-redirect=true";
+	        }
+	        else if(request.isUserInRole("RESPSEC")){
+	        	role= "Configurar Sector";
 	            return "/pages/menu.xhtml?faces-redirect=true";
-	        else if(request.isUserInRole("RESPSEC"))
+	        }
+	        else if(request.isUserInRole("CONSULTOR")){
+	        	role ="Consultas";
 	            return "/pages/menu.xhtml?faces-redirect=true";
-	        else if(request.isUserInRole("CONSULTOR"))
+	        }
+	        else if(request.isUserInRole("OPERADOR")){
+	        	role = "Atención";
+	        	return "/pages/menu.xhtml?faces-redirect=true";
+	        }
+	        else if(request.isUserInRole("OPERADORSR")){
+	        	role = "Atención Senior";
 	            return "/pages/menu.xhtml?faces-redirect=true";
-	        else if(request.isUserInRole("OPERADOR"))
+	        }
+	        else if(request.isUserInRole("RECEPCION")){
+	        	role = "Recepción";
 	            return "/pages/menu.xhtml?faces-redirect=true";
-	        else if(request.isUserInRole("OPERADORSR"))
-	            return "/pages/menu.xhtml?faces-redirect=true";
-	        else if(request.isUserInRole("RECEPCION"))
-	            return "/pages/menu.xhtml?faces-redirect=true";
+	        }
 	        else {
 	            message= "Either Login or Password is wrong";
 	        }
@@ -79,4 +92,12 @@ public class LoginBean {
         }
         return "/pages/login.xhtml";
     }
+
+	public String getRole() {
+		return role;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

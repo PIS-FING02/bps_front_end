@@ -3,20 +3,9 @@
 	width: 30%;
 }
 
-.btn-azul{
-	background-color:#153975; 
-	color: #fff;
-	border: none;	
-	padding: 10px 8px;
-	float: right;
-	border-radius: 4px;
-	margin-right: 10px;
-    margin-left: 10px;
-}
-
-.abrir-cerrar-puesto-btn{
-	margin-top: 10px;	
-	display: block;
+.prox-nums-frame{
+	margin: 20px 0px;
+	display: inline-block;
 }
 
 .left-frame{
@@ -24,15 +13,15 @@
 	width: 60%
 }
 
+.bottom-form{
+	display: inline-block;
+    margin: 20px 9% 0px 9%;
+}
+
 .data-line{
 	display: inline-block;
 	width: 100%;
 	margin: 10px;
-}
-
-.label{
-	display: inline;
-	vertical-align: top;
 }
 
 .text-box{ 
@@ -43,13 +32,37 @@
     width: 50%;
 }
 
-.bottom-buttons-form{
-	display: inline-block;
-    margin: 10% 20% 0% 20%;
+.secondary-button {
+	width: initial !important;
+	background-color:#153975; 
+	color: #fff;
+	border: none;	
+	height: 35px !important;
+	line-height: 35px;
+	padding: 0 10px;
+	float: right;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 10px;
 }
 
-/*.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}*/
+.secondary-button:hover {
+	background-color: #1b468d; 
+}
 
+.secondary-deactivated {
+	background-color: #4a73b5;
+	cursor: default;
+}
+
+.rojo{
+	background-color: #ff0000;
+}
+.secondary-deactivated:hover {
+	background-color:  #4a73b5;
+}
+
+.estado-puesto-button{
+	margin: 15px 0px;	
+	display: block;
+}
