@@ -7,6 +7,7 @@
 	<title>Pantalla de Atención</title>
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/operador.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 </head>
 <body>
 	<div class="page-container">
@@ -20,9 +21,10 @@
 		<div class="page-frame">
 				<div class="right-frame"> 
 					<div> Numeros en espera: </div>
-					<h:form>
-						<h:commandButton class="btn-azul abrir-cerrar-puesto-btn" value="Abrir Puesto" action="#{puestoBean.AbrirPuesto()}" /> 
-					</h:form>
+					<div>
+						<button class="secondary-button estado-puesto-button" id="abrir-puesto-button">Abrir Puesto</button>
+						<button class="secondary-button estado-puesto-button hidden" id="cerrar-puesto-button">Cerrar Puesto</button> 
+					</div>
 				</div>
 				<div class="left-frame">
 					<div class="data-line">
@@ -42,12 +44,14 @@
 						<div class="text-box"> Trámite1 </div>
 					</div>
 				</div>
-			<h:form class="bottom-buttons-form">
-				<h:commandButton class="action-button" value="Ver Atrasados" action="#{atrasadosBean.VerAtrasados()}" /> 
-				<h:commandButton class="btn-azul" value="Ver Pausados" action="#{pausadosBean.VerPausados()}" /> 
-				<h:commandButton class="action-button" value="Llamar Siguiente" action="#{sgteBean.LlamarSiguiente()}" /> 
-			</h:form>
+			<div class="bottom-form">
+				<button class="action-button deactivated" id="ver-atrasados-button">Ver Atrasados</button>
+				<button class="secondary-button secondary-deactivated" id="ver-pausados-button" >Ver Pausados</button> 
+				<button class="action-button deactivated" id="llamar-siguiente-button" >Llamar Siguiente</button> 
+			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="../scripts/shared.js"></script>
+	<script type="text/javascript" src="../scripts/operador.js"></script>
 </body>
 </html>

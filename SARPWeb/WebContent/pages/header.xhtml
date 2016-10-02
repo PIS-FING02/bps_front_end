@@ -9,14 +9,15 @@
 	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/header.css"/>
 </head> 
-<body> 
+<body onload="startTime()"> 
 	<div class="header-container">
  			<img src="../images/logo-bps-azul.png" alt="BPS" />
 		<h3 class="title">Sistema de Atención y Reservas al Público</h3>
 		<div class="user-time-container">
-			<h3>Usuario</h3>
-			<h3>Fecha y Hora</h3>
+			<h3>#{loginBean.username}</h3>
+			<h3 id="date-time" >Fecha y Hora</h3>
 		</div>
 	</div>
+	<script type="text/javascript" src="../scripts/header.js"></script>
 </body> 
 </html>
