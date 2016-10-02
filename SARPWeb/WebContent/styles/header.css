@@ -6,7 +6,6 @@
 }	
 
 .header-container h3 {
-	display: inline;
     text-align: center;
     margin: auto 0;
     line-height: 17px;
@@ -28,6 +27,7 @@
 
 .header-container .user-time-container{
 	line-height: 35px;
-	width: 65px;
-	float: right;
+	height: 35px;
+	right: 20px;
+	position: absolute;
 }

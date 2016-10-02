@@ -13,10 +13,11 @@ import org.jboss.security.SecurityContextAssociation;
 @ApplicationScoped
 public class LoginBean {
 
-	private String username;
+	private String username = "Bienvenido";
 	private String password;
 	private String message;
 	private String role;
+	private String roles = "";
 	
 	public String getUsername() {
 		return username;
@@ -42,38 +43,71 @@ public class LoginBean {
 		this.message = message;
 	}
 	
+	public String getRoles() {
+		return this.roles;
+	}
+	
+	public void addRol(String rol, HttpServletRequest request) {
+        if(request.isUserInRole(rol))
+        	this.roles += rol + " ";
+	}
+	
     public String Login() {
+		try { 
+	        message="";
+	        roles = "";
+	        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+	        request.login(username, password);
+	        addRol("ADMIN", request);
+	        addRol("RESPSEC", request);
+	        addRol("CONSULTOR", request);
+	        addRol("OPERADOR", request);
+	        addRol("OPERADORSR", request);
+	        addRol("RECEPCION", request);
+	        if (roles == "")
+	            message= "Either Login or Password is wrong";
+	        else
+	        	return "/pages/menu.xhtml?faces-redirect=true";
+	    } catch(Exception e) {
+	        message= "Datos incorrectos!";
+	    }
+	    return null;
+	}
+	
+    public String Login2() {
 		try { 
 	        message="";
 	        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	        request.login(username, password);
 	        if(request.isUserInRole("ADMIN")){
-	        	role = "Administración";
+	        	role = "ADMIN";
+		        addRol("ADMIN", request);
 	        	return "/pages/menu.xhtml?faces-redirect=true";
 	        }
 	        else if(request.isUserInRole("RESPSEC")){
-	        	role= "Configurar Sector";
+	        	role = "RESPSEC";
 	            return "/pages/menu.xhtml?faces-redirect=true";
 	        }
 	        else if(request.isUserInRole("CONSULTOR")){
-	        	role ="Consultas";
+	        	role ="CONSULTOR";
 	            return "/pages/menu.xhtml?faces-redirect=true";
 	        }
 	        else if(request.isUserInRole("OPERADOR")){
-	        	role = "Atención";
+	        	role = "OPERADOR";
 	        	return "/pages/menu.xhtml?faces-redirect=true";
 	        }
 	        else if(request.isUserInRole("OPERADORSR")){
-	        	role = "Atención Senior";
+	        	role = "OPERADORSR";
 	            return "/pages/menu.xhtml?faces-redirect=true";
 	        }
 	        else if(request.isUserInRole("RECEPCION")){
-	        	role = "Recepción";
+	        	role = "RECEPCION";
 	            return "/pages/menu.xhtml?faces-redirect=true";
 	        }
 	        else {
 	            message= "Either Login or Password is wrong";
 	        }
+	        this.setRole(role);
 	    } catch(Exception e) {
 	        message= "Datos incorrectos!";
 	    }
@@ -86,6 +120,7 @@ public class LoginBean {
         SecurityContextAssociation.clearSecurityContext();
         session= request.getSession(false);
         if(session != null) {
+        	setUsername("Bienvenido");
         	session.invalidate();
         	System.out.println("Se cerro la sesion correctamente");
 	
