@@ -73,46 +73,6 @@ public class LoginBean {
 	    }
 	    return null;
 	}
-	
-    public String Login2() {
-		try { 
-	        message="";
-	        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-	        request.login(username, password);
-	        if(request.isUserInRole("ADMIN")){
-	        	role = "ADMIN";
-		        addRol("ADMIN", request);
-	        	return "/pages/menu.xhtml?faces-redirect=true";
-	        }
-	        else if(request.isUserInRole("RESPSEC")){
-	        	role = "RESPSEC";
-	            return "/pages/menu.xhtml?faces-redirect=true";
-	        }
-	        else if(request.isUserInRole("CONSULTOR")){
-	        	role ="CONSULTOR";
-	            return "/pages/menu.xhtml?faces-redirect=true";
-	        }
-	        else if(request.isUserInRole("OPERADOR")){
-	        	role = "OPERADOR";
-	        	return "/pages/menu.xhtml?faces-redirect=true";
-	        }
-	        else if(request.isUserInRole("OPERADORSR")){
-	        	role = "OPERADORSR";
-	            return "/pages/menu.xhtml?faces-redirect=true";
-	        }
-	        else if(request.isUserInRole("RECEPCION")){
-	        	role = "RECEPCION";
-	            return "/pages/menu.xhtml?faces-redirect=true";
-	        }
-	        else {
-	            message= "Either Login or Password is wrong";
-	        }
-	        this.setRole(role);
-	    } catch(Exception e) {
-	        message= "Datos incorrectos!";
-	    }
-	    return null;
-	}
     
     public String Logout(){
     	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

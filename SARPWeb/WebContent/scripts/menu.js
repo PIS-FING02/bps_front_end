@@ -14,7 +14,7 @@ function enableRol(rol, button) {
 
 enableRol("ADMIN", adminButton);
 enableRol("RESPSEC", respSectorButton);
-enableRol("OPERATOR", operadorButton);
-enableRol("OPERATORSR", operadorSrButton);
+enableRol("OPERADOR", operadorButton);
+enableRol("OPERADORSR", operadorSrButton);
 enableRol("RECEPCION", recepcionButton);
 enableRol("CONSULTOR", consultasButton);
