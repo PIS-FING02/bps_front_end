@@ -1,0 +1,54 @@
+.popup-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+	position: relative;    
+	top: calc(50% - 200px);
+    transform: translateY(calc(50% - 200px));
+	margin: 0px auto;
+    width: 380px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 3px;
+}
+
+.popup h2 {
+	margin-top: 0;
+}
+
+.close-x {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    transition: all 200ms;
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.popup .content {
+	overflow: auto;
+}	
+
+.cancel-button {
+	background-color: #ea0303 !important;
+    font-weight: bold;
+}
+
+.cancel-button:hover {
+	background-color: #c50404 !important;
+}
+
+.popup label {
+	width: calc(100% - 280px);
+	width: initial;
+}
+
+.popup input { 
+    width: initial;
+}

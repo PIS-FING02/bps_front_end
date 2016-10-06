@@ -7,9 +7,7 @@
 <head>
 	<title>Pantalla Administrador</title>
 	<ui:include src="header.xhtml" />
-	<style>
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
 </head> 
 
 <body> 
@@ -23,21 +21,60 @@
 		</div>
 		<div class="page-frame">
 			<div class="options-buttons-container">
-				<h:form>
-					<button class="option-button" action="#{tramiteBean.AltaTramite()}" > Alta Trámite </button>
-					<button class="option-button" action="#{tramiteBean.BajaTramite()}" > Baja Trámite </button>
-					<button class="option-button" action="#{tramiteBean.AltaModificarTramite()}" > Modificar Trámite </button>
-					<button class="option-button" action="#{sectoresGAFUBean.ImportarSectoresGAFU()}" > Importar Sectores GAFU </button>
-					<button class="option-button" action="#{tramiteBean.AsignarSector()}" > Asignar Sector a Trámite </button>
-					<button class="option-button" action="#{tramiteBean.DesasignarSector()}" > Desasignar Sector a Trámite </button>
-					<button class="option-button" action="#{displayBean.AltaDisplay()}" > Alta Display </button>
-					<button class="option-button" action="#{displayBean.BajaDisplay()}" > Baja Display </button>
-					<button class="option-button" action="#{displayBean.AsignarSector()}"> Asignar Sector a Display </button>
-					<button class="option-button" action="#{displayBean.DesasignarSector()}"> Desasignar Sector a Display </button>
-					<button class="option-button" action="#{numerosBean.ListarNrosSistema()}"> Listar Números del Sistema </button>
-				</h:form>
+				<button id="alta-tramite" class="option-button"> Alta Trámite </button>
+				<button id="baja-tramite" class="option-button"> Baja Trámite </button>
+				<button id="modificar-tramite" class="option-button"> Modificar Trámite </button>
+				<button id="importar-sectores" class="option-button"> Importar Sectores GAFU </button>
+				<button id="asignar-sector-tramite" class="option-button"> Asignar Sector a Trámite </button>
+				<button id="desasignar-sector-tramite" class="option-button"> Desasignar Sector a Trámite </button>
+				<button id="alta-display" class="option-button"> Alta Display </button>
+				<button id="baja-display" class="option-button"> Baja Display </button>
+				<button id="asignar-sector-display" class="option-button"> Asignar Sector a Display </button>
+				<button id="desasignar-sector-display" class="option-button"> Desasignar Sector a Display </button>
+				<button id="listar-numeros" class="option-button"> Listar Números del Sistema </button>
 			</div>
 		</div>
 	</div>
+	<div id="action-admin-popup" class="hidden popup-overlay">
+		<div class="popup">
+			<h2 id="popup-title" class="sub-title"></h2>
+			<div id="popup-close-button" class="close-x">&times;</div>
+			<div class="content">
+			
+				<form class='puesto'>
+					<h:form>
+					<!-- PUESTO (EN REALIDAD VA EN LA PAG DEL RESP SEC)-->
+					<div class="form-line hidden">
+						<label for="usuarioId">Id del usuario:</label>
+						<h:inputText id="usuario-id" class="formInput" value="#{puesto.usuarioId}" />
+					</div>
+					<div class="form-line hidden">
+						<label for="maquina">Nombre de Maquina:</label>
+						<h:inputText id="maquina" class="formInput" value="#{puesto.maquina}" />
+					</div>
+					<div class="form-line hidden">
+						<label for="numero">Numero del puesto:</label>
+						<h:inputText id="numero-puesto" class="formInput" value="#{puesto.numero}" />
+					</div>
+					<!--  TRAMITE -->
+					<div class="form-line hidden">
+						<label for="codigo">Codigo:</label>
+						<h:inputText id="codigo" class="formInput" value="#{tramite.codigo}" />
+					</div>
+					<div class="form-line hidden">
+						<label for="nombre">Nombre:</label>
+						<h:inputText id="nombre-tramite" class="formInput" value="#{tramite.nombre}" />
+					</div> 
+						<div class="buttons-container">
+							<h:commandButton class="action-button" value="Aceptar" action="#{tramite.alta}" /> 
+							<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
+						</div>
+					</h:form>
+				</form>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="../scripts/admin.js"></script>
+<script type="text/javascript" src="../scripts/shared.js"></script>
 </body> 
 </html>

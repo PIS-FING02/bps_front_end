@@ -67,15 +67,15 @@ public class Formulario {
 	}
 	
 	public  void submit(){
-		ControladorREST c = new ControladorREST();
-		System.out.println("Ejecutando controlador...");
-		try {
-			c.agregar(sector);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
+//		ControladorREST c = new ControladorREST();
+		System.out.println("------------------------------------------------");
+//		try {
+//			c.agregar(sector);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println(e.getMessage());
+//		}
 		this.sector="";
 
 
