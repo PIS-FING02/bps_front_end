@@ -5,18 +5,20 @@ import java.io.IOException;
 import com.sarp.facade.FuncionarioFacade;
 import com.sarp.facade.PuestoFacade;
 import com.sarp.facade.TramiteFacade;
-
+import com.sarp.facade.DisplayFacade;
 
 public class ControladorREST {
 
 	FuncionarioFacade fs;
 	PuestoFacade puestoFacade;
 	TramiteFacade tramiteFacade;
+	DisplayFacade displayFacade;
 	
 	public ControladorREST(){
 		this.fs = new FuncionarioFacade();
 		this.puestoFacade = new PuestoFacade();
 		this.tramiteFacade = new TramiteFacade();
+		this.displayFacade = new DisplayFacade();
 	}
 
 	public String altaPuesto() {
@@ -32,6 +34,18 @@ public class ControladorREST {
 
 	public String altaTramite() {
 		return this.tramiteFacade.alta();
+	}
+	
+	public String altaDisplay() {
+		return this.displayFacade.alta();
+	}
+	
+	public String modificarDisplay() {
+		return this.displayFacade.modificar();
+	}
+	
+	public String bajaDisplay() {
+		return this.displayFacade.baja();
 	}
 	
 	public String consumir(){

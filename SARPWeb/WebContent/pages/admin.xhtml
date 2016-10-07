@@ -28,6 +28,7 @@
 				<button id="asignar-sector-tramite" class="option-button"> Asignar Sector a Trámite </button>
 				<button id="desasignar-sector-tramite" class="option-button"> Desasignar Sector a Trámite </button>
 				<button id="alta-display" class="option-button"> Alta Display </button>
+				<button id="modificar-display" class="option-button"> Modificar Display </button>
 				<button id="baja-display" class="option-button"> Baja Display </button>
 				<button id="asignar-sector-display" class="option-button"> Asignar Sector a Display </button>
 				<button id="desasignar-sector-display" class="option-button"> Desasignar Sector a Display </button>
@@ -65,9 +66,30 @@
 						<label for="nombre">Nombre:</label>
 						<h:inputText id="nombre-tramite" class="formInput" value="#{tramite.nombre}" />
 					</div> 
-						<div class="buttons-container">
-							<h:commandButton class="action-button" value="Aceptar" action="#{tramite.alta}" /> 
-							<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
+					<div class="buttons-container hidden"  id="aceptar-alta-tramite" >
+						<h:commandButton class="action-button" value="Aceptar" action="#{tramite.alta}" /> 
+						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
+					</div>
+					<!--  DISPLAY -->
+					<div class="form-line hidden">
+						<label for="displayId">Identificador:</label>
+						<h:inputText id="displayId" class="formInput" value="#{display.displayId}" />
+					</div> 
+					<div class="form-line hidden">
+						<label for="rutaArchivo">Ruta del Archivo:</label>
+						<h:inputText id="rutaArchivo" class="formInput" value="#{display.rutaArchivo}" />
+					</div> 
+						<div class="buttons-container hidden"  id="aceptar-alta-display" >
+							<h:commandButton class="action-button" value="Aceptar" action="#{display.alta()}" />
+							<div class="action-button cancel-button" id="popup-cancel-button-ADisplay">Cancelar</div>
+						</div>
+						<div class="buttons-container hidden"  id="aceptar-modificar-display" >
+							<h:commandButton class="action-button" value="Aceptar" action="#{display.modificar()}" />
+							<div class="action-button cancel-button" id="popup-cancel-button-MDisplay">Cancelar</div>
+						</div>
+						<div class="buttons-container hidden"  id="aceptar-baja-display" >
+							<h:commandButton class="action-button" value="Aceptar" action="#{display.baja()}" />
+							<div class="action-button cancel-button" id="popup-cancel-button-BDisplay">Cancelar</div>
 						</div>
 					</h:form>
 				</form>
