@@ -28,7 +28,7 @@ public class DisplayBean {
 		this.rutaArchivo = rutaArchivo;
 	}
 	
-	public  void alta(){
+	public  void alta() throws Exception{
 		System.out.println("+++++++++++++++++++++++++++++++++++++");
 		System.out.println(rutaArchivo);
 
@@ -36,7 +36,7 @@ public class DisplayBean {
 		c.altaDisplay();
 	}
 	
-	public  void modificar(){
+	public  void modificar() throws Exception{
 		System.out.println("+++++++++++++++++++++++++++++++++++++");
 		System.out.println(displayId);
 		System.out.println(rutaArchivo);
@@ -45,7 +45,7 @@ public class DisplayBean {
 		c.modificarDisplay();
 	}
 	
-	public  void baja(){
+	public  void baja() throws Exception{
 		System.out.println("+++++++++++++++++++++++++++++++++++++");
 		System.out.println(displayId);
 		
