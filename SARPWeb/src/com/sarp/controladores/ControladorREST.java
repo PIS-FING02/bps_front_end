@@ -35,6 +35,14 @@ public class ControladorREST {
 	public String altaTramite() {
 		return this.tramiteFacade.alta();
 	}
+
+	public String bajaTramite() {
+		return this.tramiteFacade.baja();
+	}
+
+	public String modTramite() {
+		return this.tramiteFacade.mod();
+	}
 	
 	public String altaDisplay() {
 		return this.displayFacade.alta();

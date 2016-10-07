@@ -35,6 +35,18 @@
 	overflow: auto;
 }	
 
+.list-container {
+    background-color: white;
+    border: 1px solid #a9a9a9;
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.list-element {
+	font-size: 14px;
+}
+
 .cancel-button {
 	background-color: #ea0303 !important;
     font-weight: bold;

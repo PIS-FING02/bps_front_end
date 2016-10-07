@@ -7,6 +7,15 @@ var cancelButtonBDisplay = document.getElementById('popup-cancel-button-BDisplay
 var closeButton = document.getElementById('popup-close-button');
 var popupTitle = document.getElementById('popup-title');
 
+var elementsToHide = [];
+
+function hideAll() {
+	for (var i = 0; i < elementsToHide.length; i++) {
+		document.getElementById(elementsToHide[i]).classList.add('hidden');
+	}
+	elementsToHide = [];
+}
+
 cancelButton.addEventListener('click', function(){
 	popup.classList.add("hidden");
 	//ocultar los inputs
@@ -64,27 +73,32 @@ for (var i = 0; i < optionButtons.length; i++) {
 for (var i = 0; i < optionButtons.length; i++) {
 	optionButtons[i].addEventListener('click', function(){
 		for (var i = 0; i < optionButtons.length; i++) {
+			hideAll();
 			optionButtons[i].classList.remove('option-button-selected');
 		}
 		this.classList.add('option-button-selected');
 		var actionSelected = document.getElementsByClassName('option-button-selected')[0];
 		popupTitle.innerHTML = actionSelected.innerHTML; 
 		if (actionSelected.getAttribute('id') == 'alta-tramite') {
-			document.getElementById('j_idt7:codigo').parentElement.classList.remove('hidden');
-			document.getElementById('j_idt7:nombre-tramite').parentElement.classList.remove('hidden');
-			document.getElementById('aceptar-alta-tramite').classList.remove('hidden');
-		}else if (actionSelected.getAttribute('id') == 'alta-display') {
-			document.getElementById('j_idt7:rutaArchivo').parentElement.classList.remove('hidden');
-			document.getElementById('aceptar-alta-display').classList.remove('hidden');
-		}else if (actionSelected.getAttribute('id') == 'modificar-display') {
-			document.getElementById('j_idt7:displayId').parentElement.classList.remove('hidden');
-			document.getElementById('j_idt7:rutaArchivo').parentElement.classList.remove('hidden');
-			document.getElementById('aceptar-modificar-display').classList.remove('hidden');
-		}else if (actionSelected.getAttribute('id') == 'baja-display') {
-			document.getElementById('j_idt7:displayId').parentElement.classList.remove('hidden');
-			document.getElementById('aceptar-baja-display').classList.remove('hidden');
-		}
-		//PARA CADA BOTON MOSTRAR LOS INPUTS QUE CORRESPONDAD
+			document.getElementById('codigo').classList.remove('hidden');
+			elementsToHide.push('codigo');
+			document.getElementById('nombre-tramite').classList.remove('hidden');
+			elementsToHide.push('nombre-tramite');
+			document.getElementById('j_idt7:alta-tramite-button').classList.remove('hidden');
+			elementsToHide.push('j_idt7:alta-tramite-button');
+		} else if (actionSelected.getAttribute('id') == 'baja-tramite') {
+			document.getElementById('codigo').classList.remove('hidden');
+			elementsToHide.push('codigo');
+			document.getElementById('j_idt7:baja-tramite-button').classList.remove('hidden');
+			elementsToHide.push('j_idt7:baja-tramite-button');
+		} else if (actionSelected.getAttribute('id') == 'mod-tramite') {
+			document.getElementById('codigo').classList.remove('hidden');
+			elementsToHide.push('codigo');
+			document.getElementById('nombre-tramite').classList.remove('hidden');
+			elementsToHide.push('nombre-tramite');
+			document.getElementById('j_idt7:mod-tramite-button').classList.remove('hidden');
+			elementsToHide.push('j_idt7:mod-tramite-button');
+		}	
 	    popup.classList.remove('hidden');
     }, false);
 }
