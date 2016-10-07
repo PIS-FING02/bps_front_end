@@ -49,20 +49,21 @@
 						<label>Id del usuario:</label>
 						<h:inputText id="usuario-id" class="formInput" value="#{puesto.usuarioId}" />
 					</div>
-					<div id="maquina" class="form-line hidden">
+					<div id="maquina" class="form-line">
 						<label for="maquina">Nombre de Maquina:</label>
 						<h:inputText class="formInput" value="#{puesto.maquina}" />
 					</div>
-					<div id="numero-puesto" class="form-line hidden">
+					<div id="numero-puesto" class="form-line">
 						<label for="numero">Numero del puesto:</label>
 						<h:inputText class="formInput" value="#{puesto.numero}" />
+						<h:commandButton id='alta-puesto-button' class="action-button" value="Aceptar" action="#{puesto.alta}" />
 					</div>
 					<!--  TRAMITE -->
-					<div id='list-tramites-container' class='list-container'>
+					<!-- <div id='list-tramites-container' class='list-container'>
 						<div class='list-element'>tramite1</div>
 						<div class='list-element'>tramite1</div>
 						<div class='list-element'>tramite1</div>
-					</div>
+					</div> -->
 					<div id="codigo" class="form-line hidden">
 						<label for="codigo">Codigo:</label>
 						<h:inputText class="formInput" value="#{tramite.codigo}" />

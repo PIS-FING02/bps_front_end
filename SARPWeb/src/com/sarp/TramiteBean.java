@@ -29,7 +29,7 @@ public class TramiteBean {
 		this.nombre = nombre;
 	}
 	
-	public void alta(){
+	public void alta() throws Exception{
 		c.altaTramite();
 	}
 	
