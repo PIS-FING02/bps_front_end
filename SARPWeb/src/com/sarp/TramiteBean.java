@@ -11,6 +11,7 @@ public class TramiteBean {
 
 	public String codigo;
 	public String nombre;
+	public	ControladorREST c = new ControladorREST();
 	
 	public String getCodigo() {
 		return codigo;
@@ -28,14 +29,21 @@ public class TramiteBean {
 		this.nombre = nombre;
 	}
 	
-	public  void alta(){
-		System.out.println("+++++++++++++++++++++++++++++++++++++");
-		System.out.println(nombre);
-		System.out.println(codigo);
-
-		ControladorREST c = new ControladorREST();
+	public void alta() throws Exception{
 		c.altaTramite();
 	}
 	
+	public void baja(){
+		c.bajaTramite();
+	}
+
+	public void mod(){
+		c.modTramite();
+	}
+	
+
+	public String listar() throws Exception{
+		return c.listarTramite();
+	}
 
 }

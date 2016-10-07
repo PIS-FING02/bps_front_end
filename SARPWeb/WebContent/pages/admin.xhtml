@@ -6,6 +6,8 @@
 
 <head>
 	<title>Pantalla Administrador</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
 </head> 
@@ -23,12 +25,12 @@
 			<div class="options-buttons-container">
 				<button id="alta-tramite" class="option-button"> Alta Trámite </button>
 				<button id="baja-tramite" class="option-button"> Baja Trámite </button>
-				<button id="modificar-tramite" class="option-button"> Modificar Trámite </button>
+				<button id="mod-tramite" class="option-button"> Modificar Trámite </button>
 				<button id="importar-sectores" class="option-button"> Importar Sectores GAFU </button>
 				<button id="asignar-sector-tramite" class="option-button"> Asignar Sector a Trámite </button>
 				<button id="desasignar-sector-tramite" class="option-button"> Desasignar Sector a Trámite </button>
 				<button id="alta-display" class="option-button"> Alta Display </button>
-				<button id="modificar-display" class="option-button"> Modificar Display </button>
+				<button id="mod-display" class="option-button"> Modificar Display </button>
 				<button id="baja-display" class="option-button"> Baja Display </button>
 				<button id="asignar-sector-display" class="option-button"> Asignar Sector a Display </button>
 				<button id="desasignar-sector-display" class="option-button"> Desasignar Sector a Display </button>
@@ -41,56 +43,46 @@
 			<h2 id="popup-title" class="sub-title"></h2>
 			<div id="popup-close-button" class="close-x">&times;</div>
 			<div class="content">
-			
-				<form class='puesto'>
+				<form>
 					<h:form>
-					<!-- PUESTO (EN REALIDAD VA EN LA PAG DEL RESP SEC)-->
-					<div class="form-line hidden">
-						<label for="usuarioId">Id del usuario:</label>
-						<h:inputText id="usuario-id" class="formInput" value="#{puesto.usuarioId}" />
-					</div>
-					<div class="form-line hidden">
-						<label for="maquina">Nombre de Maquina:</label>
-						<h:inputText id="maquina" class="formInput" value="#{puesto.maquina}" />
-					</div>
-					<div class="form-line hidden">
-						<label for="numero">Numero del puesto:</label>
-						<h:inputText id="numero-puesto" class="formInput" value="#{puesto.numero}" />
-					</div>
 					<!--  TRAMITE -->
-					<div class="form-line hidden">
-						<label for="codigo">Codigo:</label>
-						<h:inputText id="codigo" class="formInput" value="#{tramite.codigo}" />
+					<div id='list-tramites-container' class='list-container hidden'>
+						<div class='list-element'>tramite1</div>
+						<div class='list-element'>tramite2</div>
+						<div class='list-element'>tramite3</div>
 					</div>
-					<div class="form-line hidden">
+					<div id="codigo" class="form-line hidden">
+						<label for="codigo">Codigo:</label>
+						<h:inputText class="formInput" value="#{tramite.codigo}" />
+					</div>
+					<div id="nombre-tramite" class="form-line hidden">
 						<label for="nombre">Nombre:</label>
-						<h:inputText id="nombre-tramite" class="formInput" value="#{tramite.nombre}" />
+						<h:inputText class="formInput" value="#{tramite.nombre}" />
 					</div> 
-					<div class="buttons-container hidden"  id="aceptar-alta-tramite" >
-						<h:commandButton class="action-button" value="Aceptar" action="#{tramite.alta}" /> 
+					<!--  DISPLAY -->
+					<div id='list-displays-container' class='list-container hidden'>
+						<div class='list-element'>display1</div>
+						<div class='list-element'>display2</div>
+						<div class='list-element'>display3</div>
+					</div>
+					<div id="displayId" class="form-line hidden">
+						<label for="displayId">Identificador:</label>
+						<h:inputText class="formInput" value="#{display.displayId}" />
+					</div> 
+					<div id='rutaArchivo' class="form-line hidden">
+						<label for="rutaArchivo">Ruta del Archivo:</label>
+						<h:inputText class="formInput" value="#{display.rutaArchivo}" />
+					</div> 
+					<div class="buttons-container">
+						<h:commandButton id='alta-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.alta}" /> 
+						<h:commandButton id='baja-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.baja}" /> 
+						<h:commandButton id='mod-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.alta}" />	
+						<h:commandButton id='alta-display-button' class="action-button hidden" value="Aceptar" action="#{display.alta}" /> 
+						<h:commandButton id='baja-display-button' class="action-button hidden" value="Aceptar" action="#{display.baja}" /> 
+						<h:commandButton id='mod-display-button' class="action-button hidden" value="Aceptar" action="#{display.alta}" /> 
+					 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
-					<!--  DISPLAY -->
-					<div class="form-line hidden">
-						<label for="displayId">Identificador:</label>
-						<h:inputText id="displayId" class="formInput" value="#{display.displayId}" />
-					</div> 
-					<div class="form-line hidden">
-						<label for="rutaArchivo">Ruta del Archivo:</label>
-						<h:inputText id="rutaArchivo" class="formInput" value="#{display.rutaArchivo}" />
-					</div> 
-						<div class="buttons-container hidden"  id="aceptar-alta-display" >
-							<h:commandButton class="action-button" value="Aceptar" action="#{display.alta()}" />
-							<div class="action-button cancel-button" id="popup-cancel-button-ADisplay">Cancelar</div>
-						</div>
-						<div class="buttons-container hidden"  id="aceptar-modificar-display" >
-							<h:commandButton class="action-button" value="Aceptar" action="#{display.modificar()}" />
-							<div class="action-button cancel-button" id="popup-cancel-button-MDisplay">Cancelar</div>
-						</div>
-						<div class="buttons-container hidden"  id="aceptar-baja-display" >
-							<h:commandButton class="action-button" value="Aceptar" action="#{display.baja()}" />
-							<div class="action-button cancel-button" id="popup-cancel-button-BDisplay">Cancelar</div>
-						</div>
 					</h:form>
 				</form>
 			</div>

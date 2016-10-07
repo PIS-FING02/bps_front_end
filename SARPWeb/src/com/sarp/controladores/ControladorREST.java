@@ -32,19 +32,31 @@ public class ControladorREST {
 		
 	}
 
-	public String altaTramite() {
+	public String listarTramite() throws Exception {
+		return this.tramiteFacade.listar();
+	}
+
+	public String altaTramite() throws Exception {
 		return this.tramiteFacade.alta();
 	}
+
+	public String bajaTramite() {
+		return this.tramiteFacade.baja();
+	}
+
+	public String modTramite() {
+		return this.tramiteFacade.mod();
+	}
 	
-	public String altaDisplay() {
+	public String altaDisplay() throws Exception {
 		return this.displayFacade.alta();
 	}
 	
-	public String modificarDisplay() {
-		return this.displayFacade.modificar();
+	public String modificarDisplay() throws Exception {
+		return this.displayFacade.mod();
 	}
 	
-	public String bajaDisplay() {
+	public String bajaDisplay() throws Exception {
 		return this.displayFacade.baja();
 	}
 	

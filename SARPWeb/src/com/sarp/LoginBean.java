@@ -13,7 +13,7 @@ import org.jboss.security.SecurityContextAssociation;
 @ApplicationScoped
 public class LoginBean {
 
-	private String username = "Bienvenido";
+	private String username = "admin";
 	private String password;
 	private String message;
 	private String role;
