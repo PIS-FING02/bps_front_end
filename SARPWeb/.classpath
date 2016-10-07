@@ -7,5 +7,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-client-1.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

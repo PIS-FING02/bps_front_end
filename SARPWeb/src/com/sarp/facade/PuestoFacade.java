@@ -4,6 +4,9 @@ import java.net.MalformedURLException;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+
 
 public class PuestoFacade {
 
@@ -11,27 +14,25 @@ public class PuestoFacade {
 		String resultado="";
 		try {
 		
-			ClientRequest request = new ClientRequest("http://52.52.100.160:8080/SARPService/adminService/puesto");
-			
-			request.pathParameter("user-rol","ResponsableSector");
-			
-			request.accept("application/json");
-			
-			String input = "{\"nombreMaquina\": \"maquina\",\"usuarioId\": \"45\",\"estado\": \"CERRADO\",\"numeroPuesto\": \"7\"}";
-			request.body("application/json", input);
+			Client client = Client.create();
 
-			ClientResponse<String> response = request.post(String.class);
+			WebResource webResource = client
+			   .resource("http://localhost:8080/RESTfulExample/rest/json/metallica/get");
 
-			if (response.getStatus() != 201) {
-				throw new RuntimeException("Failed : HTTP error code : "
-					+ response.getStatus());
+			ClientResponse response = webResource.accept("application/json")
+	                   .get(ClientResponse.class);
+
+			if (response.getStatus() != 200) {
+			   throw new RuntimeException("Failed : HTTP error code : "
+				+ response.getStatus());
 			}
 
-	        System.out.println(response.getEntity());
-			   
 			
+			String output = (String) response.getEntity(String.class);
 
-		
+			System.out.println("Output from Server .... \n");
+			System.out.println(output);
+
 
 			return resultado;
 
