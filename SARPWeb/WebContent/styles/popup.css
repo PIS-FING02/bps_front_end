@@ -45,7 +45,14 @@
 
 .list-element {
 	font-size: 14px;
+	cursor: pointer;
+	padding: 5px;
 }
+
+.list-element-selected {
+	background: #4e769bl !important;
+}
+
 
 .cancel-button {
 	background-color: #ea0303 !important;

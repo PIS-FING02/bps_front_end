@@ -6,6 +6,8 @@
 
 <head>
 	<title>Pantalla Administrador</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
 </head> 
@@ -49,21 +51,20 @@
 						<label>Id del usuario:</label>
 						<h:inputText id="usuario-id" class="formInput" value="#{puesto.usuarioId}" />
 					</div>
-					<div id="maquina" class="form-line">
+					<div id="maquina" class="form-line hidden">
 						<label for="maquina">Nombre de Maquina:</label>
 						<h:inputText class="formInput" value="#{puesto.maquina}" />
 					</div>
-					<div id="numero-puesto" class="form-line">
+					<div id="numero-puesto" class="form-line hidden">
 						<label for="numero">Numero del puesto:</label>
 						<h:inputText class="formInput" value="#{puesto.numero}" />
-						<h:commandButton id='alta-puesto-button' class="action-button" value="Aceptar" action="#{puesto.alta}" />
 					</div>
 					<!--  TRAMITE -->
-					<!-- <div id='list-tramites-container' class='list-container'>
+					<div id='list-tramites-container' class='list-container hidden'>
 						<div class='list-element'>tramite1</div>
 						<div class='list-element'>tramite1</div>
 						<div class='list-element'>tramite1</div>
-					</div> -->
+					</div>
 					<div id="codigo" class="form-line hidden">
 						<label for="codigo">Codigo:</label>
 						<h:inputText class="formInput" value="#{tramite.codigo}" />

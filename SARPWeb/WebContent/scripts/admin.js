@@ -87,13 +87,13 @@ for (var i = 0; i < optionButtons.length; i++) {
 			document.getElementById('j_idt7:alta-tramite-button').classList.remove('hidden');
 			elementsToHide.push('j_idt7:alta-tramite-button');
 		} else if (actionSelected.getAttribute('id') == 'baja-tramite') {
-			document.getElementById('codigo').classList.remove('hidden');
-			elementsToHide.push('codigo');
+			document.getElementById('list-tramites-container').classList.remove('hidden');
+			elementsToHide.push('list-tramites-container');
 			document.getElementById('j_idt7:baja-tramite-button').classList.remove('hidden');
 			elementsToHide.push('j_idt7:baja-tramite-button');
 		} else if (actionSelected.getAttribute('id') == 'mod-tramite') {
-			document.getElementById('codigo').classList.remove('hidden');
-			elementsToHide.push('codigo');
+			document.getElementById('list-tramites-container').classList.remove('hidden');
+			elementsToHide.push('list-tramites-container');
 			document.getElementById('nombre-tramite').classList.remove('hidden');
 			elementsToHide.push('nombre-tramite');
 			document.getElementById('j_idt7:mod-tramite-button').classList.remove('hidden');

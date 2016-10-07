@@ -42,4 +42,8 @@ public class TramiteBean {
 	}
 	
 
+	public String listar() throws Exception{
+		return c.listarTramite();
+	}
+
 }

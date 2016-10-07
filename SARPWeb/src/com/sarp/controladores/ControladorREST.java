@@ -32,6 +32,10 @@ public class ControladorREST {
 		
 	}
 
+	public String listarTramite() throws Exception {
+		return this.tramiteFacade.listar();
+	}
+
 	public String altaTramite() throws Exception {
 		return this.tramiteFacade.alta();
 	}
