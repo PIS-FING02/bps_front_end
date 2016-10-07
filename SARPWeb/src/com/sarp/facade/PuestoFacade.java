@@ -17,21 +17,22 @@ public class PuestoFacade {
 			Client client = Client.create();
 
 			WebResource webResource = client
-			   .resource("http://localhost:8080/RESTfulExample/rest/json/metallica/get");
+			   .resource("http://52.52.100.160:8080/SARPService/adminService/puesto");
 
-			ClientResponse response = webResource.accept("application/json")
-	                   .get(ClientResponse.class);
+			String input = "{\"singer\":\"Metallica\",\"title\":\"Fade To Black\"}";
 
-			if (response.getStatus() != 200) {
-			   throw new RuntimeException("Failed : HTTP error code : "
-				+ response.getStatus());
+			ClientResponse response = webResource.type("application/json")
+			   .post(ClientResponse.class, input);
+
+			if (response.getStatus() != 201) {
+				throw new RuntimeException("Failed : HTTP error code : "
+				     + response.getStatus());
 			}
 
-			
-			String output = (String) response.getEntity(String.class);
-
 			System.out.println("Output from Server .... \n");
+			String output = (String) response.getEntity(String.class);
 			System.out.println(output);
+
 
 
 			return resultado;
