@@ -38,7 +38,7 @@ public class ControladorREST {
 
 	public String altaTramite(Object input, String userRol) throws Exception {
 		return this.tramiteFacade.alta(input.toString(),  userRol);
-	}
+}
 
 	public String bajaTramite(Object input, String userRol) {
 		return this.tramiteFacade.baja(input.toString(), userRol);
@@ -46,7 +46,7 @@ public class ControladorREST {
 
 	public String modTramite(Object input, String userRol) {
 		return this.tramiteFacade.mod(input.toString(), userRol);
-	}
+}
 	
 	public String altaDisplay() throws Exception {
 		return this.displayFacade.alta();

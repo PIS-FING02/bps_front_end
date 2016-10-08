@@ -9,59 +9,20 @@
 
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
-<script>
-function myFunction() {
-    console.log("Entre funcion");
-    var jsfCommandButton = document.getElementById("form:link");
-    jsfCommandButton.click();
-    var res = document.getElementById("form:output");
-	console.log(res);  
-	
-}
-</script>
 </head> 
 
 <body> 
-	<div class="page-container"> 
-		<div class="page-title-container">
-			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
-			<div class="page-title"> ➨  Administración </div>
-			<h:form>
-				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
-			</h:form>
-		</div> 
-		<div class="page-frame">
-			<div class="options-buttons-container">
-		
-				<button id="alta-tramite" class="option-button"> Alta Trámite </button>
-				 
-			<!--  	<button id="baja-tramite2" class="option-button"> Baja Trámite </button>	
-				-->
-				<button id="mod-tramite" class="option-button"> Modificar Trámite </button>
-				<button id="importar-sectores" class="option-button"> Importar Sectores GAFU </button>
-				<button id="asignar-sector-tramite" class="option-button"> Asignar Sector a Trámite </button>
-				<button id="desasignar-sector-tramite" class="option-button"> Desasignar Sector a Trámite </button>
-				<button id="alta-display" class="option-button"> Alta Display </button>
-				<button id="mod-display" class="option-button"> Modificar Display </button>
-				<button id="baja-display" class="option-button"> Baja Display </button>
-				<button id="asignar-sector-display" class="option-button"> Asignar Sector a Display </button>
-				<button id="desasignar-sector-display" class="option-button"> Desasignar Sector a Display </button>
-				<button id="listar-numeros" class="option-button"> Listar Números del Sistema </button>
-			</div>
-		</div>
-	</div>
 	<div id="action-admin-popup" class="hidden popup-overlay">
 		<div class="popup">
 			<h2 id="popup-title" class="sub-title"></h2>
 			<div id="popup-close-button" class="close-x">&times;</div>
 			<div class="content">
 				<form>
-					<h:form>
+					<h:form id='form-popup'>
 					<!--  TRAMITE -->
 					<div id='list-tramites-container' class='list-container hidden'>
 						<ui:repeat id='repeat-tramites' value='#{tramite.tramites}' var='t'>
-							<h:outputText value='#{t.nombre}'/>
-							<br/>
+							<h:outputText class='element-list' value='#{t.nombre}'/>
 						</ui:repeat>
 					</div>
 					<div id="codigo" class="form-line hidden">
@@ -74,9 +35,9 @@ function myFunction() {
 					</div> 
 					<!--  DISPLAY -->
 					<div id='list-displays-container' class='list-container hidden'>
-						<div class='list-element'>tramite1</div>
-						<div class='list-element'>tramite2</div>
-						<div class='list-element'>tramite3</div>
+						<div class='element-list'>tramite1</div>
+						<div class='element-list'>tramite2</div>
+						<div class='element-list'>tramite3</div>
 					</div>
 					<div id="displayId" class="form-line hidden">
 						<label for="displayId">Identificador:</label>
@@ -93,7 +54,6 @@ function myFunction() {
 						<h:commandButton id='alta-display-button' class="action-button hidden" value="Aceptar" action="#{display.alta}" /> 
 						<h:commandButton id='baja-display-button' class="action-button hidden" value="Aceptar" action="#{display.baja}" /> 
 						<h:commandButton id='mod-display-button' class="action-button hidden" value="Aceptar" action="#{display.alta}" /> 
-					 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 					</h:form>
@@ -101,9 +61,33 @@ function myFunction() {
 			</div>
 		</div>
 	</div>
-		<h:commandButton id='baja-tramite' class="option-button" value="TEST" action="#{tramite.listar}">
-			<f:ajax execute='@none' render='repeat-tramites'/>
-		</h:commandButton>
+	<div class="page-container"> 
+		<div class="page-title-container">
+			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
+			<div class="page-title"> ➨  Administración </div>
+			<h:form>
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			</h:form>
+		</div> 
+		<div class="page-frame">
+			<div class="options-buttons-container">
+				<h:form id='form'>
+					<h:commandButton id="alta-tramite" class="option-button" value="Alta Trámite"/>
+					<h:commandButton id='baja-tramite' class="option-button" value="Baja Tramite" action="#{tramite.listar}"/>
+					<h:commandButton id="mod-tramite" class="option-button" value="Modificar Trámite"/>
+					<h:commandButton id="importar-sectores" class="option-button" value="Importar Sectores"/>
+					<h:commandButton id="asignar-sector-tramite" class="option-button" value="Asignar Sector a Trámite"/>
+					<h:commandButton id="desasignar-sector-tramite" class="option-button" value="Desasignar Sector a Trámite"/>
+					<h:commandButton id="alta-display" class="option-button" value="Alta Display"/>
+					<h:commandButton id="mod-display" class="option-button" value="Modificar Display"/>
+					<h:commandButton id="baja-display" class="option-button" value="Baja Display"/>
+					<h:commandButton id="asignar-sector-display" class="option-button" value="Asignar Sector a Display"/>
+					<h:commandButton id="desasignar-sector-display" class="option-button" value="Desasignar Sector a Display"/>
+					<h:commandButton id="listar-numeros" class="option-button" value="Listar Números del Sistema"/>
+			</h:form>		
+			</div>
+		</div>
+	</div>
 <script type="text/javascript" src="../scripts/admin.js"></script>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 </body> 

@@ -75,6 +75,7 @@ body{
     font-size: 14px;
     color: #fff;
 	background-color: #4e769b;
+	white-space: normal;
 }
 
 .option-button:hover {
