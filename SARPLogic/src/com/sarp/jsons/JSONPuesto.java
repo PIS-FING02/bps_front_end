@@ -69,8 +69,12 @@ public class JSONPuesto {
 
 	 @Override
 	    public String toString() {
-	        return "{\"nombreMaquina\":\""+this.nombreMaquina+"\",\"usuarioId\":"+
-	        		this.usuarioId+"\",\"numeroPuesto\":"+numeroPuesto.toString()+",\"estado\":\""+ this.estado+"\"}";
+	        return "{\n"
+	        		+ "\"nombreMaquina\":\""+this.nombreMaquina+"\",\n"
+	        		+ "\"usuarioId\":"+this.usuarioId+"\",\n"
+	        		+ "\"numeroPuesto\":"+numeroPuesto.toString()+",\n"
+	        		+ "\"estado\":\""+ this.estado+"\"\n"
+	        		+ "}";
 	    }
 	
 }
