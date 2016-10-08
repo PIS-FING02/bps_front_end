@@ -1,42 +1,80 @@
-import org.jboss.resteasy.client.ClientResponse;
-
-
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class main {
 
+	// http://localhost:8080/RESTfulExample/json/product/get
 	public static void main(String[] args) {
-		try {
-			
-			Client client = Client.create();
 
-			WebResource webResource = client
-			   .resource("http://52.52.100.160:8080/SARPService/adminService/puesto");
-
-			String input = "{\"singer\":\"Metallica\",\"title\":\"Fade To Black\"}";
-
-			ClientResponse response = webResource.type("application/json")
-			   .post(ClientResponse.class, input);
-
-			if (response.getStatus() != 201) {
-				throw new RuntimeException("Failed : HTTP error code : "
-				     + response.getStatus());
-			}
-
-			System.out.println("Output from Server .... \n");
-			String output = (String) response.getEntity(String.class);
-			System.out.println(output);
-
-
-
-			
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
+	  try {
+/*
+		URL url = new URL("http://52.52.100.160:8080/SARPService/adminService/puestos");
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setRequestProperty("user-rol","ResponsableSector");
+		if (conn.getResponseCode() != 200) {
+			throw new RuntimeException("Failed : HTTP error code : "
+					+ conn.getResponseCode());
 		}
+
+		
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+			(conn.getInputStream())));
+
+		String output;
+		System.out.println("Output from Server .... \n");
+		while ((output = br.readLine()) != null) {
+			System.out.println(output);
+		}
+
+		conn.disconnect();
+		
+*/
+		URL url2 = new URL("http://52.52.100.160:8080/SARPService/adminService/puesto2");
+		HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
+		conn2.setDoOutput(true);
+		conn2.setRequestMethod("POST");
+		conn2.setRequestProperty("Content-Type", "application/json");
+
+		String input = "{\n"
+				+ "\"nombreMaquina\":\"MaquinaFront2222\",\n"
+				+ "\"usuarioId\":\"idFromFrontend23232\",\n"
+				+ "\"numeroPuesto\":693,\n"
+				+ "\"estado\":\"CERRADO\"\n"
+				+ "}";
+		
+		OutputStream os = conn2.getOutputStream();
+		os.write(input.getBytes());
+		os.flush();
+		System.out.println(conn2.getResponseMessage());
+
+		BufferedReader br2 = new BufferedReader(new InputStreamReader(
+				(conn2.getInputStream())));
+		
+		String output2;
+		System.out.println("Output from Server .... \n");
+		while ((output2 = br2.readLine()) != null) {
+			System.out.println(output2);
+		}
+
+		conn2.disconnect();
+
+	  } catch (MalformedURLException e) {
+
+		e.printStackTrace();
+
+	  } catch (IOException e) {
+
+		e.printStackTrace();
+
+	  }
 
 	}
 

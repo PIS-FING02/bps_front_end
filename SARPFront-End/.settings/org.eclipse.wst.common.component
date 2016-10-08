@@ -4,9 +4,6 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="SARPBusiness.jar" deploy-path="/" handle="module:/resource/SARPBusiness/SARPBusiness">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="lib//Users/guicoduri/.m2/repository/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar.ear" deploy-path="/" handle="module:/classpath/lib//Users/guicoduri/.m2/repository/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
