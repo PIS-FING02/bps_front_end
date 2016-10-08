@@ -4,6 +4,10 @@
 	<comment></comment>
 	<projects>
 		<project>SARPWeb</project>
+<<<<<<< 24ebdc0bef5842a29517babd6470f1dd3b70ee36
+=======
+		<project>SARPTest</project>
+>>>>>>> JSON Modeler
 		<project>SARPBusiness</project>
 	</projects>
 	<buildSpec>
