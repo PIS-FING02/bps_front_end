@@ -12,7 +12,7 @@
 
 <body> 
 
-	<div id="action-respSector-popup" class="hidden popup-overlay">
+	<div id="action-popup" class="hidden popup-overlay">
 		<div class="popup">
 			<h2 id="popup-title" class="sub-title"></h2>
 			<div id="popup-close-button" class="close-x">&times;</div>
@@ -22,30 +22,26 @@
 					<!--  PUESTO -->
 					<div id='list-puestos-container' class='list-container hidden'>
 						<ui:repeat id='repeat-puestos' value='#{puesto.listar()}' var='p'>
-							<div id='#{p.nombreMaquina}' class='hidden'/>
+							<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
 							<h:outputText class='element-list' value='#{p.nombreMaquina} '/>
 						</ui:repeat>
 					</div>
 					<div id="maquina" class="form-line hidden">
 						<label for="maquina">Nombre de Máquina:</label>
-						<h:inputText id='puesto-selected' class="formInput" value="#{puesto.maquina}" />
+						<h:inputText id='puesto-selected-maquina' class="formInput" value="#{puesto.maquina}" />
 					</div>
 					<div id="usuario" class="form-line hidden">
 						<label for="usuario">Usuario:</label>
-						<h:inputText class="formInput" value="#{puesto.usuarioId}" />
-					</div>
-					<div id="puesto" class="form-line hidden">
-						<label for="puesto">Número de Puesto:</label>
-						<h:inputText class="formInput" value="#{puesto.numero}" />
+						<h:inputText id='puesto-selected-usuario' class="formInput" value="#{puesto.usuarioId}" />
 					</div>
 					<div id="estado" class="form-line hidden">
 						<label for="estado">Estado:</label>
-						<h:inputText class="formInput" value="#{puesto.estado}" />
+						<h:inputText id='puesto-selected-estado' class="formInput" value="#{puesto.estado}" />
 					</div>
 					<div class="buttons-container">
-						<h:commandButton id='alta-puesto-button' class="action-button hidden" value="Aceptar" action="#{puesto.alta}" /> 
-						<h:commandButton id='baja-puesto-button' class="action-button hidden" value="Aceptar" action="#{puesto.baja}" /> 
-						<h:commandButton id='mod-puesto-button' class="action-button hidden" value="Aceptar" action="#{puesto.modificar}" />				 
+						<h:commandButton id='alta-puesto-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{puesto.alta}" /> 
+						<h:commandButton id='baja-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.baja}" /> 
+						<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.modificar}" />				 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 					</h:form>

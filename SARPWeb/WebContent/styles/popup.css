@@ -43,7 +43,7 @@
     padding: 10px;
     margin-bottom: 10px;
     overflow-y: scroll;
-    max-height: 250px;
+    max-height: 200px;
 }
 
 .element-list {
