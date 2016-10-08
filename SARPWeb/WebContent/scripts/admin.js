@@ -67,4 +67,3 @@ for (var i = 0; i < optionButtons.length; i++) {
 	    event.preventDefault();
     }, false);
 }
-

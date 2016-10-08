@@ -5,8 +5,10 @@ for (var i = 0; i < listElements.length; i++) {
 		}
 		var buttonSelected = document.getElementsByClassName('option-button-selected')[0];
 		this.classList.add('element-list-selected');
-		document.getElementById('form-popup:puesto-selected').value = this.previousSibling.getAttribute('id');
-  }, false);
+		document.getElementById('form-popup:puesto-selected-maquina').value = this.previousSibling.getAttribute('maquina');
+		document.getElementById('form-popup:puesto-selected-usuario').value = this.previousSibling.getAttribute('usuario');
+		document.getElementById('form-popup:puesto-selected-estado').value = this.previousSibling.getAttribute('estado');
+	}, false);
 }
 
 for (var i = 0; i < optionButtons.length; i++) {
@@ -24,8 +26,6 @@ for (var i = 0; i < optionButtons.length; i++) {
 			elementsToHide.push('maquina');
 			document.getElementById('usuario').classList.remove('hidden');
 			elementsToHide.push('usuario');
-			document.getElementById('puesto').classList.remove('hidden');
-			elementsToHide.push('puesto');
 			document.getElementById('estado').classList.remove('hidden');
 			elementsToHide.push('estado');
 			document.getElementById('form-popup:alta-puesto-button').classList.remove('hidden');
@@ -38,11 +38,7 @@ for (var i = 0; i < optionButtons.length; i++) {
 		} else if (actionSelected.getAttribute('id') == 'form:mod-puesto') {
 			document.getElementById('list-puestos-container').classList.remove('hidden');
 			elementsToHide.push('list-puestos-container');
-			document.getElementById('maquina').classList.remove('hidden');
-			elementsToHide.push('maquina');
 			document.getElementById('usuario').classList.remove('hidden');
-			elementsToHide.push('usuario');
-			document.getElementById('puesto').classList.remove('hidden');
 			elementsToHide.push('puesto');
 			document.getElementById('estado').classList.remove('hidden');
 			elementsToHide.push('estado');

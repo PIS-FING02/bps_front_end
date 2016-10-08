@@ -5,6 +5,8 @@ var cancelButton = document.getElementById('popup-cancel-button');
 var closeButton = document.getElementById('popup-close-button');
 var listElements = document.getElementsByClassName('element-list');
 var listActionButtons = document.getElementsByClassName('action-button-list');
+var formInputs = document.getElementsByClassName('formInput');
+var actionButtons = document.getElementsByClassName('action-button');
 
 var elementsToHide = [];
 
@@ -15,9 +17,25 @@ function hideAll() {
 	elementsToHide = [];
 }
 
-
+// SET ACTION BUTTONS DISABLED ON PAGE LOAD
 for (var i = 0; i < listActionButtons.length; i++) {
 	listActionButtons[i].disabled = true;
+}
+
+for (var i = 0; i < formInputs.length; i++) {
+	formInputs[i].addEventListener('input', function(){
+		if (this.value == "") {
+			for (var i = 0; i < listActionButtons.length; i++) {
+				listActionButtons[i].classList.add('deactivated');
+				listActionButtons[i].disabled = true;
+			}	
+		} else {
+			for (var i = 0; i < listActionButtons.length; i++) {
+				listActionButtons[i].classList.remove('deactivated');
+				listActionButtons[i].disabled = false;
+			}	
+		}
+    }, false);
 }
 
 for (var i = 0; i < listElements.length; i++) {
@@ -49,6 +67,10 @@ cancelButton.addEventListener('click', function(){
 			listElements[i].classList.remove('element-list-selected');
 		}
 	}
+	for (var i = 0; i < listActionButtons.length; i++) {
+		listActionButtons[i].classList.add('deactivated');
+		listActionButtons[i].disabled = true;
+	}	
 }, false);
 
 closeButton.addEventListener('click', function(){
@@ -58,6 +80,10 @@ closeButton.addEventListener('click', function(){
 			listElements[i].classList.remove('element-list-selected');
 		}
 	}
+	for (var i = 0; i < listActionButtons.length; i++) {
+		listActionButtons[i].classList.add('deactivated');
+		listActionButtons[i].disabled = true;
+	}	
 }, false);
 
 for (var i = 0; i < optionButtons.length; i++) {
