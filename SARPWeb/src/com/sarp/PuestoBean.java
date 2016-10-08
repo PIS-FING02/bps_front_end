@@ -1,9 +1,14 @@
 package com.sarp;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import com.sarp.controllers.ControladorREST;
+import com.sarp.jsonModeler.JSONModeler;
+import com.sarp.jsons.JSONPuesto;
+import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "puesto", eager = true)
 @RequestScoped
@@ -13,6 +18,9 @@ public class PuestoBean {
 	public String usuarioId;
 	public Integer numero;
 	public String estado;
+	private	ControladorREST c = new ControladorREST();
+	private List<JSONPuesto> puestos;
+	private static final JSONModeler modeler = new JSONModeler();
 
 	public String getMaquina() {
 		return maquina;
@@ -46,14 +54,23 @@ public class PuestoBean {
 		this.estado = estado;
 	}
 	
-	public  void alta(){
-		System.out.println("------------------------------------------------");
-		System.out.println(maquina);
-		System.out.println(estado);
+	public void alta() throws Exception{
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		c.altaPuesto(jpuesto.toString(), "ResponsableSector");
+	}
+	
+	public void baja() throws Exception{
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "id", 0, "CERRADO");
+		c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
+	}
+	
+	public void modificar(){
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		c.modPuesto(jpuesto.toString(), "ResponsableSector");
+	}
 
-		ControladorREST c = new ControladorREST();
-		c.altaPuesto(null, null);
-		
+	public List<JSONPuesto> listar() throws Exception{
+		return modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
 	}
 
 }

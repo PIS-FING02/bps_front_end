@@ -21,17 +21,24 @@ public class ControladorREST {
 		this.displayFacade = new DisplayFacade();
 	}
 
-	public String altaPuesto(Object input, String userRol) {
-		try {
-			return this.puestoFacade.alta(input.toString(),  userRol);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "";
-		}
-		
+
+	//PUESTOS
+	public String listarPuestos(String userRol) throws Exception {
+		return this.puestoFacade.puestosAll(userRol);
 	}
 
+	public String altaPuesto(String input, String userRol) throws Exception {
+		return this.puestoFacade.alta(input,  userRol);
+}
+
+	public String bajaPuesto(String input, String userRol) {
+		return this.puestoFacade.baja(input, userRol);
+	}
+
+	public String modPuesto(String input, String userRol) {
+		return this.puestoFacade.mod(input, userRol);
+	}
+	
 	//TRAMITES
 	public String listarTramite(String userRol) throws Exception {
 		return this.tramiteFacade.tramitesAll(userRol);

@@ -4,24 +4,27 @@ import com.sarp.facade.client.RestClient;
 
 public class PuestoFacade {
 
-	public static final String URL_POST = "http://52.52.100.160:8080/SARPService/adminService/puesto";
-	public static final String URL_GET = "http://52.52.100.160:8080/SARPService/adminService/puestos";
+	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/puesto";
+	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/puestos";
 	
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		input = "{\n"
-				+ "\"nombreMaquina\":\"MaquinaFront2222\",\n"
-				+ "\"usuarioId\":\"idFromFrontend23232\",\n"
-				+ "\"numeroPuesto\":69,\n"
-				+ "\"estado\":\"CERRADO\"\n"
-				+ "}";
-		return  restClient.doPost(URL_POST, input, userRol);
+		return  restClient.doPost(URL_REST_FULL, input, userRol);
 		
 	}
 
+	public String baja(String input, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doDelete(URL_REST_FULL, input, userRol);
+	}
+	
+	public String mod(String input, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doPut(URL_REST_FULL, input, userRol);
+	}	
+	
 	public String puestosAll(String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_GET, userRol);
+		return  restClient.doGet(URL_GET_ALL, userRol);
 	}
-
 }
