@@ -21,7 +21,7 @@ public class JSONPuesto {
 	
 	public JSONPuesto(){}
 	
-	public JSONPuesto(	String nombreMaquina, String usuarioId, Integer numeroPuesto,String estado){
+	public JSONPuesto(	String nombreMaquina, String usuarioId, Integer numeroPuesto, String estado){
 		 this.nombreMaquina = nombreMaquina;
 		 this.usuarioId = usuarioId;
 		 this.numeroPuesto = numeroPuesto;
@@ -71,7 +71,7 @@ public class JSONPuesto {
 	    public String toString() {
 	        return "{\n"
 	        		+ "\"nombreMaquina\":\""+this.nombreMaquina+"\",\n"
-	        		+ "\"usuarioId\":"+this.usuarioId+"\",\n"
+	        		+ "\"usuarioId\":\""+this.usuarioId+"\",\n"
 	        		+ "\"numeroPuesto\":"+this.numeroPuesto+",\n"
 	        		+ "\"estado\":\""+ this.estado+"\"\n"
 	        		+ "}";
