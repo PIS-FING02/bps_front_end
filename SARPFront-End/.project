@@ -6,7 +6,10 @@
 		<project>SARPLibraries</project>
 		<project>SARPTest</project>
 		<project>SARPWeb</project>
+<<<<<<< HEAD
 		<project>SARPLogic</project>
+=======
+>>>>>>> de8e1dd... guzman lindo
 	</projects>
 	<buildSpec>
 		<buildCommand>

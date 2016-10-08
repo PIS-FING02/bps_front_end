@@ -3,6 +3,7 @@ var popup = document.getElementById('action-admin-popup');
 var cancelButton = document.getElementById('popup-cancel-button');
 var closeButton = document.getElementById('popup-close-button');
 var popupTitle = document.getElementById('popup-title');
+var listElements = document.getElementsByClassName('list-element');
 
 var elementsToHide = [];
 
@@ -28,6 +29,12 @@ for (var i = 0; i < optionButtons.length; i++) {
   }, false);
 }
 
+for (var i = 0; i < listElements.length; i++) {
+	listElements[i].addEventListener('click', function(){
+		this.classList.add('element-selected');
+  }, false);
+}
+
 for (var i = 0; i < optionButtons.length; i++) {
 	optionButtons[i].addEventListener('click', function(){
 		for (var i = 0; i < optionButtons.length; i++) {
@@ -44,7 +51,7 @@ for (var i = 0; i < optionButtons.length; i++) {
 			elementsToHide.push('nombre-tramite');
 			document.getElementById('j_idt7:alta-tramite-button').classList.remove('hidden');
 			elementsToHide.push('j_idt7:alta-tramite-button');
-		} else if (actionSelected.getAttribute('id') == 'baja-tramite') {
+		} else if (actionSelected.getAttribute('id') == 'j_idt23:baja-tramite') {
 			document.getElementById('list-tramites-container').classList.remove('hidden');
 			elementsToHide.push('list-tramites-container');
 			document.getElementById('j_idt7:baja-tramite-button').classList.remove('hidden');

@@ -6,10 +6,19 @@
 
 <head>
 	<title>Pantalla Administrador</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
 
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
+<script>
+function myFunction() {
+    console.log("Entre funcion");
+    var jsfCommandButton = document.getElementById("form:link");
+    jsfCommandButton.click();
+    var res = document.getElementById("form:output");
+	console.log(res);  
+	
+}
+</script>
 </head> 
 
 <body> 
@@ -20,11 +29,14 @@
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
-		</div>
+		</div> 
 		<div class="page-frame">
 			<div class="options-buttons-container">
+		
 				<button id="alta-tramite" class="option-button"> Alta Trámite </button>
-				<button id="baja-tramite" class="option-button"> Baja Trámite </button>
+				 
+			<!--  	<button id="baja-tramite2" class="option-button"> Baja Trámite </button>	
+				-->
 				<button id="mod-tramite" class="option-button"> Modificar Trámite </button>
 				<button id="importar-sectores" class="option-button"> Importar Sectores GAFU </button>
 				<button id="asignar-sector-tramite" class="option-button"> Asignar Sector a Trámite </button>
@@ -47,9 +59,10 @@
 					<h:form>
 					<!--  TRAMITE -->
 					<div id='list-tramites-container' class='list-container hidden'>
-						<div class='list-element'>tramite1</div>
-						<div class='list-element'>tramite2</div>
-						<div class='list-element'>tramite3</div>
+						<ui:repeat id='repeat-tramites' value='#{tramite.tramites}' var='t'>
+							<h:outputText value='#{t.nombre}'/>
+							<br/>
+						</ui:repeat>
 					</div>
 					<div id="codigo" class="form-line hidden">
 						<label for="codigo">Codigo:</label>
@@ -61,9 +74,9 @@
 					</div> 
 					<!--  DISPLAY -->
 					<div id='list-displays-container' class='list-container hidden'>
-						<div class='list-element'>display1</div>
-						<div class='list-element'>display2</div>
-						<div class='list-element'>display3</div>
+						<div class='list-element'>tramite1</div>
+						<div class='list-element'>tramite2</div>
+						<div class='list-element'>tramite3</div>
 					</div>
 					<div id="displayId" class="form-line hidden">
 						<label for="displayId">Identificador:</label>
@@ -88,6 +101,9 @@
 			</div>
 		</div>
 	</div>
+		<h:commandButton id='baja-tramite' class="option-button" value="TEST" action="#{tramite.listar}">
+			<f:ajax execute='@none' render='repeat-tramites'/>
+		</h:commandButton>
 <script type="text/javascript" src="../scripts/admin.js"></script>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 </body> 

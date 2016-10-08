@@ -5,6 +5,7 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
+<<<<<<< HEAD
         <dependent-module archiveName="SARPTest.jar" deploy-path="/" handle="module:/resource/SARPTest/SARPTest">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -14,5 +15,7 @@
         <dependent-module archiveName="SARPLogic.jar" deploy-path="/" handle="module:/resource/SARPLogic/SARPLogic">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+=======
+>>>>>>> de8e1dd... guzman lindo
     </wb-module>
 </project-modules>
