@@ -90,13 +90,73 @@ public class RestClient {
 
 	}
 
-	public String doDelete(String urlRestFull, String input, String userRol) {
-		// TODO Auto-generated method stub
-		return null;
+	public String doDelete(String URL, String input, String userRol) {
+		StringBuilder resultado = new StringBuilder();
+		try {
+			URL url = new URL(URL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("DELETE");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("user-rol",userRol);
+
+			OutputStream os = conn.getOutputStream();
+			os.write(input.getBytes());
+			os.flush();
+		
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
+			
+			String output;
+			System.out.println("RestClient DELETE con " + URL+ "input = "+ input );
+			while ((output = br.readLine()) != null) {
+				resultado.append(output);
+			}
+			conn.disconnect();
+	
+		  } catch (MalformedURLException e) {
+			resultado.append("RequestMalFormada");
+			e.printStackTrace();
+	
+		  } catch (IOException e) {
+			resultado.append("Error");
+			e.printStackTrace();
+		  }
+		return resultado.toString();
 	}
 
-	public String doPut(String urlRestFull, String input, String userRol) {
-		// TODO Auto-generated method stub
-		return null;
+	public String doPut(String URL, String input, String userRol) {
+		StringBuilder resultado = new StringBuilder();
+		try {
+			URL url = new URL(URL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("PUT");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("user-rol",userRol);
+
+			OutputStream os = conn.getOutputStream();
+			os.write(input.getBytes());
+			os.flush();
+		
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
+			
+			String output;
+			System.out.println("RestClient PUT con " + URL+ "input = "+ input );
+			while ((output = br.readLine()) != null) {
+				resultado.append(output);
+			}
+			conn.disconnect();
+	
+		  } catch (MalformedURLException e) {
+			resultado.append("RequestMalFormada");
+			e.printStackTrace();
+	
+		  } catch (IOException e) {
+			resultado.append("Error");
+			e.printStackTrace();
+		  }
+		return resultado.toString();
 	}
 }

@@ -6,6 +6,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
+import com.sarp.jsonModeler.JSONModeler;
+import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "tramite", eager = true)
 @ViewScoped
@@ -15,6 +17,7 @@ public class TramiteBean {
 	private String nombre;
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONTramite> tramites;
+	private static final JSONModeler modeler = new JSONModeler();
 	
 	public void setTramites(List<JSONTramite> tramites) {
 		this.tramites = tramites;
@@ -41,19 +44,21 @@ public class TramiteBean {
 	}
 	
 	public void alta() throws Exception{
-		c.altaTramite(null,null);
+		JSONTramite jtramite = new JSONTramite(0, this.nombre);
+		c.altaTramite(jtramite.toString(), "Administrador");
 	}
 	
-	public void baja(){
-		c.bajaTramite(null,null);
+	public void baja() throws Exception{
+		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), "nombre");
+		c.bajaTramite(jtramite.toString(), "Administrador");
+	}
+	
+	public void modificar(){
+		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
+		c.modTramite(jtramite.toString(), "Administrador");
 	}
 
-	public void mod(){
-		c.modTramite(null,null);
+	public List<JSONTramite> listar() throws Exception{
+		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
 	}
-
-	public String listar() throws Exception{
-		return c.listarTramite("ResponsableSector");
-	}
-
 }

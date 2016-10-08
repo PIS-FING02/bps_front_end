@@ -22,12 +22,13 @@
 					<!--  TRAMITE -->
 					<div id='list-tramites-container' class='list-container hidden'>
 						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
-							<h:outputText class='element-list' value='#{t}'/>
+							<div id='#{t.codigo}' class='hidden'/>
+							<h:outputText class='element-list' value='#{t.nombre}'/>
 						</ui:repeat>
 					</div>
 					<div id="codigo" class="form-line hidden">
 						<label for="codigo">Codigo:</label>
-						<h:inputText class="formInput" value="#{tramite.codigo}" />
+						<h:inputText id='tramite-selected' class="formInput" value="#{tramite.codigo}" />
 					</div>
 					<div id="nombre-tramite" class="form-line hidden">
 						<label for="nombre">Nombre:</label>
@@ -35,25 +36,26 @@
 					</div> 
 					<!--  DISPLAY -->
 					<div id='list-displays-container' class='list-container hidden'>
-						<div class='element-list'>tramite1</div>
-						<div class='element-list'>tramite2</div>
-						<div class='element-list'>tramite3</div>
+						<ui:repeat id='repeat-displays' value='#{display.listar()}' var='d'>
+							<div id='#{d.displayId}' class='hidden'/>
+							<h:outputText class='element-list' value='#{d.rutaArchivo}'/>
+						</ui:repeat>
 					</div>
 					<div id="displayId" class="form-line hidden">
 						<label for="displayId">Identificador:</label>
-						<h:inputText class="formInput" value="#{display.displayId}" />
+						<h:inputText id='display-selected' class="formInput" value="#{display.id}" />
 					</div> 
 					<div id='rutaArchivo' class="form-line hidden">
 						<label for="rutaArchivo">Ruta del Archivo:</label>
-						<h:inputText class="formInput" value="#{display.rutaArchivo}" />
+						<h:inputText class="formInput" value="#{display.ruta}" />
 					</div> 
 					<div class="buttons-container">
 						<h:commandButton id='alta-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.alta}" /> 
 						<h:commandButton id='baja-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.baja}" /> 
-						<h:commandButton id='mod-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.alta}" />	
+						<h:commandButton id='mod-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.modificar}" />	
 						<h:commandButton id='alta-display-button' class="action-button hidden" value="Aceptar" action="#{display.alta}" /> 
 						<h:commandButton id='baja-display-button' class="action-button hidden" value="Aceptar" action="#{display.baja}" /> 
-						<h:commandButton id='mod-display-button' class="action-button hidden" value="Aceptar" action="#{display.alta}" /> 
+						<h:commandButton id='mod-display-button' class="action-button hidden" value="Aceptar" action="#{display.modificar}" /> 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 					</h:form>
@@ -72,15 +74,15 @@
 		<div class="page-frame">
 			<div class="options-buttons-container">
 				<h:form id='form'>
-					<h:commandButton id="alta-tramite" class="option-button" value="Alta Trámite"/>
-					<h:commandButton id='baja-tramite' class="option-button" value="Baja Tramite" action="#{tramite.listar}"/>
-					<h:commandButton id="mod-tramite" class="option-button" value="Modificar Trámite"/>
+					<h:commandButton id="alta-tramite" class="option-button tipo-tramite" value="Alta Trámite"/>
+					<h:commandButton id='baja-tramite' class="option-button tipo-tramite" value="Baja Tramite" action="#{tramite.listar}"/>
+					<h:commandButton id="mod-tramite" class="option-button tipo-tramite" value="Modificar Trámite"/>
 					<h:commandButton id="importar-sectores" class="option-button" value="Importar Sectores"/>
 					<h:commandButton id="asignar-sector-tramite" class="option-button" value="Asignar Sector a Trámite"/>
 					<h:commandButton id="desasignar-sector-tramite" class="option-button" value="Desasignar Sector a Trámite"/>
-					<h:commandButton id="alta-display" class="option-button" value="Alta Display"/>
-					<h:commandButton id="mod-display" class="option-button" value="Modificar Display"/>
-					<h:commandButton id="baja-display" class="option-button" value="Baja Display"/>
+					<h:commandButton id="alta-display" class="option-button tipo-display" value="Alta Display"/>
+					<h:commandButton id="mod-display" class="option-button tipo-display" value="Modificar Display"/>
+					<h:commandButton id="baja-display" class="option-button tipo-display" value="Baja Display"/>
 					<h:commandButton id="asignar-sector-display" class="option-button" value="Asignar Sector a Display"/>
 					<h:commandButton id="desasignar-sector-display" class="option-button" value="Desasignar Sector a Display"/>
 					<h:commandButton id="listar-numeros" class="option-button" value="Listar Números del Sistema"/>
@@ -88,7 +90,7 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="../scripts/admin.js"></script>
 <script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/admin.js"></script>
 </body> 
 </html>

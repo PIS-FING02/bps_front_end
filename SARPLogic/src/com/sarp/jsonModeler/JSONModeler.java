@@ -17,7 +17,10 @@ public class JSONModeler {
 	public JSONDisplay toJSONDisplay(String jsonDisplay) throws Exception{
 		
 		JSONObject json = (JSONObject)new JSONParser().parse(jsonDisplay);
-		JSONDisplay display = new JSONDisplay(Integer.parseInt(json.get("displayId").toString()),json.get("rutaArchivo").toString());
+		
+		Integer d = Integer.parseInt(json.get("codigo").toString());
+		String f = json.get("rutaArchivo").toString();
+		JSONDisplay display = new JSONDisplay(d, f);
 		
 		return display;
 			
@@ -49,7 +52,7 @@ public class JSONModeler {
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(jsonPuesto);
         JSONArray array = (JSONArray)obj;
-        List<JSONPuesto> puestosReturn = new ArrayList();
+        List<JSONPuesto> puestosReturn = new ArrayList<JSONPuesto>();
         
     	Iterator<String> iterator = array.iterator();
     	while (iterator.hasNext()) {
@@ -62,14 +65,14 @@ public class JSONModeler {
 	
 	public List<JSONTramite> toJSONTramites(String jsonTramite) throws Exception{
 
-		JSONParser parser = new JSONParser();
+		JSONParser parser = new JSONParser(); 
 		Object obj = parser.parse(jsonTramite);
         JSONArray array = (JSONArray)obj;
-        List<JSONTramite> tramitesReturn = new ArrayList();
+        List<JSONTramite> tramitesReturn = new ArrayList<JSONTramite>();
         
-    	Iterator<String> iterator = array.iterator();
+    	Iterator<JSONObject> iterator = array.iterator();
     	while (iterator.hasNext()) {
-    		tramitesReturn.add(this.toJSONTramite(iterator.next()));
+    		tramitesReturn.add(this.toJSONTramite(iterator.next().toJSONString()));
     	}
 		
 		return tramitesReturn;
@@ -81,11 +84,11 @@ public class JSONModeler {
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(jsonDisplay);
         JSONArray array = (JSONArray)obj;
-        List<JSONDisplay> displaysReturn = new ArrayList();
+        List<JSONDisplay> displaysReturn = new ArrayList<JSONDisplay>();
         
-    	Iterator<String> iterator = array.iterator();
+    	Iterator<JSONObject> iterator = array.iterator();
     	while (iterator.hasNext()) {
-    		displaysReturn.add(this.toJSONDisplay(iterator.next()));
+    		displaysReturn.add(this.toJSONDisplay(iterator.next().toJSONString()));
     	}
 		
 		return displaysReturn;

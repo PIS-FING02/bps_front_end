@@ -5,23 +5,11 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <dependent-module archiveName="SARPTest.jar" deploy-path="/" handle="module:/resource/SARPTest/SARPTest">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="json-simple-1.1.1.jar" deploy-path="/" handle="module:/classpath/lib/SARPLibraries/SARPJson/json-simple-1.1.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="SARPLogic.jar" deploy-path="/" handle="module:/resource/SARPLogic/SARPLogic">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-=======
->>>>>>> de8e1dd... guzman lindo
-=======
-        <dependent-module archiveName="SARPBusiness.jar" deploy-path="/" handle="module:/resource/SARPBusiness/SARPBusiness">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
->>>>>>> b2b0f3b... Rebase con lo del lechon, hubo comunicacion exitosa
     </wb-module>
 </project-modules>

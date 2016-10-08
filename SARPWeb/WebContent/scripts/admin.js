@@ -34,7 +34,13 @@ for (var i = 0; i < listElements.length; i++) {
 		for (var i = 0; i < listElements.length; i++) {
 			listElements[i].classList.remove('element-list-selected');
 		}
+		var buttonSelected = document.getElementsByClassName('option-button-selected')[0];
 		this.classList.add('element-list-selected');
+		if (hasClass(buttonSelected, 'tipo-tramite')) {
+			document.getElementById('form-popup:tramite-selected').value = this.previousSibling.getAttribute('id');
+		} else if (hasClass(buttonSelected, 'tipo-display')){
+			document.getElementById('form-popup:display-selected').value = this.previousSibling.getAttribute('id');
+		}
   }, false);
 }
 
@@ -83,8 +89,8 @@ for (var i = 0; i < optionButtons.length; i++) {
 		}else if (actionSelected.getAttribute('id') == 'form:mod-display') {
 			document.getElementById('list-displays-container').classList.remove('hidden');
 			elementsToHide.push('list-displays-container');
-			document.getElementById('displayId').classList.remove('hidden');
-			elementsToHide.push('displayId');
+			document.getElementById('rutaArchivo').classList.remove('hidden');
+			elementsToHide.push('rutaArchivo');
 			document.getElementById('form-popup:mod-display-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:mod-display-button');
 		}

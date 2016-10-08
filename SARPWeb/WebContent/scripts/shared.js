@@ -7,3 +7,7 @@ for (var i = 0; i < optionButtons.length; i++) {
 		this.classList.add("option-button-selected");
     }, false);
 }
+
+function hasClass(elem, klass ) {
+    return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
+}

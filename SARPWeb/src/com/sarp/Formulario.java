@@ -80,31 +80,7 @@ public class Formulario {
 
 
 	}
-	
-	public  void listar(){
-		System.out.println("\nTramite: "+this.tramite +"\nNombre: "+this.nombre + "\nNumero: "+this.numero);
-		ControladorREST c = new ControladorREST();
-		System.out.println("Ejecutando controlador...");
-		this.resultado= c.consumir();
 
-	}
-	
-	public  void submitTramites(){
-		ControladorREST c = new ControladorREST();
-		System.out.println("Ejecutando controlador...");
-		c.agregar(tramite,sector);
-		this.sector="";
-
-
-	}
-	
-	public  void listarTramites(){
-		System.out.println("\nTramite: "+this.tramite +"\nNombre: "+this.nombre + "\nNumero: "+this.numero);
-		ControladorREST c = new ControladorREST();
-		System.out.println("Ejecutando controlador...");
-		this.resultado2= c.consumirTramites();
-
-	}
 
 
 	public String getResultado2() {

@@ -4,16 +4,8 @@
 	<comment></comment>
 	<projects>
 		<project>SARPLibraries</project>
-		<project>SARPTest</project>
 		<project>SARPWeb</project>
-<<<<<<< HEAD
-<<<<<<< HEAD
 		<project>SARPLogic</project>
-=======
->>>>>>> de8e1dd... guzman lindo
-=======
-		<project>SARPBusiness</project>
->>>>>>> b2b0f3b... Rebase con lo del lechon, hubo comunicacion exitosa
 	</projects>
 	<buildSpec>
 		<buildCommand>

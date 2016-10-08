@@ -1,17 +1,5 @@
 package com.sarp.facade;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import com.sarp.facade.client.RestClient;
 
 public class TramiteFacade {
@@ -21,29 +9,17 @@ public class TramiteFacade {
 	
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		input = "{\n"
-				+ "\"codigo\":\"45\",\n"
-				+ "\"nombre\":\"elNombreDeEsteTramite\",\n"
-				+ "}";
 		return  restClient.doPost(URL_REST_FULL, input, userRol);
 		
 	}
 
 	public String baja(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
-		input = "{\n"
-				+ "\"codigo\":\"45\",\n"
-				+ "\"nombre\":\"elNombreDeEsteTramite\",\n"
-				+ "}";
 		return  restClient.doDelete(URL_REST_FULL, input, userRol);
 	}
 	
 	public String mod(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
-		input = "{\n"
-				+ "\"codigo\":\"45\",\n"
-				+ "\"nombre\":\"elNombreDeEsteTramite\",\n"
-				+ "}";
 		return  restClient.doPut(URL_REST_FULL, input, userRol);
 	}	
 	

@@ -35,8 +35,8 @@ public class JSONDisplay {
 	 @Override
 	    public String toString() {
 	        return "{\n"
-	        		+ "\"displayId\":\""+this.displayId+"\",\n"
-	        		+ "\"rutaArchivo\":"+ this.rutaArchivo+"\"\n"
-	        		+ "}";
+	        		+ "\"displayId\":" + this.displayId + ",\n"
+	        		+ "\"rutaArchivo\":\"" + this.rutaArchivo + "\"\n"
+	     			+ "}";
 	    }
 }
