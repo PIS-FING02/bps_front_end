@@ -44,8 +44,6 @@ for (var i = 0; i < optionButtons.length; i++) {
 			document.getElementById('form-popup:mod-tramite-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:mod-tramite-button');
 		} else if (actionSelected.getAttribute('id') == 'form:alta-display') {
-			document.getElementById('displayId').classList.remove('hidden');
-			elementsToHide.push('displayId');
 			document.getElementById('rutaArchivo').classList.remove('hidden');
 			elementsToHide.push('rutaArchivo');
 			document.getElementById('form-popup:alta-display-button').classList.remove('hidden');
