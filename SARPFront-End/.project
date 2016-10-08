@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>SARPLibraries</project>
-		<project>SARPTest</project>
 		<project>SARPWeb</project>
 		<project>SARPLogic</project>
 	</projects>

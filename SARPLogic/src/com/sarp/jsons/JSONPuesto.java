@@ -72,7 +72,7 @@ public class JSONPuesto {
 	        return "{\n"
 	        		+ "\"nombreMaquina\":\""+this.nombreMaquina+"\",\n"
 	        		+ "\"usuarioId\":"+this.usuarioId+"\",\n"
-	        		+ "\"numeroPuesto\":"+numeroPuesto.toString()+",\n"
+	        		+ "\"numeroPuesto\":"+this.numeroPuesto+",\n"
 	        		+ "\"estado\":\""+ this.estado+"\"\n"
 	        		+ "}";
 	    }

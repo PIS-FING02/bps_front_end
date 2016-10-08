@@ -53,8 +53,8 @@ public class JSONTramite {
 	 @Override
 	    public String toString() {
 	        return "{\n"
-	        		+ "\"codigo\":\""+this.codigo+"\",\n"
-	        		+ "\"nombre\":"+ this.nombre+"\"\n"
+	        		+ "\"codigo\":" + this.codigo + ",\n"
+	        		+ "\"nombre\":\"" + this.nombre + "\"\n"
 	     			+ "}";
 	    }
 }
