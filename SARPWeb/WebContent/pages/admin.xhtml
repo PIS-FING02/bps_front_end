@@ -21,8 +21,8 @@
 					<h:form id='form-popup'>
 					<!--  TRAMITE -->
 					<div id='list-tramites-container' class='list-container hidden'>
-						<ui:repeat id='repeat-tramites' value='#{tramite.tramites}' var='t'>
-							<h:outputText class='element-list' value='#{t.nombre}'/>
+						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
+							<h:outputText class='element-list' value='#{t}'/>
 						</ui:repeat>
 					</div>
 					<div id="codigo" class="form-line hidden">
