@@ -1,4 +1,4 @@
-package com.sarp.controladores;
+package com.sarp.controllers;
 
 import java.io.IOException;
 
@@ -21,9 +21,9 @@ public class ControladorREST {
 		this.displayFacade = new DisplayFacade();
 	}
 
-	public String altaPuesto() {
+	public String altaPuesto(Object input, String userRol) {
 		try {
-			return this.puestoFacade.alta();
+			return this.puestoFacade.alta(input.toString(),  userRol);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,20 +32,20 @@ public class ControladorREST {
 		
 	}
 
-	public String listarTramite() throws Exception {
-		return this.tramiteFacade.listar();
+	public String listarTramite(String userRol) throws Exception {
+		return this.tramiteFacade.tramitesAll(userRol);
 	}
 
-	public String altaTramite() throws Exception {
-		return this.tramiteFacade.alta();
+	public String altaTramite(Object input, String userRol) throws Exception {
+		return this.tramiteFacade.alta(input.toString(),  userRol);
 	}
 
-	public String bajaTramite() {
-		return this.tramiteFacade.baja();
+	public String bajaTramite(Object input, String userRol) {
+		return this.tramiteFacade.baja(input.toString(), userRol);
 	}
 
-	public String modTramite() {
-		return this.tramiteFacade.mod();
+	public String modTramite(Object input, String userRol) {
+		return this.tramiteFacade.mod(input.toString(), userRol);
 	}
 	
 	public String altaDisplay() throws Exception {

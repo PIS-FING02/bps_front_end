@@ -44,7 +44,7 @@ public class TramiteFacade {
 				+ "\"codigo\":\"45\",\n"
 				+ "\"nombre\":\"elNombreDeEsteTramite\",\n"
 				+ "}";
-		return  restClient.doPUT(URL_REST_FULL, input, userRol);
+		return  restClient.doPut(URL_REST_FULL, input, userRol);
 	}	
 	
 	public String tramitesAll(String userRol) throws Exception {

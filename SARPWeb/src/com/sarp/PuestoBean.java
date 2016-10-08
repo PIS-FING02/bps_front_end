@@ -3,7 +3,7 @@ package com.sarp;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import com.sarp.controladores.ControladorREST;
+import com.sarp.controllers.ControladorREST;
 
 @ManagedBean(name = "puesto", eager = true)
 @RequestScoped
@@ -52,7 +52,7 @@ public class PuestoBean {
 		System.out.println(estado);
 
 		ControladorREST c = new ControladorREST();
-		c.altaPuesto();
+		c.altaPuesto(null, null);
 		
 	}
 

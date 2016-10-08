@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import com.sarp.controladores.ControladorREST;
+import com.sarp.controllers.ControladorREST;
 
 
 

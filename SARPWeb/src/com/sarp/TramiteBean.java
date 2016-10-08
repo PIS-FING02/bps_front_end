@@ -3,7 +3,7 @@ package com.sarp;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import com.sarp.controladores.ControladorREST;
+import com.sarp.controllers.ControladorREST;
 
 @ManagedBean(name = "tramite", eager = true)
 @RequestScoped
@@ -30,20 +30,20 @@ public class TramiteBean {
 	}
 	
 	public void alta() throws Exception{
-		c.altaTramite();
+		c.altaTramite(null,null);
 	}
 	
 	public void baja(){
-		c.bajaTramite();
+		c.bajaTramite(null,null);
 	}
 
 	public void mod(){
-		c.modTramite();
+		c.modTramite(null,null);
 	}
 	
 
 	public String listar() throws Exception{
-		return c.listarTramite();
+		return c.listarTramite(null);
 	}
 
 }

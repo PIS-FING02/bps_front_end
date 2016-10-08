@@ -95,7 +95,7 @@ public class RestClient {
 		return null;
 	}
 
-	public String doPUT(String urlRestFull, String input, String userRol) {
+	public String doPut(String urlRestFull, String input, String userRol) {
 		// TODO Auto-generated method stub
 		return null;
 	}
