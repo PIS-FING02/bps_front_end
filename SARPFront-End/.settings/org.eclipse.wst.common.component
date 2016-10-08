@@ -4,7 +4,17 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
+<<<<<<< 24ebdc0bef5842a29517babd6470f1dd3b70ee36
         <dependent-module archiveName="SARPBusiness.jar" deploy-path="/" handle="module:/resource/SARPBusiness/SARPBusiness">
+=======
+        <dependent-module archiveName="SARPTest.jar" deploy-path="/" handle="module:/resource/SARPTest/SARPTest">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SARPBusiness.jar" deploy-path="/" handle="module:/resource/SARPBusiness/SARPBusiness">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-simple-1.1.1.jar" deploy-path="/" handle="module:/classpath/lib/SARPLibraries/SARPJson/json-simple-1.1.1.jar">
+>>>>>>> JSON Modeler
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>
