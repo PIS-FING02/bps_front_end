@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/Red Hat JBoss EAP 6.4 Runtime"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/SARPBusiness"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SARPLogic"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

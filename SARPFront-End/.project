@@ -3,12 +3,10 @@
 	<name>SARPFront-End</name>
 	<comment></comment>
 	<projects>
-		<project>SARPWeb</project>
-<<<<<<< 24ebdc0bef5842a29517babd6470f1dd3b70ee36
-=======
+		<project>SARPLibraries</project>
 		<project>SARPTest</project>
->>>>>>> JSON Modeler
-		<project>SARPBusiness</project>
+		<project>SARPWeb</project>
+		<project>SARPLogic</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
