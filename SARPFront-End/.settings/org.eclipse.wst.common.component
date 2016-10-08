@@ -7,5 +7,20 @@
         <dependent-module archiveName="SARPBusiness.jar" deploy-path="/" handle="module:/resource/SARPBusiness/SARPBusiness">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="lib//Users/guicoduri/.m2/repository/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar.ear" deploy-path="/" handle="module:/classpath/lib//Users/guicoduri/.m2/repository/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="lib//Users/guicoduri/.m2/repository/com/sun/jersey/jersey-core/1.8/jersey-core-1.8.jar.ear" deploy-path="/" handle="module:/classpath/lib//Users/guicoduri/.m2/repository/com/sun/jersey/jersey-core/1.8/jersey-core-1.8.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="lib//Users/guicoduri/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.6.3/jackson-databind-2.6.3.jar.ear" deploy-path="/" handle="module:/classpath/lib//Users/guicoduri/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.6.3/jackson-databind-2.6.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="lib//Users/guicoduri/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.6.0/jackson-annotations-2.6.0.jar.ear" deploy-path="/" handle="module:/classpath/lib//Users/guicoduri/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.6.0/jackson-annotations-2.6.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="lib//Users/guicoduri/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.6.3/jackson-core-2.6.3.jar.ear" deploy-path="/" handle="module:/classpath/lib//Users/guicoduri/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.6.3/jackson-core-2.6.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
