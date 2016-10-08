@@ -12,7 +12,7 @@
 </head> 
 
 <body> 
-	<div id="action-admin-popup" class="hidden popup-overlay">
+	<div id="action-popup" class="hidden popup-overlay">
 		<div class="popup">
 			<h2 id="popup-title" class="sub-title"></h2>
 			<div id="popup-close-button" class="close-x">&times;</div>
@@ -50,12 +50,12 @@
 						<h:inputText class="formInput" value="#{display.ruta}" />
 					</div> 
 					<div class="buttons-container">
-						<h:commandButton id='alta-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.alta}" /> 
-						<h:commandButton id='baja-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.baja}" /> 
-						<h:commandButton id='mod-tramite-button' class="action-button hidden" value="Aceptar" action="#{tramite.modificar}" />	
-						<h:commandButton id='alta-display-button' class="action-button hidden" value="Aceptar" action="#{display.alta}" /> 
-						<h:commandButton id='baja-display-button' class="action-button hidden" value="Aceptar" action="#{display.baja}" /> 
-						<h:commandButton id='mod-display-button' class="action-button hidden" value="Aceptar" action="#{display.modificar}" /> 
+						<h:commandButton id='alta-tramite-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{tramite.alta}" /> 
+						<h:commandButton id='baja-tramite-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{tramite.baja}" /> 
+						<h:commandButton id='mod-tramite-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{tramite.modificar}" />	
+						<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}" /> 
+						<h:commandButton id='baja-display-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{display.baja}" /> 
+						<h:commandButton id='mod-display-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{display.modificar}" /> 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 					</h:form>

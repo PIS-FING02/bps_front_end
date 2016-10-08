@@ -1,34 +1,3 @@
-var optionButtons = document.getElementsByClassName('option-button');
-var popup = document.getElementById('action-admin-popup');
-var cancelButton = document.getElementById('popup-cancel-button');
-var closeButton = document.getElementById('popup-close-button');
-var popupTitle = document.getElementById('popup-title');
-var listElements = document.getElementsByClassName('element-list');
-
-var elementsToHide = [];
-
-function hideAll() {
-	for (var i = 0; i < elementsToHide.length; i++) {
-		document.getElementById(elementsToHide[i]).classList.add('hidden');
-	}
-	elementsToHide = [];
-}
-
-cancelButton.addEventListener('click', function(){
-	popup.classList.add("hidden");
-}, false);
-
-closeButton.addEventListener('click', function(){
-	popup.classList.add("hidden");
-}, false);
-
-
-for (var i = 0; i < optionButtons.length; i++) {
-  optionButtons[i].addEventListener('click', function(){
-    popup.classList.remove("hidden");
-  }, false);
-}
-
 for (var i = 0; i < listElements.length; i++) {
 	listElements[i].addEventListener('click', function(){
 		for (var i = 0; i < listElements.length; i++) {

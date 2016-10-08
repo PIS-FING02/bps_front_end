@@ -12,7 +12,7 @@
 
 <body> 
 
-	<div id="action-respSector-popup" class="hidden popup-overlay">
+	<div id="action-popup" class="hidden popup-overlay">
 		<div class="popup">
 			<h2 id="popup-title" class="sub-title"></h2>
 			<div id="popup-close-button" class="close-x">&times;</div>
@@ -43,9 +43,9 @@
 						<h:inputText class="formInput" value="#{puesto.estado}" />
 					</div>
 					<div class="buttons-container">
-						<h:commandButton id='alta-puesto-button' class="action-button hidden" value="Aceptar" action="#{puesto.alta}" /> 
-						<h:commandButton id='baja-puesto-button' class="action-button hidden" value="Aceptar" action="#{puesto.baja}" /> 
-						<h:commandButton id='mod-puesto-button' class="action-button hidden" value="Aceptar" action="#{puesto.modificar}" />				 
+						<h:commandButton id='alta-puesto-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{puesto.alta}" /> 
+						<h:commandButton id='baja-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.baja}" /> 
+						<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.modificar}" />				 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 					</h:form>
