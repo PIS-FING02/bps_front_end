@@ -52,9 +52,12 @@ public class JSONTramite {
 	
 	 @Override
 	    public String toString() {
+		 	String codigo = this.codigo!= null ? this.codigo.toString() : "null";
+		 	String nombre = this.nombre!= null ? this.nombre : "null";
+		 	
 	        return "{\n"
-	        		+ "\"codigo\":" + this.codigo + ",\n"
-	        		+ "\"nombre\":\"" + this.nombre + "\"\n"
+	        		+ "\"codigo\":" + codigo + ",\n"
+	        		+ "\"nombre\":\"" + nombre + "\"\n"
 	     			+ "}";
 	    }
 }

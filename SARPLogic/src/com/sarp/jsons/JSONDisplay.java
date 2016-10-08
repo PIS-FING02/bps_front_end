@@ -34,9 +34,11 @@ public class JSONDisplay {
 	
 	 @Override
 	    public String toString() {
-	        return "{\n"
-	        		+ "\"displayId\":" + this.displayId + ",\n"
-	        		+ "\"rutaArchivo\":\"" + this.rutaArchivo + "\"\n"
+		 String displayId = this.displayId != null? this.displayId.toString() : "null";
+	     String rutaArchivo = this.rutaArchivo != null ? this.rutaArchivo : "null";
+		 return "{\n"
+	        		+ "\"displayId\":" + displayId  + ",\n"
+	        		+ "\"rutaArchivo\":\"" + rutaArchivo + "\"\n"
 	     			+ "}";
 	    }
 }
