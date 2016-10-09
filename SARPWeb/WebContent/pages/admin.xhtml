@@ -22,32 +22,32 @@
 					<!--  TRAMITE -->
 					<div id='list-tramites-container' class='list-container hidden'>
 						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
-							<div id='#{t.codigo}' class='hidden'/>
+							<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
 							<h:outputText class='element-list' value='#{t.nombre}'/>
 						</ui:repeat>
 					</div>
 					<div id="codigo" class="form-line hidden">
 						<label for="codigo">Codigo:</label>
-						<h:inputText id='tramite-selected' class="formInput" value="#{tramite.codigo}" />
+						<h:inputText id='tramite-codigo' class="formInput" value="#{tramite.codigo}" />
 					</div>
 					<div id="nombre-tramite" class="form-line hidden">
 						<label for="nombre">Nombre:</label>
-						<h:inputText class="formInput" value="#{tramite.nombre}" />
+						<h:inputText id='tramite-nombre' class="formInput" value="#{tramite.nombre}" />
 					</div> 
 					<!--  DISPLAY -->
 					<div id='list-displays-container' class='list-container hidden'>
 						<ui:repeat id='repeat-displays' value='#{display.listar()}' var='d'>
-							<div id='#{d.displayId}' class='hidden'/>
+							<div id='#{d.displayId}' ruta='#{d.rutaArchivo}' class='hidden'/>
 							<h:outputText class='element-list' value='#{d.rutaArchivo}'/>
 						</ui:repeat>
 					</div>
 					<div id="displayId" class="form-line hidden">
 						<label for="displayId">Identificador:</label>
-						<h:inputText id='display-selected' class="formInput" value="#{display.id}" />
+						<h:inputText id='display-id' class="formInput" value="#{display.id}" />
 					</div> 
 					<div id='rutaArchivo' class="form-line hidden">
 						<label for="rutaArchivo">Ruta del Archivo:</label>
-						<h:inputText class="formInput" value="#{display.ruta}" />
+						<h:inputText id='display-ruta' class="formInput" value="#{display.ruta}" />
 					</div> 
 					<div class="buttons-container">
 						<h:commandButton id='alta-tramite-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{tramite.alta}" /> 

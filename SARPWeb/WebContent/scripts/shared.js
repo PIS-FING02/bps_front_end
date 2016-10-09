@@ -10,6 +10,7 @@ var actionButtons = document.getElementsByClassName('action-button');
 
 var elementsToHide = [];
 
+// HIDE ELEMTS SHOWN
 function hideAll() {
 	for (var i = 0; i < elementsToHide.length; i++) {
 		document.getElementById(elementsToHide[i]).classList.add('hidden');
@@ -22,6 +23,7 @@ for (var i = 0; i < listActionButtons.length; i++) {
 	listActionButtons[i].disabled = true;
 }
 
+// ENABLE/DISABLE ACTION BUTTONS IF INPUTS EMPTY OR NOT
 for (var i = 0; i < formInputs.length; i++) {
 	formInputs[i].addEventListener('input', function(){
 		if (this.value == "") {
@@ -38,6 +40,7 @@ for (var i = 0; i < formInputs.length; i++) {
     }, false);
 }
 
+// ENABLE ACTION BUTTONS IF ELEMENT SELECTED
 for (var i = 0; i < listElements.length; i++) {
 	listElements[i].addEventListener('click', function(){
 		for (var i = 0; i < listActionButtons.length; i++) {
@@ -47,6 +50,7 @@ for (var i = 0; i < listElements.length; i++) {
     }, false);
 }
 
+// MARK ELEMENT AS SELECTED
 for (var i = 0; i < optionButtons.length; i++) {
 	optionButtons[i].addEventListener('click', function(){
 		for (var i = 0; i < optionButtons.length; i++) {
@@ -60,6 +64,7 @@ function hasClass(elem, klass ) {
     return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
 }
 
+// CLOSE POPUP AND CLEANUP
 cancelButton.addEventListener('click', function(){
 	popup.classList.add("hidden");
 	for (var i = 0; i < listElements.length; i++) {
@@ -73,6 +78,7 @@ cancelButton.addEventListener('click', function(){
 	}	
 }, false);
 
+//CLOSE POPUP AND CLEANUP
 closeButton.addEventListener('click', function(){
 	popup.classList.add("hidden");
 	for (var i = 0; i < listElements.length; i++) {
@@ -86,6 +92,7 @@ closeButton.addEventListener('click', function(){
 	}	
 }, false);
 
+// OPEN POPUP
 for (var i = 0; i < optionButtons.length; i++) {
   optionButtons[i].addEventListener('click', function(){
     popup.classList.remove("hidden");

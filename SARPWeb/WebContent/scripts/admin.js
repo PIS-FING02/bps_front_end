@@ -6,10 +6,12 @@ for (var i = 0; i < listElements.length; i++) {
 		var buttonSelected = document.getElementsByClassName('option-button-selected')[0];
 		this.classList.add('element-list-selected');
 		if (hasClass(buttonSelected, 'tipo-tramite')) {
-			document.getElementById('form-popup:tramite-selected').value = this.previousSibling.getAttribute('id');
+			document.getElementById('form-popup:tramite-codigo').value = this.previousSibling.getAttribute('id');
+			document.getElementById('form-popup:tramite-nombre').value = this.previousSibling.getAttribute('nombre');
 		} else if (hasClass(buttonSelected, 'tipo-display')){
-			document.getElementById('form-popup:display-selected').value = this.previousSibling.getAttribute('id');
-		}
+			document.getElementById('form-popup:display-id').value = this.previousSibling.getAttribute('id');
+			document.getElementById('form-popup:display-ruta').value = this.previousSibling.getAttribute('ruta');
+			}
   }, false);
 }
 
@@ -23,8 +25,6 @@ for (var i = 0; i < optionButtons.length; i++) {
 		var actionSelected = document.getElementsByClassName('option-button-selected')[0];
 		popupTitle.innerHTML = actionSelected.getAttribute('value'); 
 		if (actionSelected.getAttribute('id') == 'form:alta-tramite') {
-			document.getElementById('codigo').classList.remove('hidden');
-			elementsToHide.push('codigo');
 			document.getElementById('nombre-tramite').classList.remove('hidden');
 			elementsToHide.push('nombre-tramite');
 			document.getElementById('form-popup:alta-tramite-button').classList.remove('hidden');
