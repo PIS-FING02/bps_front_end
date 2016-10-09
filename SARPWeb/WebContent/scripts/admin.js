@@ -6,7 +6,7 @@ for (var i = 0; i < listElements.length; i++) {
 		var buttonSelected = document.getElementsByClassName('option-button-selected')[0];
 		this.classList.add('element-list-selected');
 		if (hasClass(buttonSelected, 'tipo-tramite')) {
-			document.getElementById('form-popup:tramite-codigo').value = this.previousSibling.getAttribute('id');
+			document.getElementById('form-popup:tramite-codigo').value = this.previousSibling.getAttribute('codigo');
 			document.getElementById('form-popup:tramite-nombre').value = this.previousSibling.getAttribute('nombre');
 		} else if (hasClass(buttonSelected, 'tipo-display')){
 			document.getElementById('form-popup:display-id').value = this.previousSibling.getAttribute('id');
