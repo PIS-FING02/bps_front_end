@@ -24,8 +24,6 @@ for (var i = 0; i < optionButtons.length; i++) {
 			elementsToHide.push('list-puestos-container');
 			document.getElementById('maquina').classList.remove('hidden');
 			elementsToHide.push('maquina');
-			document.getElementById('usuario').classList.remove('hidden');
-			elementsToHide.push('usuario');
 			document.getElementById('estado').classList.remove('hidden');
 			elementsToHide.push('estado');
 			document.getElementById('form-popup:alta-puesto-button').classList.remove('hidden');
@@ -38,8 +36,6 @@ for (var i = 0; i < optionButtons.length; i++) {
 		} else if (actionSelected.getAttribute('id') == 'form:mod-puesto') {
 			document.getElementById('list-puestos-container').classList.remove('hidden');
 			elementsToHide.push('list-puestos-container');
-			document.getElementById('usuario').classList.remove('hidden');
-			elementsToHide.push('puesto');
 			document.getElementById('estado').classList.remove('hidden');
 			elementsToHide.push('estado');
 			document.getElementById('form-popup:mod-puesto-button').classList.remove('hidden');

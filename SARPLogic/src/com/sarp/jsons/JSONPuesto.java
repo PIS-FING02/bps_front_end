@@ -78,8 +78,8 @@ public class JSONPuesto {
 	        return "{\n"
 	        		+ "\"nombreMaquina\":\""+nombreMaquina+"\",\n"
 	        		+ "\"usuarioId\":\""+usuarioId+"\",\n"
-	        		+ "\"numeroPuesto\":"+numeroPuesto+",\n"
-	        		+ "\"estado\":\""+ estado+"\"\n"
+	        		+ "\"estado\":\""+ estado+"\",\n"
+	    	        + "\"numeroPuesto\":"+numeroPuesto+"\n"
 	        		+ "}";
 	    }
 	

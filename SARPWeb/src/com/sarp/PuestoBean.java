@@ -55,7 +55,7 @@ public class PuestoBean {
 	}
 	
 	public void alta() throws Exception{
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "0", 0, this.estado);
 		c.altaPuesto(jpuesto.toString(), "ResponsableSector");
 	}
 	
@@ -65,7 +65,7 @@ public class PuestoBean {
 	}
 	
 	public void modificar(){
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, 0, this.estado);
 		c.modPuesto(jpuesto.toString(), "ResponsableSector");
 	}
 
