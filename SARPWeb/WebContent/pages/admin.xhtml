@@ -23,7 +23,7 @@
 					<div id='list-tramites-container' class='list-container hidden'>
 						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
 							<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
-							<h:outputText class='element-list' value='#{t.nombre}'/>
+							<h:outputText class='element-list' value='#{t.codigo} - #{t.nombre}'/>
 						</ui:repeat>
 					</div>
 					<div id="codigo" class="form-line hidden">

@@ -152,3 +152,12 @@ input {
 a, a:active, a:target {
 	text-decoration: none;
 }	
+
+.test-button {
+	float: left;
+    margin: 10px;
+    cursor: pointer;
+    background: white;
+    font-weight: bold;
+    border: none;
+}

@@ -30,7 +30,7 @@ public class JSONModeler {
 		JSONObject json = (JSONObject)new JSONParser().parse(jsonPuesto);
 		
 		String usuario = ((json.get("usuarioId") == null) ? null : json.get("usuarioId").toString());
-		Integer numero = ((json.get("numeroPueto") == null) ? null : Integer.parseInt(json.get("numeroPuesto").toString()));
+		Integer numero = ((json.get("numeroPuesto") == null) ? null : Integer.parseInt(json.get("numeroPuesto").toString()));
 		String estado = ((json.get("estado") == null) ? null : json.get("estado").toString());
 		
 		usuario = ((json.get("usuarioId") == null) ? null : json.get("usuarioId").toString());

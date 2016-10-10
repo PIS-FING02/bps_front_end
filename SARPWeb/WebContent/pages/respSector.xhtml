@@ -19,31 +19,35 @@
 			<div class="content">
 				<form>
 					<h:form id="form-popup">
-					<!--  PUESTO -->
-					<div id='list-puestos-container' class='list-container hidden'>
-						<ui:repeat id='repeat-puestos' value='#{puesto.listar()}' var='p'>
-							<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
-							<h:outputText class='element-list' value='#{p.nombreMaquina} '/>
-						</ui:repeat>
-					</div>
-					<div id="maquina" class="form-line hidden">
-						<label for="maquina">Nombre de Máquina:</label>
-						<h:inputText id='puesto-selected-maquina' class="formInput" value="#{puesto.maquina}" />
-					</div>
-					<div id="usuario" class="form-line hidden">
-						<label for="usuario">Usuario:</label>
-						<h:inputText id='puesto-selected-usuario' class="formInput" value="#{puesto.usuarioId}" />
-					</div>
-					<div id="estado" class="form-line hidden">
-						<label for="estado">Estado:</label>
-						<h:inputText id='puesto-selected-estado' class="formInput" value="#{puesto.estado}" />
-					</div>
-					<div class="buttons-container">
-						<h:commandButton id='alta-puesto-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{puesto.alta}" /> 
-						<h:commandButton id='baja-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.baja}" /> 
-						<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.modificar}" />				 
-						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
-					</div>
+						<!--  PUESTO -->
+						<div id='list-puestos-container' class='list-container hidden'>
+							<ui:repeat id='repeat-puestos' value='#{puesto.listar()}' var='p'>
+								<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
+								<h:outputText class='element-list' value='#{p.nombreMaquina} '/>
+							</ui:repeat>
+						</div>
+						<div id="maquina" class="form-line hidden">
+							<label for="maquina">Nombre de Máquina:</label>
+							<h:inputText id='puesto-selected-maquina' class="formInput" value="#{puesto.maquina}" />
+						</div>
+						<div id="usuario" class="form-line hidden">
+							<label for="usuario">Usuario:</label>
+							<h:inputText id='puesto-selected-usuario' class="formInput" value="#{puesto.usuarioId}" />
+						</div>
+						<div id="estado" class="form-line hidden">
+							<label for="estado">Estado:</label>
+							<h:inputText id='puesto-selected-estado' class="formInput" value="#{puesto.estado}" />
+						</div>
+						<div id="numero" class="form-line hidden">
+							<label for="numero">Numero:</label>
+							<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
+						</div>
+						<div class="buttons-container">
+							<h:commandButton id='alta-puesto-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{puesto.alta}" /> 
+							<h:commandButton id='baja-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.baja}" /> 
+							<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.modificar}" />				 
+							<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
+						</div>
 					</h:form>
 				</form>
 			</div>

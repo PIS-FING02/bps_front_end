@@ -9,6 +9,7 @@ var formInputs = document.getElementsByClassName('formInput');
 var actionButtons = document.getElementsByClassName('action-button');
 
 var elementsToHide = [];
+var elementSelected = false;
 
 // HIDE ELEMTS SHOWN
 function hideAll() {
@@ -31,7 +32,7 @@ for (var i = 0; i < formInputs.length; i++) {
 				listActionButtons[i].classList.add('deactivated');
 				listActionButtons[i].disabled = true;
 			}	
-		} else {
+		} else if (elementSelected){
 			for (var i = 0; i < listActionButtons.length; i++) {
 				listActionButtons[i].classList.remove('deactivated');
 				listActionButtons[i].disabled = false;
@@ -46,6 +47,7 @@ for (var i = 0; i < listElements.length; i++) {
 		for (var i = 0; i < listActionButtons.length; i++) {
 			listActionButtons[i].classList.remove('deactivated');
 			listActionButtons[i].disabled = false;
+			elementSelected = true;
 		}	
     }, false);
 }
@@ -60,6 +62,7 @@ for (var i = 0; i < optionButtons.length; i++) {
     }, false);
 }
 
+// HAS CLASS
 function hasClass(elem, klass ) {
     return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
 }
@@ -67,6 +70,7 @@ function hasClass(elem, klass ) {
 // CLOSE POPUP AND CLEANUP
 cancelButton.addEventListener('click', function(){
 	popup.classList.add("hidden");
+	elementSelected = false;
 	for (var i = 0; i < listElements.length; i++) {
 		if (hasClass(listElements[i], 'element-list-selected')) {
 			listElements[i].classList.remove('element-list-selected');
@@ -80,6 +84,7 @@ cancelButton.addEventListener('click', function(){
 
 //CLOSE POPUP AND CLEANUP
 closeButton.addEventListener('click', function(){
+	elementSelected = false;
 	popup.classList.add("hidden");
 	for (var i = 0; i < listElements.length; i++) {
 		if (hasClass(listElements[i], 'element-list-selected')) {
