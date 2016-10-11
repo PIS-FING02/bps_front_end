@@ -19,45 +19,45 @@
 			<div class="content">
 				<form>
 					<h:form id='form-popup'>
-					<!--  TRAMITE -->
-					<div id='list-tramites-container' class='list-container hidden'>
-						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
-							<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
-							<h:outputText class='element-list' value='#{t.codigo} - #{t.nombre}'/>
-						</ui:repeat>
-					</div>
-					<div id="codigo" class="form-line hidden">
-						<label for="codigo">Codigo:</label>
-						<h:inputText id='tramite-codigo' class="formInput" value="#{tramite.codigo}" />
-					</div>
-					<div id="nombre-tramite" class="form-line hidden">
-						<label for="nombre">Nombre:</label>
-						<h:inputText id='tramite-nombre' class="formInput" value="#{tramite.nombre}" />
-					</div> 
-					<!--  DISPLAY -->
-					<div id='list-displays-container' class='list-container hidden'>
-						<ui:repeat id='repeat-displays' value='#{display.listar()}' var='d'>
-							<div id='#{d.displayId}' ruta='#{d.rutaArchivo}' class='hidden'/>
-							<h:outputText class='element-list' value='#{d.rutaArchivo}'/>
-						</ui:repeat>
-					</div>
-					<div id="displayId" class="form-line hidden">
-						<label for="displayId">Identificador:</label>
-						<h:inputText id='display-id' class="formInput" value="#{display.id}" />
-					</div> 
-					<div id='rutaArchivo' class="form-line hidden">
-						<label for="rutaArchivo">Ruta del Archivo:</label>
-						<h:inputText id='display-ruta' class="formInput" value="#{display.ruta}" />
-					</div> 
-					<div class="buttons-container">
-						<h:commandButton id='alta-tramite-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{tramite.alta}" /> 
-						<h:commandButton id='baja-tramite-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{tramite.baja}" /> 
-						<h:commandButton id='mod-tramite-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{tramite.modificar}" />	
-						<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}" /> 
-						<h:commandButton id='baja-display-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{display.baja}" /> 
-						<h:commandButton id='mod-display-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{display.modificar}" /> 
-						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
-					</div>
+						<!--  TRAMITE -->
+						<div id='list-tramites-container' class='list-container hidden'>
+							<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
+								<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
+								<h:outputText class='element-list tramite-element' value='#{t.codigo} - #{t.nombre}'/>
+							</ui:repeat>
+						</div>
+						<div id="codigo-tramite" class="form-line hidden">
+							<label for="codigo">Codigo:</label>
+							<h:inputText id='tramite-selected-codigo' class="formInput" value="#{tramite.codigo}" />
+						</div>
+						<div id="nombre-tramite" class="form-line hidden">
+							<label for="nombre">Nombre:</label>
+							<h:inputText id='tramite-selected-nombre' class="formInput" value="#{tramite.nombre}" />
+						</div> 
+						<!--  DISPLAY -->
+						<div id='list-displays-container' class='list-container hidden'>
+							<ui:repeat id='repeat-displays' value='#{display.listar()}' var='d'>
+								<div id='#{d.displayId}' ruta='#{d.rutaArchivo}' class='hidden'/>
+								<h:outputText class='element-list puesto-element' value='#{d.rutaArchivo}'/>
+							</ui:repeat>
+						</div>
+						<div id="id-display" class="form-line hidden">
+							<label for="id-display">Identificador:</label>
+							<h:inputText id='display-selected-id' class="formInput" value="#{display.id}" />
+						</div> 
+						<div id='ruta-display' class="form-line hidden">
+							<label for="'ruta-display'">Ruta del Archivo:</label>
+							<h:inputText id='display-selected-ruta' class="formInput" value="#{display.ruta}" />
+						</div> 
+						<div class="buttons-container">
+							<h:commandButton id='alta-tramite-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{tramite.alta}" /> 
+							<h:commandButton id='baja-tramite-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{tramite.baja}" /> 
+							<h:commandButton id='mod-tramite-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{tramite.modificar}" />	
+							<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}" /> 
+							<h:commandButton id='baja-display-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{display.baja}" /> 
+							<h:commandButton id='mod-display-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{display.modificar}" /> 
+							<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
+						</div>
 					</h:form>
 				</form>
 			</div>
@@ -73,20 +73,18 @@
 		</div> 
 		<div class="page-frame">
 			<div class="options-buttons-container">
-				<h:form id='form'>
-					<h:commandButton id="alta-tramite" class="option-button tipo-tramite" value="Alta Trámite"/>
-					<h:commandButton id='baja-tramite' class="option-button tipo-tramite" value="Baja Tramite"/>
-					<h:commandButton id="mod-tramite" class="option-button tipo-tramite" value="Modificar Trámite"/>
-					<h:commandButton id="importar-sectores" class="option-button" value="Importar Sectores"/>
-					<h:commandButton id="asignar-sector-tramite" class="option-button" value="Asignar Sector a Trámite"/>
-					<h:commandButton id="desasignar-sector-tramite" class="option-button" value="Desasignar Sector a Trámite"/>
-					<h:commandButton id="alta-display" class="option-button tipo-display" value="Alta Display"/>
-					<h:commandButton id="mod-display" class="option-button tipo-display" value="Modificar Display"/>
-					<h:commandButton id="baja-display" class="option-button tipo-display" value="Baja Display"/>
-					<h:commandButton id="asignar-sector-display" class="option-button" value="Asignar Sector a Display"/>
-					<h:commandButton id="desasignar-sector-display" class="option-button" value="Desasignar Sector a Display"/>
-					<h:commandButton id="listar-numeros" class="option-button" value="Listar Números del Sistema"/>
-			</h:form>		
+				<button id="alta-tramite" class="option-button"> Alta Trámite</button>
+				<button id='baja-tramite' class="option-button">Baja Tramite</button>
+				<button id="mod-tramite" class="option-button">Modificar Trámite</button>
+				<button id="importar-sectores" class="option-button">Importar Sectores</button>
+				<button id="asignar-sector-tramite" class="option-button">Asignar Sector a Trámite</button>
+				<button id="desasignar-sector-tramite" class="option-button">Desasignar Sector a Trámite</button>
+				<button id="alta-display" class="option-button">Alta Display</button>
+				<button id="mod-display" class="option-button">Modificar Display</button>
+				<button id="baja-display" class="option-button">Baja Display</button>
+				<button id="asignar-sector-display" class="option-button">Asignar Sector a Display</button>
+				<button id="desasignar-sector-display" class="option-button">Desasignar Sector a Display</button>
+				<button id="listar-numeros" class="option-button">Listar Números del Sistema</button>
 			</div>
 		</div>
 	</div>

@@ -144,6 +144,14 @@ input {
 	background-color: #abde69;
 }
 
+.multiple-lists {
+	width: 43% !important;
+	display: inline-block;
+}
+
+.last-list {
+	float: right;
+}
 
 .hidden {
 	display: none !important;

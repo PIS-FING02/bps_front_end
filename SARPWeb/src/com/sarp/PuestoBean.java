@@ -18,6 +18,11 @@ public class PuestoBean {
 	public String usuarioId;
 	public Integer numero;
 	public String estado;
+	
+	//atributos de tramite
+	private String codigo;
+	private String nombre;
+	
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONPuesto> puestos;
 	private static final JSONModeler modeler = new JSONModeler();
@@ -54,6 +59,22 @@ public class PuestoBean {
 		this.estado = estado;
 	}
 	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 	public void alta() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "0", this.numero, this.estado);
 		c.altaPuesto(jpuesto.toString(), "ResponsableSector");
@@ -73,4 +94,9 @@ public class PuestoBean {
 		return modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
 	}
 
+	public void asignarTramite(){
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
+		c.asignarTramite(jpuesto.toString() + jtramite.toString(), "ResponsableSector"); //TERMINAR
+	}
 }

@@ -78,3 +78,8 @@
 .popup input { 
     width: initial;
 }
+
+.buttons-container {
+	float: right;
+	width: 100%;
+}

@@ -1,20 +1,3 @@
-for (var i = 0; i < listElements.length; i++) {
-	listElements[i].addEventListener('click', function(){
-		for (var i = 0; i < listElements.length; i++) {
-			listElements[i].classList.remove('element-list-selected');
-		}
-		var buttonSelected = document.getElementsByClassName('option-button-selected')[0];
-		this.classList.add('element-list-selected');
-		if (hasClass(buttonSelected, 'tipo-tramite')) {
-			document.getElementById('form-popup:tramite-codigo').value = this.previousSibling.getAttribute('codigo');
-			document.getElementById('form-popup:tramite-nombre').value = this.previousSibling.getAttribute('nombre');
-		} else if (hasClass(buttonSelected, 'tipo-display')){
-			document.getElementById('form-popup:display-id').value = this.previousSibling.getAttribute('id');
-			document.getElementById('form-popup:display-ruta').value = this.previousSibling.getAttribute('ruta');
-			}
-  }, false);
-}
-
 for (var i = 0; i < optionButtons.length; i++) {
 	optionButtons[i].addEventListener('click', function(event){
 		for (var i = 0; i < optionButtons.length; i++) {
@@ -23,45 +6,54 @@ for (var i = 0; i < optionButtons.length; i++) {
 		}
 		this.classList.add('option-button-selected');
 		var actionSelected = document.getElementsByClassName('option-button-selected')[0];
-		popupTitle.innerHTML = actionSelected.getAttribute('value'); 
-		if (actionSelected.getAttribute('id') == 'form:alta-tramite') {
+		popupTitle.innerHTML = actionSelected.innerHTML; 
+		// ALTA TRAMITE
+		if (actionSelected.getAttribute('id') == 'alta-tramite') {
 			document.getElementById('nombre-tramite').classList.remove('hidden');
 			elementsToHide.push('nombre-tramite');
 			document.getElementById('form-popup:alta-tramite-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:alta-tramite-button');
-		} else if (actionSelected.getAttribute('id') == 'form:baja-tramite') {
+		// BAJA TRAMITE	
+		} else if (actionSelected.getAttribute('id') == 'baja-tramite') {
+			elementsToSelect.tramite.toSelect = true;
 			document.getElementById('list-tramites-container').classList.remove('hidden');
 			elementsToHide.push('list-tramites-container');
 			document.getElementById('form-popup:baja-tramite-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:baja-tramite-button');
 			document.getElementById('form-popup:baja-tramite-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:mod-tramite-button');
-		} else if (actionSelected.getAttribute('id') == 'form:mod-tramite') {
+		// MOD TRAMITE	
+		} else if (actionSelected.getAttribute('id') == 'mod-tramite') {
+			elementsToSelect.tramite.toSelect = true;
 			document.getElementById('list-tramites-container').classList.remove('hidden');
 			elementsToHide.push('list-tramites-container');
 			document.getElementById('nombre-tramite').classList.remove('hidden');
 			elementsToHide.push('nombre-tramite');
 			document.getElementById('form-popup:mod-tramite-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:mod-tramite-button');
-		} else if (actionSelected.getAttribute('id') == 'form:alta-display') {
-			document.getElementById('rutaArchivo').classList.remove('hidden');
-			elementsToHide.push('rutaArchivo');
+		// ALTA DISPLAY	
+		} else if (actionSelected.getAttribute('id') == 'alta-display') {
+			document.getElementById('ruta-display').classList.remove('hidden');
+			elementsToHide.push('ruta-display');
 			document.getElementById('form-popup:alta-display-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:alta-display-button');
-		} else if (actionSelected.getAttribute('id') == 'form:baja-display') {
+		// BAJA DISPLAY	
+		} else if (actionSelected.getAttribute('id') == 'baja-display') {
+			elementsToSelect.display.toSelect = true;
 			document.getElementById('list-displays-container').classList.remove('hidden');
 			elementsToHide.push('list-displays-container');
 			document.getElementById('form-popup:baja-display-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:baja-display-button');
-		}else if (actionSelected.getAttribute('id') == 'form:mod-display') {
+		// MOD DISPLAY		
+		} else if (actionSelected.getAttribute('id') == 'mod-display') {
+			elementsToSelect.display.toSelect = true;
 			document.getElementById('list-displays-container').classList.remove('hidden');
 			elementsToHide.push('list-displays-container');
-			document.getElementById('rutaArchivo').classList.remove('hidden');
-			elementsToHide.push('rutaArchivo');
+			document.getElementById('ruta-display').classList.remove('hidden');
+			elementsToHide.push('ruta-display');
 			document.getElementById('form-popup:mod-display-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:mod-display-button');
 		}
 	    popup.classList.remove('hidden');
-	    event.preventDefault();
     }, false);
 }

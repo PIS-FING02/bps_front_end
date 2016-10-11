@@ -11,41 +11,75 @@
 </head> 
 
 <body> 
-
 	<div id="action-popup" class="hidden popup-overlay">
 		<div class="popup">
 			<h2 id="popup-title" class="sub-title"></h2>
 			<div id="popup-close-button" class="close-x">&times;</div>
 			<div class="content">
 				<form>
-					<h:form id="form-popup">
+					<h:form id="form-popup">	
 						<!--  PUESTO -->
 						<div id='list-puestos-container' class='list-container hidden'>
 							<ui:repeat id='repeat-puestos' value='#{puesto.listar()}' var='p'>
 								<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
-								<h:outputText class='element-list' value='#{p.nombreMaquina} '/>
+								<h:outputText class='element-list puesto-element' value='#{p.nombreMaquina} '/>
 							</ui:repeat>
 						</div>
-						<div id="maquina" class="form-line hidden">
-							<label for="maquina">Nombre de Máquina:</label>
+						<div id="maquina-puesto" class="form-line hidden">
+							<label for="maquina-puesto">Nombre de Máquina:</label>
 							<h:inputText id='puesto-selected-maquina' class="formInput" value="#{puesto.maquina}" />
 						</div>
-						<div id="usuario" class="form-line hidden">
-							<label for="usuario">Usuario:</label>
+						<div id="usuario-puesto" class="form-line hidden">
+							<label for="usuario-puesto">Usuario:</label>
 							<h:inputText id='puesto-selected-usuario' class="formInput" value="#{puesto.usuarioId}" />
 						</div>
-						<div id="estado" class="form-line hidden">
-							<label for="estado">Estado:</label>
+						<div id="estado-puesto" class="form-line hidden">
+							<label for="estado-puesto">Estado:</label>
 							<h:inputText id='puesto-selected-estado' class="formInput" value="#{puesto.estado}" />
 						</div>
-						<div id="numero" class="form-line hidden">
-							<label for="numero">Numero:</label>
+						<div id="numero-puesto" class="form-line hidden">
+							<label for="numero-puesto">Numero:</label>
 							<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
 						</div>
+						<!--  TRAMITE -->
+						<div id='list-tramites-container' class='list-container hidden'>
+							<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
+								<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
+								<h:outputText class='element-list tramite-element' value='#{t.nombre}'/>
+							</ui:repeat>
+						</div>
+						<div id="codigo-tramite" class="form-line hidden">
+							<label for="codigo-tramite">Codigo:</label>
+							<h:inputText id='tramite-selected-codigo' class="formInput" value="#{puesto.codigo}" />
+						</div>	
+						<div id="nombre-tramite" class="form-line hidden">
+							<label for="nombre-tramite">Nombre:</label>
+							<h:inputText id='tramite-selected-nombre' class="formInput" value="#{puesto.nombre}" />
+						</div> 
+						<!--  SECTOR -->
+			<!-- 		<div id='list-sectores-container' class='list-container hidden'>
+						     <ui:repeat id='repeat-sectores' value='' var='s'>
+								<div id='#{s.sectorId}' nombre='#{s.nombre}' ruta='#{s.ruta}' class='hidden'/>
+								<h:outputText class='element-list sector-element' value='#{s.nombre}'/>
+							</ui:repeat> 
+						</div>
+						<div id="id-sector" class="form-line hidden">
+							<label for="id-sector">Codigo:</label>
+							<h:inputText id='sector-selected-id' class="formInput" value="" />
+						</div>	
+						<div id="nombre-sector" class="form-line hidden">
+							<label for="nombre-sector">Nombre:</label>
+							<h:inputText id='sector-selected-nombre' class="formInput" value="" />
+						</div> 
+						<div id="ruta-sector" class="form-line hidden">
+							<label for="ruta-sector">Nombre:</label>
+							<h:inputText id='sector-selected-ruta' class="formInput" value="" />
+						</div>  -->
 						<div class="buttons-container">
 							<h:commandButton id='alta-puesto-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{puesto.alta}" /> 
 							<h:commandButton id='baja-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.baja}" /> 
-							<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.modificar}" />				 
+							<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.modificar}" />		
+							<h:commandButton id='asignar-tramite-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.asignarTramite}" />				 
 							<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 						</div>
 					</h:form>
@@ -64,22 +98,20 @@
 		</div>
 		<div class="page-frame">
 			<div class="options-buttons-container">
-				<h:form id="form">
-					<h:commandButton id='alta-puesto' class="option-button" value="Alta Puesto"/>
-					<h:commandButton id='baja-puesto' class="option-button" value="Baja Puesto"/>
-					<h:commandButton id='mod-puesto' class="option-button" value="Modificar Puesto"/>
-					<h:commandButton id='asignar-tramite-puesto' class="option-button" value="Asignar Trámite a Puesto" />
-					<h:commandButton id='desasignar-tramite-puesto' class="option-button" value="Desasignar Trámite a Puesto" />
-					<h:commandButton id='asignar-puesto-sector' class="option-button" value="Asignar Puesto a Sector" />
-					<h:commandButton id='desasignar-puesto-sector' class="option-button" value="Desasignar Puesto a Sector" />
-					<h:commandButton id='asignar-display-sector' class="option-button" value="Asignar Display a Sector" />
-					<h:commandButton id='desasignar-display-sector' class="option-button" value="Desasignar Display a Sector" />
-					<h:commandButton id='listar-nros-espera' class="option-button" value="Listar Números en Espera" />
-					<h:commandButton id='listar-nros-pausa' class="option-button" value="Listar Números Pausados" />
-					<h:commandButton id='listar-nros-atrasados' class="option-button" value="Listar Números Atrasados" />
-					<h:commandButton id='sectores-resp-sector' class="option-button" value="Obtener Sectores Responsable Sector" />
-					<h:commandButton id='conf-tiempo-rellamado' class="option-button" value="Configurar Tiempo de Re-llamado" />
-				</h:form>
+				<button id='alta-puesto' class="option-button">Alta Puesto</button>
+				<button id='baja-puesto' class="option-button">Baja Puesto</button>
+				<button id='mod-puesto' class="option-button">Modificar Puesto</button>
+				<button id='asignar-tramite-puesto' class="option-button">Asignar Trámite a Puesto</button>
+				<button id='desasignar-tramite-puesto' class="option-button">Desasignar Trámite de Puesto</button>
+				<button id='asignar-puesto-sector' class="option-button">Asignar Puesto a Sector</button>
+				<button id='desasignar-puesto-sector' class="option-button">Desasignar Puesto de Sector</button>
+				<button id='asignar-display-sector' class="option-button">Asignar Display a Sector</button>
+				<button id='desasignar-display-sector' class="option-button">Desasignar Display de Sector</button>
+				<button id='listar-nros-espera' class="option-button">Listar Números en Espera</button>
+				<button id='listar-nros-pausa' class="option-button">Listar Números Pausados</button>
+				<button id='listar-nros-atrasados' class="option-button">Listar Números Atrasados</button>
+				<button id='sectores-resp-sector' class="option-button">Obtener Sectores Responsable Sector</button>
+				<button id='conf-tiempo-rellamado' class="option-button">Configurar Tiempo de Re-llamado</button>
 			</div>
 		</div>
 	</div>

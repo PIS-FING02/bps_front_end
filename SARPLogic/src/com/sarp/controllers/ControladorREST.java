@@ -1,21 +1,16 @@
 package com.sarp.controllers;
 
-import java.io.IOException;
-
-import com.sarp.facade.FuncionarioFacade;
 import com.sarp.facade.PuestoFacade;
 import com.sarp.facade.TramiteFacade;
 import com.sarp.facade.DisplayFacade;
 
 public class ControladorREST {
 
-	FuncionarioFacade fs;
 	PuestoFacade puestoFacade;
 	TramiteFacade tramiteFacade;
 	DisplayFacade displayFacade;
 	
 	public ControladorREST(){
-		this.fs = new FuncionarioFacade();
 		this.puestoFacade = new PuestoFacade();
 		this.tramiteFacade = new TramiteFacade();
 		this.displayFacade = new DisplayFacade();
@@ -37,6 +32,10 @@ public class ControladorREST {
 
 	public String modPuesto(String input, String userRol) {
 		return this.puestoFacade.mod(input, userRol);
+	}
+
+	public String asignarTramite(String input, String userRol) {
+		return this.puestoFacade.asignarTramite(input, userRol);
 	}
 	
 	//TRAMITES
