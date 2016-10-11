@@ -3,7 +3,7 @@ package com.sarp;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
@@ -11,13 +11,13 @@ import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "puesto", eager = true)
-@RequestScoped
+@ViewScoped
 public class PuestoBean {
 	
-	public String maquina;
-	public String usuarioId;
-	public Integer numero;
-	public String estado;
+	private String maquina;
+	private String usuarioId;
+	private Integer numero;
+	private String estado;
 	
 	//atributos de tramite
 	private String codigo;
@@ -27,6 +27,31 @@ public class PuestoBean {
 	private List<JSONPuesto> puestos;
 	private static final JSONModeler modeler = new JSONModeler();
 
+	public void alta() throws Exception{
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "0", this.numero, this.estado);
+		c.altaPuesto(jpuesto.toString(), "ResponsableSector");
+	}
+	
+	public void baja() throws Exception{
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "id", 0, "CERRADO");
+		c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
+	}
+	
+	public void modificar(){
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		c.modPuesto(jpuesto.toString(), "ResponsableSector");
+	}
+
+	public List<JSONPuesto> listar() throws Exception{
+		return modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
+	}
+
+	public void asignarTramite(){
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
+		c.asignarTramite(jpuesto.toString() + jtramite.toString(), "ResponsableSector"); //TERMINAR
+	}
+	
 	public String getMaquina() {
 		return maquina;
 	}
@@ -73,30 +98,5 @@ public class PuestoBean {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	
-	public void alta() throws Exception{
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "0", this.numero, this.estado);
-		c.altaPuesto(jpuesto.toString(), "ResponsableSector");
-	}
-	
-	public void baja() throws Exception{
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "id", 0, "CERRADO");
-		c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
-	}
-	
-	public void modificar(){
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
-		c.modPuesto(jpuesto.toString(), "ResponsableSector");
-	}
-
-	public List<JSONPuesto> listar() throws Exception{
-		return modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
-	}
-
-	public void asignarTramite(){
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
-		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
-		c.asignarTramite(jpuesto.toString() + jtramite.toString(), "ResponsableSector"); //TERMINAR
 	}
 }

@@ -19,11 +19,14 @@
 				<form>
 					<h:form id="form-popup">	
 						<!--  PUESTO -->
-						<div id='list-puestos-container' class='list-container hidden'>
-							<ui:repeat id='repeat-puestos' value='#{puesto.listar()}' var='p'>
-								<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
-								<h:outputText class='element-list puesto-element' value='#{p.nombreMaquina} '/>
-							</ui:repeat>
+						<div id='list-puestos-container' class='hidden'>
+							<h2 class='page-title list-title'>Puestos</h2>
+							<div class='list-container'>
+								<ui:repeat id='repeat-puestos' value='#{puesto.listar()}' var='p'>
+									<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
+									<h:outputText class='element-list puesto-element' value='#{p.nombreMaquina} '/>
+								</ui:repeat>
+							</div>
 						</div>
 						<div id="maquina-puesto" class="form-line hidden">
 							<label for="maquina-puesto">Nombre de Máquina:</label>
@@ -42,11 +45,14 @@
 							<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
 						</div>
 						<!--  TRAMITE -->
-						<div id='list-tramites-container' class='list-container hidden'>
-							<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
-								<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
-								<h:outputText class='element-list tramite-element' value='#{t.nombre}'/>
-							</ui:repeat>
+						<div id='list-tramites-container' class='hidden'>
+							<h2 class='page-title list-title'>Tramites</h2>
+							<div class='list-container'>
+								<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
+									<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
+									<h:outputText class='element-list tramite-element' value='#{t.nombre}'/>
+								</ui:repeat>
+							</div>
 						</div>
 						<div id="codigo-tramite" class="form-line hidden">
 							<label for="codigo-tramite">Codigo:</label>
@@ -57,29 +63,33 @@
 							<h:inputText id='tramite-selected-nombre' class="formInput" value="#{puesto.nombre}" />
 						</div> 
 						<!--  SECTOR -->
-			<!-- 		<div id='list-sectores-container' class='list-container hidden'>
-						     <ui:repeat id='repeat-sectores' value='' var='s'>
-								<div id='#{s.sectorId}' nombre='#{s.nombre}' ruta='#{s.ruta}' class='hidden'/>
-								<h:outputText class='element-list sector-element' value='#{s.nombre}'/>
-							</ui:repeat> 
-						</div>
-						<div id="id-sector" class="form-line hidden">
-							<label for="id-sector">Codigo:</label>
-							<h:inputText id='sector-selected-id' class="formInput" value="" />
+						<div id='list-sectores-container' class='hidden'>
+							<h2 class='page-title list-title'>Sectores</h2>
+							<div class='list-container'>
+							     <ui:repeat id='repeat-sectores' value='#{tramite.listar()}' var='s'>
+									<div codigo='#{s.codigo}' nombre='#{s.nombre}' class='hidden'/>
+									<h:outputText class='element-list sector-element' value='#{s.nombre}'/>
+								</ui:repeat> 
+							</div>
+						</div>	
+					    <div id="id-sector" class="form-line hidden">
+							<label for="id-sector">Id:</label>
+							<h:inputText id='sector-selected-id' class="formInput" value="#{sector.id}" />
 						</div>	
 						<div id="nombre-sector" class="form-line hidden">
 							<label for="nombre-sector">Nombre:</label>
-							<h:inputText id='sector-selected-nombre' class="formInput" value="" />
+							<h:inputText id='sector-selected-nombre' class="formInput" value="#{sector.nombre}" />
 						</div> 
 						<div id="ruta-sector" class="form-line hidden">
-							<label for="ruta-sector">Nombre:</label>
-							<h:inputText id='sector-selected-ruta' class="formInput" value="" />
-						</div>  -->
+							<label for="ruta-sector">Ruta:</label>
+							<h:inputText id='sector-selected-ruta' class="formInput" value="#{sector.ruta}" />
+						</div>			
 						<div class="buttons-container">
 							<h:commandButton id='alta-puesto-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{puesto.alta}" /> 
 							<h:commandButton id='baja-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.baja}" /> 
 							<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.modificar}" />		
-							<h:commandButton id='asignar-tramite-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.asignarTramite}" />				 
+							<h:commandButton id='asignar-tramite-puesto-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{puesto.asignarTramite}" />
+							<h:commandButton id='asignar-puesto-sector-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{sector.asignarPuesto}" />				 
 							<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 						</div>
 					</h:form>

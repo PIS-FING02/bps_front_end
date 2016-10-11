@@ -20,6 +20,25 @@ public class DisplayBean {
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONDisplay> displays;
 	private static final JSONModeler modeler = new JSONModeler();
+
+	public void alta() throws Exception{
+		JSONDisplay jdisplay = new JSONDisplay(0, this.ruta);
+		c.altaDisplay(jdisplay.toString(), "Administrador");
+	}
+	
+	public void baja() throws Exception{
+		JSONDisplay jdisplay = new JSONDisplay(this.id, "ruta");
+		c.bajaDisplay(jdisplay.toString(), "Administrador");
+	}
+	
+	public void modificar() throws Exception{
+		JSONDisplay jdisplay = new JSONDisplay(this.id, this.ruta);
+		c.modificarDisplay(jdisplay.toString(), "Administrador");
+	}
+
+	public List<JSONDisplay> listar() throws Exception{
+		return modeler.toJSONDisplays(c.listarDisplays("Administrador"));
+	}
 	
 	public void setDisplays(List<JSONDisplay> displays) {
 		this.displays = displays;
@@ -43,24 +62,5 @@ public class DisplayBean {
 
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
-	}
-	
-	public void alta() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay(0, this.ruta);
-		c.altaDisplay(jdisplay.toString(), "Administrador");
-	}
-	
-	public void baja() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay(this.id, "ruta");
-		c.bajaDisplay(jdisplay.toString(), "Administrador");
-	}
-	
-	public void modificar() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay(this.id, this.ruta);
-		c.modificarDisplay(jdisplay.toString(), "Administrador");
-	}
-
-	public List<JSONDisplay> listar() throws Exception{
-		return modeler.toJSONDisplays(c.listarDisplays("Administrador"));
 	}
 }

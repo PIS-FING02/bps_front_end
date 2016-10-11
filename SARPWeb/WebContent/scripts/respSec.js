@@ -49,6 +49,19 @@ for (var i = 0; i < optionButtons.length; i++) {
 			elementsToHide.push('list-tramites-container');
 			document.getElementById('form-popup:asignar-tramite-puesto-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:asignar-tramite-puesto-button');
+		// ASIGNAR PUSTO A SECTOR	
+		} else if (actionSelected.getAttribute('id') == 'asignar-puesto-sector') {
+			elementsToSelect.sector.toSelect = true;
+			elementsToSelect.puesto.toSelect = true;
+			document.getElementById('list-puestos-container').classList.remove('hidden');
+			document.getElementById('list-puestos-container').classList.add('multiple-lists');
+			elementsToHide.push('list-puestos-container');
+			document.getElementById('list-sectores-container').classList.remove('hidden');
+			document.getElementById('list-sectores-container').classList.add('multiple-lists');
+			document.getElementById('list-sectores-container').classList.add('last-list');
+			elementsToHide.push('list-sectores-container');
+			document.getElementById('form-popup:asignar-puesto-sector-button').classList.remove('hidden');
+			elementsToHide.push('form-popup:asignar-puesto-sector-button');
 		}
 	    popup.classList.remove('hidden');
 	    event.preventDefault();

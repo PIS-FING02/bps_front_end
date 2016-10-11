@@ -18,6 +18,25 @@ public class TramiteBean {
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONTramite> tramites;
 	private static final JSONModeler modeler = new JSONModeler();
+
+	public void alta() throws Exception{
+		JSONTramite jtramite = new JSONTramite(0, this.nombre);
+		c.altaTramite(jtramite.toString(), "Administrador");
+	}
+	
+	public void baja() throws Exception{
+		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), "nombre");
+		c.bajaTramite(jtramite.toString(), "Administrador");
+	}
+	
+	public void modificar(){
+		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
+		c.modTramite(jtramite.toString(), "Administrador");
+	}
+
+	public List<JSONTramite> listar() throws Exception{
+		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
+	}
 	
 	public void setTramites(List<JSONTramite> tramites) {
 		this.tramites = tramites;
@@ -41,24 +60,5 @@ public class TramiteBean {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	
-	public void alta() throws Exception{
-		JSONTramite jtramite = new JSONTramite(0, this.nombre);
-		c.altaTramite(jtramite.toString(), "Administrador");
-	}
-	
-	public void baja() throws Exception{
-		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), "nombre");
-		c.bajaTramite(jtramite.toString(), "Administrador");
-	}
-	
-	public void modificar(){
-		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
-		c.modTramite(jtramite.toString(), "Administrador");
-	}
-
-	public List<JSONTramite> listar() throws Exception{
-		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
 	}
 }

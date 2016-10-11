@@ -10,7 +10,6 @@ public class DisplayFacade {
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_FULL, input, userRol);
-		
 	}
 
 	public String baja(String input, String userRol) {
