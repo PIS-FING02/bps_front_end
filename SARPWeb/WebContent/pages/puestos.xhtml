@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+	<title>Pantalla Administrador</title>
+
+	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
+</head> 
+
+<body> 
+	<div id="action-popup" class="hidden popup-overlay">
+		<div class="popup">
+			<h2 id="popup-title" class="sub-title"></h2>
+			<div id="popup-close-button" class="close-x">&times;</div>
+			<div class="content">
+				<h:form id='form-puesto'>
+						<div id="maquina-puesto" class="form-line hidden">
+							<label for="maquina-puesto">Nombre de Máquina:</label>
+							<h:inputText id='puesto-selected-maquina' class="formInput" value="#{puesto.maquina}" />
+						</div>
+						<div id="usuario-puesto" class="form-line hidden">
+							<label for="usuario-puesto">Usuario:</label>
+							<h:inputText id='puesto-selected-usuario' class="formInput" value="#{puesto.usuarioId}" />
+						</div>
+						<div id="estado-puesto" class="form-line hidden">
+							<label for="estado-puesto">Estado:</label>
+							<h:inputText id='puesto-selected-estado' class="formInput" value="#{puesto.estado}" />
+						</div>
+						<div id="numero-puesto" class="form-line hidden">
+							<label for="numero-puesto">Numero:</label>
+							<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
+						</div>
+					<h:commandButton id='baja-puesto-button' class="hidden" value="Aceptar" action="#{puesto.baja}" /> 
+					<div class="buttons-container">
+						<h:commandButton id='alta-puesto-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{puesto.alta}" /> 
+						<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden" value="Aceptar" action="#{puesto.modificar}" /> 
+						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<div id='entidad' class="page-container"> 
+		<div class="page-title-container">
+			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
+			<div class="page-title arrow"> ➨ </div>
+			<a class="page-title" href="respSec.xhtml"> Configurar Sector </a>
+			<div class="page-title page-title-last"> ➨  Puestos </div>
+			<h:form>
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			</h:form>
+		</div> 
+		<div class="page-frame">
+			<div id='list-puesto-container' class='entity-list-container'>
+				<button id='alta-puesto' class='icon alta-button tipo-puesto'>alta</button>
+				<ui:repeat id='repeat-puestos' value='#{puesto.listar()}' var='p'>
+					<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
+					<div class='list-entity puesto-element'>
+						<h:outputText class='element-list puesto-element' value='#{p.nombreMaquina} '/>
+						<button class='icon baja-button tipo-puesto baja-puesto '>borrar</button>
+						<button class='icon mod-button tipo-puesto  editar-puesto '>editar</button>
+					</div>
+				</ui:repeat>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/entidades.js"></script>
+</body> 
+</html>

@@ -63,7 +63,5 @@ for (var i = 0; i < optionButtons.length; i++) {
 			document.getElementById('form-popup:asignar-puesto-sector-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:asignar-puesto-sector-button');
 		}
-	    popup.classList.remove('hidden');
-	    event.preventDefault();
     }, false);
 }

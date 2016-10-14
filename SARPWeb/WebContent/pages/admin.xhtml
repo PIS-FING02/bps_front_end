@@ -11,58 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
 </head> 
 
-<body> 
-	<div id="action-popup" class="hidden popup-overlay">
-		<div class="popup">
-			<h2 id="popup-title" class="sub-title"></h2>
-			<div id="popup-close-button" class="close-x">&times;</div>
-			<div class="content">
-				<form>
-					<h:form id='form-popup'>
-						<!--  TRAMITE -->
-						<div id='list-tramites-container' class='list-container hidden'>
-							<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
-								<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
-								<h:outputText class='element-list tramite-element' value='#{t.codigo} - #{t.nombre}'/>
-							</ui:repeat>
-						</div>
-						<div id="codigo-tramite" class="form-line hidden">
-							<label for="codigo">Codigo:</label>
-							<h:inputText id='tramite-selected-codigo' class="formInput" value="#{tramite.codigo}" />
-						</div>
-						<div id="nombre-tramite" class="form-line hidden">
-							<label for="nombre">Nombre:</label>
-							<h:inputText id='tramite-selected-nombre' class="formInput" value="#{tramite.nombre}" />
-						</div> 
-						<!--  DISPLAY -->
-						<div id='list-displays-container' class='list-container hidden'>
-							<ui:repeat id='repeat-displays' value='#{display.listar()}' var='d'>
-								<div id='#{d.displayId}' ruta='#{d.rutaArchivo}' class='hidden'/>
-								<h:outputText class='element-list puesto-element' value='#{d.rutaArchivo}'/>
-							</ui:repeat>
-						</div>
-						<div id="id-display" class="form-line hidden">
-							<label for="id-display">Identificador:</label>
-							<h:inputText id='display-selected-id' class="formInput" value="#{display.id}" />
-						</div> 
-						<div id='ruta-display' class="form-line hidden">
-							<label for="'ruta-display'">Ruta del Archivo:</label>
-							<h:inputText id='display-selected-ruta' class="formInput" value="#{display.ruta}" />
-						</div> 
-						<div class="buttons-container">
-							<h:commandButton id='alta-tramite-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{tramite.alta}" /> 
-							<h:commandButton id='baja-tramite-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{tramite.baja}" /> 
-							<h:commandButton id='mod-tramite-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{tramite.modificar}" />	
-							<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}" /> 
-							<h:commandButton id='baja-display-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{display.baja}" /> 
-							<h:commandButton id='mod-display-button' class="action-button action-button-list hidden deactivated" value="Aceptar" action="#{display.modificar}" /> 
-							<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
-						</div>
-					</h:form>
-				</form>
-			</div>
-		</div>
-	</div>
+<body>
 	<div class="page-container"> 
 		<div class="page-title-container">
 			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
@@ -73,18 +22,10 @@
 		</div> 
 		<div class="page-frame">
 			<div class="options-buttons-container">
-				<button id="alta-tramite" class="option-button"> Alta Trámite</button>
-				<button id='baja-tramite' class="option-button">Baja Tramite</button>
-				<button id="mod-tramite" class="option-button">Modificar Trámite</button>
+				<a class="option-button option-link" href="tramites.xhtml">Tramites</a>
+				<a class="option-button option-link" href="displays.xhtml">Displays</a>
 				<button id="importar-sectores" class="option-button">Importar Sectores</button>
-				<button id="asignar-sector-tramite" class="option-button">Asignar Sector a Trámite</button>
-				<button id="desasignar-sector-tramite" class="option-button">Desasignar Sector a Trámite</button>
-				<button id="alta-display" class="option-button">Alta Display</button>
-				<button id="mod-display" class="option-button">Modificar Display</button>
-				<button id="baja-display" class="option-button">Baja Display</button>
-				<button id="asignar-sector-display" class="option-button">Asignar Sector a Display</button>
-				<button id="desasignar-sector-display" class="option-button">Desasignar Sector a Display</button>
-				<button id="listar-numeros" class="option-button">Listar Números del Sistema</button>
+				<button id="listar-numeros" class="option-button">Listar Números del Sistema</button>	
 			</div>
 		</div>
 	</div>

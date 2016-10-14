@@ -32,10 +32,15 @@ body{
     font-size: 20px;
     font-weight: bold;
     color: #1d304d;
+	text-decoration: underline;
 }
 
-.page-title:first-child {
-	text-decoration: underline;
+.page-title-last {
+	text-decoration: initial !important;
+}
+
+.arrow {
+	text-decoration: none !important;
 }
 
 .page-frame{    
@@ -76,6 +81,12 @@ body{
     color: #fff;
 	background-color: #4e769b;
 	white-space: normal;
+}
+
+.option-link {
+    box-sizing: border-box;
+    line-height: 5.5;
+    text-align: center;
 }
 
 .option-button:hover {

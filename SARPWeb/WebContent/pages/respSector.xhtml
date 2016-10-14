@@ -101,16 +101,14 @@
 	<div class="page-container">
 		<div class="page-title-container">
 			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
-			<div class="page-title"> ➨  Configurar Sector </div>
+			<div class="page-title page-title-last"> ➨  Configurar Sector </div>
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div>
 		<div class="page-frame">
 			<div class="options-buttons-container">
-				<button id='alta-puesto' class="option-button">Alta Puesto</button>
-				<button id='baja-puesto' class="option-button">Baja Puesto</button>
-				<button id='mod-puesto' class="option-button">Modificar Puesto</button>
+				<a class="option-button option-link" href="puestos.xhtml">Puestos</a>
 				<button id='asignar-tramite-puesto' class="option-button">Asignar Trámite a Puesto</button>
 				<button id='desasignar-tramite-puesto' class="option-button">Desasignar Trámite de Puesto</button>
 				<button id='asignar-puesto-sector' class="option-button">Asignar Puesto a Sector</button>

@@ -20,7 +20,7 @@ public class TestBean {
 		tb.setNombre("nombreTest");
 		tb.alta();
 		tb.setNombre("nombreTestMod");
-		db.setRuta("rutaTestMod");
+		db.setNombre("rutaTestMod");
 		List<JSONTramite> lista = tb.listar();
 		tb.setCodigo(String.valueOf(lista.get(lista.size() - 1).getCodigo()));
 		tb.modificar();
@@ -28,9 +28,9 @@ public class TestBean {
 	}
 	
 	public void testDisplay() throws Exception {
-		db.setRuta("rutaTest");
+		db.setNombre("nombreTest");
 		db.alta();
-		db.setRuta("rutaTestMod");
+		db.setNombre("nombreTestMod");
 		List<JSONDisplay> lista = db.listar();
 		db.setId(lista.get(lista.size() - 1).getDisplayId());
 		db.modificar();

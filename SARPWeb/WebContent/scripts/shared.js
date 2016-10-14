@@ -113,13 +113,6 @@ closeButton.addEventListener('click', function(){
 	}	
 }, false);
 
-// OPEN POPUP
-for (var i = 0; i < optionButtons.length; i++) {
-  optionButtons[i].addEventListener('click', function(){
-    popup.classList.remove("hidden");
-  }, false);
-}
-
 //HAS CLASS
 function hasClass(elem, klass) {
     return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;

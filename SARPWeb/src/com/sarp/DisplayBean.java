@@ -15,24 +15,24 @@ import com.sarp.jsons.JSONTramite;
 @ViewScoped
 public class DisplayBean {
 
-	public Integer id;
-	public String ruta;
+	public String id;
+	public String nombre;
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONDisplay> displays;
 	private static final JSONModeler modeler = new JSONModeler();
 
 	public void alta() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay(0, this.ruta);
+		JSONDisplay jdisplay = new JSONDisplay("0", this.nombre);
 		c.altaDisplay(jdisplay.toString(), "Administrador");
 	}
 	
 	public void baja() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay(this.id, "ruta");
+		JSONDisplay jdisplay = new JSONDisplay(this.id, "nombre");
 		c.bajaDisplay(jdisplay.toString(), "Administrador");
 	}
 	
 	public void modificar() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay(this.id, this.ruta);
+		JSONDisplay jdisplay = new JSONDisplay(this.id, this.nombre);
 		c.modificarDisplay(jdisplay.toString(), "Administrador");
 	}
 
@@ -48,19 +48,19 @@ public class DisplayBean {
 		return this.displays;
 	}
 	
-	public Integer getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(String string) {
+		this.id = string;
 	}
 
-	public String getRuta() {
-		return this.ruta;
+	public String getNombre() {
+		return this.nombre;
 	}
 
-	public void setRuta(String ruta) {
-		this.ruta = ruta;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }

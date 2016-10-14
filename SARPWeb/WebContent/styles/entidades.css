@@ -1,0 +1,29 @@
+#entidad .page-frame {
+	padding: 0;
+	background: transparent;
+}
+
+.entity-list-container {
+    background-color: transparent;
+    width: 100%;
+    overflow-y: scroll;
+	overflow: hidden;
+}
+
+.list-entity {
+    width: 100%;
+    background: white;
+    text-align: left;
+    color: #4e769b;
+    margin: 5px 0px;
+    border-radius: 3px;
+    padding: 10px 10px;
+    border: none;
+    float: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.icon {
+	float: right;
+}

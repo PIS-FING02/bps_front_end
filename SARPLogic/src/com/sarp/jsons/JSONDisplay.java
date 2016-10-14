@@ -2,24 +2,24 @@ package com.sarp.jsons;
 
 public class JSONDisplay {
 	
-	Integer displayId;
-	String rutaArchivo;
+	String displayId;
+	String lastUpdated;
 	//List<JSONSector> sectores;
 	
 	public JSONDisplay(){}
 	
-	public JSONDisplay(Integer displayId, String rutaArchivo){
+	public JSONDisplay(String displayId, String lastUpdated){
 		this.displayId = displayId;
-		this.rutaArchivo = rutaArchivo;
+		this.lastUpdated = lastUpdated;
 	}
 	
-	public String getRutaArchivo() {
-		return rutaArchivo;
+	public String getLastUpdated() {
+		return lastUpdated;
 	}
-	public void setRutaArchivo(String rutaArchivo) {
-		this.rutaArchivo = rutaArchivo;
+	public void setLastUpdated(String lastUpdated) {
+		this.lastUpdated = lastUpdated;
 	}
-	public Integer getDisplayId() {
+	public String getDisplayId() {
 		return displayId;
 	}
 	/*public List<JSONSector> getSectores() {
@@ -28,17 +28,17 @@ public class JSONDisplay {
 	public void setSectores(List<JSONSector> sectores) {
 		this.sectores = sectores;
 	}*/
-	public void setDisplayId(Integer displayId) {
+	public void setDisplayId(String displayId) {
 		this.displayId = displayId;
 	}
 	
 	 @Override
 	    public String toString() {
 		 String displayId = this.displayId != null? this.displayId.toString() : "null";
-	     String rutaArchivo = this.rutaArchivo != null ? this.rutaArchivo : "null";
+	     String lastUpdated = this.lastUpdated != null ? this.lastUpdated : "null";
 		 return "{\n"
 	        		+ "\"displayId\":" + displayId  + ",\n"
-	        		+ "\"rutaArchivo\":\"" + rutaArchivo + "\"\n"
+	        		+ "\"lastUpdated\":\"" + lastUpdated + "\"\n"
 	     			+ "}";
 	    }
 }

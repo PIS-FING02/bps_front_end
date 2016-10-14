@@ -54,6 +54,5 @@ for (var i = 0; i < optionButtons.length; i++) {
 			document.getElementById('form-popup:mod-display-button').classList.remove('hidden');
 			elementsToHide.push('form-popup:mod-display-button');
 		}
-	    popup.classList.remove('hidden');
     }, false);
 }

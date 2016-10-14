@@ -16,7 +16,7 @@ public class JSONModeler {
 
 	public JSONDisplay toJSONDisplay(String jsonDisplay) throws Exception{
 		JSONObject json = (JSONObject)new JSONParser().parse(jsonDisplay);
-		JSONDisplay display = new JSONDisplay(Integer.parseInt(json.get("codigo").toString()), json.get("rutaArchivo").toString());
+		JSONDisplay display = new JSONDisplay(json.get("idDisplay").toString(), json.get("lastUpdated").toString());
 		return display;		
 	}
 	
