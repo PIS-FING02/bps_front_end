@@ -3,32 +3,37 @@ var bajas = document.getElementsByClassName('baja-button');
 var editar = document.getElementsByClassName('mod-button');
 var asignarTramite = document.getElementById('asignar-tramite');
 
+
+
 // ALTAS
-alta[0].addEventListener('click', function(){
-	if (hasClass(this, 'tipo-tramite')) {
-		popupTitle.innerHTML = "Alta Tramite"; 
-		document.getElementById('nombre-tramite').classList.remove('hidden');
-		elementsToHide.push('nombre-tramite');
-		document.getElementById('form-tramite:alta-tramite-button').classList.remove('hidden');
-		elementsToHide.push('form-tramite:alta-tramite-button');
-	} else if (hasClass(this, 'tipo-display')) {
-		popupTitle.innerHTML = "Alta Display"; 
-		document.getElementById('nombre-display').classList.remove('hidden');
-		elementsToHide.push('nombre-display');
-		document.getElementById('form-display:alta-display-button').classList.remove('hidden');
-		elementsToHide.push('form-display:alta-display-button');
-	} else {
-		popupTitle.innerHTML = "Alta Puesto"; 
-		elementsToHide.push('list-puestos-container');
-		document.getElementById('maquina-puesto').classList.remove('hidden');
-		elementsToHide.push('maquina-puesto');
-		document.getElementById('numero-puesto').classList.remove('hidden');
-		elementsToHide.push('numero-puesto');
-		document.getElementById('form-puesto:alta-puesto-button').classList.remove('hidden');
-		elementsToHide.push('form-puesto:alta-puesto-button');
-	}
-	popup.classList.remove("hidden");
-}, false);
+if(alta[0]){
+	alta[0].addEventListener('click', function(){
+
+		if (hasClass(this, 'tipo-tramite')) {
+			popupTitle.innerHTML = "Alta Tramite"; 
+			document.getElementById('nombre-tramite').classList.remove('hidden');
+			elementsToHide.push('nombre-tramite');
+			document.getElementById('form-tramite:alta-tramite-button').classList.remove('hidden');
+			elementsToHide.push('form-tramite:alta-tramite-button');
+		} else if (hasClass(this, 'tipo-display')) {
+			popupTitle.innerHTML = "Alta Display"; 
+			document.getElementById('nombre-display').classList.remove('hidden');
+			elementsToHide.push('nombre-display');
+			document.getElementById('form-display:alta-display-button').classList.remove('hidden');
+			elementsToHide.push('form-display:alta-display-button');
+		} else {
+			popupTitle.innerHTML = "Alta Puesto"; 
+			elementsToHide.push('list-puestos-container');
+			document.getElementById('maquina-puesto').classList.remove('hidden');
+			elementsToHide.push('maquina-puesto');
+			document.getElementById('numero-puesto').classList.remove('hidden');
+			elementsToHide.push('numero-puesto');
+			document.getElementById('form-puesto:alta-puesto-button').classList.remove('hidden');
+			elementsToHide.push('form-puesto:alta-puesto-button');
+		}
+		popup.classList.remove("hidden");
+	}, false);
+}
 
 //	BAJAS
 for (var i = 0; i < bajas.length; i++) {
@@ -73,9 +78,17 @@ for (var i = 0; i < editar.length; i++) {
 }
 
 asignarTramite.addEventListener('click', function(){
-	var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
-	this.href = 'listaTramites.xhtml?esSec=false&id=' + id;
+	var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+	if(esSector){
+		var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
+		this.href = 'listaTramites.xhtml?esSec=true&id=' + id;
+	} else {
+		var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
+		this.href = 'listaTramites.xhtml?esSec=false&id=' + id;
+	}
+	
 }, false);
+
 
 //UPDATE INPUT VALUES AFTER SELECTING ELEMENT FROM LIST
 function updateInputs (element) {
