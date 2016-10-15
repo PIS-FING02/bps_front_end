@@ -1,9 +1,13 @@
 package com.sarp;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
+import com.sarp.jsonModeler.JSONModeler;
+import com.sarp.jsons.JSONSector;
 
 @ManagedBean(name = "sector", eager = true)
 @ViewScoped
@@ -19,6 +23,7 @@ public class SectorBean {
 	private Integer numero;
 	private String estado;
 	private	ControladorREST c = new ControladorREST();
+	private static final JSONModeler modeler = new JSONModeler();
 	
 	public void asignarPuesto(){
 //		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
@@ -84,6 +89,11 @@ public class SectorBean {
 	
 	public void importarSecotesGAFU() throws Exception{
 		this.c.importarSectoreGafu("Administrador");
+	}
+	
+	public List<JSONSector> listar() throws Exception{
+		List<JSONSector> prueba = modeler.toJSONSectores(c.listarSectores("Administrador"));
+		return prueba;
 	}
 
 }

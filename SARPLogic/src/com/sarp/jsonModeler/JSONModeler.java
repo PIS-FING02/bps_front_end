@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONPuesto;
+import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONTramite;
 
 public class JSONModeler {
@@ -52,6 +53,36 @@ public class JSONModeler {
     	}
 		return puestosReturn;	
 	}
+	
+	
+	public JSONSector toJSONSector(String jsonSector) throws Exception{
+		JSONObject json = (JSONObject)new JSONParser().parse(jsonSector); 
+		
+		String sectorId = ((json.get("codigo") == null) ? null : json.get("codigo").toString());
+		String nombre = ((json.get("nombre") == null) ? null : json.get("nombre").toString());
+		String ruta = ((json.get("rutaSector") == null) ? null : json.get("rutaSector").toString());
+
+		JSONSector sector = new JSONSector(sectorId,nombre,ruta);
+		return sector;
+	}
+	
+	
+	
+	public List<JSONSector> toJSONSectores(String jsonSector) throws Exception{
+
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(jsonSector);
+        JSONArray array = (JSONArray)obj;
+        List<JSONSector> sectoresReturn = new ArrayList<JSONSector>();
+        
+    	Iterator<JSONObject> iterator = array.iterator();
+    	while (iterator.hasNext()) {
+    		JSONSector g = this.toJSONSector(iterator.next().toJSONString());
+    		sectoresReturn.add(g);
+    	}
+		return sectoresReturn;	
+	}
+	
 	
 	public List<JSONTramite> toJSONTramites(String jsonTramite) throws Exception{
 
