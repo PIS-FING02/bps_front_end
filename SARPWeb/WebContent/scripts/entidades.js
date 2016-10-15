@@ -2,7 +2,7 @@ var alta = document.getElementsByClassName('alta-button');
 var bajas = document.getElementsByClassName('baja-button');
 var editar = document.getElementsByClassName('mod-button');
 
-// ALTA TRAMITE
+// ALTAS
 alta[0].addEventListener('click', function(){
 	if (hasClass(this, 'tipo-tramite')) {
 		popupTitle.innerHTML = "Alta Tramite"; 
@@ -29,7 +29,7 @@ alta[0].addEventListener('click', function(){
 	popup.classList.remove("hidden");
 }, false);
 
-//	BAJA TRAMITE
+//	BAJAS
 for (var i = 0; i < bajas.length; i++) {
 	bajas[i].addEventListener('click', function(){
 		var parent = this.parentElement;
@@ -38,26 +38,34 @@ for (var i = 0; i < bajas.length; i++) {
 			document.getElementById('form-tramite:baja-tramite-button').click();	
 		} else if (hasClass(this, 'tipo-display')) {
 			document.getElementById('form-display:baja-display-button').click();				
-		} else if (hasClass(this, 'puesto-element')) {
-			document.getElementById('form-tramite:baja-puesto-button').click();				
+		} else if (hasClass(this, 'tipo-puesto')) {
+			document.getElementById('form-puesto:baja-puesto-button').click();				
 		}
 	}, false);
 }
 
-// MODIFICAR TRAMITE
-for (var i = 0; i < bajas.length; i++) {
+// MODS
+for (var i = 0; i < editar.length; i++) {
 	editar[i].addEventListener('click', function(){
 		updateInputs(this.parentElement);
-		if (hasClass(parent, 'tipo-tramite')) {
+		if (hasClass(this, 'tipo-tramite')) {
 			popupTitle.innerHTML = "Modificar Tramite"; 
 			document.getElementById('nombre-tramite').classList.remove('hidden');
 			elementsToHide.push('nombre-tramite');
 			document.getElementById('form-tramite:mod-tramite-button').classList.remove('hidden');
 			elementsToHide.push('form-tramite:mod-tramite-button');
-		} else if (hasClass(parent, 'tipo-display')) {
+		} else if (hasClass(this, 'tipo-display')) {
 
-		} else if (hasClass(parent, 'puesto-element')) {
-			
+		} else if (hasClass(this, 'tipo-puesto')) {
+			popupTitle.innerHTML = "Modificar Puesto"; 
+			document.getElementById('estado-puesto').classList.remove('hidden');
+			elementsToHide.push('estado-puesto');
+			document.getElementById('numero-puesto').classList.remove('hidden');
+			elementsToHide.push('numero-puesto');
+			document.getElementById('usuario-puesto').classList.remove('hidden');
+			elementsToHide.push('usuario-puesto');
+			document.getElementById('form-puesto:mod-puesto-button').classList.remove('hidden');
+			elementsToHide.push('form-puesto:mod-puesto-button');
 		}
 		popup.classList.remove("hidden");
 	}, false);
