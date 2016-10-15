@@ -50,20 +50,6 @@ for (var i = 0; i < listActionButtons.length; i++) {
 //    }, false);
 //}
 
-// ENABLE ACTION BUTTONS IF ELEMENT SELECTED
-for (var i = 0; i < listElements.length; i++) {
-	listElements[i].addEventListener('click', function(){
-		for (var i = 0; i < listElements.length; i++) {
-			listElements[i].classList.remove('element-list-selected');
-		}
-		this.classList.add('element-list-selected');
-		for (var i = 0; i < listActionButtons.length; i++) {
-			listActionButtons[i].classList.remove('deactivated');
-			listActionButtons[i].disabled = false;
-		}	
-    }, false);
-}
-
 // MARK ELEMENT AS SELECTED
 for (var i = 0; i < optionButtons.length; i++) {
 	optionButtons[i].addEventListener('click', function(){

@@ -46,9 +46,10 @@ public class PuestoBean {
 	}
 
 	public void asignarTramite(){
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
-		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
-		c.asignarTramite(jpuesto.toString() + jtramite.toString(), "ResponsableSector"); //TERMINAR
+		
+		String g = this.maquina;
+		String k = this.codigo;
+System.out.println(g);
 	}
 	
 	public String getMaquina() {

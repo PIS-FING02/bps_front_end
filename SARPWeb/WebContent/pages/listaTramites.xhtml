@@ -26,6 +26,8 @@
 		</div> 
 		<div class="page-frame">
 				<h:form id='form-puesto'>
+						<h:outputText id='es-sector' class='hidden' value="#{param['esSec']}" />
+						<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
 						<!--  TRAMITE -->
 						<div id='list-tramites-container' class='page-list'>
 							<h2 class='page-title list-title'>Tramites</h2>
@@ -36,25 +38,23 @@
 								</ui:repeat>
 							</div>
 						</div>
-			<!-- 			<div id="maquina-puesto" class="form-line hidden">
-							<label for="maquina-puesto">Nombre de Máquina:</label>
-							<h:inputText id='puesto-selected-maquina' class="formInput" value="#{puesto.maquina}" />
+						<div id="id-tramite" class="form-line hidden">
+							<label for="tramite-id">Tramite</label>
+							<h:inputText id='id-tramite-selected' class="formInput" value="#{puesto.maquina}" />
 						</div>
-						<div id="usuario-puesto" class="form-line hidden">
-							<label for="usuario-puesto">Usuario:</label>
-							<h:inputText id='puesto-selected-usuario' class="formInput" value="#{puesto.usuarioId}" />
+						<div id="id-puesto" class="form-line hidden">
+							<label for="puesto-id">Asociacion</label>
+							<h:inputText id='id-puesto-selected' class="formInput" value="#{puesto.codigo}" />
 						</div>
-						<div id="estado-puesto" class="form-line hidden">
-							<label for="estado-puesto">Estado:</label>
-							<h:inputText id='puesto-selected-estado' class="formInput" value="#{puesto.estado}" />
+						<div id="id-sector" class="form-line hidden">
+							<label for="sector-id">Asociacion</label>
+							<h:inputText id='id-sector-selected' class="formInput" value="#{puesto.codigo}" />
 						</div>
-						<div id="numero-puesto" class="form-line hidden">
-							<label for="numero-puesto">Numero:</label>
-							<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
-						</div> -->
-					<h:commandButton id='baja-puesto-button' class="hidden" value="Aceptar" action="#{puesto.baja}" /> 
+					<h:commandButton id='asignar-a-puesto' class="hidden" value="Aceptar" action="#{puesto.baja}" /> 
+					<h:commandButton id='asignar-asector' class="hidden" value="Aceptar" action="#{puesto.baja}" /> 
 					<div class="buttons-container">
-						<h:commandButton id='asignar-tramite-button' class='action-button action-button-list deactivated' value="Aceptar" action="#{puesto.asignarTramite}" /> 
+						<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramite}"/>
+						<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramite}"/> 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 				</h:form>
@@ -63,5 +63,6 @@
 	
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
+<script type="text/javascript" src="../scripts/lists.js"></script>
 </body> 
 </html>

@@ -1,6 +1,7 @@
 var alta = document.getElementsByClassName('alta-button');
 var bajas = document.getElementsByClassName('baja-button');
 var editar = document.getElementsByClassName('mod-button');
+var asignarTramite = document.getElementById('asignar-tramite');
 
 // ALTAS
 alta[0].addEventListener('click', function(){
@@ -70,6 +71,11 @@ for (var i = 0; i < editar.length; i++) {
 		popup.classList.remove("hidden");
 	}, false);
 }
+
+asignarTramite.addEventListener('click', function(){
+	var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
+	this.href = 'listaTramites.xhtml?esSec=false&id=' + id;
+}, false);
 
 //UPDATE INPUT VALUES AFTER SELECTING ELEMENT FROM LIST
 function updateInputs (element) {
