@@ -8,6 +8,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.jboss.resteasy.spi.InternalServerErrorException;
+import org.jboss.resteasy.spi.NotFoundException;
+import org.jboss.resteasy.spi.UnauthorizedException;
+
 public class RestClient {
 
 	private static RestClient instance;
@@ -42,14 +46,27 @@ public class RestClient {
 			}
 			conn.disconnect();
 	
-		  } catch (MalformedURLException e) {
-			resultado.append("RequestMalFormada");
+		}catch (MalformedURLException e) {
+			resultado = new StringBuilder();
+			resultado.append("resuest_error");
 			e.printStackTrace();
-	
-		  } catch (IOException e) {
-			resultado.append("Error");
+	  } catch (IOException e) {
+			resultado = new StringBuilder();  
+			resultado.append("erorr_client");
 			e.printStackTrace();
-		  }
+	  }catch (UnauthorizedException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_autothorized");
+		  e.printStackTrace();
+	  }catch (InternalServerErrorException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("error_server");
+		  e.printStackTrace();
+	  }catch (NotFoundException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_found_error");
+		  e.printStackTrace();
+	  }
 		return resultado.toString();	
 	}
 	
@@ -76,16 +93,27 @@ public class RestClient {
 	
 			conn.disconnect();
 			
-	
-		} catch (MalformedURLException e) {
-	
+		}catch (MalformedURLException e) {
+			resultado = new StringBuilder();
+			resultado.append("resuest_error");
 			e.printStackTrace();
-	
-		} catch (Exception e) {
-	
+	  } catch (IOException e) {
+			resultado = new StringBuilder();  
+			resultado.append("erorr_client");
 			e.printStackTrace();
-	
-		}
+	  }catch (UnauthorizedException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_autothorized");
+		  e.printStackTrace();
+	  }catch (InternalServerErrorException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("error_server");
+		  e.printStackTrace();
+	  }catch (NotFoundException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_found_error");
+		  e.printStackTrace();
+	  }
 		return resultado.toString();
 
 	}
@@ -114,13 +142,26 @@ public class RestClient {
 			}
 			conn.disconnect();
 	
-		  } catch (MalformedURLException e) {
-			resultado.append("RequestMalFormada");
+		}catch (MalformedURLException e) {
+			resultado = new StringBuilder();
+			resultado.append("resuest_error");
 			e.printStackTrace();
-	
-		  } catch (IOException e) {
-			resultado.append("Error");
+	  } catch (IOException e) {
+			resultado = new StringBuilder();  
+			resultado.append("erorr_client");
 			e.printStackTrace();
+	  }catch (UnauthorizedException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_autothorized");
+		  e.printStackTrace();
+	  }catch (InternalServerErrorException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("error_server");
+		  e.printStackTrace();
+	  }catch (NotFoundException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_found_error");
+		  e.printStackTrace();
 		  }
 		return resultado.toString();
 	}
@@ -149,13 +190,26 @@ public class RestClient {
 			}
 			conn.disconnect();
 	
-		  } catch (MalformedURLException e) {
-			resultado.append("RequestMalFormada");
-			e.printStackTrace();
-	
+		  }catch (MalformedURLException e) {
+				resultado = new StringBuilder();
+				resultado.append("resuest_error");
+				e.printStackTrace();
 		  } catch (IOException e) {
-			resultado.append("Error");
-			e.printStackTrace();
+				resultado = new StringBuilder();  
+				resultado.append("erorr_client");
+				e.printStackTrace();
+		  }catch (UnauthorizedException e) {
+			  resultado = new StringBuilder();
+			  resultado.append("not_autothorized");
+			  e.printStackTrace();
+		  }catch (InternalServerErrorException e) {
+			  resultado = new StringBuilder();
+			  resultado.append("error_server");
+			  e.printStackTrace();
+		  }catch (NotFoundException e) {
+			  resultado = new StringBuilder();
+			  resultado.append("not_found_error");
+			  e.printStackTrace();
 		  }
 		return resultado.toString();
 	}

@@ -24,7 +24,9 @@
 			<div class="options-buttons-container">
 				<a class="option-button option-link" href="tramites.xhtml">Tramites</a>
 				<a class="option-button option-link" href="displays.xhtml">Displays</a>
-				<button id="importar-sectores" class="option-button">Importar Sectores</button>
+				<h:form>
+					<h:commandButton id="listar-numeros" class="option-button" value="Importar Sectores" action="#{sector.importarSecotesGAFU()}" />
+				</h:form>
 				<button id="listar-numeros" class="option-button">Listar Números del Sistema</button>	
 			</div>
 		</div>
