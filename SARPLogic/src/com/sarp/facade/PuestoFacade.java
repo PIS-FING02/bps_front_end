@@ -5,7 +5,7 @@ import com.sarp.facade.client.RestClient;
 public class PuestoFacade {
 
 	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/puesto";
-	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/puestos";
+	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/listarPuestos";
 	public static final String URL_ASIG_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/tramitepuesto";
 	
 	public String alta(String input, String userRol) throws Exception {

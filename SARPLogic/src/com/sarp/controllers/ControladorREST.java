@@ -1,6 +1,7 @@
 package com.sarp.controllers;
 
 import com.sarp.facade.PuestoFacade;
+import com.sarp.facade.SectorFacade;
 import com.sarp.facade.TramiteFacade;
 import com.sarp.facade.DisplayFacade;
 
@@ -9,11 +10,13 @@ public class ControladorREST {
 	PuestoFacade puestoFacade;
 	TramiteFacade tramiteFacade;
 	DisplayFacade displayFacade;
+	SectorFacade sectorFacade;
 	
 	public ControladorREST(){
 		this.puestoFacade = new PuestoFacade();
 		this.tramiteFacade = new TramiteFacade();
 		this.displayFacade = new DisplayFacade();
+		this.sectorFacade = new SectorFacade();
 	}
 
 
@@ -71,4 +74,10 @@ public class ControladorREST {
 	public String listarDisplays(String userRol) throws Exception {
 		return this.displayFacade.displaysAll(userRol);
 	}
+	
+	//SECTORES
+	
+		public String importarSectoreGafu(String userRol) throws Exception {
+			return this.sectorFacade.importarSectoresGafu(userRol);
+		}
 }
