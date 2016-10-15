@@ -18,13 +18,17 @@ public class PuestoBean {
 	private String usuarioId;
 	private Integer numero;
 	private String estado;
-	
+	private String roles;
 	//atributos de tramite
 	private String codigo;
 	private String nombre;
-	
+
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
+	//List<JSONSector> sectores;
+	//List<JSONTramite> tramites;
+	//JSONNumero numeroAsignado;
+
 
 	public void alta() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "0", this.numero, this.estado);
@@ -87,6 +91,14 @@ System.out.println(g);
 	public String getCodigo() {
 		return codigo;
 	}
+	
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
@@ -98,5 +110,21 @@ System.out.println(g);
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String abrir() throws Exception{
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
+		c.abrirPuesto(jpuesto.toString(), "Operador");
+		if(roles.contains("OPERADORSR")){
+			return "/pages/operadorsrAbierto.xhtml";
+		}else{
+			return "/pages/operadorAbierto.xhtml";
+		}
+	}
+	
+	public String cerrar() throws Exception{
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, null, null, null);
+		c.cerrarPuesto(jpuesto.toString(), "Operador");
+		return "/pages/operador.xhtml";
 	}
 }
