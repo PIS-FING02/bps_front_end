@@ -3,6 +3,8 @@ package com.sarp;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import com.sarp.controllers.ControladorREST;
+
 @ManagedBean(name = "sector", eager = true)
 @ViewScoped
 public class SectorBean {
@@ -16,6 +18,7 @@ public class SectorBean {
 	private String usuarioId;
 	private Integer numero;
 	private String estado;
+	private	ControladorREST c = new ControladorREST();
 	
 	public void asignarPuesto(){
 //		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
@@ -77,6 +80,10 @@ public class SectorBean {
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+	
+	public void importarSecotesGAFU() throws Exception{
+		this.c.importarSectoreGafu("Administrador");
 	}
 
 }
