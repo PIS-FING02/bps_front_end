@@ -14,35 +14,7 @@
 </head> 
 
 <body> 
-	<div id="action-popup" class="hidden popup-overlay">
-		<div class="popup">
-			<h2 id="popup-title" class="sub-title"></h2>
-			<div id="popup-close-button" class="close-x">&times;</div>
-			<div class="content">
-				<h:form id='form-puesto'>
-						<div id="maquina-puesto" class="form-line hidden">
-							<label for="maquina-puesto">Id Sector:</label>
-							<h:inputText id='puesto-selected-maquina' class="formInput" value="#{puesto.maquina}" />
-						</div>
-						<div id="usuario-puesto" class="form-line hidden">
-							<label for="usuario-puesto">Nombre:</label>
-							<h:inputText id='puesto-selected-usuario' class="formInput" value="#{puesto.usuarioId}" />
-						</div>
-						<div id="numero-puesto" class="form-line hidden">
-							<label for="numero-puesto">Ruta</label>
-							<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
-						</div>
-					<h:commandButton id='baja-puesto-button' class="hidden" value="Aceptar" action="#{puesto.baja}" /> 
-					<div class="buttons-container">
-						<h:commandButton id='alta-puesto-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{puesto.alta}" /> 
-						<h:commandButton id='mod-puesto-button' class="action-button action-button-list hidden" value="Aceptar" action="#{puesto.modificar}" /> 
-						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
-					</div>
-				</h:form>
-			</div>
-		</div>
-	</div>
-	<div id='entidad' class="page-container"> 
+	<div id='entidad' class="page-container page-sectores"> 
 		<div class="page-title-container">
 			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
 			<div class="page-title arrow"> ➨ </div>
@@ -54,13 +26,11 @@
 		</div> 
 		<div class="page-frame">
 			<div id='list-sector-container' class='entity-list-container'>
-				<button id='alta-puesto' class='icon alta-button tipo-puesto'>alta</button>
 				<ui:repeat id='repeat-puestos' value='#{sector.listar()}' var='sectores'>
 					<div idSector='#{sectores.sectorId}' nombre='#{sectores.nombre}' ruta='#{sectores.ruta}' class='hidden'/>
 					<div class='list-entity puesto-element'>
 						<h:outputText class='element-list puesto-element' value='#{sectores.sectorId} '/>
-						<button class='icon baja-button tipo-puesto baja-puesto '>borrar</button>
-						<button class='icon mod-button tipo-puesto  editar-puesto '>editar</button>
+						<a id='asignar-tramite' class='icon asig-button tipo-puesto asig-tramite' href=''>asignarTramite</a>
 					</div>
 				</ui:repeat>
 			</div>
