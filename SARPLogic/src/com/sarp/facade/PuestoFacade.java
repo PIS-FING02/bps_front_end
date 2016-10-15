@@ -33,4 +33,5 @@ public class PuestoFacade {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPut(URL_ASIG_TRAMITE, input, userRol);
 	}	
+
 }
