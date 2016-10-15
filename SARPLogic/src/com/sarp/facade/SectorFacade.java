@@ -13,4 +13,9 @@ public class SectorFacade {
 		return  restClient.doGet(URL_REST_GAFU, userRol);
 		
 	}
+	
+	public String sectoresAll(String userRol) throws Exception {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_GET_ALL, userRol);
+	}
 }

@@ -24,7 +24,6 @@ public class PuestoBean {
 	private String nombre;
 	
 	private	ControladorREST c = new ControladorREST();
-	private List<JSONPuesto> puestos;
 	private static final JSONModeler modeler = new JSONModeler();
 
 	public void alta() throws Exception{

@@ -77,7 +77,7 @@ public class RestClient {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
-			conn.setRequestProperty("user-rol","ResponsableSector");
+			conn.setRequestProperty("user-rol",userRol);
 			
 			if (conn.getResponseCode() != 200) {
 				resultado.append("Error");

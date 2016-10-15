@@ -80,4 +80,9 @@ public class ControladorREST {
 		public String importarSectoreGafu(String userRol) throws Exception {
 			return this.sectorFacade.importarSectoresGafu(userRol);
 		}
+		
+		public String listarSectores(String userRol) throws Exception {
+			return this.sectorFacade.sectoresAll(userRol);
+		}
+
 }
