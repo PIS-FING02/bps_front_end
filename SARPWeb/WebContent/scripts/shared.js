@@ -4,6 +4,7 @@ var popupTitle = document.getElementById('popup-title');
 var cancelButton = document.getElementById('popup-cancel-button');
 var closeButton = document.getElementById('popup-close-button');
 var listElements = document.getElementsByClassName('element-list');
+var entityActionButtons = document.getElementsByClassName('action-button-entity');
 var listActionButtons = document.getElementsByClassName('action-button-list');
 var formInputs = document.getElementsByClassName('formInput');
 
@@ -33,33 +34,33 @@ for (var i = 0; i < listActionButtons.length; i++) {
 }
 
 // ENABLE/DISABLE ACTION BUTTONS IF INPUTS EMPTY OR NOT
-for (var i = 0; i < formInputs.length; i++) {
-	formInputs[i].addEventListener('input', function(){
-		if (this.value == "") {
-			for (var i = 0; i < listActionButtons.length; i++) {
-				listActionButtons[i].classList.add('deactivated');
-				listActionButtons[i].disabled = true;
-			}	
-		} else if (doneSelecting()){
-			for (var i = 0; i < listActionButtons.length; i++) {
-				listActionButtons[i].classList.remove('deactivated');
-				listActionButtons[i].disabled = false;
-			}	
-		}
-    }, false);
-}
+//for (var i = 0; i < formInputs.length; i++) {
+//	formInputs[i].addEventListener('input', function(){
+//		if (this.value == "") {
+//			for (var i = 0; i < entityActionButtons.length; i++) {
+//				entityActionButtons[i].classList.add('deactivated');
+//				entityActionButtons[i].disabled = true;
+//			}	
+//		} else if (doneSelecting()){
+//			for (var i = 0; i < entityActionButtons.length; i++) {
+//				entityActionButtons[i].classList.remove('deactivated');
+//				entityActionButtons[i].disabled = false;
+//			}	
+//		}
+//    }, false);
+//}
 
 // ENABLE ACTION BUTTONS IF ELEMENT SELECTED
 for (var i = 0; i < listElements.length; i++) {
 	listElements[i].addEventListener('click', function(){
-		selectElement(this);
-		updateInputs(this);
-		if (doneSelecting()){
-			for (var i = 0; i < listActionButtons.length; i++) {
-				listActionButtons[i].classList.remove('deactivated');
-				listActionButtons[i].disabled = false;
-			}	
+		for (var i = 0; i < listElements.length; i++) {
+			listElements[i].classList.remove('element-list-selected');
 		}
+		this.classList.add('element-list-selected');
+		for (var i = 0; i < listActionButtons.length; i++) {
+			listActionButtons[i].classList.remove('deactivated');
+			listActionButtons[i].disabled = false;
+		}	
     }, false);
 }
 
@@ -82,9 +83,8 @@ cancelButton.addEventListener('click', function(){
 			listElements[i].classList.remove('element-list-selected');
 		}
 	}
-	for (var i = 0; i < listActionButtons.length; i++) {
-		listActionButtons[i].classList.add('deactivated');
-		listActionButtons[i].disabled = true;
+	for (var i = 0; i < entityActionButtons.length; i++) {
+		entityActionButtons[i].classList.add('hidden');
 	}	
 	var lists = document.getElementsByClassName('multiple-lists');
 	for (var i = 0; i < lists.length; i++) {
@@ -102,9 +102,10 @@ closeButton.addEventListener('click', function(){
 			listElements[i].classList.remove('element-list-selected');
 		}
 	}
-	for (var i = 0; i < listActionButtons.length; i++) {
-		listActionButtons[i].classList.add('deactivated');
-		listActionButtons[i].disabled = true;
+	for (var i = 0; i < entityActionButtons.length; i++) {
+		entityActionButtons[i].classList.add('hidden');
+//		entityActionButtons[i].classList.add('deactivated');
+//		entityActionButtons[i].disabled = true;
 	}	
 	var lists = document.getElementsByClassName('multiple-lists');
 	for (var i = 0; i < lists.length; i++) {
@@ -182,16 +183,12 @@ function resetElementsToSelect () {
 // SELECT ELEMENTO FROM LIST ACCORDING TO ITS TYPE
 function selectElement (element){
 	if (hasClass(element, 'tramite-element')) {
-		elementsToSelect.tramite.selected = true;
 		var otherElements = document.getElementsByClassName('tramite-element');
 	} else if (hasClass(element, 'puesto-element')) {
-		elementsToSelect.puesto.selected = true;
 		var otherElements = document.getElementsByClassName('puesto-element');
 	} else if (hasClass(element, 'display-element')) {
-		elementsToSelect.display.selected = true;
 		var otherElements = document.getElementsByClassName('display-element');
 	} else if (hasClass(element, 'sector-element')) {
-		elementsToSelect.sector.selected = true;
 		var otherElements = document.getElementsByClassName('sector-element');
 	}
 	for (var i = 0; i < otherElements.length; i++) {

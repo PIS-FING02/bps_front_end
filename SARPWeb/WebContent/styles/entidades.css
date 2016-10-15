@@ -27,3 +27,7 @@
 .icon {
 	float: right;
 }
+
+.page-list .element-list {
+	display: block;
+}
