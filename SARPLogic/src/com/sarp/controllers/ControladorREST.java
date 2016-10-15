@@ -3,6 +3,7 @@ package com.sarp.controllers;
 import com.sarp.facade.PuestoFacade;
 import com.sarp.facade.SectorFacade;
 import com.sarp.facade.TramiteFacade;
+import com.sarp.facade.AttentionsFacade;
 import com.sarp.facade.DisplayFacade;
 
 public class ControladorREST {
@@ -11,12 +12,14 @@ public class ControladorREST {
 	TramiteFacade tramiteFacade;
 	DisplayFacade displayFacade;
 	SectorFacade sectorFacade;
+	AttentionsFacade attentionsFacade;
 	
 	public ControladorREST(){
 		this.puestoFacade = new PuestoFacade();
 		this.tramiteFacade = new TramiteFacade();
 		this.displayFacade = new DisplayFacade();
 		this.sectorFacade = new SectorFacade();
+		this.attentionsFacade = new AttentionsFacade();
 	}
 
 
@@ -85,4 +88,14 @@ public class ControladorREST {
 			return this.sectorFacade.sectoresAll(userRol);
 		}
 
+	//ATENCION
+
+	public String abrirPuesto(String input, String userRol){
+		return this.attentionsFacade.abrir(input, userRol);
+	}
+	
+	public String cerrarPuesto(String input, String userRol){
+		return this.attentionsFacade.cerrar(input, userRol);
+	}
+	
 }

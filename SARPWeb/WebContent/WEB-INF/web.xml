@@ -83,8 +83,8 @@
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Operador Senior</web-resource-name>
-      <url-pattern>/pages/operadorsr.xhtml</url-pattern>
-      <url-pattern>/pages/operadorsr.jsf</url-pattern>
+      <url-pattern>/pages/operador.xhtml</url-pattern>
+      <url-pattern>/pages/operador.jsf</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>OPERADORSR</role-name>

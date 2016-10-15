@@ -171,3 +171,19 @@ a, a:active, a:target {
     font-weight: bold;
     border: none;
 }
+
+.secondary-button {
+	background-color:#153975; 
+	color: #fff;
+	border: none;	
+	height: 35px !important;
+	line-height: 35px;
+	padding: 0 10px;
+	border-radius: 4px;
+	cursor: pointer;
+    margin: 10px;
+}
+
+.secondary-button:hover {
+	background-color: #1b468d; 
+}
