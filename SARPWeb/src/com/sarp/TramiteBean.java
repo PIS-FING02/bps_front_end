@@ -21,7 +21,7 @@ public class TramiteBean {
 	private static final JSONModeler modeler = new JSONModeler();
 
 	public void alta() throws Exception{
-		JSONTramite jtramite = new JSONTramite(0, this.nombre);
+		JSONTramite jtramite = new JSONTramite(null, this.nombre);
 		c.altaTramite(jtramite.toString(), "Administrador");
 	}
 	

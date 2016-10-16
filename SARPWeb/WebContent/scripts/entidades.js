@@ -121,8 +121,8 @@ for (var i = 0; i < asignarTramitePuesto.length; i++) {
 //UPDATE INPUT VALUES AFTER SELECTING ELEMENT FROM LIST
 function updateInputs (element) {
 	if (hasClass(element, 'tramite-element')) {
-		document.getElementById('form-tramite:tramite-selected-codigo').value = element.previousElementSibling.getAttribute('nombre');
-		document.getElementById('form-tramite:tramite-selected-nombre').value = element.previousElementSibling.getAttribute('codigo');
+		document.getElementById('form-tramite:tramite-selected-codigo').value = element.previousElementSibling.getAttribute('codigo');
+		document.getElementById('form-tramite:tramite-selected-nombre').value = element.previousElementSibling.getAttribute('nombre');
 	} else if (hasClass(element, 'display-element')){
 		document.getElementById('form-display:display-selected-id').value = element.previousElementSibling.getAttribute('id');
 	} else if (hasClass(element, 'puesto-element')){
