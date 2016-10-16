@@ -39,14 +39,6 @@
 								</ui:repeat>
 							</div>
 						</div>
-						<div id="id-tramite-puesto" class="form-line hidden">
-							<label for="tramite-id">Tramite</label>
-							<h:inputText id='id-tramite-puesto-selected' class="formInput" value="#{puesto.maquina}" />
-						</div>
-						<div id="id-puesto" class="form-line hidden">
-							<label for="puesto-id">Asociacion</label>
-							<h:inputText id='id-puesto-selected' class="formInput" value="#{puesto.codigo}" />
-						</div>
 						<div id="id-tramite-sector" class="form-line hidden">
 							<label for="tramite-id">Tramite</label>
 							<h:inputText id='id-tramite-sector-selected' class="formInput" value="#{sector.id}" />
@@ -59,10 +51,21 @@
 						<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramite}"/>
 						<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarTramiteSector()}"/> 
 					</div>
-				</h:form>
-			</div>
+					<div id="id-tramite-puesto" class="form-line">
+						<label for="tramite-id">Tramite</label>
+						<h:inputText id='id-tramite-puesto-selected' class="formInput" value="#{puesto.maquina}" />
+					</div>
+					<div id="id-puesto" class="form-line ">
+						<label for="puesto-id">Asociacion</label>
+						<h:inputText id='id-puesto-selected' class="formInput" value="#{puesto.codigo}" />
+					</div>
+				<div class="buttons-container">
+					<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramitePuesto}"/>
+					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramitePuesto}"/> 
+				</div>
+			</h:form>
 		</div>
-	
+	</div>	
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 <script type="text/javascript" src="../scripts/lists.js"></script>

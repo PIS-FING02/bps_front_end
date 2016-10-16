@@ -50,13 +50,13 @@
 		</div> 
 		<div class="page-frame">
 			<div id='list-tramites-container' class='entity-list-container'>
-				<button id='alta-tramite' class='icon alta-button tipo-tramite'>alta</button>
+				<button id='alta-tramite' class='icon icon-alta alta-button tipo-tramite'>Crear Tramite</button>
 				<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
 					<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
 					<div class='list-entity tramite-element'>
-						<h:outputText value='#{t.codigo} - #{t.nombre}'/>
-						<button class='icon baja-button tipo-tramite baja-tramite'>borrar</button>
-						<button class='icon mod-button tipo-tramite editar-tramite'>editar</button>
+						<h:outputText class='element-list puesto-element' value='#{t.codigo} - #{t.nombre}'/>
+						<button class='icon baja-button tipo-tramite baja-tramite'>Borrar</button>
+						<button class='icon mod-button tipo-tramite editar-tramite'>Editar</button>
 					</div>
 				</ui:repeat>
 			</div>

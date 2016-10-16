@@ -67,21 +67,21 @@ public class JSONPuesto {
 	}
 	
 
-	 @Override
-	    public String toString() {
-			
-		 	String nombreMaquina = this.nombreMaquina != null? this.nombreMaquina : "null";
-			String usuarioId = this.usuarioId!= null? this.usuarioId : "null"; 
-			String numeroPuesto = this.numeroPuesto!= null? this.numeroPuesto.toString() : "null"; 
-			String estado = this.estado!= null? this.estado : "null"; 
-		 
-	        return "{\n"
-	        		+ "\"nombreMaquina\":\""+nombreMaquina+"\",\n"
-	        		+ "\"usuarioId\":\""+usuarioId+"\",\n"
-	        		+ "\"estado\":\""+ estado+"\",\n"
-	    	        + "\"numeroPuesto\":"+numeroPuesto+"\n"
-	        		+ "}";
-	    }
+	@Override
+    public String toString() {
+		
+	 	String nombreMaquina = this.nombreMaquina != null? this.nombreMaquina : "null";
+		String usuarioId = this.usuarioId!= null? this.usuarioId : "null"; 
+		String numeroPuesto = this.numeroPuesto!= null? this.numeroPuesto.toString() : "null"; 
+		String estado = this.estado!= null? this.estado : "null"; 
+	 
+        return "{\n"
+        		+ "\"nombreMaquina\":\""+nombreMaquina+"\",\n"
+        		+ "\"usuarioId\":\""+usuarioId+"\",\n"
+        		+ "\"estado\":\""+ estado+"\",\n"
+    	        + "\"numeroPuesto\":"+numeroPuesto+"\n"
+        		+ "}";
+    }
 	
 }
 

@@ -14,20 +14,39 @@
     width: 100%;
     background: white;
     text-align: left;
-    color: #4e769b;
+    color: #1d304d;
     margin: 5px 0px;
     border-radius: 3px;
-    padding: 10px 10px;
+    padding: 10px 5px;
     border: none;
     float: left;
     font-weight: bold;
     font-size: 14px;
+    box-sizing: border-box;
 }
 
-.icon {
+.icon {    
 	float: right;
+	background: #4e769b;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 2px;
+    margin: 0 5px;
+}
+
+.icon:hover {
+    background-color: #3e5c77;
+}
+
+.icon-alta {
+	float: left;
+    margin: 0px 0px 10px 0px;
+    padding: 10px;
 }
 
 .page-list .element-list {
 	display: block;
+	cursor: pointer;
 }

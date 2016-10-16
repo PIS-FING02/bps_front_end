@@ -5,7 +5,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "test", eager = true)
@@ -20,7 +19,6 @@ public class TestBean {
 		tb.setNombre("nombreTest");
 		tb.alta();
 		tb.setNombre("nombreTestMod");
-		db.setNombre("rutaTestMod");
 		List<JSONTramite> lista = tb.listar();
 		tb.setCodigo(String.valueOf(lista.get(lista.size() - 1).getCodigo()));
 		tb.modificar();
@@ -28,12 +26,8 @@ public class TestBean {
 	}
 	
 	public void testDisplay() throws Exception {
-		db.setNombre("nombreTest");
+		db.setId("idTest");
 		db.alta();
-		db.setNombre("nombreTestMod");
-		List<JSONDisplay> lista = db.listar();
-		db.setId(lista.get(lista.size() - 1).getDisplayId());
-		db.modificar();
 		db.baja();
 	}
 	

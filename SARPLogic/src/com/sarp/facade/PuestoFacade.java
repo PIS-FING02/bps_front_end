@@ -6,7 +6,7 @@ public class PuestoFacade {
 
 	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/puesto";
 	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/listarPuestos";
-	public static final String URL_ASIG_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/tramitepuesto";
+	public static final String URL_ASIG_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/asignarTramitePuesto";
 	
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
@@ -31,7 +31,7 @@ public class PuestoFacade {
 	
 	public String asignarTramite(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doPut(URL_ASIG_TRAMITE, input, userRol);
+		return  restClient.doPost(URL_ASIG_TRAMITE, input, userRol);
 	}	
 
 }
