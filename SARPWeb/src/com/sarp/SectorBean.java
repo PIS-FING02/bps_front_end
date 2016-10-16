@@ -8,6 +8,8 @@ import javax.faces.bean.ViewScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONSector;
+import com.sarp.jsons.JSONSectorPuesto;
+import com.sarp.jsons.JSONSectorTramite;
 
 @ManagedBean(name = "sector", eager = true)
 @ViewScoped
@@ -17,19 +19,15 @@ public class SectorBean {
 	private String nombre;
 	private String ruta;
 	
-	// atributos puesto
-	private String maquina;
-	private String usuarioId;
-	private Integer numero;
-	private String estado;
+	//Atributo Tramite
+	private String codigo;
+	
+	//Artributo Puesto
+	private String nombreMaquina;
+
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	
-	public void asignarPuesto(){
-//		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
-//		JSONSector jsector = new JSONSector(Integer.parseInt(this.id), this.nombre, this.ruta);
-//		c.asignarTramite(jpuesto.toString() + jtramite.toString(), "ResponsableSector"); //TERMINAR
-	}
 
 	public String getId() {
 		return id;
@@ -55,37 +53,23 @@ public class SectorBean {
 		this.ruta = ruta;
 	}
 
-	public String getMaquina() {
-		return maquina;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setMaquina(String maquina) {
-		this.maquina = maquina;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	
+	
+	public String getNombreMaquina() {
+		return nombreMaquina;
 	}
 
-	public String getUsuarioId() {
-		return usuarioId;
+	public void setNombreMaquina(String nombreMaquina) {
+		this.nombreMaquina = nombreMaquina;
 	}
 
-	public void setUsuarioId(String usuarioId) {
-		this.usuarioId = usuarioId;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
 	
 	public void importarSecotesGAFU() throws Exception{
 		this.c.importarSectoreGafu("Administrador");
@@ -95,5 +79,20 @@ public class SectorBean {
 		List<JSONSector> prueba = modeler.toJSONSectores(c.listarSectores("Administrador"));
 		return prueba;
 	}
+	
+
+	public void asignarTramiteSector() throws Exception{
+		
+		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo,this.id);
+		this.c.asignarTramiteSector( jsectortramite.toString(), "ResponsableSector");
+	}
+	
+	public void asignarPuestoSector() throws Exception{
+		
+		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
+		this.c.asignarPuestoSector( jsectorpuesto.toString(), "ResponsableSector");
+	}
+	
+	
 
 }

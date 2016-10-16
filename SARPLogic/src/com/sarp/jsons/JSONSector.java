@@ -66,9 +66,9 @@ public class JSONSector {
 
 		 
 	        return "{\n"
-	        		+ "\"nombreMaquina\":\""+sectorId+"\",\n"
-	        		+ "\"usuarioId\":\""+nombre+"\",\n"
-	        		+ "\"estado\":\""+ ruta+"\",\n"
+	        		+ "\"sectorId\":\""+sectorId+"\",\n"
+	        		+ "\"nombre\":\""+nombre+"\",\n"
+	        		+ "\"ruta\":\""+ ruta+"\",\n"
 	        		+ "}";
 	    }
 	

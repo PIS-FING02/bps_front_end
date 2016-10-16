@@ -1,8 +1,8 @@
 var alta = document.getElementsByClassName('alta-button');
 var bajas = document.getElementsByClassName('baja-button');
 var editar = document.getElementsByClassName('mod-button');
-var asignarTramite = document.getElementById('asignar-tramite');
-
+var asignarTramite = document.getElementsByClassName('asignar-sector-button');
+var asignarPuesto = document.getElementsByClassName('asignar-puesto-button');
 
 
 // ALTAS
@@ -77,24 +77,37 @@ for (var i = 0; i < editar.length; i++) {
 	}, false);
 }
 
-asignarTramite.addEventListener('click', function(){
-	var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
-	if(esSector){
-		var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
-		this.href = 'listaTramites.xhtml?esSec=true&id=' + id;
-	} else {
-		var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
-		this.href = 'listaTramites.xhtml?esSec=false&id=' + id;
+for (var i = 0; i < asignarTramite.length; i++){
+asignarTramite[i].addEventListener('click', function(){
+		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		if(esSector){
+			var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
+			this.href = 'listaTramites.xhtml?esSec=true&entidad=tramite&id=' + id;
+		} else {
+			var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
+			this.href = 'listaTramites.xhtml?esSec=false&entidad=tramite&id=' + id;
+		}
+		
+	}, false);
+}
+
+for (var i = 0; i < asignarPuesto.length; i++){
+	asignarPuesto[i].addEventListener('click', function(){
+			var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+			if(esSector){
+				var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
+				this.href = 'listaPuestos.xhtml?esSec=true&entidad=puesto&id=' + id;
+			} 
+			
+		}, false);
 	}
-	
-}, false);
 
 
 //UPDATE INPUT VALUES AFTER SELECTING ELEMENT FROM LIST
 function updateInputs (element) {
 	if (hasClass(element, 'tramite-element')) {
-		document.getElementById('form-tramite:tramite-selected-codigo').value = element.previousElementSibling.getAttribute('codigo');
-		document.getElementById('form-tramite:tramite-selected-nombre').value = element.previousElementSibling.getAttribute('nombre');
+		document.getElementById('form-tramite:tramite-selected-codigo').value = element.previousElementSibling.getAttribute('nombre');
+		document.getElementById('form-tramite:tramite-selected-nombre').value = element.previousElementSibling.getAttribute('codigo');
 	} else if (hasClass(element, 'display-element')){
 		document.getElementById('form-display:display-selected-id').value = element.previousElementSibling.getAttribute('id');
 		document.getElementById('form-display:display-selected-nombre').value = element.previousElementSibling.getAttribute('nombre');
