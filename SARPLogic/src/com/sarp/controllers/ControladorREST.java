@@ -88,6 +88,7 @@ public class ControladorREST {
 			return this.sectorFacade.sectoresAll(userRol);
 		}
 
+
 	//ATENCION
 
 	public String abrirPuesto(String input, String userRol){
@@ -98,4 +99,14 @@ public class ControladorREST {
 		return this.attentionsFacade.cerrar(input, userRol);
 	}
 	
+
+
+		public String asignarTramiteSector(String input, String userRol) throws Exception {
+			return this.sectorFacade.asignarTramiteSector(input, userRol);
+		}
+		
+		public String asignarPuestoSector(String input, String userRol) throws Exception {
+			return this.sectorFacade.asignarPuestoSector(input, userRol);
+		}
+
 }
