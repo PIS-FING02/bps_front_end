@@ -15,6 +15,7 @@ public class TramiteBean {
 
 	private String codigo;
 	private String nombre;
+	private String id_sector;
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONTramite> tramites;
 	private static final JSONModeler modeler = new JSONModeler();
@@ -60,5 +61,13 @@ public class TramiteBean {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getId_sector() {
+		return id_sector;
+	}
+
+	public void setId_sector(String id_sector) {
+		this.id_sector = id_sector;
 	}
 }

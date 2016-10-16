@@ -50,6 +50,10 @@ public class PuestoBean {
 		return modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
 	}
 
+	public List<JSONTramite> listarDeSector() throws Exception{
+		return modeler.toJSONTramites(c.listarTramiteSector(this.maquina, "ResponsableSector"));
+	}
+	
 	public void asignarTramitePuesto(){
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.maquina, this.codigo);
 		c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
