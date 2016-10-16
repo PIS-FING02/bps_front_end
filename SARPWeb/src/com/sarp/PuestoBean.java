@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONPuesto;
+import com.sarp.jsons.JSONPuestoTramite;
 import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "puesto", eager = true)
@@ -19,9 +20,9 @@ public class PuestoBean {
 	private Integer numero;
 	private String estado;
 	private String roles;
+	
 	//atributos de tramite
 	private String codigo;
-	private String nombre;
 
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
@@ -49,11 +50,13 @@ public class PuestoBean {
 		return modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
 	}
 
-	public void asignarTramite(){
-		
-		String g = this.maquina;
-		String k = this.codigo;
-System.out.println(g);
+	public List<JSONTramite> listarDeSector() throws Exception{
+		return modeler.toJSONTramites(c.listarTramiteSector(this.maquina, "ResponsableSector"));
+	}
+	
+	public void asignarTramitePuesto(){
+		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.maquina, this.codigo);
+		c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
 	}
 	
 	public String getMaquina() {
@@ -91,6 +94,10 @@ System.out.println(g);
 	public String getCodigo() {
 		return codigo;
 	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 	
 	public String getRoles() {
 		return roles;
@@ -98,18 +105,6 @@ System.out.println(g);
 
 	public void setRoles(String roles) {
 		this.roles = roles;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 	
 	public String abrir() throws Exception{

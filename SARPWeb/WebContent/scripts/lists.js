@@ -1,7 +1,7 @@
 var esSector = document.getElementById('form-asociacion:es-sector').innerHTML;
 var entidad = document.getElementById('form-asociacion:entidad-llamado').innerHTML;
 
-// ENABLE ACTION BUTTONS IF ELEMENT SELECTED
+//ENABLE ACTION BUTTONS IF ELEMENT SELECTED
 for (var i = 0; i < listElements.length; i++) {
 	listElements[i].addEventListener('click', function(){
 		for (var i = 0; i < listElements.length; i++) {
@@ -24,7 +24,6 @@ for (var i = 0; i < listElements.length; i++) {
 				document.getElementById('form-asociacion:id-tramite-puesto-selected').value = document.getElementsByClassName('element-list-selected')[0].previousSibling.getAttribute('codigo');
 			}
 		}
-
 	}, false);
 }
 

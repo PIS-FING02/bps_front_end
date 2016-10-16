@@ -49,6 +49,10 @@ public class ControladorREST {
 		return this.tramiteFacade.tramitesAll(userRol);
 	}
 
+	public String listarTramiteSector(String input, String userRol) throws Exception {
+		return this.tramiteFacade.tramitesSector(input, userRol);
+	}
+
 	public String altaTramite(String input, String userRol) throws Exception {
 		return this.tramiteFacade.alta(input,  userRol);
 }

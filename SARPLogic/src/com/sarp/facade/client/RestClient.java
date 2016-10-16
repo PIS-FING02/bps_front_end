@@ -25,6 +25,7 @@ public class RestClient {
 	public String doPost(String URL, String input, String userRol){
 		StringBuilder resultado = new StringBuilder();
 		try {
+			System.out.println(input);
 			URL url = new URL(URL);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);

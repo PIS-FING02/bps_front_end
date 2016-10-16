@@ -16,24 +16,19 @@ import com.sarp.jsons.JSONTramite;
 public class DisplayBean {
 
 	public String id;
-	public String nombre;
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONDisplay> displays;
 	private static final JSONModeler modeler = new JSONModeler();
 
 	public void alta() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay("0", this.nombre);
+		JSONDisplay jdisplay = new JSONDisplay(this.id);
+		System.out.println(jdisplay.toString());
 		c.altaDisplay(jdisplay.toString(), "Administrador");
 	}
 	
 	public void baja() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay(this.id, "nombre");
+		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		c.bajaDisplay(jdisplay.toString(), "Administrador");
-	}
-	
-	public void modificar() throws Exception{
-		JSONDisplay jdisplay = new JSONDisplay(this.id, this.nombre);
-		c.modificarDisplay(jdisplay.toString(), "Administrador");
 	}
 
 	public List<JSONDisplay> listar() throws Exception{
@@ -54,13 +49,5 @@ public class DisplayBean {
 
 	public void setId(String string) {
 		this.id = string;
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 }

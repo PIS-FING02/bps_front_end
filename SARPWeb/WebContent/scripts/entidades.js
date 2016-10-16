@@ -1,14 +1,15 @@
 var alta = document.getElementsByClassName('alta-button');
 var bajas = document.getElementsByClassName('baja-button');
 var editar = document.getElementsByClassName('mod-button');
-var asignarTramite = document.getElementsByClassName('asignar-sector-button');
-var asignarPuesto = document.getElementsByClassName('asignar-puesto-button');
+var asignarTramiteSector = document.getElementsByClassName('asignar-sector-button');
+var asignarPuestoSector = document.getElementsByClassName('asignar-puesto-button');
+var asignarTramitePuesto = document.getElementsByClassName('asignar-tramite-button');
+
 
 
 // ALTAS
 if(alta[0]){
 	alta[0].addEventListener('click', function(){
-
 		if (hasClass(this, 'tipo-tramite')) {
 			popupTitle.innerHTML = "Alta Tramite"; 
 			document.getElementById('nombre-tramite').classList.remove('hidden');
@@ -17,8 +18,8 @@ if(alta[0]){
 			elementsToHide.push('form-tramite:alta-tramite-button');
 		} else if (hasClass(this, 'tipo-display')) {
 			popupTitle.innerHTML = "Alta Display"; 
-			document.getElementById('nombre-display').classList.remove('hidden');
-			elementsToHide.push('nombre-display');
+			document.getElementById('id-display').classList.remove('hidden');
+			elementsToHide.push('id-display');
 			document.getElementById('form-display:alta-display-button').classList.remove('hidden');
 			elementsToHide.push('form-display:alta-display-button');
 		} else {
@@ -77,8 +78,8 @@ for (var i = 0; i < editar.length; i++) {
 	}, false);
 }
 
-for (var i = 0; i < asignarTramite.length; i++){
-asignarTramite[i].addEventListener('click', function(){
+for (var i = 0; i < asignarTramiteSector.length; i++){
+	asignarTramiteSector[i].addEventListener('click', function(){
 		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
@@ -91,8 +92,8 @@ asignarTramite[i].addEventListener('click', function(){
 	}, false);
 }
 
-for (var i = 0; i < asignarPuesto.length; i++){
-	asignarPuesto[i].addEventListener('click', function(){
+for (var i = 0; i < asignarPuestoSector.length; i++){
+	asignarPuestoSector[i].addEventListener('click', function(){
 			var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 			if(esSector){
 				var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
@@ -102,15 +103,28 @@ for (var i = 0; i < asignarPuesto.length; i++){
 		}, false);
 	}
 
+for (var i = 0; i < asignarTramitePuesto.length; i++) {
+	asignarTramitePuesto[i].addEventListener('click', function(){
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		if(esSector){
+			var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
+			this.href = 'listaTramites.xhtml?esSec=true&id=' + id;
+		} else {
+			var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
+			this.href = 'listaTramites.xhtml?esSec=false&id=' + id;
+		}
+		
+	}, false);
+}	
+
 
 //UPDATE INPUT VALUES AFTER SELECTING ELEMENT FROM LIST
 function updateInputs (element) {
 	if (hasClass(element, 'tramite-element')) {
-		document.getElementById('form-tramite:tramite-selected-codigo').value = element.previousElementSibling.getAttribute('nombre');
-		document.getElementById('form-tramite:tramite-selected-nombre').value = element.previousElementSibling.getAttribute('codigo');
+		document.getElementById('form-tramite:tramite-selected-codigo').value = element.previousElementSibling.getAttribute('codigo');
+		document.getElementById('form-tramite:tramite-selected-nombre').value = element.previousElementSibling.getAttribute('nombre');
 	} else if (hasClass(element, 'display-element')){
 		document.getElementById('form-display:display-selected-id').value = element.previousElementSibling.getAttribute('id');
-		document.getElementById('form-display:display-selected-nombre').value = element.previousElementSibling.getAttribute('nombre');
 	} else if (hasClass(element, 'puesto-element')){
 		document.getElementById('form-puesto:puesto-selected-maquina').value = element.previousElementSibling.getAttribute('maquina');
 		document.getElementById('form-puesto:puesto-selected-usuario').value = element.previousElementSibling.getAttribute('usuario');

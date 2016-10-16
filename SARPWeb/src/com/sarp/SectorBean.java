@@ -82,7 +82,8 @@ public class SectorBean {
 	
 
 	public void asignarTramiteSector() throws Exception{
-		
+		System.out.println(this.codigo);
+		System.out.println(this.id);
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo,this.id);
 		this.c.asignarTramiteSector( jsectortramite.toString(), "ResponsableSector");
 	}

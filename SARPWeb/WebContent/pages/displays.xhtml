@@ -24,10 +24,6 @@
 						<label for="id-display">Identificador:</label>
 						<h:inputText id='display-selected-id' class="formInput" value="#{display.id}" />
 					</div> 
-					<div id='nombre-display' class="form-line hidden">
-						<label for="'nombre-display'">Nombre de display:</label>
-						<h:inputText id='display-selected-nombre' class="formInput" value="#{display.nombre}" />
-					</div> 
 					<h:commandButton id='baja-display-button' class="hidden" value="Aceptar" action="#{display.baja}" /> 
 					<div class="buttons-container">
 						<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}" /> 
@@ -49,12 +45,12 @@
 		</div> 
 		<div class="page-frame">
 			<div id='list-display-container' class='entity-list-container'>
-				<button id='alta-display' class='icon alta-button tipo-display'>alta</button>
+				<button id='alta-display' class='icon icon-alta alta-button tipo-display'>Crear Display</button>
 				<ui:repeat id='repeat-' value='#{display.listar()}' var='d'>
-					<div id='#{d.displayId}' fecha='#{d.lastUpdated}' class='hidden'/>
+					<div id='#{d.displayId}' class='hidden'/>
 					<div class='list-entity display-element'>
-						<h:outputText value='#{d.lastUpdated}'/>
-						<button class='icon baja-button tipo-display baja-display'>borrar</button>
+						<h:outputText class='element-list puesto-element' value='#{d.displayId}'/>
+						<button class='icon baja-button tipo-display baja-display'>Borrar</button>
 					</div>
 				</ui:repeat>
 			</div>

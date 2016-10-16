@@ -25,44 +25,43 @@
 			</h:form>
 		</div> 
 		<div class="page-frame">
-				<h:form id='form-asociacion'>
-						<h:outputText id='es-sector' class='hidden' value="#{param['esSec']}" />
-						<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
-						<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
-						<!--  TRAMITE -->
-						<div id='list-tramites-container' class='page-list'>
-							<h2 class='page-title list-title'>Tramites</h2>
-							<div class='list-container'>
-								<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
-									<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
-									<h:outputText class='element-list tramite-element' value='#{t.nombre}'/>
-								</ui:repeat>
-							</div>
-						</div>
-						<div id="id-tramite-puesto" class="form-line hidden">
-							<label for="tramite-id">Tramite</label>
-							<h:inputText id='id-tramite-puesto-selected' class="formInput" value="#{puesto.maquina}" />
-						</div>
-						<div id="id-puesto" class="form-line hidden">
-							<label for="puesto-id">Asociacion</label>
-							<h:inputText id='id-puesto-selected' class="formInput" value="#{puesto.codigo}" />
-						</div>
-						<div id="id-tramite-sector" class="form-line hidden">
-							<label for="tramite-id">Tramite</label>
-							<h:inputText id='id-tramite-sector-selected' class="formInput" value="#{sector.id}" />
-						</div>
-						<div id="id-sector" class="form-line hidden">
-							<label for="sector-id">Asociacion</label>
-							<h:inputText id='id-sector-selected' class="formInput" value="#{sector.codigo}" />
-						</div>
-					<div class="buttons-container">
-						<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramite}"/>
-						<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarTramiteSector()}"/> 
+			<h:form id='form-asociacion'>
+				<h:outputText id='es-sector' class='hidden' value="#{param['esSec']}" />
+				<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
+				<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
+				<!--  TRAMITE -->
+				<div id='list-tramites-container' class='page-list'>
+					<h2 class='page-title list-title'>Tramites</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
+							<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
+							<h:outputText class='element-list tramite-element' value='#{t.nombre}'/>
+						</ui:repeat>
 					</div>
-				</h:form>
-			</div>
+				</div>
+				<div id="id-tramite-sector" class="form-line hidden">
+					<label for="tramite-id">Tramite</label>
+					<h:inputText id='id-tramite-sector-selected' class="formInput" value="#{sector.id}" />
+				</div>
+				<div id="id-sector" class="form-line hidden">
+					<label for="sector-id">Asociacion</label>
+					<h:inputText id='id-sector-selected' class="formInput" value="#{sector.codigo}" />
+				</div>
+				<div id="id-tramite-puesto" class="form-line hidden">
+					<label for="tramite-id">Tramite</label>
+					<h:inputText id='id-tramite-puesto-selected' class="formInput" value="#{puesto.maquina}" />
+				</div>
+				<div id="id-puesto" class="form-line hidden">
+					<label for="puesto-id">Asociacion</label>
+					<h:inputText id='id-puesto-selected' class="formInput" value="#{puesto.codigo}" />
+				</div>
+				<div class="buttons-container">
+					<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramitePuesto}"/>
+					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarTramiteSector}"/> 
+				</div>
+			</h:form>
 		</div>
-	
+	</div>	
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 <script type="text/javascript" src="../scripts/lists.js"></script>
