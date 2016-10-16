@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.sarp.jsons.JSONDisplay;
+import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONTramite;
@@ -110,5 +111,21 @@ public class JSONModeler {
     		displaysReturn.add(this.toJSONDisplay(iterator.next().toJSONString()));
     	}
 		return displaysReturn;		
+	}
+	
+	public JSONNumero toJSONNumero(String jsonNumero) throws Exception{
+		JSONObject json = (JSONObject)new JSONParser().parse(jsonNumero); 
+		
+		Integer id = ((json.get("id") == null) ? null : Integer.parseInt(json.get("id").toString()));
+		String externalId = ((json.get("externalId") == null) ? null : json.get("externalId").toString());
+		String hora = ((json.get("hora") == null) ? null : json.get("hora").toString());
+		String estado = ((json.get("estado") == null) ? null : json.get("estado").toString());
+		Integer prioridad = ((json.get("prioridad") == null) ? null : Integer.parseInt(json.get("prioridad").toString()));
+		Integer idTramite = ((json.get("idTramite") == null) ? null : Integer.parseInt(json.get("idTramite").toString()));
+		String idSector = ((json.get("idSector") == null) ? null : json.get("idSector").toString());
+		
+		
+		JSONNumero sector = new JSONNumero(id,externalId,hora,estado,prioridad,idTramite,idSector);
+		return sector;
 	}
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+<head>
+	<title>Pantalla de Atención</title>
+	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/operador.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
+</head>
+<body>
+	<div class="page-container">
+		<div class="page-title-container">
+			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
+			<div class="page-title"> ➨  Atención </div>
+			<h:form>
+				<h:commandButton class="action-button deactivated" disabled="true" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			</h:form>	
+		</div>
+		<div class="page-frame">
+			<div class="top-frame">
+				<c:set value="#{loginBean.username}" target="#{puesto}" property="usuarioId" />
+				<c:set value="#{loginBean.getRoles()}" target="#{puesto}" property="roles" />
+				<c:set value="maq1" target="#{puesto}" property="maquina" />
+				<div class="left-frame">
+					<div class="top-line"> Puesto: #{puesto.maquina}</div>
+					<div class="top-line"> Sectores: </div>
+					<div class="top-line"> Trámites: </div>
+				</div>
+				<div class="right-frame">
+					<div id="nros-espera" class="top-line"> Números en espera: </div>
+				</div>
+			</div>
+			<div>
+				<div class="right-middle-frame "> 	
+					<button class="secondary-button" id="ver-pausados-button" >Ver Pausados</button> 
+					<button class="action-button" id="ver-atrasados-button">Ver Atrasados</button>
+				</div>
+				<div id="left-frame" class="left-frame">
+					<div class="data-line">
+						<div class="label"> Serie: </div>
+					</div>
+					<div class="data-line">
+						<div class="label"> Número: #{puesto.numero}</div>
+					</div>
+					<div class="data-line hidden" id="info-sae-hora">
+						<div class="label" > Hora: #{puesto.hora}</div>
+					</div>
+					<div class="data-line hidden"  id="info-sae-fecha">
+						<div class="label"> Fecha de Entrega: #{puesto.fecha} </div>
+					</div> 
+					<div class="data-line" >
+						<div class="label"> Tiempo de Espera: </div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-form">
+				<h:form id="options-form">
+					<h:commandButton class="action-button" id="atender-button" value="Atender"/>
+					<h:commandButton class="action-button" id="re-llamar-button" value="Re-llamar"/> 
+					<h:commandButton class="secondary-button" id="llamar-siguiente-button" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/> 
+					<h:commandButton class="action-button" id="liberar-button" value="Liberar" action="#{puesto.liberar}"/>
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<div id="prioridad" class="hidden #{puesto.getPrioridad()}"></div>
+	<script type="text/javascript" src="../scripts/operador.js"></script>
+</body>
+</html>
