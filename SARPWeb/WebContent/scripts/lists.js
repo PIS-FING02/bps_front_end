@@ -15,6 +15,9 @@ for (var i = 0; i < listElements.length; i++) {
 		if(entidad == "puesto"){
 			document.getElementById('form-asociacion:id-puesto-selected').value = document.getElementById('form-asociacion:id-asig').innerHTML;
 			document.getElementById('form-asociacion:id-puesto-sector-selected').value = document.getElementsByClassName('element-list-selected')[0].previousSibling.getAttribute('nombreMaquina');
+		}else if(entidad == "display"){
+			document.getElementById('form-asociacion:id-display-selected').value = document.getElementById('form-asociacion:id-asig').innerHTML;
+			document.getElementById('form-asociacion:id-display-sector-selected').value = document.getElementsByClassName('element-list-selected')[0].previousSibling.getAttribute('displayId');
 		}else{
 			if (esSector == "true") {
 				document.getElementById('form-asociacion:id-sector-selected').value = document.getElementById('form-asociacion:id-asig').innerHTML;
