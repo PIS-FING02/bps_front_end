@@ -47,10 +47,6 @@
 					<label for="sector-id">Asociacion</label>
 					<h:inputText id='id-sector-selected' class="formInput" value="#{sector.codigo}" />
 				</div>
-				<div class="buttons-container">
-					<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramite}"/>
-					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarTramiteSector()}"/> 
-				</div>
 				<div id="id-tramite-puesto" class="form-line hidden">
 					<label for="tramite-id">Tramite</label>
 					<h:inputText id='id-tramite-puesto-selected' class="formInput" value="#{puesto.maquina}" />
@@ -61,7 +57,7 @@
 				</div>
 				<div class="buttons-container">
 					<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramitePuesto}"/>
-					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramitePuesto}"/> 
+					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarTramiteSector}"/> 
 				</div>
 			</h:form>
 		</div>

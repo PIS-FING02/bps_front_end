@@ -2,7 +2,7 @@ var alta = document.getElementsByClassName('alta-button');
 var bajas = document.getElementsByClassName('baja-button');
 var editar = document.getElementsByClassName('mod-button');
 var asignarTramiteSector = document.getElementsByClassName('asignar-sector-button');
-var asignarPuestoScetor = document.getElementsByClassName('asignar-puesto-button');
+var asignarPuestoSector = document.getElementsByClassName('asignar-puesto-button');
 var asignarTramitePuesto = document.getElementsByClassName('asignar-tramite-button');
 
 
