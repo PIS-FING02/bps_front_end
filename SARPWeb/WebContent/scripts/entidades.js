@@ -4,6 +4,7 @@ var editar = document.getElementsByClassName('mod-button');
 var asignarTramiteSector = document.getElementsByClassName('asignar-sector-button');
 var asignarPuestoSector = document.getElementsByClassName('asignar-puesto-button');
 var asignarTramitePuesto = document.getElementsByClassName('asignar-tramite-button');
+var asignarDisplaySector = document.getElementsByClassName('asignar-display-button');
 
 
 
@@ -98,6 +99,17 @@ for (var i = 0; i < asignarPuestoSector.length; i++){
 			if(esSector){
 				var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
 				this.href = 'listaPuestos.xhtml?esSec=true&entidad=puesto&id=' + id;
+			} 
+			
+		}, false);
+	}
+
+for (var i = 0; i < asignarDisplaySector.length; i++){
+	asignarDisplaySector[i].addEventListener('click', function(){
+			var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+			if(esSector){
+				var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
+				this.href = 'listaDisplays.xhtml?esSec=true&entidad=display&id=' + id;
 			} 
 			
 		}, false);

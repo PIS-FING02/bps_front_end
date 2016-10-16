@@ -113,4 +113,10 @@ public class ControladorREST {
 			return this.sectorFacade.asignarPuestoSector(input, userRol);
 		}
 
+
+		public String asignarDisplayoSector(String input, String userRol) {
+			return this.sectorFacade.asignarDisplaySector(input,userRol);
+			
+		}
+
 }

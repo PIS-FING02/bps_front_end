@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONSector;
+import com.sarp.jsons.JSONSectorDisplay;
 import com.sarp.jsons.JSONSectorPuesto;
 import com.sarp.jsons.JSONSectorTramite;
 
@@ -24,10 +25,21 @@ public class SectorBean {
 	
 	//Artributo Puesto
 	private String nombreMaquina;
+	
+	//Atributo Display
+	private String displayId;
 
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	
+	
+	public String getDisplayId() {
+		return displayId;
+	}
+
+	public void setDisplayId(String displayId) {
+		this.displayId = displayId;
+	}
 
 	public String getId() {
 		return id;
@@ -82,16 +94,14 @@ public class SectorBean {
 	
 
 	public void asignarTramiteSector() throws Exception{
-		System.out.println(this.codigo);
-		System.out.println(this.id);
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo,this.id);
 		this.c.asignarTramiteSector( jsectortramite.toString(), "ResponsableSector");
 	}
 	
-	public void asignarPuestoSector() throws Exception{
+	public void asignarDisplaySector() throws Exception{
 		
-		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
-		this.c.asignarPuestoSector( jsectorpuesto.toString(), "ResponsableSector");
+		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id,this.displayId);
+		this.c.asignarDisplayoSector( jsectordisplay.toString(), "Administrador");
 	}
 	
 	
