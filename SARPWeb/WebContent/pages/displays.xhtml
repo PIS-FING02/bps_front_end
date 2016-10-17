@@ -24,9 +24,13 @@
 						<label for="id-display">Identificador:</label>
 						<h:inputText id='display-selected-id' class="formInput" value="#{display.id}" />
 					</div> 
+					<f:ajax render=":form-error:text">
 					<h:commandButton id='baja-display-button' class="hidden" value="Aceptar" action="#{display.baja}" /> 
+					</f:ajax>
 					<div class="buttons-container">
+						<f:ajax render=":form-error:text">
 						<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}" /> 
+						</f:ajax>
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 				</h:form>
@@ -42,6 +46,23 @@
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
+			<h:form id='form-error'>
+				<h:panelGroup id="text" rendered="#{display.error== 'show'}">
+					<div id="action-popup">
+						<div class="popup">
+							<h2 id="popup-title" class="sub-title">Advertencia</h2>
+							<div class="content">
+								<h:outputText value="#{display.error_message}" />
+								<h:form id='form-tramite'>
+									<div class="buttons-container">
+										<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{display.hideError()}" />  
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+					</h:panelGroup>
+		</h:form>
 		</div> 
 		<div class="page-frame">
 			<div id='list-display-container' class='entity-list-container'>

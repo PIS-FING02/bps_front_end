@@ -48,9 +48,28 @@
 							<h:inputText id='id-puesto-sector-selected' class="formInput" value="#{sector.nombreMaquina}" />
 						</div>
 					<div class="buttons-container">
+					<f:ajax render=":form-error:text">
 						<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list ' value="Aceptar" action="#{sector.asignarPuestoSector()}"/> 
+					</f:ajax>
 					</div>
 				</h:form>
+				<h:form id='form-error'>
+				<h:panelGroup id="text" rendered="#{sector.error== 'show'}">
+					<div id="action-popup">
+						<div class="popup">
+							<h2 id="popup-title" class="sub-title">Mensaje error</h2>
+							<div class="content">
+								<h:outputText value="#{sector.error_message}" />
+								<h:form id='form-tramite'>
+									<div class="buttons-container">
+										<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{sector.hideError()}" />  
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</h:panelGroup>
+		</h:form>
 			</div>
 		</div>
 	

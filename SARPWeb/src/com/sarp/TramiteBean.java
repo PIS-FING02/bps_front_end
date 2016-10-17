@@ -19,20 +19,42 @@ public class TramiteBean {
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONTramite> tramites;
 	private static final JSONModeler modeler = new JSONModeler();
+	
+	//Atributo para mensaje de errores
+	public String error = "hidden";
+	public String error_message = "";
 
 	public void alta() throws Exception{
 		JSONTramite jtramite = new JSONTramite(null, this.nombre);
-		c.altaTramite(jtramite.toString(), "Administrador");
+		String status = c.altaTramite(jtramite.toString(), "Administrador");
+		if (status.equals("OK")){
+			this.error_message="El tramite " + this.nombre + "se creo correctamente.";
+		}else{
+			this.error_message = "Ocurrio un error al crear el tramite";
+		}
+		this.error = "show";
 	}
 	
 	public void baja() throws Exception{
 		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), "nombre");
-		c.bajaTramite(jtramite.toString(), "Administrador");
+		String status = c.bajaTramite(jtramite.toString(), "Administrador");
+		if (status.equals("OK")){
+			this.error_message="El tramite " + this.nombre + "se elimino correctamente.";
+		}else{
+			this.error_message = "Ocurrio un error al eliminar el tramite";
+		}
+		this.error = "show";
 	}
 	
 	public void modificar(){
 		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
-		c.modTramite(jtramite.toString(), "Administrador");
+		String status = c.modTramite(jtramite.toString(), "Administrador");
+		if (status.equals("OK")){
+			this.error_message="El tramite " + this.nombre + "se modifico correctamente.";
+		}else{
+			this.error_message = "Ocurrio un error al modificar el tramite";
+		}
+		this.error = "show";
 	}
 
 	public List<JSONTramite> listar() throws Exception{
@@ -70,4 +92,26 @@ public class TramiteBean {
 	public void setId_sector(String id_sector) {
 		this.id_sector = id_sector;
 	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public String getError_message() {
+		return error_message;
+	}
+
+	public void setError_message(String error_message) {
+		this.error_message = error_message;
+	}
+	
+	public String hideError(){
+		this.error="hidden";
+		return "/pages/admin.xhtml";
+	}
+	
 }

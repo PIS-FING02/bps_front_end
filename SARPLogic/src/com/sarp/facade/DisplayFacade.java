@@ -7,7 +7,7 @@ public class DisplayFacade {
 	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/display";
 	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/displays";
 	
-	public String alta(String input, String userRol) throws Exception {
+	public String alta(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_FULL, input, userRol);
 	}
@@ -22,7 +22,7 @@ public class DisplayFacade {
 		return  restClient.doPut(URL_REST_FULL, input, userRol);
 	}	
 	
-	public String displaysAll(String userRol) throws Exception {
+	public String displaysAll(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGet(URL_GET_ALL, userRol);
 	}
