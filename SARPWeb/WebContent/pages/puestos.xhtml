@@ -36,10 +36,16 @@
 						<label for="numero-puesto">Numero:</label>
 						<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
 					</div>
-					<h:commandButton id='baja-puesto-button' class="hidden" value="Aceptar" action="#{puesto.baja}" /> 
+					<f:ajax render=":form-error:text">
+						<h:commandButton id='baja-puesto-button' class="hidden" value="Aceptar" action="#{puesto.baja}" /> 
+					</f:ajax>
 					<div class="buttons-container">
-						<h:commandButton id='alta-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta}" /> 
-						<h:commandButton id='mod-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.modificar}" /> 
+						<f:ajax render=":form-error:text">
+							<h:commandButton id='alta-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta}" /> 
+						</f:ajax>
+						<f:ajax render=":form-error:text">
+							<h:commandButton id='mod-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.modificar}" /> 
+						</f:ajax>
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 				</h:form>
@@ -55,6 +61,23 @@
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
+						<h:form id='form-error'>
+				<h:panelGroup id="text" rendered="#{puesto.error== 'show'}">
+					<div id="action-popup">
+						<div class="popup">
+							<h2 id="popup-title" class="sub-title">Advertencia</h2>
+							<div class="content">
+								<h:outputText value="#{puesto.error_message}" />
+								<h:form id='form-tramite'>
+									<div class="buttons-container">
+										<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{puesto.hideError()}" />  
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+					</h:panelGroup>
+		</h:form>
 		</div> 
 		<div class="page-frame">
 			<div id='list-puesto-container' class='entity-list-container'>
@@ -70,6 +93,7 @@
 				</ui:repeat>
 			</div>
 		</div>
+		
 	</div>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>

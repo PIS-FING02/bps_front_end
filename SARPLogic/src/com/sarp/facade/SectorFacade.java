@@ -11,13 +11,13 @@ public class SectorFacade {
 	public static final String URL_REST_ASIGNAR_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/asignarPuestoSector";
 	public static final String URL_REST_ASIGNAR_DISPLAY = "http://52.52.100.160:8080/SARPService/adminService/asignarSectorDisplay";
 	
-	public String importarSectoresGafu(String userRol) throws Exception {
+	public String importarSectoresGafu(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGet(URL_REST_GAFU, userRol);
 		
 	}
 	
-	public String sectoresAll(String userRol) throws Exception {
+	public String sectoresAll(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGet(URL_GET_ALL, userRol);
 	}

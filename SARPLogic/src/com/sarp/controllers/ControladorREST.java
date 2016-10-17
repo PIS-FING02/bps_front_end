@@ -71,7 +71,7 @@ public class ControladorREST {
 		return this.displayFacade.alta(input, userRol);
 	}
 	
-	public String bajaDisplay(String input, String userRol) throws Exception {
+	public String bajaDisplay(String input, String userRol)  {
 		return this.displayFacade.baja(input, userRol);
 	}
 	
@@ -79,17 +79,17 @@ public class ControladorREST {
 		return this.displayFacade.mod(input, userRol);
 	}	
 
-	public String listarDisplays(String userRol) throws Exception {
+	public String listarDisplays(String userRol) {
 		return this.displayFacade.displaysAll(userRol);
 	}
 	
 	//SECTORES
 	
-		public String importarSectoreGafu(String userRol) throws Exception {
+		public String importarSectoreGafu(String userRol)  {
 			return this.sectorFacade.importarSectoresGafu(userRol);
 		}
 		
-		public String listarSectores(String userRol) throws Exception {
+		public String listarSectores(String userRol)  {
 			return this.sectorFacade.sectoresAll(userRol);
 		}
 
@@ -104,11 +104,11 @@ public class ControladorREST {
 		return this.attentionsFacade.cerrar(input, userRol);
 	}
 	
-	public String asignarTramiteSector(String input, String userRol) throws Exception {
+	public String asignarTramiteSector(String input, String userRol)  {
 		return this.sectorFacade.asignarTramiteSector(input, userRol);
 	}
 	
-	public String asignarPuestoSector(String input, String userRol) throws Exception {
+	public String asignarPuestoSector(String input, String userRol) {
 		return this.sectorFacade.asignarPuestoSector(input, userRol);
 	}
 

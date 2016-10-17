@@ -1,10 +1,8 @@
 package com.sarp;
 
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONSector;
@@ -19,6 +17,10 @@ public class SectorBean {
 	private String id;
 	private String nombre;
 	private String ruta;
+	
+	//Atributo para mensaje de errores
+	public String error = "hidden";
+	public String error_message = "";
 	
 	//Atributo Tramite
 	private String codigo;
@@ -83,8 +85,31 @@ public class SectorBean {
 	}
 
 	
-	public void importarSecotesGAFU() throws Exception{
-		this.c.importarSectoreGafu("Administrador");
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	
+	public String getError_message() {
+		return error_message;
+	}
+
+	public void setError_message(String error_message) {
+		this.error_message = error_message;
+	}
+
+	public void importarSecotesGAFU(){
+		String status = this.c.importarSectoreGafu("Administrador");
+		if (status.equals("OK")){
+			this.error_message="Los sectores se actualizaron correctamente";
+		}else{
+			this.error_message = "Ocurrio un error al actualizar los sectores";
+		}
+		this.error = "show";
 	}
 	
 	public List<JSONSector> listar() throws Exception{
@@ -92,18 +117,44 @@ public class SectorBean {
 		return prueba;
 	}
 	
-
-	public void asignarTramiteSector() throws Exception{
+	public void asignarTramiteSector() {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo,this.id);
-		this.c.asignarTramiteSector( jsectortramite.toString(), "ResponsableSector");
+		String status = this.c.asignarTramiteSector( jsectortramite.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			this.error_message="El tramite con Codigo: " + this.codigo + " se asigno correctamente al Sector con codigo : " + this.id;
+		}else{
+			this.error_message = "Ocurrio un error al asignar el tramite con Codigo: " + this.codigo + "  al Sector con codigo: " + this.id;
+		}
+		this.error = "show";
+		
 	}
 	
-	public void asignarDisplaySector() throws Exception{
+	public void asignarDisplaySector() {
 		
 		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id,this.displayId);
-		this.c.asignarDisplayoSector( jsectordisplay.toString(), "Administrador");
+		String status = this.c.asignarDisplayoSector( jsectordisplay.toString(), "Administrador");
+		if (status.equals("OK")){
+			this.error_message="El display " + this.displayId + " se asigno correctamente al sector con codigo " + this.id;
+		}else{
+			this.error_message = "Ocurrio un error al asignar el display" + this.displayId + "  al sector con codigo " + this.id;
+		}
+		this.error = "show";
 	}
-	
-	
 
+	public void asignarPuestoSector() {
+		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
+		String status =this.c.asignarPuestoSector( jsectorpuesto.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			this.error_message="El puesto " + this.nombreMaquina + " se asigno correctamente al sector con codigo " + this.id;
+		}else{
+			this.error_message = "Ocurrio un error al asignar el puesto " + this.nombreMaquina + "  al sector con codigo " + this.id;
+		}
+		this.error = "show";
+
+	}
+		
+	public String hideError(){
+		this.error="hidden";
+		return "/pages/sectores.xhtml";
+	}
 }

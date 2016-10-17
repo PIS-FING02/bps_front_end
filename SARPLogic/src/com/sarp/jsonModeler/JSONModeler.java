@@ -7,7 +7,6 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
@@ -69,7 +68,7 @@ public class JSONModeler {
 	
 	
 	
-	public List<JSONSector> toJSONSectores(String jsonSector) throws Exception{
+	public List<JSONSector> toJSONSectores(String jsonSector) throws Exception {
 
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(jsonSector);

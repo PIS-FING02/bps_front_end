@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONNumero;
@@ -35,6 +33,10 @@ public class PuestoBean {
 	private Integer idTramite;
 	private String idSector;
 	
+	//Atributo para mensaje de errores
+	public String error = "hidden";
+	public String error_message = "";
+	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	//List<JSONSector> sectores;
@@ -45,17 +47,35 @@ public class PuestoBean {
 	
 	public void alta() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "0", this.numero, this.estado);
-		c.altaPuesto(jpuesto.toString(), "ResponsableSector");
+		String status = c.altaPuesto(jpuesto.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			this.error_message="El puesto "+ this.maquina + "se creo correctamente.";
+		}else{
+			this.error_message = "Ocurrio un error al crear el puesto.";
+		}
+		this.error = "show";
 	}
 	
 	public void baja() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "id", 0, "CERRADO");
-		c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
+		String status = c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			this.error_message="El puesto "+ this.maquina + "se elimino correctamente.";
+		}else{
+			this.error_message = "Ocurrio un error al eliminar el puesto.";
+		}
+		this.error = "show";
 	}
 	
 	public void modificar(){
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
-		c.modPuesto(jpuesto.toString(), "ResponsableSector");
+		String status = c.modPuesto(jpuesto.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			this.error_message="El puesto "+ this.maquina + "se modifico correctamente.";
+		}else{
+			this.error_message = "Ocurrio un error al modificar el puesto.";
+		}
+		this.error = "show";
 	}
 
 	public List<JSONPuesto> listar() throws Exception{
@@ -68,7 +88,13 @@ public class PuestoBean {
 	
 	public void asignarTramitePuesto(){
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.maquina, this.codigo);
-		c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
+		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			this.error_message="El tramite con codigo "+ this.codigo + "se asigno al puesto " + this.maquina;
+		}else{
+			this.error_message = "Ocurrio un error al asignar el tramite al puesto";
+		}
+		this.error = "show";
 	}
 	
 	public Integer getId() {
@@ -174,6 +200,22 @@ public class PuestoBean {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public String getError_message() {
+		return error_message;
+	}
+
+	public void setError_message(String error_message) {
+		this.error_message = error_message;
+	}
 
 	public String abrir() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
@@ -214,5 +256,18 @@ public class PuestoBean {
 		}else{
 			return "/pages/operadorAbierto.xhtml";
 		}
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public String hideError(){
+		this.error="hidden";
+		return "/pages/respSector.xhtml";
 	}
 }
