@@ -10,6 +10,7 @@ import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONPuestoTramite;
 import com.sarp.jsons.JSONTramite;
+import com.sarp.utils.UtilService;
 
 @ManagedBean(name = "puesto", eager = true)
 @ApplicationScoped
@@ -44,7 +45,13 @@ public class PuestoBean {
 	//List<JSONTramite> tramites;
 	//JSONNumero numeroAsignado;
 
-
+	public String getOperadorTest(){
+		return UtilService.getStringProperty("MAQUINA_OPERADOR_TEST");
+	}
+	
+	public String getRecepcionTest(){
+		return UtilService.getStringProperty("MAQUINA_RECEPCION_TEST");
+	}
 	
 	public void alta() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "0", this.numero, this.estado);

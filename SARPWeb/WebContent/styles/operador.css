@@ -33,19 +33,23 @@
 .atender-button{
 	background-color: #ea0303!important;
 	float: none !important;
+	width:22%;
 }
 
 .re-llamar-button{
 	float: none !important;
+	width:21%;
 }
 
 .liberar-button{
 	float: none !important;
+	width:21%;
 }
 
 .atender-button:hover{
 	background-color: #fd1a1a!important;
 	float: none !important;
+	width:21%;
 }
 
 .ver-atrasados-button{
@@ -58,6 +62,7 @@
 
 .llamar-siguiente-button{
 	float: none !important;
+	width:21%;
 }
 
 .top-line{
