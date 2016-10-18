@@ -9,13 +9,6 @@
 	display: block;
 }
 
-.right-middle-frame{
-	float: right;
-	width: 30%;
-	display: block;
-	height: 180px;
-}
-
 .left-frame{
 	float: left;
 	width: 60%
@@ -24,6 +17,7 @@
 .bottom-form{
     width: 100%;
     margin-top: 20px;
+    display: inline-block;
 }
 
 .prox-nums-frame{
@@ -31,50 +25,52 @@
 	display: inline-block;
 }
 
-.action-button{
-	margin: 10px;
-}
-
 .estado-puesto-button{
     margin: 15px 20px;
     display: block;
 }
 
-#options-form:atender-button{
-	background-color: #ea0303 !important;
+.atender-button{
+	background-color: #ea0303!important;
 	float: none !important;
 }
 
-#options-form:re-llamar-button{
+.re-llamar-button{
 	float: none !important;
 }
 
-#options-form:liberar-button{
+.liberar-button{
 	float: none !important;
 }
 
-#options-form:atender-button:hover{
+.atender-button:hover{
 	background-color: #fd1a1a!important;
 	float: none !important;
 }
 
-#ver-atrasados-button{
+.ver-atrasados-button{
 	float: none !important;
 }
 
-#ver-pausados-button{
+.ver-pausados-button{
 	float: none !important;
 }
 
-#options-form:llamar-siguiente-button{
-	float: none !important;
-}
-#options-form:temporal{
+.llamar-siguiente-button{
 	float: none !important;
 }
 
 .top-line{
 	padding: 5px 0px;	
+}
+
+.num-line{
+	display: block;
+    border: none;
+    background: transparent;
+    margin: 0;
+    width: 100%;
+    cursor: pointer;
 }
 
 .data-line{
@@ -87,6 +83,13 @@
     border: 1px solid black;
     display: inline;
     padding: 5px;
-    float: right;
-    width: 50%;
+    float: left;
+    width: 60%;
+    margin: 10px;
+    overflow-y: scroll;
+    max-height: 80px;
+}
+
+a{
+	color: black;
 }

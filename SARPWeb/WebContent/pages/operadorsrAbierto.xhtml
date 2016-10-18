@@ -14,9 +14,9 @@
 	<div class="page-container">
 		<div class="page-title-container">
 			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
-			<div class="page-title"> ➨  Atención </div>
+			<div class="page-title page-title-last"> ➨  Atención </div>
 			<h:form>
-				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:commandButton class="action-button deactivated" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>	
 		</div>
 		<div class="page-frame">
@@ -36,23 +36,25 @@
 					</h:form>
 				</div>
 			</div>
-			<div id="prox-nums-frame" class="prox-nums-frame">
-				<div class="data-line">
-					<div class="label"> Próx. Números: </div>
-					<div class="data-line text-box"> 
-						<div> SD1001  </div> 
-						<div> SD1004 </div> 
-						<div> SD701 </div>
-						<div> SD453 </div>
+			<div id="prox-nums-frame" class="prox-nums-frame">				
+				<div class='data-line'>
+					<div class='label'>Próx. Números:</div>
+					<div class='text-box'>
+						<ui:repeat value='#{puesto.listarNumeros()}' var='n'>
+							<h:form>
+								<h:commandButton class="num-line" value="#{n.externalId}" action="#{puesto.seleccionarNumero(n.id,n.externalId,n.hora,n.estado,n.prioridad,n.idTramite,n.idSector)}"/>
+							</h:form>
+						</ui:repeat>
 					</div>
 				</div>
-				<button class="action-button"> Actualizar</button>
+				<h:form id='form-actualizar'>
+					<h:commandButton class="action-button" value="Actualizar" action="#{puesto.listarNumeros()}"/>
+				</h:form>
 			</div>
 			<div class="bottom-form">
-				<h:form id='form-llamar'>
-					<h:commandButton class="action-button" id="ver-atrasados-button" value="Ver Atrasados"/>
-					<h:commandButton class="secondary-button" id="ver-pausados-button" value="Ver Pausados" />
-					<h:commandButton id='llamar-siguiente-button' class="action-button" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/>
+				<h:form>
+					<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
+					<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
 				</h:form>
 			</div>
 		</div>

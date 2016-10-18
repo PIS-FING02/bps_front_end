@@ -25,6 +25,7 @@ public class PuestoBean {
 	private String nombre;
 	//atributos del numero
 	private Integer id;
+	private String externalId;
 	private String hora;
 	private String fecha;
 	private String estadoNumero;
@@ -103,6 +104,22 @@ public class PuestoBean {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getExternalId() {
+		return externalId;
+	}
+
+	public void setExternalId(String externalId) {
+		this.externalId = externalId;
 	}
 
 	public String getHora() {
@@ -234,13 +251,16 @@ public class PuestoBean {
 	}
 	
 	public String llamarNumero() throws Exception{
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, null, null, null);
-		JSONNumero jnumero = modeler.toJSONNumero(c.llamarNumero(jpuesto.toString(), "Operador"));
-		this.numero = Integer.parseInt(jnumero.getExternalId());
+		String num = c.llamarNumero(this.maquina, "Operador");
+		System.out.print(num);
+		JSONNumero jnumero = modeler.toJSONNumero(num);
+		this.externalId = jnumero.getExternalId(); 
 		this.prioridad = jnumero.getPrioridad();
-		String[] arrayFechaHora = jnumero.getHora().split("-");
-		this.fecha = arrayFechaHora[0];
-		this.hora = arrayFechaHora[1];
+		if(this.prioridad.equals(1)){
+			String[] arrayFechaHora = jnumero.getHora().split("-");
+			this.fecha = arrayFechaHora[0];
+			this.hora = arrayFechaHora[1];
+		}
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorsrAtencion.xhtml"; 
 		}else{
@@ -257,17 +277,65 @@ public class PuestoBean {
 			return "/pages/operadorAbierto.xhtml";
 		}
 	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 	
 	public String hideError(){
 		this.error="hidden";
 		return "/pages/respSector.xhtml";
+	}
+	
+	public List<JSONNumero> listarNumeros() throws Exception{
+		/*List<JSONNumero> test = new ArrayList<JSONNumero>();
+		test.add(new JSONNumero(1,"1","01/01/1901-01:01","ESPERA",1,5,"5"));
+		test.add(new JSONNumero(2,"2","02/02/1902-02:02","ESPERA",1,5,"5"));
+		test.add(new JSONNumero(3,"3","","ESPERA",2,5,"5"));
+		return test;*/
+		return modeler.toJSONNumeros(c.listarNumeros(this.maquina,"Operador"));
+	}
+	
+	public String seleccionarNumero(String id,String externalId,String hora,String estado,String prioridad,String idTramite,String idSector){
+		this.id = Integer.parseInt(id);
+		this.externalId = externalId;
+		this.estadoNumero = estado;
+		this.prioridad = Integer.parseInt(prioridad);
+		if(this.prioridad.equals(1)){
+			String[] arrayFechaHora = hora.split("-");
+			this.fecha = arrayFechaHora[0];
+			this.hora = arrayFechaHora[1];
+		}else{
+			this.fecha = "";
+			this.hora = "";
+		}
+		this.idTramite = Integer.parseInt(idTramite);
+		this.idSector = idSector;
+		//llamar el numero seleccionado
+		return "/pages/operadorsrAtencion.xhtml";
+	}
+
+	public List<JSONNumero> listarNumerosPausados() throws Exception{
+		return null;
+		//modeler.toJSONNumeros(c.listarNumerosPausados(this.maquina,"Operador"));
+	}
+	
+	public List<JSONNumero> listarNumerosAtrasados() throws Exception{
+		return null;
+		//modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina,"Operador"));
+	}
+	
+	public String volver(){
+		if(roles.contains("OPERADORSR")){
+			return "/pages/operadorsrAbierto.xhtml";
+		}else{
+			return "/pages/operadorAbierto.xhtml";
+		}
+	}
+	
+	public String verPausados(){
+		//atrasar numero y liberar puesto cuando viene de pantalla de atencion
+		return "/pages/operadorPausados.xhtml";
+	}
+
+	public String verAtrasados(){
+		//atrasar numero y liberar puesto cuando viene de pantalla de atencion
+		return "/pages/operadorAtrasados.xhtml";
 	}
 }

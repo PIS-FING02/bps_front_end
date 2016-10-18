@@ -3,7 +3,6 @@ package com.sarp.controllers;
 import com.sarp.facade.PuestoFacade;
 import com.sarp.facade.SectorFacade;
 import com.sarp.facade.TramiteFacade;
-import com.sarp.jsons.JSONNumero;
 import com.sarp.facade.AttentionsFacade;
 import com.sarp.facade.DisplayFacade;
 
@@ -115,10 +114,13 @@ public class ControladorREST {
 
 	public String asignarDisplayoSector(String input, String userRol) {
 		return this.sectorFacade.asignarDisplaySector(input,userRol);
-		
 	}
 
-	public String llamarNumero(String input, String userRol){
-		return this.attentionsFacade.llamarNumero(input, userRol);
+	public String llamarNumero(String hparam, String userRol){
+		return this.attentionsFacade.llamarNumero(hparam, userRol);
+	}
+	
+	public String listarNumeros(String input, String userRol){
+		return this.attentionsFacade.listarNumeros(input, userRol);
 	}
 }
