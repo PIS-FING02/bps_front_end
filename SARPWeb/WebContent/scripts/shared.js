@@ -7,6 +7,7 @@ var listElements = document.getElementsByClassName('element-list');
 var entityActionButtons = document.getElementsByClassName('action-button-entity');
 var listActionButtons = document.getElementsByClassName('action-button-list');
 var formInputs = document.getElementsByClassName('formInput');
+var popupOpenButtons = document.getElementsByClassName('popup-open-button');
 
 var elementsToHide = [];
 var elementsToSelect = {
@@ -26,6 +27,16 @@ var elementsToSelect = {
 		"toSelect": false,
 		"selected": false
 	}
+}
+
+// BLOCK PAGE SCROLL WHEN POPUP OPEN
+for (var i = 0; i < popupOpenButtons.length; i++) {
+	popupOpenButtons[i].addEventListener('click', function(){ 
+		if (!this.classList.contains('deactivated')) {
+			popup.classList.remove("hidden");
+			document.getElementsByTagName("BODY")[0].classList.add('body-not-scroll')
+		}
+	}, false);
 }
 
 // SET ACTION BUTTONS DISABLED ON PAGE LOAD
@@ -77,6 +88,7 @@ cancelButton.addEventListener('click', function(){
 		lists[i].classList.remove('last-list');
 		lists[i].classList.remove('multiple-lists');
 	}	
+	document.getElementsByTagName("BODY")[0].classList.remove('body-not-scroll')
 }, false);
 
 //CLOSE POPUP AND CLEANUP
@@ -90,14 +102,13 @@ closeButton.addEventListener('click', function(){
 	}
 	for (var i = 0; i < entityActionButtons.length; i++) {
 		entityActionButtons[i].classList.add('hidden');
-//		entityActionButtons[i].classList.add('deactivated');
-//		entityActionButtons[i].disabled = true;
 	}	
 	var lists = document.getElementsByClassName('multiple-lists');
 	for (var i = 0; i < lists.length; i++) {
 		lists[i].classList.remove('last-list');
 		lists[i].classList.remove('multiple-lists');
 	}	
+	document.getElementsByTagName("BODY")[0].classList.remove('body-not-scroll')
 }, false);
 
 //HAS CLASS

@@ -20,7 +20,7 @@
 .popup h2 {
 	margin-top: 0;
 }
-
+ 
 .close-x {
     position: absolute;
     top: 13px;
@@ -48,7 +48,7 @@
     padding: 10px;
     margin-bottom: 10px;
     overflow-y: scroll;
-    max-height: 200px;
+    max-height: 350px;
 }
 
 .last-list {

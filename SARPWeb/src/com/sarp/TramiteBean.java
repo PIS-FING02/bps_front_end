@@ -60,7 +60,11 @@ public class TramiteBean {
 	public List<JSONTramite> listar() throws Exception{
 		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
 	}
-	
+
+	public List<JSONTramite> listarDePuesto(String puesto) throws Exception{
+		return modeler.toJSONTramites(c.listarTramitesPuesto(puesto, "ResponsableSector"));
+	}
+
 	public void setTramites(List<JSONTramite> tramites) {
 		this.tramites = tramites;
 	}

@@ -33,7 +33,7 @@
 				<div id='list-tramites-container' class='page-list'>
 					<h2 class='page-title list-title'>Tramites</h2>
 					<div class='list-container'>
-						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
+						<ui:repeat id='repeat-tramites' value="#{puesto.listarTramitesAsignables(param['id'])}" var='t'>
 							<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
 							<h:outputText class='element-list tramite-element' value='#{t.nombre}'/>
 						</ui:repeat>

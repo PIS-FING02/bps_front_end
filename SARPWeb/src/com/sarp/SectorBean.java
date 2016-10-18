@@ -116,7 +116,7 @@ public class SectorBean {
 		List<JSONSector> prueba = modeler.toJSONSectores(c.listarSectores("Administrador"));
 		return prueba;
 	}
-	
+
 	public void asignarTramiteSector() {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo,this.id);
 		String status = this.c.asignarTramiteSector( jsectortramite.toString(), "ResponsableSector");

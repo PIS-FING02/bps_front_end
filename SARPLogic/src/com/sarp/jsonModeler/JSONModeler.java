@@ -122,14 +122,11 @@ public class JSONModeler {
 		Integer prioridad = ((json.get("prioridad") == null) ? null : Integer.parseInt(json.get("prioridad").toString()));
 		Integer idTramite = ((json.get("idTramite") == null) ? null : Integer.parseInt(json.get("idTramite").toString()));
 		String idSector = ((json.get("idSector") == null) ? null : json.get("idSector").toString());
-		
-		
 		JSONNumero numero = new JSONNumero(id,externalId,hora,estado,prioridad,idTramite,idSector);
 		return numero;
 	}
 	
 	public List<JSONNumero> toJSONNumeros(String jsonNumero) throws Exception{
-
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(jsonNumero);
         JSONArray array = (JSONArray)obj;

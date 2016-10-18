@@ -118,6 +118,55 @@ public class RestClient {
 		return resultado.toString();
 
 	}
+	
+	public String doGet(String URL, String userRol, String headerParam){
+		StringBuilder resultado = new StringBuilder();
+		try{
+			URL url = new URL(URL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("user-rol",userRol);
+			conn.setRequestProperty("hparam",headerParam);
+			
+			if (conn.getResponseCode() != 200) {
+				resultado.append("Error");
+			}
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+	
+			String output;
+			System.out.println("RestClient GET con " + URL );
+			while ((output = br.readLine()) != null) {
+				resultado.append(output);
+			}
+	
+			conn.disconnect();
+			
+		}catch (MalformedURLException e) {
+			resultado = new StringBuilder();
+			resultado.append("resuest_error");
+			e.printStackTrace();
+	  } catch (IOException e) {
+			resultado = new StringBuilder();  
+			resultado.append("erorr_client");
+			e.printStackTrace();
+	  }catch (UnauthorizedException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_autothorized");
+		  e.printStackTrace();
+	  }catch (InternalServerErrorException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("error_server");
+		  e.printStackTrace();
+	  }catch (NotFoundException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_found_error");
+		  e.printStackTrace();
+	  }
+		return resultado.toString();
+
+	}
 
 	public String doGet(String URL, String userRol, String headerParam){
 		StringBuilder resultado = new StringBuilder();

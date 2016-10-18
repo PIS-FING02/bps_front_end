@@ -8,6 +8,10 @@ body{
 	margin: 0;
 }
 
+.body-not-scroll {
+	overflow: hidden;
+}
+
 .page-container {
     width: 624px;
     float: left;
@@ -68,6 +72,7 @@ body{
 }
 
 .option-button {
+	word-break: break-all;
 	width: 131px;
     height: 100px;
     margin: 10px;
