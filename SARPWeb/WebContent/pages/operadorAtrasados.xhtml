@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+<head>
+	<title>Pantalla de Atención</title>
+	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/operador.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
+</head>
+<body>
+	<div class="page-container">
+		<div class="page-title-container">
+			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
+			<div class="page-title page-title-last"> ➨  Atención </div>
+			<h:form>
+				<h:commandButton class="action-button deactivated" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			</h:form>	
+		</div>
+		<div class="page-frame">
+			<div class="top-frame">
+				<c:set value="#{loginBean.username}" target="#{puesto}" property="usuarioId" />
+				<c:set value="#{loginBean.getRoles()}" target="#{puesto}" property="roles" />
+				<c:set value="maq1" target="#{puesto}" property="maquina" />
+				<div class="left-frame">
+					<div class="top-line"> Puesto: #{puesto.maquina}</div>
+					<div class="top-line"> Sectores: </div>
+					<div class="top-line"> Trámites: </div>
+				</div>
+				<div class="right-frame">
+					<div id="nros-espera" class="top-line"> Números en espera: </div>
+					<h:form id='form-cerrar'>
+						<h:commandButton id='cerrar-puesto-button' class="secondary-button estado-puesto-button" value="Cerrar Puesto" action="#{puesto.cerrar}"/>
+					</h:form>
+				</div>
+			</div>
+			<div id="prox-nums-frame" class="prox-nums-frame">				
+				<div class='data-line'>
+					<div class='label'>Números Atrasados:</div>
+					<div class='text-box'>
+						<ui:repeat value='#{puesto.listarNumerosAtrasados()}' var='n'>
+							<h:form>
+								<h:commandButton class="num-line" value="#{n.externalId}" action="#{puesto.seleccionarNumero(n.id,n.externalId,n.hora,n.estado,n.prioridad,n.idTramite,n.idSector)}"/>
+							</h:form>
+						</ui:repeat>
+					</div>
+				</div>
+				<h:form id='form-actualizar'>
+					<h:commandButton class="action-button" value="Actualizar" action="#{puesto.listarNumerosAtrasados()}"/>
+				</h:form>
+			</div>
+			<div class="bottom-form">
+				<h:form>
+					<h:commandButton class="secondary-button" value="Volver" action="#{puesto.volver}"/>
+				</h:form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

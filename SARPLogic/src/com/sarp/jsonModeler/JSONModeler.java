@@ -124,7 +124,21 @@ public class JSONModeler {
 		String idSector = ((json.get("idSector") == null) ? null : json.get("idSector").toString());
 		
 		
-		JSONNumero sector = new JSONNumero(id,externalId,hora,estado,prioridad,idTramite,idSector);
-		return sector;
+		JSONNumero numero = new JSONNumero(id,externalId,hora,estado,prioridad,idTramite,idSector);
+		return numero;
+	}
+	
+	public List<JSONNumero> toJSONNumeros(String jsonNumero) throws Exception{
+
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(jsonNumero);
+        JSONArray array = (JSONArray)obj;
+        List<JSONNumero> numerosReturn = new ArrayList<JSONNumero>();
+        
+    	Iterator<JSONObject> iterator = array.iterator();
+    	while (iterator.hasNext()) {
+    		numerosReturn.add(this.toJSONNumero(iterator.next().toJSONString()));
+    	}
+		return numerosReturn;		
 	}
 }
