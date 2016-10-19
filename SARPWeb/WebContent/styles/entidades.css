@@ -25,15 +25,35 @@
     box-sizing: border-box;
 }
 
-.icon {    
-	float: right;
-	background: #4e769b;
+.icon {
+    float: right;
+    background: #4e769b;
     border: none;
     color: white;
     font-weight: bold;
     padding: 5px;
-    border-radius: 2px;
+    border-radius: 3px;
     margin: 0 5px;
+    cursor: pointer;
+}
+
+.asignar-container {
+    display: inline;
+    width: 120px;
+    float: right;
+    right: 10px;
+    position: absolute;
+    background: #4e769b;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.asignar-container .icon {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 3px;
+    margin: 0;
 }
 
 .icon:hover {
@@ -50,3 +70,7 @@
 	display: block;
 	cursor: pointer;
 }
+
+.baja-button {
+	background-color: #ea0303 !important;
+}	

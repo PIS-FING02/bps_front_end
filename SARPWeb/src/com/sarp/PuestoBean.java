@@ -100,9 +100,17 @@ public class PuestoBean {
 	public List<JSONPuesto> listar() throws Exception{
 		return modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
 	}
-	
+
 	public List<JSONTramite> listarDeSector() throws Exception{
-		return modeler.toJSONTramites(c.listarTramiteSector(this.maquina, "ResponsableSector"));
+		return modeler.toJSONTramites(c.listarTramitesSector(this.maquina, "ResponsableSector"));
+	}
+
+	public List<JSONTramite> listarTramitesAsignables(String maquina) throws Exception{
+		if (!maquina.equals("")){
+			return modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "ResponsableSector"));
+		} else {
+			return null;
+		}
 	}
 	
 	public void asignarTramitePuesto(){

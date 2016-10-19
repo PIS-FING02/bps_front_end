@@ -5,6 +5,7 @@ import com.sarp.facade.SectorFacade;
 import com.sarp.facade.TramiteFacade;
 import com.sarp.facade.AttentionsFacade;
 import com.sarp.facade.DisplayFacade;
+import com.sarp.facade.NumeroFacade;
 
 public class ControladorREST {
 
@@ -12,6 +13,7 @@ public class ControladorREST {
 	TramiteFacade tramiteFacade;
 	DisplayFacade displayFacade;
 	SectorFacade sectorFacade;
+	NumeroFacade numeroFacade;
 	AttentionsFacade attentionsFacade;
 	
 	public ControladorREST(){
@@ -20,9 +22,14 @@ public class ControladorREST {
 		this.displayFacade = new DisplayFacade();
 		this.sectorFacade = new SectorFacade();
 		this.attentionsFacade = new AttentionsFacade();
+		this.numeroFacade = new NumeroFacade();
 	}
 
-
+	//NUMEROS
+	public String sacarNumero(String input, String userRol) throws Exception {
+		return this.numeroFacade.sacar(input, userRol);
+	}
+	
 	//PUESTOS
 	public String listarPuestos(String userRol) throws Exception {
 		return this.puestoFacade.puestosAll(userRol);
@@ -43,14 +50,22 @@ public class ControladorREST {
 	public String asignarTramite(String input, String userRol) {
 		return this.puestoFacade.asignarTramite(input, userRol);
 	}
+
+	public String listarTramitesAsignables(String input, String userRol) {
+		return this.puestoFacade.listarTramitesAsignables(input, userRol);
+	}
 	
 	//TRAMITES
 	public String listarTramite(String userRol) throws Exception {
 		return this.tramiteFacade.tramitesAll(userRol);
 	}
 
-	public String listarTramiteSector(String input, String userRol) throws Exception {
+	public String listarTramitesSector(String input, String userRol) throws Exception {
 		return this.tramiteFacade.tramitesSector(input, userRol);
+	}
+
+	public String listarTramitesPuesto(String input, String userRol) throws Exception {
+		return this.tramiteFacade.tramitesPuesto(input, userRol);
 	}
 
 	public String altaTramite(String input, String userRol) throws Exception {
@@ -83,18 +98,15 @@ public class ControladorREST {
 	}
 	
 	//SECTORES
+	public String importarSectoreGafu(String userRol)  {
+		return this.sectorFacade.importarSectoresGafu(userRol);
+	}
 	
-		public String importarSectoreGafu(String userRol)  {
-			return this.sectorFacade.importarSectoresGafu(userRol);
-		}
-		
-		public String listarSectores(String userRol)  {
-			return this.sectorFacade.sectoresAll(userRol);
-		}
-
+	public String listarSectores(String userRol)  {
+		return this.sectorFacade.sectoresAll(userRol);
+	}
 
 	//ATENCION
-
 	public String abrirPuesto(String input, String userRol){
 		return this.attentionsFacade.abrir(input, userRol);
 	}
@@ -111,9 +123,8 @@ public class ControladorREST {
 		return this.sectorFacade.asignarPuestoSector(input, userRol);
 	}
 
-
 	public String asignarDisplayoSector(String input, String userRol) {
-		return this.sectorFacade.asignarDisplaySector(input,userRol);
+		return this.sectorFacade.asignarDisplaySector(input,userRol);	
 	}
 
 	public String llamarNumero(String hparam, String userRol){

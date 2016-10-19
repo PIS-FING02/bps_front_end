@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../styles/recepcion.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 </head> 
 
 <body> 
@@ -16,36 +17,19 @@
 	<div class="page-container recepcion-page">
 		<div class="page-title-container">
 			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
-			<h2 class="page-title"> ➨   Entrega de Números </h2>
+			<h2 class="page-title page-title-last"> ➨   Entrega de Números </h2>
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div>
 		<div class="page-frame">
 			<div class="frame-title"> Nuevo Número </div>	
+						
+			<ui:repeat id='repeat-tramites' class="options-buttons-container" value="#{tramite.listarDePuesto(puesto.getRecepcionTest())}" var='t'>
+				<div tramiteId='#{t.tramiteId}' tramiteNombre='#{t.tramiteNombre}' sectorId='#{t.sectorId}' sectorNombre='#{t.sectorNombre}' class='hidden'/>
+				<h:outputText class='option-button ' value='#{t.sectorNombre} #{t.tramiteNombre}'/>
+			</ui:repeat>
 			
-			<div class="options-buttons-container">
-				<button class="option-button" id="secATram4">Sector A Trámite 4 </button>
-				<button class="option-button" id="secATram3">Sector A Trámite 3 </button>
-				<button class="option-button" id="secATram2">Sector A Trámite 2 </button>
-				<button class="option-button" id="secATram1">Sector A Trámite 1 </button>
-				
-				<button class="option-button" id="secBTram4">Sector B Trámite 4 </button>
-				<button class="option-button" id="secBTram3">Sector B Trámite 3 </button>
-				<button class="option-button" id="secBTram2">Sector B Trámite 2 </button>
-				<button class="option-button" id="secBTram1">Sector B Trámite 1 </button>
-				
-				<button class="option-button" id="secCTram4">Sector C Trámite 4 </button>
-				<button class="option-button" id="secCTram3">Sector C Trámite 3 </button>
-				<button class="option-button" id="secCTram2">Sector C Trámite 2 </button>
-				<button class="option-button" id="secCTram1">Sector C Trámite 1 </button>
-				
-				<button class="option-button" id="secDTram4">Sector D Trámite 4 </button>
-				<button class="option-button" id="secDTram3">Sector D Trámite 3 </button>
-				<button class="option-button" id="secDTram2">Sector D Trámite 2 </button>
-				<button class="option-button" id="secDTram1">Sector D Trámite 1 </button>
-			</div>
-				
 			<div class="options-footer">
 				<div class="reference-container"> 
 					<div class="color-reference no-select-color-reference"></div>
@@ -53,9 +37,9 @@
 				</div>
 				<div class="reference-container">
 					<div class="color-reference"></div>
-				<div> Seleccionado</div>
+					<div> Seleccionado</div>
 				</div>
-				<div class="action-button deactivated" id="open-popup-button">Confirmar Número</div>
+				<div class="action-button popup-open-button deactivated" id="open-popup-button">Confirmar Número</div>
 			</div>	
 		</div>
 	</div>	
@@ -64,26 +48,35 @@
 			<h2 class="sub-title">Confirmar Número</h2>
 			<div id="popup-close-button" class="close-x">&times;</div>
 			<div class="content">
-				<div class="form-line">Número para: Sector y Trámite</div>
-				<h:form>
+				<h:form id='numero-form'>
+					<h:inputText id="tramite-selected" class="form-line hidden" value="#{numero.idTramite}" />
+					<h:inputText id="sector-selected" class="form-line hidden" value="#{numero.idSector}" />
 					<div class="form-line">
-						<h:outputLabel for="name" value="Nombre: " />
-						<h:inputText id="name" class="formInput" value="#{confNumBean.name}" />
+						<label >Sector: </label>
+						<input class="sector-selected" readonly="readonly"></input>
+					</div>
+					<div class="form-line">	
+						<label >Tramite: </label>
+						<input class="tramite-selected" readonly="readonly"></input>
 					</div>
 					<div class="form-line">
-						<h:outputLabel for="lastname" value="Apellido: " />
-						<h:inputText id="lastname" class="formInput" value="#{confNumBean.lastname}" />
+						<h:outputLabel for="nombre" value="Nombre: " />
+						<h:inputText id="nombre" class="formInput" value="#{numero.nombreCompleto}" />
 					</div>
 					<div class="form-line">
-						<h:outputLabel for="typedoc" value="Tipo de Doc.: " />
-						<h:inputText id="typedoc" class="formInput" value="#{confNumBean.typedoc}" />
+						<h:outputLabel for="tipoDoc" value="Tipo de Doc.: " />
+						<h:inputText id="tipoDoc" class="formInput" value="#{numero.tipoDoc}" />
 					</div>
 					<div class="form-line">
-						<h:outputLabel for="numdoc" value="Núm. Doc.: " />
-						<h:inputText id="numdoc" class="formInput" value="#{confNumBean.numdoc}" />
+						<h:outputLabel for="doc" value="Núm. Doc.: " />
+						<h:inputText id="doc" class="formInput" value="#{numero.doc}" />
+					</div>
+					<div class="form-line">
+						<h:outputLabel for="hora" value="Hora: " />
+						<h:inputText id="hora" class="formInput" value="#{numero.hora}" />
 					</div>
 					<div class="buttons-container">
-						<h:commandButton class="action-button" value="Imprimir" action="#{confNumBean.print()}" /> 
+						<h:commandButton class="action-button" value="Imprimir" action="#{numero.sacarNumero()}" /> 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 				</h:form>

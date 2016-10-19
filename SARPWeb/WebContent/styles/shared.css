@@ -8,6 +8,10 @@ body{
 	margin: 0;
 }
 
+.body-not-scroll {
+	overflow: hidden;
+}
+
 .page-container {
     width: 624px;
     float: left;
@@ -51,7 +55,7 @@ body{
     position: relative;
     float: left;
     left: calc((100% - 624px)/2);
-    min-width: 600px;
+    min-width: 624px;
 }
 
 .frame-title{
@@ -68,6 +72,7 @@ body{
 }
 
 .option-button {
+	word-break: break-all;
 	width: 131px;
     height: 100px;
     margin: 10px;

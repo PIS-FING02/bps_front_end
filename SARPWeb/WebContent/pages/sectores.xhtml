@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-	<title>Pantalla Administrador</title>
+	<title>Pantalla Sectores</title>
 
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
@@ -29,10 +29,13 @@
 				<ui:repeat id='repeat-puestos' value='#{sector.listar()}' var='sectores'>
 					<div idSector='#{sectores.sectorId}' nombre='#{sectores.nombre}' ruta='#{sectores.ruta}' class='hidden'/>
 					<div class='list-entity puesto-element'>
-						<h:outputText class='element-list puesto-element' value='#{sectores.sectorId} '/>
-						<a id='asignar-tramite' class='icon asignar-sector-button tipo-puesto asig-tramite' href=''>Asignar Tramite</a>
-						<a id='asignar-puesto' class='icon asignar-puesto-button tipo-puesto asig-tramite' href=''>Asignar Puesto</a>
-						<a id='asignar-display' class='icon asignar-display-button tipo-puesto asig-tramite' href=''> Asignar Display</a>
+						<h:outputText class='element-list puesto-element' value='#{sectores.nombre} '/>
+						<div class='icon icon-container'>Asignar</div>
+						<div id='asignar-container' class='asignar-container hidden'>
+							<a id='asignar-tramite' class='icon asignar-sector-button tipo-puesto asig-tramite' href=''>Asignar Tramite</a>
+							<a id='asignar-puesto' class='icon asignar-puesto-button tipo-puesto asig-tramite' href=''>Asignar Puesto</a>
+							<a id='asignar-display' class='icon asignar-display-button tipo-puesto asig-tramite' href=''> Asignar Display</a>
+						</div>
 					</div>
 				</ui:repeat>
 			</div>

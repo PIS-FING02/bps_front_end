@@ -126,8 +126,8 @@ public class RestClient {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
-			conn.setRequestProperty("user-rol",userRol);
-			conn.setRequestProperty("hparam",headerParam);
+			conn.setRequestProperty("user-rol", userRol);
+			conn.setRequestProperty("hparam", headerParam);
 			
 			if (conn.getResponseCode() != 200) {
 				resultado.append("Error");
@@ -140,9 +140,7 @@ public class RestClient {
 			while ((output = br.readLine()) != null) {
 				resultado.append(output);
 			}
-	
 			conn.disconnect();
-			
 		}catch (MalformedURLException e) {
 			resultado = new StringBuilder();
 			resultado.append("resuest_error");
@@ -165,7 +163,6 @@ public class RestClient {
 		  e.printStackTrace();
 	  }
 		return resultado.toString();
-
 	}
 
 	

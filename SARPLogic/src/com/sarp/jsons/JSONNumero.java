@@ -10,13 +10,11 @@ public class JSONNumero {
 	String hora;
 	String estado;
 	Integer prioridad;
-	//JSONDatosComp datosComplementarios;
+	JSONDatosComp datosComplementarios;
 	Integer idTramite;
 	String idSector;
 	
 	public JSONNumero(){}
-	
-
 
 	public JSONNumero(Integer id, String externalId, String hora, String estado, Integer prioridad, Integer idTramite,
 			String idSector) {
@@ -30,8 +28,14 @@ public class JSONNumero {
 		this.idSector = idSector;
 	}
 
-
-
+	public JSONDatosComp getDatosComplementarios() {
+		return this.datosComplementarios;
+	}
+	
+	public void setDatosComplementarios(JSONDatosComp jdatos){
+		this.datosComplementarios = jdatos;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -87,25 +91,43 @@ public class JSONNumero {
 	public void setIdSector(String idSector) {
 		this.idSector = idSector;
 	}
+	
+	public String toStringSacar() {
+		String hora = this.hora!= null ? this.hora : "null";
+		String prioridad = this.prioridad!= null ? this.prioridad.toString() : "null";
+		String idTramite = this.idTramite!= null ? this.idTramite.toString() : "null";
+		String idSector = this.idSector!= null ? this.idSector : "null";
+		String datosComplementarios = this.datosComplementarios != null ? this.datosComplementarios.toString() : "null";
+	 	
+        return "{\n"
+     			+ "\"hora\":\"" + hora + "\",\n"
+    	    	+ "\"datosComplementarios\":" + datosComplementarios + ",\n"
+     			+ "\"prioridad\":\"" + prioridad + "\",\n"
+     			+ "\"idTramite\":\"" + idTramite + "\",\n"
+     			+ "\"idSector\":\"" + idSector + "\"\n"
+        		+ "}";
+    }
 
-	 @Override
-	    public String toString() {
-		 	String id = this.id!= null ? this.id.toString() : "null";
-			String externalId = this.externalId!= null ? this.externalId : "null";
-			String hora = this.hora!= null ? this.hora : "null";
-			String estado = this.estado!= null ? this.estado : "null";
-			String prioridad = this.prioridad!= null ? this.prioridad.toString() : "null";
-			String idTramite = this.idTramite!= null ? this.idTramite.toString() : "null";
-			String idSector = this.idSector!= null ? this.idSector : "null";
-		 	
-	        return "{\n"
-	        		+ "\"id\":" + id + ",\n"
-	        		+ "\"externalId\":\"" + externalId + "\"\n"
-	     			+ "\"hora\":\"" + hora + "\"\n"
-	     			+ "\"estado\":\"" + estado + "\"\n"
-	     			+ "\"prioridad\":\"" + prioridad + "\"\n"
-	     			+ "\"idTramite\":\"" + idTramite + "\"\n"
-	     			+ "\"idSector\":\"" + idSector + "\"\n"
-	        		+ "}";
-	    }
+	@Override
+    public String toString() {
+	 	String id = this.id!= null ? this.id.toString() : "null";
+		String externalId = this.externalId!= null ? this.externalId : "null";
+		String hora = this.hora!= null ? this.hora : "null";
+		String estado = this.estado!= null ? this.estado : "null";
+		String prioridad = this.prioridad!= null ? this.prioridad.toString() : "null";
+		String idTramite = this.idTramite!= null ? this.idTramite.toString() : "null";
+		String idSector = this.idSector!= null ? this.idSector : "null";
+		String datosComplementarios = this.datosComplementarios != null ? this.datosComplementarios.toString() : "null";
+	 	
+        return "{\n"
+        		+ "\"id\":\"" + id +"\",\n"
+        		+ "\"externalId\":\"" + externalId + "\",\n"
+     			+ "\"hora\":\"" + hora + "\",\n"
+    	     	+ "\"estado\":\"" + estado +"\",\n"
+    	    	+ "\"datosComplementarios\":" + datosComplementarios + ",\n"
+     			+ "\"prioridad\":\"" + prioridad + "\",\n"
+     			+ "\"idTramite\":\"" + idTramite + "\",\n"
+     			+ "\"idSector\":\"" + idSector + "\"\n"
+        		+ "}";
+    }
 }

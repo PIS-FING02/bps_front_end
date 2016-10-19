@@ -25,54 +25,53 @@
 			</h:form>
 		</div> 
 		<div class="page-frame">
-				<h:form id='form-asociacion'>
-						<h:outputText id='es-sector' class='hidden' value="#{param['esSec']}" />
-						<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
-						<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
-						<!--  TRAMITE -->
-						<div id='list-puestos-container' class='page-list'>
-							<h2 class='page-title list-title'>Puestos</h2>
-							<div class='list-container'>
-								<ui:repeat id='repeat-tramites' value='#{puesto.listar()}' var='p'>
-									<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
-									<h:outputText class='element-list tramite-element' value='#{p.nombreMaquina}'/>
-								</ui:repeat>
-							</div>
-						</div>
-						<div id="id-tramite-sector" class="form-line hidden">
-							<label for="tramite-id">Puesto</label>
-							<h:inputText id='id-puesto-selected' class="formInput" value="#{sector.id}" />
-						</div>
-						<div id="id-sector" class="form-line hidden">
-							<label for="sector-id">Asociacion</label>
-							<h:inputText id='id-puesto-sector-selected' class="formInput" value="#{sector.nombreMaquina}" />
-						</div>
-					<div class="buttons-container">
-					<f:ajax render=":form-error:text">
-						<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list ' value="Aceptar" action="#{sector.asignarPuestoSector()}"/> 
-					</f:ajax>
+			<h:form id='form-asociacion'>
+				<h:outputText id='es-sector' class='hidden' value="#{param['esSec']}" />
+				<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
+				<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
+				<!--  TRAMITE -->
+				<div id='list-puestos-container' class='page-list'>
+					<h2 class='page-title list-title'>Puestos</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-tramites' value='#{puesto.listar()}' var='p'>
+							<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
+							<h:outputText class='element-list tramite-element' value='#{p.nombreMaquina}'/>
+						</ui:repeat>
 					</div>
-				</h:form>
-				<h:form id='form-error'>
-				<h:panelGroup id="text" rendered="#{sector.error== 'show'}">
-					<div id="action-popup">
-						<div class="popup">
-							<h2 id="popup-title" class="sub-title">Mensaje error</h2>
-							<div class="content">
-								<h:outputText value="#{sector.error_message}" />
-								<h:form id='form-tramite'>
-									<div class="buttons-container">
-										<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{sector.hideError()}" />  
-									</div>
-								</h:form>
-							</div>
-						</div>
-					</div>
-				</h:panelGroup>
-		</h:form>
-			</div>
+				</div>
+				<div id="id-tramite-sector" class="form-line hidden">
+					<label for="tramite-id">Puesto</label>
+					<h:inputText id='id-puesto-selected' class="formInput" value="#{sector.id}" />
+				</div>
+				<div id="id-sector" class="form-line hidden">
+					<label for="sector-id">Asociacion</label>
+					<h:inputText id='id-puesto-sector-selected' class="formInput" value="#{sector.nombreMaquina}" />
+				</div>
+				<div class="buttons-container">
+				<f:ajax render=":form-error:text">
+					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list ' value="Aceptar" action="#{sector.asignarPuestoSector()}"/> 
+				</f:ajax>
+				</div>
+			</h:form>
 		</div>
-	
+	</div>
+	<h:form id='form-error'>
+		<h:panelGroup id="text" rendered="#{sector.error== 'show'}">
+			<div id="action-popup" class='popup-overlay'>
+				<div class="popup">
+					<h2 id="popup-title" class="sub-title">Mensaje error</h2>
+					<div class="content">
+						<h:outputText value="#{sector.error_message}" />
+						<h:form id='form-tramite'>
+							<div class="buttons-container">
+								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{sector.hideError()}" />  
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</h:panelGroup>
+	</h:form>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 <script type="text/javascript" src="../scripts/lists.js"></script>
