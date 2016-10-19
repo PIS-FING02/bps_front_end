@@ -46,11 +46,20 @@ public class PuestoBean {
 	//JSONNumero numeroAsignado;
 
 	public String getOperadorTest(){
-		return UtilService.getStringProperty("MAQUINA_OPERADOR_TEST");
+		try{
+			return UtilService.getStringProperty("MAQUINA_OPERADOR_TEST");
+		}catch (Exception e){
+			return "maq1";
+		} 
 	}
 	
 	public String getRecepcionTest(){
-		return UtilService.getStringProperty("MAQUINA_RECEPCION_TEST");
+		try{
+			return UtilService.getStringProperty("MAQUINA_RECEPCION_TEST");	
+		}catch (Exception e){
+			return "maq2";
+		}
+		
 	}
 	
 	public void alta() throws Exception{
