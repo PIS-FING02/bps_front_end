@@ -1,7 +1,7 @@
 package com.sarp;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +10,7 @@ import org.jboss.security.SecurityContextAssociation;
 
 
 @ManagedBean(name = "loginBean", eager = true)
-@ApplicationScoped
+@SessionScoped
 public class LoginBean {
 
 	private String username = "Bienvenido";

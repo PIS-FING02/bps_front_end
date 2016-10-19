@@ -2,8 +2,9 @@ package com.sarp;
 
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONNumero;
@@ -13,7 +14,7 @@ import com.sarp.jsons.JSONTramite;
 import com.sarp.utils.UtilService;
 
 @ManagedBean(name = "puesto", eager = true)
-@ApplicationScoped
+@SessionScoped
 public class PuestoBean {
 	
 	private String maquina;
