@@ -70,3 +70,7 @@
 	display: block;
 	cursor: pointer;
 }
+
+.baja-button {
+	background-color: #ea0303 !important;
+}	

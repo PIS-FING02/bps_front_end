@@ -124,7 +124,7 @@ for (var i = 0; i < asignarTramitePuesto.length; i++) {
 			this.href = 'listaTramites.xhtml?esSec=true&id=' + id;
 		} else {
 			var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
-			this.href = 'listaTramites.xhtml?esSec=false&id=' + id;
+			this.href = 'listaTramitesDePuesto.xhtml?esSec=false&id=' + id;
 		}
 	}, false);
 }	

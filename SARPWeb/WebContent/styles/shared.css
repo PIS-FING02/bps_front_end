@@ -55,7 +55,7 @@ body{
     position: relative;
     float: left;
     left: calc((100% - 624px)/2);
-    min-width: 600px;
+    min-width: 624px;
 }
 
 .frame-title{

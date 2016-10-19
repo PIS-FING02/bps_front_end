@@ -51,23 +51,6 @@
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
-			<h:form id='form-error'>
-				<h:panelGroup id="text" rendered="#{tramite.error== 'show'}">
-					<div id="action-popup">
-						<div class="popup">
-							<h2 id="popup-title" class="sub-title">Advertencia</h2>
-							<div class="content">
-								<h:outputText value="#{tramite.error_message}" />
-								<h:form id='form-tramite'>
-									<div class="buttons-container">
-										<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{tramite.hideError()}" />  
-									</div>
-								</h:form>
-							</div>
-						</div>
-					</div>
-					</h:panelGroup>
-		</h:form>
 		</div> 
 		<div class="page-frame">
 			<div id='list-tramites-container' class='entity-list-container'>
@@ -82,8 +65,24 @@
 				</ui:repeat>
 			</div>
 		</div>
-		
 	</div>
+	<h:form id='form-error'>
+		<h:panelGroup id="text" rendered="#{tramite.error == 'show'}">
+			<div id="action-popup" class="popup-overlay">
+				<div class="popup">
+					<h2 id="popup-title" class="sub-title">Advertencia</h2>
+					<div class="content">
+						<h:outputText value="#{tramite.error_message}" />
+						<h:form id='form-tramite'>
+							<div class="buttons-container">
+								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{tramite.hideError()}" />  
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</h:panelGroup>
+	</h:form>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 </body> 

@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONTramite;
+import com.sarp.jsons.JSONTramiteRecepcion;
 
 @ManagedBean(name = "tramite", eager = true)
 @ViewScoped
@@ -61,8 +62,10 @@ public class TramiteBean {
 		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
 	}
 
-	public List<JSONTramite> listarDePuesto(String puesto) throws Exception{
-		return modeler.toJSONTramites(c.listarTramitesPuesto(puesto, "ResponsableSector"));
+	public List<JSONTramiteRecepcion> listarDePuesto(String puesto) throws Exception {
+		List<JSONTramiteRecepcion> hhhh = modeler.toJSONTramitesRecepcion(c.listarTramitesPuesto(puesto, "Recepcion"));
+		System.out.println(hhhh);
+		return hhhh;
 	}
 
 	public void setTramites(List<JSONTramite> tramites) {

@@ -17,11 +17,11 @@ closeButton.addEventListener('click', function(){
 for (var i = 0; i < optionButtons.length; i++) {
 	optionButtons[i].addEventListener('click', function(){
 		confirmButton.classList.remove('deactivated');
-		document.getElementById('numero-form:sector-selected').value = this.previousElementSibling.getAttribute('sector');
-		document.getElementById('numero-form:tramite-selected').value = this.previousElementSibling.getAttribute('tramite');
+		document.getElementById('numero-form:sector-selected').value = this.previousElementSibling.getAttribute('sectorid');
+		document.getElementById('numero-form:tramite-selected').value = this.previousElementSibling.getAttribute('tramiteid');
 		var hora = document.getElementById('date-time').innerHTML;
 		document.getElementById('numero-form:hora').value = hora.substr(0, 10) + '-' + hora.substr(11, 15).substr(0, 5);
-		document.getElementsByClassName('sector-selected')[0].value = this.previousElementSibling.getAttribute('sector');
-		document.getElementsByClassName('tramite-selected')[0].value = this.previousElementSibling.getAttribute('tramite');
+		document.getElementsByClassName('sector-selected')[0].value = this.previousElementSibling.getAttribute('sectornombre');
+		document.getElementsByClassName('tramite-selected')[0].value = this.previousElementSibling.getAttribute('tramitenombre');
     }, false);
 }

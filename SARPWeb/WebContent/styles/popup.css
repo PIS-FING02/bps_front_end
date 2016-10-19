@@ -8,8 +8,8 @@
 
 .popup {
 	position: relative;    
-	top: calc(50% - 200px);
-    transform: translateY(calc(50% - 200px));
+	top: 25%;
+    transform: translateY(50%);
 	margin: 0px auto;
     width: 380px;
     padding: 10px;
@@ -76,12 +76,13 @@
 
 
 .cancel-button {
-	background-color: #ea0303 !important;
+    background-color: transparent !important;
     font-weight: bold;
+    color: #ea0303 !important;
 }
 
 .cancel-button:hover {
-	background-color: #c50404 !important;
+	color: #c50404 !important;
 }
 
 .popup label {

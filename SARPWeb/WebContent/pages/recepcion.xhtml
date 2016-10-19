@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../styles/recepcion.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 </head> 
 
 <body> 
@@ -24,6 +25,7 @@
 		<div class="page-frame">
 			<div class="frame-title"> Nuevo Número </div>	
 			
+	<!-- 		<c:set value="#{puesto.getRecepcionTest()}" target="#{puesto}" property="maquina" /> -->
 			
 			<ui:repeat id='repeat-tramites' class="options-buttons-container" value="#{tramite.listarDePuesto('maq1')}" var='t'>
 				<div tramiteId='#{t.tramiteId}' tramiteNombre='#{t.tramiteNombre}' sectorId='#{t.sectorId}' sectorNombre='#{t.sectorNombre}' class='hidden'/>

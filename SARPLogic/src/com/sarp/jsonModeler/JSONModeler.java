@@ -12,6 +12,7 @@ import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONTramite;
+import com.sarp.jsons.JSONTramiteRecepcion;
 
 public class JSONModeler {
 
@@ -24,6 +25,13 @@ public class JSONModeler {
 	public JSONTramite toJSONTramite(String jsonTramite) throws Exception{
 		JSONObject json = (JSONObject)new JSONParser().parse(jsonTramite);
 		JSONTramite tramite = new JSONTramite(Integer.parseInt(json.get("codigo").toString()),json.get("nombre").toString());
+		return tramite;
+	}
+	
+	public JSONTramiteRecepcion toJSONTramiteRecepcion(String jsonTramite) throws Exception{
+		JSONObject json = (JSONObject)new JSONParser().parse(jsonTramite);
+		JSONTramiteRecepcion tramite = new JSONTramiteRecepcion(json.get("tramiteId").toString(), 
+				json.get("tramiteNombre").toString(), json.get("sectorId").toString(), json.get("sectorNombre").toString());
 		return tramite;
 	}
 	
@@ -66,7 +74,20 @@ public class JSONModeler {
 		return sector;
 	}
 	
-	
+	public List<JSONTramiteRecepcion> toJSONTramitesRecepcion(String jsonTramitesRecepcion) throws Exception {
+
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(jsonTramitesRecepcion);
+        JSONArray array = (JSONArray)obj;
+        List<JSONTramiteRecepcion> tramitesRecepcionReturn = new ArrayList<JSONTramiteRecepcion>();
+        
+    	Iterator<JSONObject> iterator = array.iterator();
+    	while (iterator.hasNext()) {
+    		JSONTramiteRecepcion g = this.toJSONTramiteRecepcion(iterator.next().toJSONString());
+    		tramitesRecepcionReturn.add(g);
+    	}
+		return tramitesRecepcionReturn;	
+	}
 	
 	public List<JSONSector> toJSONSectores(String jsonSector) throws Exception {
 
@@ -93,7 +114,9 @@ public class JSONModeler {
         
     	Iterator<JSONObject> iterator = array.iterator();
     	while (iterator.hasNext()) {
-    		tramitesReturn.add(this.toJSONTramite(iterator.next().toJSONString()));
+    		String hhh = iterator.next().toJSONString();
+    		JSONTramite tttt = this.toJSONTramite(hhh);
+    		tramitesReturn.add(tttt);
     	}
 		return tramitesReturn;	
 	}
