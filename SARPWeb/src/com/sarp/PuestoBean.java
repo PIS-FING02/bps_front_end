@@ -49,6 +49,7 @@ public class PuestoBean {
 		try{
 			return UtilService.getStringProperty("MAQUINA_OPERADOR_TEST");
 		}catch (Exception e){
+			System.out.println("TRANQUILOS DEVOLVEMOS MAQ1");
 			return "maq1";
 		} 
 	}
@@ -57,6 +58,7 @@ public class PuestoBean {
 		try{
 			return UtilService.getStringProperty("MAQUINA_RECEPCION_TEST");	
 		}catch (Exception e){
+			System.out.println("TRANQUILOS DEVOLVEMOS MAQ2");
 			return "maq2";
 		}
 		
