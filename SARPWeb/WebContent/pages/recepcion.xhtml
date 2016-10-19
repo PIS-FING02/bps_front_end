@@ -24,10 +24,8 @@
 		</div>
 		<div class="page-frame">
 			<div class="frame-title"> Nuevo Número </div>	
-			
-	<!-- 		<c:set value="#{puesto.getRecepcionTest()}" target="#{puesto}" property="maquina" /> -->
-			
-			<ui:repeat id='repeat-tramites' class="options-buttons-container" value="#{tramite.listarDePuesto('maq1')}" var='t'>
+						
+			<ui:repeat id='repeat-tramites' class="options-buttons-container" value="#{tramite.listarDePuesto(puesto.getRecepcionTest())}" var='t'>
 				<div tramiteId='#{t.tramiteId}' tramiteNombre='#{t.tramiteNombre}' sectorId='#{t.sectorId}' sectorNombre='#{t.sectorNombre}' class='hidden'/>
 				<h:outputText class='option-button ' value='#{t.sectorNombre} #{t.tramiteNombre}'/>
 			</ui:repeat>
