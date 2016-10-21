@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-	<title>Pantalla Administrador</title>
+	<title>Pantalla de Puestos</title>
 
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
@@ -33,7 +33,7 @@
 						<h:inputText id='puesto-selected-estado' class="formInput" value="#{puesto.estado}" />
 					</div>
 					<div id="numero-puesto" class="form-line hidden">
-						<label for="numero-puesto">Numero:</label>
+						<label for="numero-puesto">Número:</label>
 						<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
 					</div>
 					<f:ajax render=":form-error:text">
@@ -71,7 +71,7 @@
 						<h:outputText class='element-list puesto-element' value='#{p.nombreMaquina} '/>
 						<button class='icon baja-button tipo-puesto baja-puesto'>Borrar</button>
 						<button class='icon mod-button tipo-puesto editar-puesto'>Editar</button>
-						<a id='asignar-tramite' class='icon asignar-tramite-button tipo-puesto asig-tramite' href=''>Asignar Tramite</a>
+						<a id='asignar-tramite' class='icon asignar-tramite-button tipo-puesto asig-tramite' href=''>Asignar Trámite</a>
 					</div>
 				</ui:repeat>
 			</div>

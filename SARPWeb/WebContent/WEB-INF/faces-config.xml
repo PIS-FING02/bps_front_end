@@ -13,11 +13,36 @@
 	<managed-bean>
 		<managed-bean-name>loginBean</managed-bean-name>
 		<managed-bean-class>com.sarp.LoginBean</managed-bean-class>
-		<managed-bean-scope>application</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>recepcionistaBean</managed-bean-name>
-		<managed-bean-class>com.sarp.RecepcionistaBean</managed-bean-class>
-		<managed-bean-scope>application</managed-bean-scope>
+		<managed-bean-name>display</managed-bean-name>
+		<managed-bean-class>com.sarp.DisplayBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>numero</managed-bean-name>
+		<managed-bean-class>com.sarp.NumeroBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>puesto</managed-bean-name>
+		<managed-bean-class>com.sarp.PuestoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>sector</managed-bean-name>
+		<managed-bean-class>com.sarp.SectorBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>test</managed-bean-name>
+		<managed-bean-class>com.sarp.TestBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>tramite</managed-bean-name>
+		<managed-bean-class>com.sarp.TramiteBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 </faces-config>

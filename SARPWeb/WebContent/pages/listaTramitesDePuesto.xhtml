@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-	<title>Pantalla Administrador</title>
+	<title>Lista Trámites de Puesto</title>
 
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
@@ -19,7 +19,7 @@
 			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
 			<div class="page-title arrow"> ➨ </div>
 			<a class="page-title" href="respSector.xhtml"> Configurar Sector </a>
-			<div class="page-title page-title-last"> ➨  Tramites </div>
+			<div class="page-title page-title-last"> ➨  Trámites </div>
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
@@ -31,7 +31,7 @@
 				<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
 				<!--  TRAMITE -->
 				<div id='list-tramites-container' class='page-list'>
-					<h2 class='page-title list-title'>Tramites</h2>
+					<h2 class='page-title list-title'>Trámites</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-tramites' value="#{puesto.listarTramitesAsignables(param['id'])}" var='t'>
 							<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
@@ -40,19 +40,19 @@
 					</div>
 				</div>
 				<div id="id-tramite-sector" class="form-line hidden">
-					<label for="tramite-id">Tramite</label>
+					<label for="tramite-id">Trámite</label>
 					<h:inputText id='id-tramite-sector-selected' class="formInput" value="#{sector.id}" />
 				</div>
 				<div id="id-sector" class="form-line hidden">
-					<label for="sector-id">Asociacion</label>
+					<label for="sector-id">Asociación</label>
 					<h:inputText id='id-sector-selected' class="formInput" value="#{sector.codigo}" />
 				</div>
 				<div id="id-tramite-puesto" class="form-line hidden">
-					<label for="tramite-id">Tramite</label>
+					<label for="tramite-id">Trámite</label>
 					<h:inputText id='id-tramite-puesto-selected' class="formInput" value="#{puesto.maquina}" />
 				</div>
 				<div id="id-puesto" class="form-line hidden">
-					<label for="puesto-id">Asociacion</label>
+					<label for="puesto-id">Asociación</label>
 					<h:inputText id='id-puesto-selected' class="formInput" value="#{puesto.codigo}" />
 				</div>
 				<div class="buttons-container">

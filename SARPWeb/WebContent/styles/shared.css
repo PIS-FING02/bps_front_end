@@ -40,7 +40,7 @@ body{
 }
 
 .page-title-last {
-	text-decoration: initial !important;
+	text-decoration: none !important;
 }
 
 .arrow {
