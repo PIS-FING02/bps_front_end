@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
+import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONSectorDisplay;
 import com.sarp.jsons.JSONSectorPuesto;
@@ -152,6 +153,11 @@ public class SectorBean {
 		this.error = "show";
 
 	}
+	
+	public List<JSONNumero> listarNumerosSector(String idSector){
+		return modeler.toJSONNumeros(c.listarNumerosSector(idSector, "Operador"));
+	}
+	
 		
 	public String hideError(){
 		this.error="hidden";

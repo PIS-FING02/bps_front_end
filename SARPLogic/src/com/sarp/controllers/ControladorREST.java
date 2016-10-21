@@ -134,4 +134,42 @@ public class ControladorREST {
 	public String listarNumeros(String input, String userRol){
 		return this.attentionsFacade.listarNumeros(input, userRol);
 	}
+
+	public String listarNumerosPausados(String input, String userRol) {
+		return this.attentionsFacade.listarNumerosPausados(input, userRol);
+	}
+
+	public String listarNumerosAtrasados(String input, String userRol) {
+		return this.attentionsFacade.listarNumerosAtrasados(input, userRol);
+	}
+
+	public String comenzarAtencion(String input, String userRol) {
+		return this.attentionsFacade.comenzarAtencion(input,userRol);
+		
+	}
+
+	public String atrasarNumero(String maquina, String userRol) {
+		return this.attentionsFacade.atrasarNumero(maquina,userRol);	
+	}
+
+	public String pausarNumero(String input, String userRol) {
+		return this.attentionsFacade.pausarNumero(input, userRol);
+	}
+
+	public String finalizarAtencion(String input, String userRol) {
+		return this.attentionsFacade.finalizarAtencion(input,userRol);
+		
+	}
+
+	public String llamarNumeroPausado(String input, String input2, String userRol) {
+		return this.attentionsFacade.llamarNumeroPausado(input,input2, userRol);
+	}
+
+	public String llamarNumeroAtrasado(String externalId, String maquina, String userRol) {
+		return this.attentionsFacade.llamarNumeroAtrasado(externalId,maquina,userRol);
+	}
+
+	public String listarNumerosSector(String idSector, String userRol) {
+		return this.sectorFacade.listarNumerosSector(idSector,userRol);
+	}
 }

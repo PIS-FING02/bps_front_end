@@ -42,7 +42,7 @@
 					<div class='text-box'>
 						<ui:repeat value='#{puesto.listarNumerosAtrasados()}' var='n'>
 							<h:form>
-								<h:commandButton class="num-line" value="#{n.externalId}" action="#{puesto.seleccionarNumero(n.id,n.externalId,n.hora,n.estado,n.prioridad,n.idTramite,n.idSector)}"/>
+								<h:commandButton class="num-line" value="#{n.externalId}" action="#{puesto.llamarNumeroAtrasado(externalId)}"/>
 							</h:form>
 						</ui:repeat>
 					</div>
