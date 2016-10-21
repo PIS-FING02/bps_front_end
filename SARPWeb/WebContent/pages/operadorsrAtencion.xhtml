@@ -60,10 +60,10 @@
 			</div>
 			<div class="bottom-form">
 				<h:form id="options-form">
-					<h:commandButton class="action-button atender-button" value="Atender"/>
+					<h:commandButton class="action-button atender-button" value="Atender" action="#{puesto.comenzarAtencion()}"/>
 					<h:commandButton class="action-button re-llamar-button" value="Re-llamar"/> 
 					<h:commandButton class="secondary-button llamar-siguiente-button" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/> 
-					<h:commandButton class="action-button liberar-button" value="Liberar" action="#{puesto.liberar}"/>
+					<h:commandButton class="action-button liberar-button" value="Liberar" action="#{puesto.liberar(	)}"/>
 				</h:form>
 			</div>
 		</div>

@@ -7,6 +7,8 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
@@ -135,8 +137,11 @@ public class JSONModeler {
 		return displaysReturn;		
 	}
 	
-	public JSONNumero toJSONNumero(String jsonNumero) throws Exception{
-		JSONObject json = (JSONObject)new JSONParser().parse(jsonNumero); 
+	public JSONNumero toJSONNumero(String jsonNumero) {
+		JSONObject json;
+		try {
+			json = (JSONObject)new JSONParser().parse(jsonNumero);
+	
 		
 		Integer id = ((json.get("id") == null) ? null : Integer.parseInt(json.get("id").toString()));
 		String externalId = ((json.get("externalId") == null) ? null : json.get("externalId").toString());
@@ -147,18 +152,29 @@ public class JSONModeler {
 		String idSector = ((json.get("idSector") == null) ? null : json.get("idSector").toString());
 		JSONNumero numero = new JSONNumero(id,externalId,hora,estado,prioridad,idTramite,idSector);
 		return numero;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} 
 	}
 	
-	public List<JSONNumero> toJSONNumeros(String jsonNumero) throws Exception{
+	public List<JSONNumero> toJSONNumeros(String jsonNumero){
 		JSONParser parser = new JSONParser();
-		Object obj = parser.parse(jsonNumero);
-        JSONArray array = (JSONArray)obj;
-        List<JSONNumero> numerosReturn = new ArrayList<JSONNumero>();
-        
-    	Iterator<JSONObject> iterator = array.iterator();
-    	while (iterator.hasNext()) {
-    		numerosReturn.add(this.toJSONNumero(iterator.next().toJSONString()));
-    	}
-		return numerosReturn;		
+		Object obj;
+		try {
+			obj = parser.parse(jsonNumero);
+	        JSONArray array = (JSONArray)obj;
+	        List<JSONNumero> numerosReturn = new ArrayList<JSONNumero>();
+	        
+	    	Iterator<JSONObject> iterator = array.iterator();
+	    	while (iterator.hasNext()) {
+	    		numerosReturn.add(this.toJSONNumero(iterator.next().toJSONString()));
+	    	}
+			return numerosReturn;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

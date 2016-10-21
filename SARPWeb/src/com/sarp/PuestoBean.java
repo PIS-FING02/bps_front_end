@@ -277,6 +277,12 @@ public class PuestoBean {
 		return "/pages/operador.xhtml";
 	}
 	
+	public String comenzarAtencion(){
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
+		c.comenzarAtencion(jpuesto.toString(),"Operador");
+		return "/pages/operadorAtendiendo.xhtml";
+	}
+	
 	public String llamarNumero() throws Exception{
 		String num = c.llamarNumero(this.maquina, "Operador");
 		System.out.print(num);
@@ -295,9 +301,21 @@ public class PuestoBean {
 		}
 	}
 	
-	public String liberar() throws Exception{
-		//marcar numero atrasado
-		//cambiar estado puesto
+	public String liberar(){
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
+		c.atrasarNumero(jpuesto.toString(),"Operador");
+		this.estado="DISPONIBLE";
+		if(roles.contains("OPERADORSR")){
+			return "/pages/operadorsrAbierto.xhtml";
+		}else{
+			return "/pages/operadorAbierto.xhtml";
+		}
+	}
+	
+	public String pausar() {
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
+		c.pausarNumero(jpuesto.toString(),"Operador");
+		this.estado="DISPONIBLE";
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorsrAbierto.xhtml";
 		}else{
@@ -311,11 +329,6 @@ public class PuestoBean {
 	}
 	
 	public List<JSONNumero> listarNumeros() throws Exception{
-		/*List<JSONNumero> test = new ArrayList<JSONNumero>();
-		test.add(new JSONNumero(1,"1","01/01/1901-01:01","ESPERA",1,5,"5"));
-		test.add(new JSONNumero(2,"2","02/02/1902-02:02","ESPERA",1,5,"5"));
-		test.add(new JSONNumero(3,"3","","ESPERA",2,5,"5"));
-		return test;*/
 		return modeler.toJSONNumeros(c.listarNumeros(this.maquina,"Operador"));
 	}
 	
@@ -334,25 +347,81 @@ public class PuestoBean {
 		}
 		this.idTramite = Integer.parseInt(idTramite);
 		this.idSector = idSector;
-		//llamar el numero seleccionado
-		return "/pages/operadorsrAtencion.xhtml";
+		if(roles.contains("OPERADORSR")){
+			return "/pages/operadorAtencion.xhtml";
+			
+		}else{
+			return "/pages/operadorsrAtencion.xhtml";
+		}
 	}
 
-	public List<JSONNumero> listarNumerosPausados() throws Exception{
-		return null;
-		//modeler.toJSONNumeros(c.listarNumerosPausados(this.maquina,"Operador"));
+	public List<JSONNumero> listarNumerosPausados() {
+		return modeler.toJSONNumeros(c.listarNumerosPausados(this.maquina,"Operador"));
 	}
 	
-	public List<JSONNumero> listarNumerosAtrasados() throws Exception{
-		return null;
-		//modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina,"Operador"));
+	public List<JSONNumero> listarNumerosAtrasados(){
+		return modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina,"Operador"));
 	}
 	
+	public void finalizarAtencion(){
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
+		c.finalizarAtencion(jpuesto.toString(),"Operador");
+	}
+	
+	public void desviar(){
+		System.out.println("Entre en desviar");
+	}
+
 	public String volver(){
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorsrAbierto.xhtml";
 		}else{
 			return "/pages/operadorAbierto.xhtml";
+		}
+	}
+	
+	public String llamarNumeroPausado(String externaldId){
+		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroPausado(externaldId,this.maquina,"Operador"));
+		this.externalId = num.getExternalId();
+		this.estadoNumero = num.getEstado();
+		this.prioridad = num.getPrioridad();
+		if(this.prioridad.equals(1)){
+			String[] arrayFechaHora = hora.split("-");
+			this.fecha = arrayFechaHora[0];
+			this.hora = arrayFechaHora[1];
+		}else{
+			this.fecha = "";
+			this.hora = "";
+		}
+		this.idTramite = num.getIdTramite();
+		if(roles.contains("OPERADORSR")){
+			return "/pages/operadorAtencion.xhtml";
+			
+		}else{
+			return "/pages/operadorsrAtencion.xhtml";
+		}
+		
+	}
+	
+	public String llamarNumeroAtrasado(String externaldId){
+		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroAtrasado(externaldId,this.maquina,"Operador"));
+		this.externalId = num.getExternalId();
+		this.estadoNumero = num.getEstado();
+		this.prioridad = num.getPrioridad();
+		if(this.prioridad.equals(1)){
+			String[] arrayFechaHora = hora.split("-");
+			this.fecha = arrayFechaHora[0];
+			this.hora = arrayFechaHora[1];
+		}else{
+			this.fecha = "";
+			this.hora = "";
+		}
+		this.idTramite = num.getIdTramite();
+		if(roles.contains("OPERADORSR")){
+			return "/pages/operadorAtencion.xhtml";
+			
+		}else{
+			return "/pages/operadorsrAtencion.xhtml";
 		}
 	}
 	

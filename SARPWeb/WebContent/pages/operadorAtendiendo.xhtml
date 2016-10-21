@@ -16,7 +16,7 @@
 			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
 			<div class="page-title page-title-last"> ➨  Atención </div>
 			<h:form>
-				<h:commandButton class="action-button deactivated" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:commandButton class="action-button deactivated" disabled="true" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>	
 		</div>
 		<div class="page-frame">
@@ -31,32 +31,43 @@
 				</div>
 				<div class="right-frame">
 					<div id="nros-espera" class="top-line"> Números en espera: </div>
-					<h:form id='form-cerrar'>
-						<h:commandButton id='cerrar-puesto-button' class="secondary-button estado-puesto-button" value="Cerrar Puesto" action="#{puesto.cerrar}"/>
-					</h:form>
 				</div>
 			</div>
-			<div id="prox-nums-frame" class="prox-nums-frame">				
-				<div class='data-line'>
-					<div class='label'>Números Pausados:</div>
-					<div class='text-box'>
-						<ui:repeat value='#{puesto.listarNumerosPausados()}' var='n'>
-							<h:form>
-								<h:commandButton class="num-line" value="#{n.externalId}" action="#{puesto.llamarNumeroPausado(n.externalId)}"/>
-							</h:form>
-						</ui:repeat>
+			<div>
+				<div class="right-frame"> 	
+					<h:form>
+						<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
+						<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
+					</h:form>
+				</div>
+				<div id="left-frame" class="left-frame">
+					<div class="data-line">
+						<div class="label"> Serie: </div>
 					</div>
-				</div>	
-				<h:form id='form-actualizar'>
-					<h:commandButton class="action-button" value="Actualizar" action="#{puesto.listarNumerosPausados()}"/>
-				</h:form>
+					<div class="data-line">
+						<div class="label"> Número: #{puesto.externalId}</div>
+				</div>
+					<div class="data-line hidden" id="info-sae-hora">
+						<div class="label"> Hora: #{puesto.hora}</div>
+					</div>
+					<div class="data-line hidden" id="info-sae-fecha">
+						<div class="label" > Fecha de Entrega:  #{puesto.fecha} </div>
+					</div>
+					<div class="data-line">
+						<div class="label"> Tiempo de Espera: </div>
+					</div>
+				</div> 
 			</div>
 			<div class="bottom-form">
-				<h:form>
-					<h:commandButton class="secondary-button" value="Volver" action="#{puesto.volver}"/>
+				<h:form id="options-form">
+					<h:commandButton class="action-button atender-button" value="Finalizar" action="#{puesto.finalizarAtencion()}"/>
+					<h:commandButton class="secondary-button llamar-siguiente-button" value="Pausar" action="#{puesto.pausar()}"/> 
+					<h:commandButton class="action-button liberar-button" value="Desviar" action="#{puesto.desviar(	)}"/>
 				</h:form>
 			</div>
 		</div>
 	</div>
+	<div id="prioridad" class="hidden">#{puesto.getPrioridad()}</div>
+	<script type="text/javascript" src="../scripts/operadorAtencion.js"></script>
 </body>
 </html>
