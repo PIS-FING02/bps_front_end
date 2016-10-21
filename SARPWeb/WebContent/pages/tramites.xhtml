@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-	<title>Pantalla Administrador</title>
+	<title>Pantalla Trámites</title>
 
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
@@ -21,7 +21,7 @@
 			<div class="content">
 				<h:form id='form-tramite'>
 					<div id="codigo-tramite" class="form-line hidden">
-						<label for="codigo">Codigo:</label>
+						<label for="codigo">Código:</label>
 						<h:inputText id='tramite-selected-codigo' class="formInput" value="#{tramite.codigo}" />
 					</div>
 					<div id="nombre-tramite" class="form-line hidden">
@@ -47,14 +47,14 @@
 			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
 			<div class="page-title arrow"> ➨ </div>
 			<a class="page-title" href="admin.xhtml"> Administración </a>
-			<div class="page-title page-title-last"> ➨  Tramites </div>
+			<div class="page-title page-title-last"> ➨  Trámites </div>
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div> 
 		<div class="page-frame">
 			<div id='list-tramites-container' class='entity-list-container'>
-				<button id='alta-tramite' class='icon icon-alta alta-button tipo-tramite popup-open-button'>Crear Tramite</button>
+				<button id='alta-tramite' class='icon icon-alta alta-button tipo-tramite popup-open-button'>Crear Trámite</button>
 				<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
 					<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
 					<div class='list-entity tramite-element'>

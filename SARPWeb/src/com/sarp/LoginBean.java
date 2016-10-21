@@ -55,7 +55,7 @@ public class LoginBean {
     public String Login() {
 		try { 
 	        message="";
-	        roles = "";
+	        roles = "";	        
 	        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	        request.login(username, password);
 	        addRol("ADMIN", request);
@@ -64,10 +64,11 @@ public class LoginBean {
 	        addRol("OPERADOR", request);
 	        addRol("OPERADORSR", request);
 	        addRol("RECEPCION", request);
-	        if (roles == "")
+	        if (roles == ""){
 	            message= "Either Login or Password is wrong";
-	        else
+	        }else{
 	        	return "/pages/menu.xhtml?faces-redirect=true";
+	        }
 	    } catch(Exception e) {
 	        message= "Datos incorrectos!";
 	    }

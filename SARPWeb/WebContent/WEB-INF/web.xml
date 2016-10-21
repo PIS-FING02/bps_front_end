@@ -27,9 +27,10 @@
   </welcome-file-list>
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>Only admins</web-resource-name>
-      <url-pattern>/pages/admin.jsf</url-pattern>
+      <web-resource-name>Administrador</web-resource-name>
       <url-pattern>/pages/admin.xhtml</url-pattern>
+      <url-pattern>/pages/tramites.xhtml</url-pattern>
+      <url-pattern>/pages/displays.xhtml</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>ADMIN</role-name>
@@ -39,7 +40,6 @@
     <web-resource-collection>
       <web-resource-name>Menu Principal</web-resource-name>
       <url-pattern>/pages/menu.xhtml</url-pattern>
-      <url-pattern>/pages/menu.jsf</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>ADMIN</role-name>
@@ -54,7 +54,14 @@
     <web-resource-collection>
       <web-resource-name>Responsable de Sector</web-resource-name>
       <url-pattern>/pages/respSector.xhtml</url-pattern>
-      <url-pattern>/pages/respSector.jsf</url-pattern>
+      <url-pattern>/pages/puestos.xhtml</url-pattern>
+      <url-pattern>/pages/listaTramitesDePuesto.xhtml</url-pattern>
+      <url-pattern>/pages/sectores.xhtml</url-pattern>
+      <url-pattern>/pages/listaTramites.xhtml</url-pattern>
+      <url-pattern>/pages/listaPuestos.xhtml</url-pattern>
+      <url-pattern>/pages/listaDisplays.xhtml</url-pattern>
+      <url-pattern>/pages/operadorAtrasados.xhtml</url-pattern>
+      <url-pattern>/pages/operadorPausados.xhtml</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>RESPSEC</role-name>
@@ -64,7 +71,6 @@
     <web-resource-collection>
       <web-resource-name>Consultor</web-resource-name>
       <url-pattern>/pages/consultor.xhtml</url-pattern>
-      <url-pattern>/pages/consultor.jsf</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>CONSULTOR</role-name>
@@ -74,7 +80,10 @@
     <web-resource-collection>
       <web-resource-name>Operador</web-resource-name>
       <url-pattern>/pages/operador.xhtml</url-pattern>
-      <url-pattern>/pages/operador.jsf</url-pattern>
+      <url-pattern>/pages/operadorAbierto.xhtml</url-pattern>
+      <url-pattern>/pages/operadorAtencion.xhtml</url-pattern>
+      <url-pattern>/pages/operadorAtrasados.xhtml</url-pattern>
+      <url-pattern>/pages/operadorPausados.xhtml</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>OPERADOR</role-name>
@@ -84,7 +93,10 @@
     <web-resource-collection>
       <web-resource-name>Operador Senior</web-resource-name>
       <url-pattern>/pages/operador.xhtml</url-pattern>
-      <url-pattern>/pages/operador.jsf</url-pattern>
+      <url-pattern>/pages/operadorsrAbierto.xhtml</url-pattern>
+      <url-pattern>/pages/operadorsrAtencion.xhtml</url-pattern>
+      <url-pattern>/pages/operadorAtrasados.xhtml</url-pattern>
+      <url-pattern>/pages/operadorPausados.xhtml</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>OPERADORSR</role-name>
@@ -94,7 +106,6 @@
     <web-resource-collection>
       <web-resource-name>Recepcionista</web-resource-name>
       <url-pattern>/pages/recepcion.xhtml</url-pattern>
-      <url-pattern>/pages/recepcion.jsf</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>RECEPCION</role-name>

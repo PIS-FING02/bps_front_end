@@ -12,7 +12,7 @@ var asignarContainer = document.getElementsByClassName('asignar-container');
 if(alta[0]){
 	alta[0].addEventListener('click', function(){
 		if (hasClass(this, 'tipo-tramite')) {
-			popupTitle.innerHTML = "Alta Tramite"; 
+			popupTitle.innerHTML = "Alta Trámite"; 
 			document.getElementById('nombre-tramite').classList.remove('hidden');
 			elementsToHide.push('nombre-tramite');
 			document.getElementById('form-tramite:alta-tramite-button').classList.remove('hidden');
@@ -57,7 +57,7 @@ for (var i = 0; i < editar.length; i++) {
 	editar[i].addEventListener('click', function(){
 		updateInputs(this.parentElement);
 		if (hasClass(this, 'tipo-tramite')) {
-			popupTitle.innerHTML = "Modificar Tramite"; 
+			popupTitle.innerHTML = "Modificar Trámite"; 
 			document.getElementById('nombre-tramite').classList.remove('hidden');
 			elementsToHide.push('nombre-tramite');
 			document.getElementById('form-tramite:mod-tramite-button').classList.remove('hidden');
