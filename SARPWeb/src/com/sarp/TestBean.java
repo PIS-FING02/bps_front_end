@@ -22,13 +22,13 @@ public class TestBean {
 		List<JSONTramite> lista = tb.listar();
 		tb.setCodigo(String.valueOf(lista.get(lista.size() - 1).getCodigo()));
 		tb.modificar();
-		tb.baja();
+		tb.baja("");
 	}
 	
 	public void testDisplay() throws Exception {
 		db.setId("idTest");
 		db.alta();
-		db.baja();
+		db.baja("");
 	}
 	
 	public void testPuesto() throws Exception {
@@ -41,6 +41,6 @@ public class TestBean {
 		pb.setNumero(5);
 		pb.setUsuarioId("150");
 		pb.modificar();
-		pb.baja();
+		pb.baja("");
 	}
 }

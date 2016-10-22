@@ -51,8 +51,8 @@ public class DisplayBean {
 		this.error = "show";
 	}
 	
-	public void baja() {
-		JSONDisplay jdisplay = new JSONDisplay(this.id);
+	public void baja(String id) {
+		JSONDisplay jdisplay = new JSONDisplay(id);
 		String status = c.bajaDisplay(jdisplay.toString(), "Administrador");
 		if (status.equals("OK")){
 			this.error_message="El display " + this.id + " se dio de baja correctamente";
@@ -60,7 +60,6 @@ public class DisplayBean {
 			this.error_message = "Ocurrio un error al eliminar el display " + this.id;
 		}
 		this.error = "show";
-		
 	}
 
 	public List<JSONDisplay> listar() throws Exception{

@@ -16,7 +16,6 @@ public class LoginBean {
 	private String username = "Bienvenido";
 	private String password;
 	private String message;
-	public String role;
 	private String roles = "";
 	
 	public String getUsername() {
@@ -49,7 +48,7 @@ public class LoginBean {
 	
 	public void addRol(String rol, HttpServletRequest request) {
         if(request.isUserInRole(rol))
-        	this.roles += rol + " ";
+        	roles += rol + " ";
 	}
 	
     public String Login() {
@@ -64,11 +63,22 @@ public class LoginBean {
 	        addRol("OPERADOR", request);
 	        addRol("OPERADORSR", request);
 	        addRol("RECEPCION", request);
-	        if (roles == ""){
+	        if (roles == "")
 	            message= "Either Login or Password is wrong";
-	        }else{
-	        	return "/pages/menu.xhtml?faces-redirect=true";
-	        }
+	        else if (roles.equals("ADMIN "))	
+	        	return "/pages/admin.xhtml?faces-redirect=true";
+        	else if (roles.equals("RESPSEC "))	
+        		return "/pages/respSector.xhtml?faces-redirect=true";
+        	else if (roles.equals("CONSULTOR "))	
+        		return "/pages/consultor.xhtml?faces-redirect=true";
+        	else if (roles.equals("OPERADOR "))	
+        		return "/pages/operador.xhtml?faces-redirect=true";
+        	else if (roles.equals("OPERADORSR "))	
+        		return "/pages/operador.xhtml?faces-redirect=true";
+        	else if (roles.equals("RECEPCION "))	
+        		return "/pages/recepcion.xhtml?faces-redirect=true";
+        	else 
+        		return "/pages/menu.xhtml?faces-redirect=true";
 	    } catch(Exception e) {
 	        message= "Datos incorrectos!";
 	    }
@@ -88,12 +98,4 @@ public class LoginBean {
         }
         return "/pages/login.xhtml?faces-redirect=true";
     }
-
-	public String getRole() {
-		return role;
-	}
-	
-	public void setRole(String role) {
-		this.role = role;
-	}
 }

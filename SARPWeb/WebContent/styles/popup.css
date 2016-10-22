@@ -73,28 +73,3 @@
 	font-weight: bold;
 	color: white;
 }
-
-
-.cancel-button {
-    background-color: transparent !important;
-    font-weight: bold;
-    color: #ea0303 !important;
-}
-
-.cancel-button:hover {
-	color: #c50404 !important;
-}
-
-.popup label {
-	width: calc(100% - 280px);
-	width: initial;
-}
-
-.popup input { 
-    width: initial;
-}
-
-.buttons-container {
-	float: right;
-	width: 100%;
-}

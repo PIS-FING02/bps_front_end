@@ -62,7 +62,6 @@ public class PuestoBean {
 			System.out.println("TRANQUILOS DEVOLVEMOS MAQ2");
 			return "maq2";
 		}
-		
 	}
 	
 	public void alta() throws Exception{
@@ -76,8 +75,8 @@ public class PuestoBean {
 		this.error = "show";
 	}
 	
-	public void baja() throws Exception{
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "id", 0, "CERRADO");
+	public void baja(String maquina) throws Exception{
+		JSONPuesto jpuesto = new JSONPuesto(maquina, "id", 0, "CERRADO");
 		String status = c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
 		if (status.equals("OK")){
 			this.error_message="El puesto "+ this.maquina + "se elimino correctamente.";
@@ -96,6 +95,10 @@ public class PuestoBean {
 			this.error_message = "Ocurrio un error al modificar el puesto.";
 		}
 		this.error = "show";
+	}
+	
+	public String goToPuesto(String estado, String usuario, String numero) {
+		return "/pages/forms.xhtml?tipoForm=modPuesto&estado=" + estado + "&usuario=" + usuario + "&numero=" + numero + "faces-redirect=true";
 	}
 
 	public List<JSONPuesto> listar() throws Exception{

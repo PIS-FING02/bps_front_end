@@ -2,6 +2,7 @@ package com.sarp;
 
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -36,8 +37,8 @@ public class TramiteBean {
 		this.error = "show";
 	}
 	
-	public void baja() throws Exception{
-		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), "nombre");
+	public void baja(String codigo) throws Exception{
+		JSONTramite jtramite = new JSONTramite(Integer.parseInt(codigo), "nombre");
 		String status = c.bajaTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
 			this.error_message="El tramite " + this.nombre + "se elimino correctamente.";
@@ -56,6 +57,10 @@ public class TramiteBean {
 			this.error_message = "Ocurrio un error al modificar el tramite";
 		}
 		this.error = "show";
+	}
+	
+	public String goToTramite(String codigo, String nombre) {
+		return "/pages/forms.xhtml?tipoForm=modTramite&codigo=" + codigo + "&nombre=" + nombre + "faces-redirect=true";
 	}
 
 	public List<JSONTramite> listar() throws Exception{
