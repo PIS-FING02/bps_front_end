@@ -267,20 +267,20 @@ public class PuestoBean {
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorsrAbierto.xhtml";
 		}else{
-			return "/pages/operadorAbierto.xhtml";
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 	}
 	
 	public String cerrar() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, null, null, null);
 		c.cerrarPuesto(jpuesto.toString(), "Operador");
-		return "/pages/operador.xhtml";
+		return "/pages/operador.xhtml?faces-redirect=true";
 	}
 	
 	public String comenzarAtencion(){
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
 		c.comenzarAtencion(jpuesto.toString(),"Operador");
-		return "/pages/operadorAtendiendo.xhtml";
+		return "/pages/operadorAtendiendo.xhtml?faces-redirect=true";
 	}
 	
 	public String llamarNumero() throws Exception{
@@ -295,9 +295,9 @@ public class PuestoBean {
 			this.hora = arrayFechaHora[1];
 		}
 		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorsrAtencion.xhtml"; 
+			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true"; 
 		}else{
-			return "/pages/operadorAtencion.xhtml";
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 		}
 	}
 	
@@ -306,9 +306,9 @@ public class PuestoBean {
 		c.atrasarNumero(jpuesto.toString(),"Operador");
 		this.estado="DISPONIBLE";
 		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorsrAbierto.xhtml";
+			return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
 		}else{
-			return "/pages/operadorAbierto.xhtml";
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 	}
 	
@@ -317,15 +317,15 @@ public class PuestoBean {
 		c.pausarNumero(jpuesto.toString(),"Operador");
 		this.estado="DISPONIBLE";
 		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorsrAbierto.xhtml";
+			return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
 		}else{
-			return "/pages/operadorAbierto.xhtml";
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 	}
 	
 	public String hideError(){
 		this.error="hidden";
-		return "/pages/respSector.xhtml";
+		return "/pages/respSector.xhtml?faces-redirect=true";
 	}
 	
 	public List<JSONNumero> listarNumeros() throws Exception{
@@ -347,10 +347,10 @@ public class PuestoBean {
 		}
 		this.idTramite = num.getIdTramite();
 		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorAtencion.xhtml";
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 			
 		}else{
-			return "/pages/operadorsrAtencion.xhtml";
+			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
 		}
 		
 	}
@@ -374,9 +374,9 @@ public class PuestoBean {
 
 	public String volver(){
 		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorsrAbierto.xhtml";
+			return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
 		}else{
-			return "/pages/operadorAbierto.xhtml";
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 	}
 	
@@ -395,10 +395,10 @@ public class PuestoBean {
 		}
 		this.idTramite = num.getIdTramite();
 		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorAtencion.xhtml";
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 			
 		}else{
-			return "/pages/operadorsrAtencion.xhtml";
+			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
 		}
 		
 	}
@@ -418,20 +418,20 @@ public class PuestoBean {
 		}
 		this.idTramite = num.getIdTramite();
 		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorAtencion.xhtml";
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 			
 		}else{
-			return "/pages/operadorsrAtencion.xhtml";
+			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
 		}
 	}
 	
 	public String verPausados(){
 		//atrasar numero y liberar puesto cuando viene de pantalla de atencion
-		return "/pages/operadorPausados.xhtml";
+		return "/pages/operadorPausados.xhtml?faces-redirect=true";
 	}
 
 	public String verAtrasados(){
 		//atrasar numero y liberar puesto cuando viene de pantalla de atencion
-		return "/pages/operadorAtrasados.xhtml";
+		return "/pages/operadorAtrasados.xhtml?faces-redirect=true";
 	}
 }
