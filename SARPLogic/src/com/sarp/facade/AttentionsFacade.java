@@ -16,6 +16,7 @@ public class AttentionsFacade {
 	public static final String URL_FINALIZAR_NUMERO = "http://52.52.100.160:8080/SARPService/attentionsService/finalizarAtencion";
 	public static final String URL_LLAMAR_NUMERO_PAUSADO ="http://52.52.100.160:8080/SARPService/attentionsService/llamarPausado";
 	public static final String URL_LLAMAR_NUMERO_ATRASADO ="http://52.52.100.160:8080/SARPService/attentionsService/llamarAtrasado";
+	public static final String URL_LLAMAR_NUMERO_DEMANDA ="http://52.52.100.160:8080/SARPService/attentionsService/llamarNumeroDemanda";
 	
 	public String abrir(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
@@ -67,14 +68,19 @@ public class AttentionsFacade {
 		return  restClient.doPut(URL_FINALIZAR_NUMERO, input, userRol);
 	}
 
-	public String llamarNumeroPausado(String numero,String puesto, String userRol) {
+	public String llamarNumeroPausado(String internalId,String maquina, String userRol) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_LLAMAR_NUMERO_PAUSADO, numero, puesto, userRol);
+		return  restClient.doGet(URL_LLAMAR_NUMERO_PAUSADO, internalId, maquina, userRol);
 	}
 
-	public String llamarNumeroAtrasado(String externalId, String puesto, String userRol) {
+	public String llamarNumeroAtrasado(String internalId, String maquina, String userRol) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_LLAMAR_NUMERO_ATRASADO, externalId, puesto, userRol);
+		return  restClient.doGet(URL_LLAMAR_NUMERO_ATRASADO, internalId, maquina, userRol);
+	}
+
+	public String llamarNumeroDemanda(String internalId, String maquina, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_LLAMAR_NUMERO_DEMANDA, internalId, maquina, userRol);
 	}
 
 

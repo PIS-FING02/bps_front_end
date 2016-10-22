@@ -1,8 +1,13 @@
 package com.sarp;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONNumero;
@@ -154,8 +159,11 @@ public class SectorBean {
 
 	}
 	
-	public List<JSONNumero> listarNumerosSector(String idSector){
-		return modeler.toJSONNumeros(c.listarNumerosSector(idSector, "Operador"));
+	public List<JSONNumero> listarNumerosSector(){
+		Map<String, String> params =FacesContext.getCurrentInstance().
+                getExternalContext().getRequestParameterMap();
+		String idSector = params.get("id");
+		return modeler.toJSONNumeros(c.listarNumerosSector(idSector, "Administrador"));
 	}
 	
 		

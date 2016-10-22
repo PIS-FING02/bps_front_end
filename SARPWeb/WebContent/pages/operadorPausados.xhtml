@@ -42,7 +42,7 @@
 					<div class='text-box'>
 						<ui:repeat value='#{puesto.listarNumerosPausados()}' var='n'>
 							<h:form>
-								<h:commandButton class="num-line" value="#{n.externalId}" action="#{puesto.llamarNumeroPausado(n.externalId)}"/>
+								<h:commandButton class="num-line" value="#{n.externalId}" action="#{puesto.llamarNumeroPausado(n.id)}"/>
 							</h:form>
 						</ui:repeat>
 					</div>

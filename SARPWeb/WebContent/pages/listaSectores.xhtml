@@ -28,9 +28,7 @@
 					<h2 class='page-title list-title'>Sectores</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-tramites' value='#{sector.listar()}' var='s'>
-							<h:form>
-								<h:commandButton class="num-line" value="#{s.nombre}" action="#{sector.listarNumerosSector(s.sectorId)}"/>
-							</h:form>
+								<h:link value="#{s.nombre}" class="element-list tramite-element" outcome="listaNumeros?id=#{s.sectorId}" />
 						</ui:repeat>
 					</div>
 				</div>
