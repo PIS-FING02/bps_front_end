@@ -86,7 +86,7 @@ public class LoginBean {
         	System.out.println("Se cerro la sesion correctamente");
 	
         }
-        return "/pages/login.xhtml";
+        return "/pages/login.xhtml?faces-redirect=true";
     }
 
 	public String getRole() {
