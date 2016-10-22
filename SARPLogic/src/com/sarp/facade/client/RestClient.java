@@ -165,7 +165,8 @@ public class RestClient {
 		return resultado.toString();
 	}
 	
-	public String doGet(String URL, String userRol, String headerParam, String headerParam1){
+	public String doGet(String URL,String headerParam, String headerParam1,String userRol
+			){
 		StringBuilder resultado = new StringBuilder();
 		try{
 			URL url = new URL(URL);

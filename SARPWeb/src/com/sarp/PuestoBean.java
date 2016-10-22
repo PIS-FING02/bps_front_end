@@ -332,11 +332,11 @@ public class PuestoBean {
 		return modeler.toJSONNumeros(c.listarNumeros(this.maquina,"Operador"));
 	}
 	
-	public String seleccionarNumero(String id,String externalId,String hora,String estado,String prioridad,String idTramite,String idSector){
-		this.id = Integer.parseInt(id);
-		this.externalId = externalId;
-		this.estadoNumero = estado;
-		this.prioridad = Integer.parseInt(prioridad);
+	public String llamarNumeroDemanda(String internalId){
+		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroDemanda(internalId,this.maquina,"Operador"));
+		this.externalId = num.getExternalId();
+		this.estadoNumero = num.getEstado();
+		this.prioridad = num.getPrioridad();
 		if(this.prioridad.equals(1)){
 			String[] arrayFechaHora = hora.split("-");
 			this.fecha = arrayFechaHora[0];
@@ -345,14 +345,14 @@ public class PuestoBean {
 			this.fecha = "";
 			this.hora = "";
 		}
-		this.idTramite = Integer.parseInt(idTramite);
-		this.idSector = idSector;
+		this.idTramite = num.getIdTramite();
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorAtencion.xhtml";
 			
 		}else{
 			return "/pages/operadorsrAtencion.xhtml";
 		}
+		
 	}
 
 	public List<JSONNumero> listarNumerosPausados() {
@@ -380,8 +380,8 @@ public class PuestoBean {
 		}
 	}
 	
-	public String llamarNumeroPausado(String externaldId){
-		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroPausado(externaldId,this.maquina,"Operador"));
+	public String llamarNumeroPausado(String internalId){
+		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroPausado(internalId,this.maquina,"Operador"));
 		this.externalId = num.getExternalId();
 		this.estadoNumero = num.getEstado();
 		this.prioridad = num.getPrioridad();
@@ -403,8 +403,8 @@ public class PuestoBean {
 		
 	}
 	
-	public String llamarNumeroAtrasado(String externaldId){
-		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroAtrasado(externaldId,this.maquina,"Operador"));
+	public String llamarNumeroAtrasado(String internalId){
+		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroAtrasado(internalId,this.maquina,"Operador"));
 		this.externalId = num.getExternalId();
 		this.estadoNumero = num.getEstado();
 		this.prioridad = num.getPrioridad();
