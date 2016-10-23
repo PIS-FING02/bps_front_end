@@ -89,11 +89,8 @@ public class TramiteBean {
 		return resultado;
 	}
 	
-	
-	public List<JSONTramite> listar_sector() throws Exception{
-		Map<String, String> params =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		String idSector = params.get("id-asig");
-		return modeler.toJSONTramites(c.listarTramiteSector(idSector,"ResponsableSector"));
+	public List<JSONTramite> listarDeSector(String idSector) throws Exception{
+		return modeler.toJSONTramites(c.listarTramitesSector(idSector,"ResponsableSector"));
 	}
 
 	public List<JSONTramiteRecepcion> listarDePuesto(String puesto) throws Exception {

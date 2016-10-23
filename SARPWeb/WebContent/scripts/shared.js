@@ -44,23 +44,6 @@ for (var i = 0; i < listActionButtons.length; i++) {
 	listActionButtons[i].disabled = true;
 }
 
-// ENABLE/DISABLE ACTION BUTTONS IF INPUTS EMPTY OR NOT
-//for (var i = 0; i < formInputs.length; i++) {
-//	formInputs[i].addEventListener('input', function(){
-//		if (this.value == "") {
-//			for (var i = 0; i < entityActionButtons.length; i++) {
-//				entityActionButtons[i].classList.add('deactivated');
-//				entityActionButtons[i].disabled = true;
-//			}	
-//		} else if (doneSelecting()){
-//			for (var i = 0; i < entityActionButtons.length; i++) {
-//				entityActionButtons[i].classList.remove('deactivated');
-//				entityActionButtons[i].disabled = false;
-//			}	
-//		}
-//    }, false);
-//}
-
 // MARK ELEMENT AS SELECTED
 for (var i = 0; i < optionButtons.length; i++) {
 	optionButtons[i].addEventListener('click', function(){
@@ -182,7 +165,7 @@ function resetElementsToSelect () {
 	}
 }
 
-// SELECT ELEMENTO FROM LIST ACCORDING TO ITS TYPE
+// SELECT ELEMENT FROM LIST ACCORDING TO ITS TYPE
 function selectElement (element){
 	if (hasClass(element, 'tramite-element')) {
 		var otherElements = document.getElementsByClassName('tramite-element');

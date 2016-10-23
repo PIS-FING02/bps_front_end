@@ -58,7 +58,7 @@ public class SectorBean {
 	
 	public String asignarTramiteSector() {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
-		String status = this.c.asignarTramiteSector( jsectortramite.toString(), "ResponsableSector");
+		String status = this.c.asignarTramiteSector(jsectortramite.toString(), "ResponsableSector");
 		if (status.equals("OK")){
 			notice.setNotice_title("Esto es un mensaje de Confirmación.");
 			notice.setNotice_message("El tramite con codigo "+ this.codigo + " se asigno correctamente al sector con codigo " + this.id + ".");
@@ -96,6 +96,51 @@ public class SectorBean {
 		} else {
 			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
 			notice.setNotice_message("Ocurrio un error al asignar el puesto con nombre de maquina "+ this.nombreMaquina + " al sector con codigo " + this.id + ".");
+			notice.setNotice("negative");
+		}
+		return "/pages/sectores.xhtml?faces-redirect=true";
+	}
+	
+	public String desasignarTramiteSector() {
+		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
+		String status = this.c.desasignarTramiteSector( jsectortramite.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El tramite con codigo "+ this.codigo + " se desasigno correctamente al sector con codigo " + this.id + ".");
+			notice.setNotice("positive");
+		} else {
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al desasignar el tramite con codigo "+ this.codigo + " al sector con codigo " + this.id + ".");
+			notice.setNotice("negative");
+		}
+		return "/pages/sectores.xhtml?faces-redirect=true";
+	}
+	
+	public String desasignarDisplaySector() {
+		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id, this.displayId);
+		String status = this.c.desasignarDisplayoSector( jsectordisplay.toString(), "Administrador");
+		if (status.equals("OK")){
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El display con identificador "+ this.displayId + " se desasigno correctamente al sector con codigo " + this.id + ".");
+			notice.setNotice("positive");
+		} else {
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al desasignar el display con identificador "+ this.displayId + " al sector con codigo " + this.id + ".");
+			notice.setNotice("negative");
+		}
+		return "/pages/sectores.xhtml?faces-redirect=true";
+	}
+	
+	public String desasignarPuestoSector() {
+		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
+		String status =this.c.desasignarPuestoSector( jsectorpuesto.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El puesto con nombre de maquina "+ this.nombreMaquina + " se desasigno correctamente al sector con codigo " + this.id + ".");
+			notice.setNotice("positive");
+		} else {
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al desasignar el puesto con nombre de maquina "+ this.nombreMaquina + " al sector con codigo " + this.id + ".");
 			notice.setNotice("negative");
 		}
 		return "/pages/sectores.xhtml?faces-redirect=true";

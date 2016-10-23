@@ -62,7 +62,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 // ASIGNAR TRAMITE A SECTOR
 for (var i = 0; i < asignarTramiteSector.length; i++){
 	asignarTramiteSector[i].addEventListener('click', function(){
-		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 			this.href = 'listaTramites.xhtml?esSec=true&esAsig=true&entidad=tramite&id=' + id;
@@ -76,7 +76,7 @@ for (var i = 0; i < asignarTramiteSector.length; i++){
 // DESASIGNAR TRAMITE A SECTOR
 for (var i = 0; i < desasignarTramiteSector.length; i++){
 	desasignarTramiteSector[i].addEventListener('click', function(){
-		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 			this.href = 'listaTramites.xhtml?esSec=true&esAsig=false&entidad=tramite&id=' + id;
@@ -90,7 +90,7 @@ for (var i = 0; i < desasignarTramiteSector.length; i++){
 // ASIGNAR PUESTO A SECTOR
 for (var i = 0; i < asignarPuestoSector.length; i++){
 	asignarPuestoSector[i].addEventListener('click', function(){
-			var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+			var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 			if(esSector){
 				var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 				this.href = 'listaPuestos.xhtml?esSec=true&esAsig=true&entidad=puesto&id=' + id;
@@ -114,7 +114,7 @@ for (var i = 0; i < desasignarPuestoSector.length; i++){
 // ASIGNAR DISPLAY A SECTOR
 for (var i = 0; i < asignarDisplaySector.length; i++){
 	asignarDisplaySector[i].addEventListener('click', function(){
-		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 			this.href = 'listaDisplays.xhtml?esSec=true&esAsig=true&entidad=display&id=' + id;
@@ -125,7 +125,7 @@ for (var i = 0; i < asignarDisplaySector.length; i++){
 // DESASIGNAR DISPLAY A SECTOR
 for (var i = 0; i < desasignarDisplaySector.length; i++){
 	desasignarDisplaySector[i].addEventListener('click', function(){
-		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 			this.href = 'listaDisplays.xhtml?esSec=true&esAsig=false&entidad=display&id=' + id;

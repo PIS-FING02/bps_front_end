@@ -29,16 +29,19 @@
 				<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
 				<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
 				<h:outputText id='es-asig' class='hidden' value="#{param['esAsig']}" />
-				<!--  TRAMITE -->
-				<div id='list-puestos-container' class='page-list'>
-					<h2 class='page-title list-title'>Puestos</h2>
-					<div class='list-container'>
-						<ui:repeat id='repeat-tramites' value='#{puesto.listar()}' var='p'>
-							<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
-							<h:outputText class='element-list tramite-element' value='#{p.nombreMaquina}'/>
-						</ui:repeat>
-					</div>
+			</h:form>	
+			<!--  TRAMITE -->
+			<div id='list-puestos-container' class='page-list'>
+				<h2 class='page-title list-title'>Puestos</h2>
+				<div class='list-container'>
+					<ui:repeat id='repeat-tramites' value='#{puesto.listar()}' var='p'>
+						<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
+						<h:outputText class='element-list tramite-element' value='#{p.nombreMaquina}'/>
+					</ui:repeat>
 				</div>
+			</div>
+			<!-- PUESTO -->
+			<h:form id='form-entidades'>
 				<div id="id-tramite-sector" class="form-line hidden">
 					<label for="tramite-id">Puesto</label>
 					<h:inputText id='id-puesto-selected' class="formInput" value="#{sector.id}" />

@@ -192,8 +192,4 @@ public class ControladorREST {
 	public String llamarNumeroDemanda(String internalId, String maquina, String userRol) {
 		return this.attentionsFacade.llamarNumeroDemanda(internalId,maquina, userRol);
 	}
-
-	public String listarTramiteSector(String idSector, String userRol) {
-		return this.tramiteFacade.listarTramiteSector(idSector,userRol);
-	}
 }

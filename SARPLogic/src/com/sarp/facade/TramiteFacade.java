@@ -38,9 +38,4 @@ public class TramiteFacade {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGet(URL_GET_FROM_PUESTO, userRol, input);
 	}
-
-	public String listarTramiteSector(String idSector, String userRol) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

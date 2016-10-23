@@ -143,6 +143,21 @@ public class PuestoBean {
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 
+	public String desasignarTramitePuesto(){  //FALTA CAMBIAR
+		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
+		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El tramite con codigo "+ this.codigo + " se asigno correctamente al puesto con nombre de maquina " + this.maquina + ".");
+			notice.setNotice("positive");
+		} else {
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".");
+			notice.setNotice("negative");
+		}
+		return "/pages/puestos.xhtml?faces-redirect=true";
+	}
+	
 	public String abrir() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
 		c.abrirPuesto(jpuesto.toString(), "Operador");
