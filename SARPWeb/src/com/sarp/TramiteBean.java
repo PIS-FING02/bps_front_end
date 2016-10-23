@@ -1,9 +1,11 @@
 package com.sarp;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
@@ -81,6 +83,12 @@ public class TramiteBean {
 
 	public List<JSONTramite> listar() throws Exception{
 		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
+	}
+	
+	public List<JSONTramite> listar_sector() throws Exception{
+		Map<String, String> params =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String idSector = params.get("id-asig");
+		return modeler.toJSONTramites(c.listarTramiteSector(idSector,"ResponsableSector"));
 	}
 
 	public List<JSONTramiteRecepcion> listarDePuesto(String puesto) throws Exception {

@@ -60,13 +60,36 @@
 			</div>
 			<div class="bottom-form">
 				<h:form id="options-form">
-					<h:commandButton class="action-button atender-button" value="Finalizar" action="#{puesto.finalizarAtencion()}"/>
+					<h:commandButton class="action-button atender-button" value="Finalizar" action="#{puesto.showEstadosFinalizar()}"/>
 					<h:commandButton class="secondary-button llamar-siguiente-button" value="Pausar" action="#{puesto.pausar()}"/> 
 					<h:commandButton class="action-button liberar-button" value="Desviar" action="#{puesto.desviar(	)}"/>
 				</h:form>
 			</div>
+				<h:form id='form-asociacion'> 
+		<h:panelGroup id="text" rendered="#{puesto.notice != 'hidden'}">
+				<div id='list-puestos-container' class='page-list'>
+					<h2 class='page-title list-title'>Estados</h2>
+					<div class='list-container'>
+							<div class='element-list tramite-element'>
+								<h:outputText value='Finalizado con exito'/>
+							</div>
+							<div class='element-list tramite-element'>
+								<h:outputText value='Error'/>
+							</div>
+							<div class='element-list tramite-element'>
+								<h:outputText value='Atrasado'/>
+							</div>
+							<div class='element-list tramite-element'>
+								<h:outputText value='Prueba 2'/>
+							</div>
+					</div>
+				<h:commandButton class="action-button" value="Confirmar" action="#{puesto.showEstadosFinalizar()}"/>
+				</div>
+				</h:panelGroup>
+			</h:form>
 		</div>
 	</div>
+
 	<div id="prioridad" class="hidden">#{puesto.getPrioridad()}</div>
 	<script type="text/javascript" src="../scripts/operadorAtencion.js"></script>
 </body>

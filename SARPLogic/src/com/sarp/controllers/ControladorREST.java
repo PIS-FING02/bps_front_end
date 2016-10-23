@@ -50,6 +50,10 @@ public class ControladorREST {
 	public String asignarTramite(String input, String userRol) {
 		return this.puestoFacade.asignarTramite(input, userRol);
 	}
+	
+	public String desasignarTramite(String input, String userRol) {
+		return this.puestoFacade.desasignarTramite(input, userRol);
+	}
 
 	public String listarTramitesAsignables(String input, String userRol) {
 		return this.puestoFacade.listarTramitesAsignables(input, userRol);
@@ -119,12 +123,24 @@ public class ControladorREST {
 		return this.sectorFacade.asignarTramiteSector(input, userRol);
 	}
 	
+	public String desasignarTramiteSector(String input, String userRol)  {
+		return this.sectorFacade.desasignarTramiteSector(input, userRol);
+	}
+	
 	public String asignarPuestoSector(String input, String userRol) {
 		return this.sectorFacade.asignarPuestoSector(input, userRol);
+	}
+	
+	public String desasignarPuestoSector(String input, String userRol) {
+		return this.sectorFacade.desasignarPuestoSector(input, userRol);
 	}
 
 	public String asignarDisplayoSector(String input, String userRol) {
 		return this.sectorFacade.asignarDisplaySector(input,userRol);	
+	}
+	
+	public String desasignarDisplayoSector(String input, String userRol) {
+		return this.sectorFacade.desasignarDisplaySector(input,userRol);	
 	}
 
 	public String llamarNumero(String hparam, String userRol){
@@ -175,5 +191,9 @@ public class ControladorREST {
 
 	public String llamarNumeroDemanda(String internalId, String maquina, String userRol) {
 		return this.attentionsFacade.llamarNumeroDemanda(internalId,maquina, userRol);
+	}
+
+	public String listarTramiteSector(String idSector, String userRol) {
+		return this.tramiteFacade.listarTramiteSector(idSector,userRol);
 	}
 }
