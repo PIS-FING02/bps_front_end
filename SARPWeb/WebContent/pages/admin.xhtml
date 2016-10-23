@@ -8,7 +8,6 @@
 	<title>Pantalla Administrador</title>
 
 	<ui:include src="header.xhtml" />
-	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
 </head> 
 
 <body>
@@ -25,32 +24,23 @@
 				<a class="option-button option-link" href="tramites.xhtml">Trámites</a>
 				<a class="option-button option-link" href="displays.xhtml">Displays</a>
 				<h:form>
-					<f:ajax render=":form-error:text">
 					<h:commandButton id="listar-numeros" class="option-button" value="Importar Sectores" action="#{sector.importarSecotesGAFU()}" />
-				</f:ajax>
 				</h:form>
-				<a class="option-button option-link" href="listaSectores.xhtml">Listar Números del Sistema</a>
+				<a id='listar-numeros-sistema' class="option-button option-link" href="listaSectores.xhtml">Listar Números del Sistema</a>
 			</div>
 		</div>
 	</div>
 	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{sector.error== 'show'}">
-			<div id="action-popup" class='popup-overlay'>
-				<div class="popup">
-					<h2 id="popup-title" class="sub-title">Advertencia</h2>
-					<div class="content">
-						<h:outputText value="#{sector.error_message}" />
-						<h:form id='form-tramite'>
-							<div class="buttons-container">
-								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{sector.setError('hidden')}" />  
-							</div>
-						</h:form>
-					</div>
+		<h:panelGroup id="text" rendered="#{sector.notice != 'hidden'}">
+			<div id="notice-holder" class='#{sector.notice}'>
+				<div class='logo'/>
+				<div class="notice-container">
+					<h:outputText class='notice-title' value="#{sector.notice_title}" />
+					<h:outputText class='notice-content' value="#{sector.notice_message}" />
 				</div>
 			</div>
 		</h:panelGroup>
 	</h:form>
 <script type="text/javascript" src="../scripts/shared.js"></script>
-<script type="text/javascript" src="../scripts/admin.js"></script>
 </body> 
 </html>

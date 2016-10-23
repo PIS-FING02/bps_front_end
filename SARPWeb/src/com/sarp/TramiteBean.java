@@ -3,7 +3,7 @@ package com.sarp;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
@@ -11,7 +11,7 @@ import com.sarp.jsons.JSONTramite;
 import com.sarp.jsons.JSONTramiteRecepcion;
 
 @ManagedBean(name = "tramite", eager = true)
-@ViewScoped
+@SessionScoped
 public class TramiteBean {
 
 	private String codigo;
@@ -22,40 +22,61 @@ public class TramiteBean {
 	private static final JSONModeler modeler = new JSONModeler();
 	
 	//Atributo para mensaje de errores
-	public String error = "hidden";
-	public String error_message = "";
+	public String notice = "hidden";
+	public String notice_title = "";
+	public String notice_message = "";
 
-	public void alta() throws Exception{
+	public String alta() throws Exception{
 		JSONTramite jtramite = new JSONTramite(null, this.nombre);
 		String status = c.altaTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.error_message="El tramite " + this.nombre + "se creo correctamente.";
-		}else{
-			this.error_message = "Ocurrio un error al crear el tramite";
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El tramite con nombre "+ this.nombre + " se creo correctamente.";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al crear el tramite.";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.nombre = "";
+		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
-	public void baja() throws Exception{
-		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), "nombre");
+	public String baja(String codigo) {
+		JSONTramite jtramite = new JSONTramite(Integer.parseInt(codigo), "nombre");
 		String status = c.bajaTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.error_message="El tramite " + this.nombre + "se elimino correctamente.";
-		}else{
-			this.error_message = "Ocurrio un error al eliminar el tramite";
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El tramite se elimino correctamente.";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al eliminar el tramite.";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.nombre = "";
+		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
-	public void modificar(){
+	public String modificar(){
 		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
 		String status = c.modTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.error_message="El tramite " + this.nombre + "se modifico correctamente.";
-		}else{
-			this.error_message = "Ocurrio un error al modificar el tramite";
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El tramite con nombre "+ this.nombre + " se modifico correctamente.";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al modificar el tramite.";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.nombre = "";
+		this.codigo = "";
+		return "/pages/tramites.xhtml?faces-redirect=true";
+	}
+	
+	public String goToTramite(String codigo, String nombre) {
+		return "/pages/forms.xhtml?tipoForm=modTramite&codigo=" + codigo + "&nombre=" + nombre + "faces-redirect=true";
 	}
 
 	public List<JSONTramite> listar() throws Exception{
@@ -63,9 +84,7 @@ public class TramiteBean {
 	}
 
 	public List<JSONTramiteRecepcion> listarDePuesto(String puesto) throws Exception {
-		List<JSONTramiteRecepcion> hhhh = modeler.toJSONTramitesRecepcion(c.listarTramitesPuesto(puesto, "Recepcion"));
-		System.out.println(hhhh);
-		return hhhh;
+		return modeler.toJSONTramitesRecepcion(c.listarTramitesPuesto(puesto, "Recepcion"));
 	}
 
 	public void setTramites(List<JSONTramite> tramites) {
@@ -100,24 +119,32 @@ public class TramiteBean {
 		this.id_sector = id_sector;
 	}
 
-	public String getError() {
-		return error;
+	public String getNotice_message() {
+		return notice_message;
 	}
 
-	public void setError(String error) {
-		this.error = error;
+	public void setNotice_message(String notice_message) {
+		this.notice_message = notice_message;
 	}
 
-	public String getError_message() {
-		return error_message;
+	public String getNotice_title() {
+		return notice_title;
 	}
 
-	public void setError_message(String error_message) {
-		this.error_message = error_message;
+	public void setNotice_title(String notice_title) {
+		this.notice_title = notice_title;
+	}
+	
+	public String getNotice() {
+		return notice;
+	}
+
+	public void setNotice(String notice) {
+		this.notice = notice;
 	}
 	
 	public String hideError(){
-		this.error="hidden";
+		this.notice="hidden";
 		return "/pages/admin.xhtml";
 	}
 	
