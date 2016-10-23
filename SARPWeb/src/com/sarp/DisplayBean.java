@@ -3,68 +3,35 @@ package com.sarp;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONDisplay;
 
 @ManagedBean(name = "display", eager = true)
-@SessionScoped
+@ViewScoped
 public class DisplayBean {
 
 	public String id;
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONDisplay> displays;
 	private static final JSONModeler modeler = new JSONModeler();
-
-	//Atributo para mensaje de errores
-	public String notice = "hidden";
-	public String notice_title = "";
-	public String notice_message = "";
-	
-	public String getNotice_message() {
-		return notice_message;
-	}
-
-	public void setNotice_message(String notice_message) {
-		this.notice_message = notice_message;
-	}
-
-	public String getNotice_title() {
-		return notice_title;
-	}
-
-	public void setNotice_title(String notice_title) {
-		this.notice_title = notice_title;
-	}
-	
-	public String getNotice() {
-		return notice;
-	}
-
-	public void setNotice(String notice) {
-		this.notice = notice;
-	}
-	
-	public String hideError(){
-		this.notice="hidden";
-		return "/pages/admin.xhtml";
-	}
+	public SharedBean notice = SharedBean.getInstance();
 
 	public String alta() throws Exception{
 		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		System.out.println(jdisplay.toString());
 		String status= c.altaDisplay(jdisplay.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.notice_title = "Esto es un mensaje de Confirmación.";
-			this.notice_message = "El display con identificador "+ this.id + " se creo correctamente.";
-			this.notice = "positive";
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El display con identificador "+ this.id + " se creo correctamente.");
+			notice.setNotice("positive");
 		} else {
-			this.notice_title = "Han ocurrido error/es que impiden continuar.";
-			this.notice_message = "Ocurrio un error al crear el display.";
-			this.notice = "negative";
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al crear el display.");
+			notice.setNotice("negative");
 		}
-		this.id = "";
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 	
@@ -72,15 +39,14 @@ public class DisplayBean {
 		JSONDisplay jdisplay = new JSONDisplay(id);
 		String status = c.bajaDisplay(jdisplay.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.notice_title = "Esto es un mensaje de Confirmación.";
-			this.notice_message = "El display con identificador " + id + " se elimino correctamente.";
-			this.notice = "positive";
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El display con identificador " + id + " se elimino correctamente.");
+			notice.setNotice("positive");
 		} else {
-			this.notice_title = "Han ocurrido error/es que impiden continuar.";
-			this.notice_message = "Ocurrio un error al eliminar el tramite.";
-			this.notice = "negative";
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al eliminar el display.");
+			notice.setNotice("negative");
 		}
-		this.id = "";
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 

@@ -40,11 +40,22 @@ body{
     font-size: 20px;
     font-weight: bold;
     color: #1d304d;
-	text-decoration: underline;
+    text-decoration: underline;
+    width: initial;
+    border: none;
+    height: initial;
+    background: initial;
+    cursor: pointer;
+}
+
+.page-title:focus {
+	border: none;
+    outline: none;
 }
 
 .page-title-last {
 	text-decoration: none !important;
+	cursor: initial;
 }
 
 .arrow {

@@ -17,15 +17,15 @@ var desasignarContainer = document.getElementsByClassName('desasignar-container'
 if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('alta-mod-tramite-fields').classList.remove('hidden');
 	document.getElementById('form:alta-tramite-button').classList.remove('hidden');
-	document.getElementById('title-admin').classList.remove('hidden');
-	document.getElementById('title-tramites').classList.remove('hidden');
+	document.getElementById('form-links:title-admin').classList.remove('hidden');
+	document.getElementById('form-links:title-tramites').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Tramite';
 	// MOD TRAMITE
 } else if (getURLParameter('tipoForm') == 'modTramite') {
 	document.getElementById('alta-mod-tramite-fields').classList.remove('hidden');
 	document.getElementById('form:mod-tramite-button').classList.remove('hidden');
-	document.getElementById('title-admin').classList.remove('hidden');
-	document.getElementById('title-tramites').classList.remove('hidden');
+	document.getElementById('form-links:title-admin').classList.remove('hidden');
+	document.getElementById('form-links:title-tramites').classList.remove('hidden');
 	document.getElementById('form:tramite-selected-codigo').value = getURLParameter('codigo').replace("+", " ");
 	document.getElementById('form:tramite-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
 	document.getElementById('sub-title').innerHTML= 'Modificar Tramite';
@@ -34,16 +34,16 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('maquina-puesto').classList.remove('hidden');
 	document.getElementById('numero-puesto').classList.remove('hidden');
 	document.getElementById('form:alta-puesto-button').classList.remove('hidden');
-	document.getElementById('title-gestion').classList.remove('hidden');
-	document.getElementById('title-puestos').classList.remove('hidden');
+	document.getElementById('form-links:title-gestion').classList.remove('hidden');
+	document.getElementById('form-links:title-puestos').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Puesto';
 	// MOD PUESTO
 } else if (getURLParameter('tipoForm') == 'modPuesto') {
 	document.getElementById('numero-puesto').classList.remove('hidden');
 	document.getElementById('estado-puesto').classList.remove('hidden');
 	document.getElementById('usuario-puesto').classList.remove('hidden');
-	document.getElementById('title-gestion').classList.remove('hidden');
-	document.getElementById('title-puestos').classList.remove('hidden');
+	document.getElementById('form-links:title-gestion').classList.remove('hidden');
+	document.getElementById('form-links:title-puestos').classList.remove('hidden');
 	document.getElementById('form:puesto-selected-numero').value = getURLParameter('numero').replace("+", " ");
 	document.getElementById('form:puesto-selected-estado').value = getURLParameter('estado').replace("+", " ");
 	document.getElementById('form:puesto-selected-usuario').value = getURLParameter('usuario').replace("+", " ");
@@ -54,8 +54,8 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 } else if (getURLParameter('tipoForm') == 'altaDisplay') {
 	document.getElementById('alta-display-fields').classList.remove('hidden');
 	document.getElementById('form:alta-display-button').classList.remove('hidden');
-	document.getElementById('title-admin').classList.remove('hidden');
-	document.getElementById('title-displays').classList.remove('hidden');
+	document.getElementById('form-links:title-admin').classList.remove('hidden');
+	document.getElementById('form-links:title-displays').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Display';
 }
 

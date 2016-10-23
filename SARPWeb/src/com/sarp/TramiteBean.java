@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
@@ -14,7 +14,7 @@ import com.sarp.jsons.JSONTramite;
 import com.sarp.jsons.JSONTramiteRecepcion;
 
 @ManagedBean(name = "tramite", eager = true)
-@SessionScoped
+@ViewScoped
 public class TramiteBean {
 
 	private String codigo;
@@ -25,25 +25,20 @@ public class TramiteBean {
 	private static final JSONModeler modeler = new JSONModeler();
 	private boolean entre = false;
 
+	public SharedBean notice = SharedBean.getInstance();
 	
-	//Atributo para mensaje de errores
-	public String notice = "hidden";
-	public String notice_title = "";
-	public String notice_message = "";
-
 	public String alta() throws Exception{
 		JSONTramite jtramite = new JSONTramite(null, this.nombre);
 		String status = c.altaTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.notice_title = "Esto es un mensaje de Confirmación.";
-			this.notice_message = "El tramite con nombre "+ this.nombre + " se creo correctamente.";
-			this.notice = "positive";
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El tramite con nombre "+ this.nombre + " se creo correctamente.");
+			notice.setNotice("positive");
 		} else {
-			this.notice_title = "Han ocurrido error/es que impiden continuar.";
-			this.notice_message = "Ocurrio un error al crear el tramite.";
-			this.notice = "negative";
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al crear el tramite.");
+			notice.setNotice("negative");
 		}
-		this.nombre = "";
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
@@ -51,15 +46,14 @@ public class TramiteBean {
 		JSONTramite jtramite = new JSONTramite(Integer.parseInt(codigo), "nombre");
 		String status = c.bajaTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.notice_title = "Esto es un mensaje de Confirmación.";
-			this.notice_message = "El tramite se elimino correctamente.";
-			this.notice = "positive";
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El tramite con codigo " + codigo + " se elimino correctamente.");
+			notice.setNotice("positive");
 		} else {
-			this.notice_title = "Han ocurrido error/es que impiden continuar.";
-			this.notice_message = "Ocurrio un error al eliminar el tramite.";
-			this.notice = "negative";
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al eliminar el tramite.");
+			notice.setNotice("negative");
 		}
-		this.nombre = "";
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
@@ -67,16 +61,14 @@ public class TramiteBean {
 		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
 		String status = c.modTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.notice_title = "Esto es un mensaje de Confirmación.";
-			this.notice_message = "El tramite con nombre "+ this.nombre + " se modifico correctamente.";
-			this.notice = "positive";
+			notice.setNotice_title("Esto es un mensaje de Confirmación.");
+			notice.setNotice_message("El tramite con nombre "+ this.nombre + " se modifico correctamente.");
+			notice.setNotice("positive");
 		} else {
-			this.notice_title = "Han ocurrido error/es que impiden continuar.";
-			this.notice_message = "Ocurrio un error al modificar el tramite.";
-			this.notice = "negative";
+			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
+			notice.setNotice_message("Ocurrio un error al modificar el tramite.");
+			notice.setNotice("negative");
 		}
-		this.nombre = "";
-		this.codigo = "";
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
@@ -139,36 +131,7 @@ public class TramiteBean {
 	public void setId_sector(String id_sector) {
 		this.id_sector = id_sector;
 	}
-
-	public String getNotice_message() {
-		return notice_message;
-	}
-
-	public void setNotice_message(String notice_message) {
-		this.notice_message = notice_message;
-	}
-
-	public String getNotice_title() {
-		return notice_title;
-	}
-
-	public void setNotice_title(String notice_title) {
-		this.notice_title = notice_title;
-	}
 	
-	public String getNotice() {
-		return notice;
-	}
-
-	public void setNotice(String notice) {
-		this.notice = notice;
-	}
-	
-	public String hideError(){
-		this.notice="hidden";
-		return "/pages/admin.xhtml";
-	}
-
 	public boolean isEntre() {
 		return entre;
 	}
@@ -176,5 +139,4 @@ public class TramiteBean {
 	public void setEntre(boolean entre) {
 		this.entre = entre;
 	}
-	
 }

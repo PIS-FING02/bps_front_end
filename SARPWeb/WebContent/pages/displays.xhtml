@@ -15,9 +15,9 @@
 	<div id='entidad' class="page-container"> 
 		<h:form>
 			<div class="page-title-container">
-				<a class="page-title" href="menu.xhtml">Menú Principal</a>
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
 				<div class="page-title arrow"> ➨ </div>
-				<a class="page-title" href="admin.xhtml">Administración</a>
+				<h:commandButton class="page-title" value='Administración' action="#{shared.redirect('admin')}" />
 				<div class="page-title page-title-last"> ➨  Displays </div>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</div> 
@@ -37,12 +37,12 @@
 		</h:form>
 	</div>
 	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{display.notice != 'hidden'}">
-			<div id="notice-holder" class='#{display.notice}'>
+		<h:panelGroup id="text" rendered="#{shared.notice != 'hidden'}">
+			<div id="notice-holder" class='#{shared.notice}'>
 				<div class='logo'/>
 				<div class="notice-container">
-					<h:outputText class='notice-title' value="#{display.notice_title}" />
-					<h:outputText class='notice-content' value="#{display.notice_message}" />
+					<h:outputText class='notice-title' value="#{shared.notice_title}" />
+					<h:outputText class='notice-content' value="#{shared.notice_message}" />
 				</div>
 			</div>
 		</h:panelGroup>
