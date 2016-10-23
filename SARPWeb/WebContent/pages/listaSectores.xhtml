@@ -30,7 +30,7 @@
 						<ui:repeat id='repeat-tramites' value='#{sector.listar()}' var='s'>
 	<!-- 					<h:link value="#{s.nombre}" class="element-list tramite-element" outcome="listaNumeros?id=#{s.sectorId}" /> -->
 							<h:form>
-								<h:commandButton class="num-line" value="#{s.codigo} - #{s.nombre}" action="#{sector.listarNumerosSector(s.sectorId)}"/>
+								<h:commandButton class="num-line" value="#{s.sectorId} - #{s.nombre}" action="#{sector.listarNumerosSector(s.sectorId)}"/>
 							</h:form>
 						</ui:repeat>
 					</div>

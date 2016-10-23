@@ -14,7 +14,6 @@ import com.sarp.jsons.JSONTramiteRecepcion;
 @SessionScoped
 public class TramiteBean {
 
-	private Boolean ejecutado = false;
 	private String codigo;
 	private String nombre;
 	private String id_sector;
@@ -81,13 +80,7 @@ public class TramiteBean {
 	}
 
 	public List<JSONTramite> listar() throws Exception{
-		if (!ejecutado) {
-			ejecutado = true;
-			return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
-		} else {
-			ejecutado = false;
-			return null;
-		}
+		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
 	}
 
 	public List<JSONTramiteRecepcion> listarDePuesto(String puesto) throws Exception {
