@@ -5,8 +5,13 @@ var asignarTramiteSector = document.getElementsByClassName('asignar-sector-butto
 var asignarPuestoSector = document.getElementsByClassName('asignar-puesto-button');
 var asignarTramitePuesto = document.getElementsByClassName('asignar-tramite-button');
 var asignarDisplaySector = document.getElementsByClassName('asignar-display-button');
+var desasignarTramiteSector = document.getElementsByClassName('desasignar-sector-button');
+var desasignarPuestoSector = document.getElementsByClassName('desasignar-puesto-button');
+var desasignarTramitePuesto = document.getElementsByClassName('desasignar-tramite-button');
+var desasignarDisplaySector = document.getElementsByClassName('desasignar-display-button');
 var iconContainer = document.getElementsByClassName('icon-container');
 var asignarContainer = document.getElementsByClassName('asignar-container');
+var desasignarContainer = document.getElementsByClassName('desasignar-container');
 
 	// ALTA TRAMITE
 if (getURLParameter('tipoForm') == 'altaTramite') {
@@ -60,10 +65,24 @@ for (var i = 0; i < asignarTramiteSector.length; i++){
 		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
-			this.href = 'listaTramites.xhtml?esSec=true&entidad=tramite&id=' + id;
+			this.href = 'listaTramites.xhtml?esSec=true&esAsig=true&entidad=tramite&id=' + id;
 		} else {
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('maquina');
-			this.href = 'listaTramites.xhtml?esSec=false&entidad=tramite&id=' + id;
+			this.href = 'listaTramites.xhtml?esSec=false&esAsig=true&entidad=tramite&id=' + id;
+		}
+	}, false);
+}
+
+// DESASIGNAR TRAMITE A SECTOR
+for (var i = 0; i < desasignarTramiteSector.length; i++){
+	desasignarTramiteSector[i].addEventListener('click', function(){
+		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		if(esSector){
+			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
+			this.href = 'listaTramites.xhtml?esSec=true&esAsig=false&entidad=tramite&id=' + id;
+		} else {
+			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('maquina');
+			this.href = 'listaTramites.xhtml?esSec=false&esAsig=false&entidad=tramite&id=' + id;
 		}
 	}, false);
 }
@@ -74,7 +93,19 @@ for (var i = 0; i < asignarPuestoSector.length; i++){
 			var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 			if(esSector){
 				var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
-				this.href = 'listaPuestos.xhtml?esSec=true&entidad=puesto&id=' + id;
+				this.href = 'listaPuestos.xhtml?esSec=true&esAsig=true&entidad=puesto&id=' + id;
+			} 
+			
+		}, false);
+	}
+
+// DESASIGNAR PUESTO A SECTOR
+for (var i = 0; i < desasignarPuestoSector.length; i++){
+	desasignarPuestoSector[i].addEventListener('click', function(){
+			var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+			if(esSector){
+				var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
+				this.href = 'listaPuestos.xhtml?esSec=true&esAsig=false&entidad=puesto&id=' + id;
 			} 
 			
 		}, false);
@@ -86,7 +117,18 @@ for (var i = 0; i < asignarDisplaySector.length; i++){
 		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
-			this.href = 'listaDisplays.xhtml?esSec=true&entidad=display&id=' + id;
+			this.href = 'listaDisplays.xhtml?esSec=true&esAsig=true&entidad=display&id=' + id;
+		} 
+	}, false);
+}
+
+// DESASIGNAR DISPLAY A SECTOR
+for (var i = 0; i < desasignarDisplaySector.length; i++){
+	desasignarDisplaySector[i].addEventListener('click', function(){
+		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		if(esSector){
+			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
+			this.href = 'listaDisplays.xhtml?esSec=true&esAsig=false&entidad=display&id=' + id;
 		} 
 	}, false);
 }
@@ -97,10 +139,24 @@ for (var i = 0; i < asignarTramitePuesto.length; i++) {
 		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
-			this.href = 'listaTramites.xhtml?esSec=true&id=' + id;
+			this.href = 'listaTramites.xhtml?esSec=true&esAsig=true&entidad=tramite&id=' + id;
 		} else {
 			var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
-			this.href = 'listaTramitesDePuesto.xhtml?esSec=false&id=' + id;
+			this.href = 'listaTramitesDePuesto.xhtml?esSec=false&esAsig=true&entidad=tramite&id=' + id;
+		}
+	}, false);
+}	
+
+// DESASIGNAR TRAMITE PUESTO
+for (var i = 0; i < desasignarTramitePuesto.length; i++) {
+	desasignarTramitePuesto[i].addEventListener('click', function(){
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		if(esSector){
+			var id = this.parentElement.previousSibling.previousSibling.getAttribute('idSector');
+			this.href = 'listaTramites.xhtml?esSec=true&esAsig=false&id=' + id;
+		} else {
+			var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
+			this.href = 'listaTramitesDePuesto.xhtml?esSec=false&esAsig=false&id=' + id;
 		}
 	}, false);
 }	
@@ -111,6 +167,20 @@ for (var i = 0; i < iconContainer.length; i++) {
 		for (var i = 0; i < asignarContainer.length; i++) {
 			asignarContainer[i].classList.add('hidden');
 			asignarContainer[i].classList.remove('icon-container-selected');
+		}
+		this.nextElementSibling.classList.remove('hidden');
+		this.nextElementSibling.classList.add('icon-container-selected');
+		e.preventDefault();
+		e.stopPropagation();
+	}, false);	
+}
+
+//SHOW DESASIGNAR BOX
+for (var i = 0; i < iconContainer.length; i++) {
+	iconContainer[i].addEventListener('click', function(e){
+		for (var i = 0; i < desasignarContainer.length; i++) {
+			desasignarContainer[i].classList.add('hidden');
+			desasignarContainer[i].classList.remove('icon-container-selected');
 		}
 		this.nextElementSibling.classList.remove('hidden');
 		this.nextElementSibling.classList.add('icon-container-selected');

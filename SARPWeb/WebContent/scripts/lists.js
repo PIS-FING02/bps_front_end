@@ -1,5 +1,7 @@
-var esSector = document.getElementById('form-asociacion:es-sector').innerHTML;
-var entidad = document.getElementById('form-asociacion:entidad-llamado').innerHTML;
+var esSector = !!document.getElementById('form-asociacion:es-sector') ? document.getElementById('form-asociacion:es-sector').innerHTML : null;
+var entidad = !!document.getElementById('form-asociacion:entidad-llamado') ? document.getElementById('form-asociacion:entidad-llamado').innerHTML : null;
+var esAsig = !!document.getElementById('form-asociacion:es-asig') ? document.getElementById('form-asociacion:es-asig').innerHTML : null;
+
 
 //ENABLE ACTION BUTTONS IF ELEMENT SELECTED
 for (var i = 0; i < listElements.length; i++) {
@@ -30,8 +32,39 @@ for (var i = 0; i < listElements.length; i++) {
 	}, false);
 }
 
-if (esSector == "true") {
-	document.getElementById('form-asociacion:asignar-tramite-sector-button').classList.remove('hidden');
-} else {
-	document.getElementById('form-asociacion:asignar-tramite-puesto-button').classList.remove('hidden');
+if(entidad == "tramite"){
+	if (esAsig == "true"){
+		if (esSector == "true") {
+			document.getElementById('form-asociacion:asignar-tramite-sector-button').classList.remove('hidden');
+		} else {
+			document.getElementById('form-asociacion:asignar-tramite-puesto-button').classList.remove('hidden');
+		}
+	}else{
+		if (esSector == "true") {
+			document.getElementById('form-asociacion:desasignar-tramite-sector-button').classList.remove('hidden');
+		} else {
+			document.getElementById('form-asociacion:desasignar-tramite-puesto-button').classList.remove('hidden');
+		}
+	}
 }
+
+if(entidad == "puesto"){
+	if (esAsig == "true") {
+			document.getElementById('form-asociacion:asignar-tramite-sector-button').classList.remove('hidden');
+		} else {
+			document.getElementById('form-asociacion:desasignar-tramite-sector-button').classList.remove('hidden');
+		}
+}
+
+if(entidad == "display"){
+	if (esAsig == "true") {
+			document.getElementById('form-asociacion:asignar-display-sector-button').classList.remove('hidden');
+	}else {
+			document.getElementById('form-asociacion:desasignar-display-sector-button').classList.remove('hidden');
+	}
+}
+
+
+
+
+

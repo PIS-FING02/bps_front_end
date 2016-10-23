@@ -154,6 +154,23 @@ public class PuestoBean {
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
+	public String desasignarTramitePuesto(){  //FALTA CAMBIAR
+		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
+		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
+		if (status.equals("OK")){
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El tramite con codigo "+ this.codigo + " se asigno correctamente al puesto con nombre de maquina " + this.maquina + ".";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".";
+			this.notice = "negative";
+		}
+		this.maquina = "";
+		this.usuarioId = "";
+		return "/pages/puestos.xhtml?faces-redirect=true";
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -400,6 +417,10 @@ public class PuestoBean {
 		return modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina,"Operador"));
 	}
 	
+	public void showEstadosFinalizar(){
+		this.notice="show";
+	}
+	
 	public void finalizarAtencion(){
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
 		c.finalizarAtencion(jpuesto.toString(),"Operador");
@@ -471,4 +492,5 @@ public class PuestoBean {
 		//atrasar numero y liberar puesto cuando viene de pantalla de atencion
 		return "/pages/operadorAtrasados.xhtml?faces-redirect=true";
 	}
+	
 }

@@ -8,9 +8,13 @@ public class SectorFacade {
 	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/listarSectores";
 	public static final String URL_REST_GAFU = "http://52.52.100.160:8080/SARPService/adminService/actualizarGAFU";
 	public static final String URL_REST_ASIGNAR_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/asignarTramiteSector";
+	public static final String URL_REST_DESASIGNAR_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/desasignarTramiteSector";
 	public static final String URL_REST_ASIGNAR_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/asignarPuestoSector";
 	public static final String URL_REST_ASIGNAR_DISPLAY = "http://52.52.100.160:8080/SARPService/adminService/asignarSectorDisplay";
+	public static final String URL_REST_DESASIGNAR_DISPLAY = "http://52.52.100.160:8080/SARPService/adminService/desasignarSectorDisplay";
 	public static final String URL_LISTAR_NUMEROS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosSector?idSector=";
+	public static final String URL_REST_DESASIGNAR_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/desasignarPuestoSector";
+	
 	
 	public String importarSectoresGafu(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
@@ -27,15 +31,30 @@ public class SectorFacade {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_ASIGNAR_TRAMITE, input, userRol);
 	}
+	
+	public String desasignarTramiteSector(String input, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doDelete(URL_REST_DESASIGNAR_TRAMITE, input, userRol);
+	}
 
 	public String asignarPuestoSector(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_ASIGNAR_PUESTO, input, userRol);
 	}
+	
+	public String desasignarPuestoSector(String input, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doDelete(URL_REST_DESASIGNAR_PUESTO, input, userRol);
+	}
 
 	public String asignarDisplaySector(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_ASIGNAR_DISPLAY, input, userRol);
+	}
+	
+	public String desasignarDisplaySector(String input, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doDelete(URL_REST_DESASIGNAR_DISPLAY, input, userRol);
 	}
 	
 	public String listarNumerosSector(String idSector, String userRol) {
