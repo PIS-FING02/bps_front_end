@@ -8,18 +8,17 @@
 	<title>Lista Trámites de Puesto</title>
 
 	<ui:include src="header.xhtml" />
-	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
-	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
 </head> 
 
 <body> 
 	<div id='entidad' class="page-container"> 
 		<div class="page-title-container">
-			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
+			<a class="page-title" href="menu.xhtml">Menú Principal</a>
 			<div class="page-title arrow"> ➨ </div>
-			<a class="page-title" href="respSector.xhtml"> Configurar Sector </a>
-			<div class="page-title page-title-last"> ➨  Trámites </div>
+			<a class="page-title" href="respSector.xhtml">Gestión</a>
+			<div class="page-title arrow"> ➨ </div>
+			<a class="page-title" href="puestos.xhtml">Puestos</a>
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
@@ -48,41 +47,20 @@
 					<h:inputText id='id-sector-selected' class="formInput" value="#{sector.codigo}" />
 				</div>
 				<div id="id-tramite-puesto" class="form-line hidden">
-					<label for="tramite-id">Trámite</label>
-					<h:inputText id='id-tramite-puesto-selected' class="formInput" value="#{puesto.maquina}" />
+					<label for="tramite-id">Tramite</label>
+					<h:inputText id='id-tramite-puesto-selected' class="formInput" value="#{puesto.codigo}" />
 				</div>
 				<div id="id-puesto" class="form-line hidden">
-					<label for="puesto-id">Asociación</label>
-					<h:inputText id='id-puesto-selected' class="formInput" value="#{puesto.codigo}" />
+					<label for="puesto-id">Asociacion</label>
+					<h:inputText id='id-puesto-selected' class="formInput" value="#{puesto.maquina}" />
 				</div>
 				<div class="buttons-container">
-				<f:ajax render=":form-error:text">
 					<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramitePuesto}"/>
-				</f:ajax>
-				<f:ajax render=":form-error:text">
 					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarTramiteSector}"/> 
-				</f:ajax>
 				</div>
 			</h:form>
 		</div>
 	</div>	
-	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{sector.error== 'show'}">
-			<div id="action-popup" class="popup-overlay">
-				<div class="popup">
-					<h2 id="popup-title" class="sub-title">Mensaje error</h2>
-					<div class="content">
-						<h:outputText value="#{sector.error_message}" />
-						<h:form id='form-tramite'>
-							<div class="buttons-container">
-								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{sector.hideError()}" />  
-							</div>
-						</h:form>
-					</div>
-				</div>
-			</div>
-		</h:panelGroup>
-	</h:form>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 <script type="text/javascript" src="../scripts/lists.js"></script>

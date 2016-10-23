@@ -3,14 +3,13 @@ package com.sarp;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
+import javax.faces.bean.SessionScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONDisplay;
 
 @ManagedBean(name = "display", eager = true)
-@ViewScoped
+@SessionScoped
 public class DisplayBean {
 
 	public String id;
@@ -19,47 +18,70 @@ public class DisplayBean {
 	private static final JSONModeler modeler = new JSONModeler();
 
 	//Atributo para mensaje de errores
-	public String error = "hidden";
-	public String error_message = "";
+	public String notice = "hidden";
+	public String notice_title = "";
+	public String notice_message = "";
 	
+	public String getNotice_message() {
+		return notice_message;
+	}
+
+	public void setNotice_message(String notice_message) {
+		this.notice_message = notice_message;
+	}
+
+	public String getNotice_title() {
+		return notice_title;
+	}
+
+	public void setNotice_title(String notice_title) {
+		this.notice_title = notice_title;
+	}
 	
-	public String getError() {
-		return error;
+	public String getNotice() {
+		return notice;
 	}
 
-	public void setError(String error) {
-		this.error = error;
+	public void setNotice(String notice) {
+		this.notice = notice;
+	}
+	
+	public String hideError(){
+		this.notice="hidden";
+		return "/pages/admin.xhtml";
 	}
 
-	public String getError_message() {
-		return error_message;
-	}
-
-	public void setError_message(String error_message) {
-		this.error_message = error_message;
-	}
-
-	public void alta() throws Exception{
+	public String alta() throws Exception{
 		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		System.out.println(jdisplay.toString());
 		String status= c.altaDisplay(jdisplay.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.error_message="El display " + this.id + " se creo correctamente";
-		}else{
-			this.error_message = "Ocurrio un error al crear el display " + this.id;
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El display con identificador "+ this.id + " se creo correctamente.";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al crear el display.";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.id = "";
+		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 	
-	public void baja(String id) {
+	public String baja(String id) {
 		JSONDisplay jdisplay = new JSONDisplay(id);
 		String status = c.bajaDisplay(jdisplay.toString(), "Administrador");
 		if (status.equals("OK")){
-			this.error_message="El display " + this.id + " se dio de baja correctamente";
-		}else{
-			this.error_message = "Ocurrio un error al eliminar el display " + this.id;
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El display con identificador " + id + " se elimino correctamente.";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al eliminar el tramite.";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.id = "";
+		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 
 	public List<JSONDisplay> listar() throws Exception{
@@ -80,10 +102,5 @@ public class DisplayBean {
 
 	public void setId(String string) {
 		this.id = string;
-	}
-	
-	public String hideError(){
-		this.error="hidden";
-		return "/pages/admin.xhtml";
 	}
 }

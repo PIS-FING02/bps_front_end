@@ -12,40 +12,47 @@ var asignarContainer = document.getElementsByClassName('asignar-container');
 if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('alta-mod-tramite-fields').classList.remove('hidden');
 	document.getElementById('form:alta-tramite-button').classList.remove('hidden');
+	document.getElementById('title-admin').classList.remove('hidden');
+	document.getElementById('title-tramites').classList.remove('hidden');
+	document.getElementById('sub-title').innerHTML= 'Crear Tramite';
 	// MOD TRAMITE
 } else if (getURLParameter('tipoForm') == 'modTramite') {
 	document.getElementById('alta-mod-tramite-fields').classList.remove('hidden');
 	document.getElementById('form:mod-tramite-button').classList.remove('hidden');
+	document.getElementById('title-admin').classList.remove('hidden');
+	document.getElementById('title-tramites').classList.remove('hidden');
 	document.getElementById('form:tramite-selected-codigo').value = getURLParameter('codigo').replace("+", " ");
 	document.getElementById('form:tramite-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
+	document.getElementById('sub-title').innerHTML= 'Modificar Tramite';
 	// ALTA PUESTO
 } else if (getURLParameter('tipoForm') == 'altaPuesto') {
-	document.getElementById('alta-puesto-fields').classList.remove('hidden');
+	document.getElementById('maquina-puesto').classList.remove('hidden');
+	document.getElementById('numero-puesto').classList.remove('hidden');
 	document.getElementById('form:alta-puesto-button').classList.remove('hidden');
+	document.getElementById('title-gestion').classList.remove('hidden');
+	document.getElementById('title-puestos').classList.remove('hidden');
+	document.getElementById('sub-title').innerHTML= 'Crear Puesto';
 	// MOD PUESTO
 } else if (getURLParameter('tipoForm') == 'modPuesto') {
-	document.getElementById('mod-puesto-fields').classList.remove('hidden');
+	document.getElementById('numero-puesto').classList.remove('hidden');
+	document.getElementById('estado-puesto').classList.remove('hidden');
+	document.getElementById('usuario-puesto').classList.remove('hidden');
+	document.getElementById('title-gestion').classList.remove('hidden');
+	document.getElementById('title-puestos').classList.remove('hidden');
+	document.getElementById('form:puesto-selected-numero').value = getURLParameter('numero').replace("+", " ");
+	document.getElementById('form:puesto-selected-estado').value = getURLParameter('estado').replace("+", " ");
+	document.getElementById('form:puesto-selected-usuario').value = getURLParameter('usuario').replace("+", " ");
+	document.getElementById('form:puesto-selected-maquina').value = getURLParameter('maquina').replace("+", " ");
 	document.getElementById('form:mod-puesto-button').classList.remove('hidden');
+	document.getElementById('sub-title').innerHTML= 'Modificar Puesto';
 	// ALTA DISPLAY
 } else if (getURLParameter('tipoForm') == 'altaDisplay') {
 	document.getElementById('alta-display-fields').classList.remove('hidden');
 	document.getElementById('form:alta-display-button').classList.remove('hidden');
+	document.getElementById('title-admin').classList.remove('hidden');
+	document.getElementById('title-displays').classList.remove('hidden');
+	document.getElementById('sub-title').innerHTML= 'Crear Display';
 }
-
-////	BAJAS
-//for (var i = 0; i < bajas.length; i++) {
-//	bajas[i].addEventListener('click', function(){
-//		var parent = this.parentElement;
-//		updateInputs(parent);
-//		if (hasClass(this, 'tipo-tramite')) {
-//			document.getElementById('form-tramite:baja-tramite-button').click();	
-//		} else if (hasClass(this, 'tipo-display')) {
-//			document.getElementById('form-display:baja-display-button').click();				
-//		} else if (hasClass(this, 'tipo-puesto')) {
-//			document.getElementById('form-puesto:baja-puesto-button').click();				
-//		}
-//	}, false);
-//}
 
 // ASIGNAR TRAMITE A SECTOR
 for (var i = 0; i < asignarTramiteSector.length; i++){
@@ -58,7 +65,6 @@ for (var i = 0; i < asignarTramiteSector.length; i++){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('maquina');
 			this.href = 'listaTramites.xhtml?esSec=false&entidad=tramite&id=' + id;
 		}
-		
 	}, false);
 }
 
@@ -120,17 +126,4 @@ document.onclick = function(e) {
     	if (elem)
     		elem.classList.add('hidden');          
     } 
-}
-
-//UPDATE INPUT VALUES AFTER SELECTING ELEMENT FROM LIST
-function updateInputs(element) {
-	if (hasClass(element, 'tramite-element')) {
-		document.getElementById('form:tramite-selected-codigo').value = getURLParameter('codigo').replace("+", " ");
-		document.getElementById('form:tramite-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
-	} else if (hasClass(element, 'puesto-element')){
-		document.getElementById('form:puesto-selected-maquina').value = getURLParameter('maquina').replace("+", " ");
-		document.getElementById('form:puesto-selected-usuario').value = getURLParameter('usuario').replace("+", " ");
-		document.getElementById('form:puesto-selected-estado').value = getURLParameter('estado').replace("+", " ");
-		document.getElementById('form:puesto-selected-numero').value = getURLParameter('numero').replace("+", " ");
-	}
 }

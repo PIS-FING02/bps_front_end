@@ -8,7 +8,6 @@
 	<title>Pantalla Trámites</title>
 
 	<ui:include src="header.xhtml" />
-	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
 </head> 
 
@@ -22,14 +21,14 @@
 				<div class="page-title page-title-last"> ➨  Tramites </div>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</div> 
+			<a id='alta-tramite' class='icon icon-alta alta-button tipo-tramite' 
+				href='forms.xhtml?tipoForm=altaTramite'>Crear Tramite</a>
 			<div class="page-frame">
-				<div id='list-tramites-container' class='entity-list-container'>
-					<a id='alta-tramite' class='icon icon-alta alta-button tipo-tramite' 
-						href='forms.xhtml?tipoForm=altaTramite'>Crear Tramite</a>
+				<div id='list-tramites-container' class='list-container'>
 					<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
 						<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
-						<div class='list-entity tramite-element'>
-							<h:outputText class='element-list puesto-element' value='#{t.codigo} - #{t.nombre}'/>
+						<div class='element-list tramite-element'>
+							<h:outputText class='puesto-element' value='#{t.codigo} - #{t.nombre}'/>
 							<h:commandButton id='baja-tramite' class='icon baja-button tipo-tramite baja-tramite'
 								action="#{tramite.baja(t.codigo)}" value='Borrar'/>
 							<h:commandButton id='mod-tramite' class='icon mod-button tipo-tramite editar-tramite' action="#{tramite.goToTramite(t.codigo, t.nombre)}" value='Editar'/>
@@ -40,18 +39,12 @@
 		</h:form>	
 	</div>
 	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{tramite.error == 'show'}">
-			<div id="action-popup" class="popup-overlay">
-				<div class="popup">
-					<h2 id="popup-title" class="sub-title">Advertencia</h2>
-					<div class="content">
-						<h:outputText value="#{tramite.error_message}" />
-						<h:form id='form-tramite'>
-							<div class="buttons-container">
-								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{tramite.hideError()}" />  
-							</div>
-						</h:form>
-					</div>
+		<h:panelGroup id="text" rendered="#{tramite.notice != 'hidden'}">
+			<div id="notice-holder" class='#{tramite.notice}'>
+				<div class='logo'/>
+				<div class="notice-container">
+					<h:outputText class='notice-title' value="#{tramite.notice_title}" />
+					<h:outputText class='notice-content' value="#{tramite.notice_message}" />
 				</div>
 			</div>
 		</h:panelGroup>

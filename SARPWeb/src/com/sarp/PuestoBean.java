@@ -37,8 +37,9 @@ public class PuestoBean {
 	private String idSector;
 	
 	//Atributo para mensaje de errores
-	public String error = "hidden";
-	public String error_message = "";
+	public String notice = "hidden";
+	public String notice_title = "";
+	public String notice_message = "";
 	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
@@ -56,49 +57,68 @@ public class PuestoBean {
 	}
 	
 	public String getRecepcionTest(){
-		try{
+		try {
 			return UtilService.getStringProperty("MAQUINA_RECEPCION_TEST");	
-		}catch (Exception e){
+		} catch (Exception e){
 			System.out.println("TRANQUILOS DEVOLVEMOS MAQ2");
 			return "maq2";
 		}
 	}
 	
-	public void alta() throws Exception{
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "0", this.numero, this.estado);
+	public String alta() throws Exception {
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "", this.numero, "");
 		String status = c.altaPuesto(jpuesto.toString(), "ResponsableSector");
 		if (status.equals("OK")){
-			this.error_message="El puesto "+ this.maquina + "se creo correctamente.";
-		}else{
-			this.error_message = "Ocurrio un error al crear el puesto.";
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El puesto con nombre de maquina "+ this.maquina + " se creo correctamente.";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al crear el puesto.";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.maquina = "";
+		this.numero = null;
+		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
-	public void baja(String maquina) throws Exception{
+	public String baja(String maquina) throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(maquina, "id", 0, "CERRADO");
 		String status = c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
 		if (status.equals("OK")){
-			this.error_message="El puesto "+ this.maquina + "se elimino correctamente.";
-		}else{
-			this.error_message = "Ocurrio un error al eliminar el puesto.";
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El puesto con nombre de maquina "+ this.maquina + " se elimino correctamente.";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al crear el puesto.";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.maquina = "";
+		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
-	public void modificar(){
+	public String modificar(){
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
 		String status = c.modPuesto(jpuesto.toString(), "ResponsableSector");
 		if (status.equals("OK")){
-			this.error_message="El puesto "+ this.maquina + "se modifico correctamente.";
-		}else{
-			this.error_message = "Ocurrio un error al modificar el puesto.";
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El puesto con nombre de maquina "+ this.maquina + " se modifico correctamente.";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al crear el puesto.";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.maquina = "";
+		this.usuarioId = "";
+		this.estado = "";
+		this.numero = null;
+		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
-	public String goToPuesto(String estado, String usuario, String numero) {
-		return "/pages/forms.xhtml?tipoForm=modPuesto&estado=" + estado + "&usuario=" + usuario + "&numero=" + numero + "faces-redirect=true";
+	public String goToPuesto(String maquina, String estado, String usuario, String numero) {
+		return "/pages/forms.xhtml?tipoForm=modPuesto&estado=" + estado + "&maquina=" + maquina + "&usuario=" + usuario + "&numero=" + numero + "faces-redirect=true";
 	}
 
 	public List<JSONPuesto> listar() throws Exception{
@@ -117,15 +137,21 @@ public class PuestoBean {
 		}
 	}
 	
-	public void asignarTramitePuesto(){
-		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.maquina, this.codigo);
+	public String asignarTramitePuesto(){
+		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
 		if (status.equals("OK")){
-			this.error_message="El tramite con codigo "+ this.codigo + "se asigno al puesto " + this.maquina;
-		}else{
-			this.error_message = "Ocurrio un error al asignar el tramite al puesto";
+			this.notice_title = "Esto es un mensaje de Confirmación.";
+			this.notice_message = "El tramite con codigo "+ this.codigo + " se asigno correctamente al puesto con nombre de maquina " + this.maquina + ".";
+			this.notice = "positive";
+		} else {
+			this.notice_title = "Han ocurrido error/es que impiden continuar.";
+			this.notice_message = "Ocurrio un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".";
+			this.notice = "negative";
 		}
-		this.error = "show";
+		this.maquina = "";
+		this.usuarioId = "";
+		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
 	public Integer getId() {
@@ -248,20 +274,28 @@ public class PuestoBean {
 		this.fecha = fecha;
 	}
 	
-	public String getError() {
-		return error;
+	public String getNotice() {
+		return notice;
 	}
 
-	public void setError(String error) {
-		this.error = error;
+	public void setNotice(String notice) {
+		this.notice = notice;
 	}
 
-	public String getError_message() {
-		return error_message;
+	public String getNotice_message() {
+		return notice_message;
 	}
 
-	public void setError_message(String error_message) {
-		this.error_message = error_message;
+	public void setNotice_message(String notice_message) {
+		this.notice_message = notice_message;
+	}
+
+	public String getNotice_title() {
+		return notice_title;
+	}
+
+	public void setNotice_title(String notice_title) {
+		this.notice_title = notice_title;
 	}
 
 	public String abrir() throws Exception{
@@ -327,8 +361,8 @@ public class PuestoBean {
 	}
 	
 	public String hideError(){
-		this.error="hidden";
-		return "/pages/respSector.xhtml?faces-redirect=true";
+		this.notice = "hidden";
+		return "/pages/respSector.xhtml";
 	}
 	
 	public List<JSONNumero> listarNumeros() throws Exception{

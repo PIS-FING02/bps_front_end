@@ -8,6 +8,10 @@ body{
 	margin: 0;
 }
 
+.page-list {
+	padding-bottom: 10px;
+}
+
 .body-not-scroll {
 	overflow: hidden;
 }
@@ -55,7 +59,7 @@ body{
     position: relative;
     float: left;
     left: calc((100% - 624px)/2);
-    min-width: 624px;
+    min-width: 600px;
 }
 
 .frame-title{
@@ -64,6 +68,7 @@ body{
     line-height: 20px;
     font-size: 15px;
     font-weight: bold;
+    margin-bottom: 10px;
 }	
 
 .options-buttons-container { 
@@ -71,8 +76,15 @@ body{
     float: left;
 }
 
+#recepcion-button {
+    word-break: break-all;
+}
+
+#listar-numeros-sistema {
+	padding: 34px 10px;
+}
+
 .option-button {
-	word-break: break-all;
 	width: 131px;
     height: 100px;
     margin: 10px;
@@ -89,9 +101,10 @@ body{
 }
 
 .option-link {
-    box-sizing: border-box;
-    line-height: 5.5;
+	word-break: break-all;
+	box-sizing: border-box;
     text-align: center;
+    padding: 42px 10px;
 }
 
 .option-button:hover {
@@ -147,10 +160,38 @@ a, a:active, a:target {
 	background-color: #1b468d; 
 }
 
+/*---------------LIST STUFF------------------*/
+
+.list-container {
+    background-color: white;
+    border: 1px solid #a9a9a9;
+    overflow-y: scroll;
+    max-height: 350px;
+}
+
+.list-title {
+    text-align: center;
+    float: none;
+    display: block;
+    text-decoration: none !important;
+}
+
 .element-list {
-	font-size: 14px;
-	padding: 5px;
-    display: inline-block;
+	position: relative;
+    font-size: 14px;
+    padding: 5px;
+    display: block;
+    line-height: 25px;
+}
+
+.element-list:nth-child(4n+0) {
+	background: #f5f5f5;
+}
+
+.element-list-selected {
+	background: #4e769b !important;
+	font-weight: bold;
+	color: white;
 }
 
 /*---------------FORM STUFF------------------*/
@@ -176,7 +217,7 @@ label {
 input { 
     margin-left: 20px;
     float: right;
-    width: calc(100% - 81px);
+    width: calc(100% - 158px);
     height: 20px;
     padding-left: 5px;
     border: 1px solid #a9a9a9;

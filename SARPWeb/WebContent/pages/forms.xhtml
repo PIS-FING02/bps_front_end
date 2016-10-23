@@ -6,28 +6,31 @@
 
 <head>
 	<title>Pantalla Administrador</title>
-
 	<ui:include src="header.xhtml" />
-	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 </head> 
 
 <body> 
 	<div id='entidad' class="page-container"> 
 		<div class="page-title-container">
-			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
+			<a class="page-title" href="menu.xhtml">Menú Principal</a>
 			<div class="page-title arrow"> ➨ </div>
-			<a class="page-title" href="admin.xhtml"> Administración </a>
-			<div class="page-title page-title-last"> ➨  Tramites </div>
+			<a id='title-admin' class="page-title hidden" href="admin.xhtml">Administración</a>
+			<a id='title-gestion' class="page-title hidden" href="respSector.xhtml">Gestion</a>
+			<div class="page-title arrow"> ➨ </div>
+			<a id='title-tramites' class="page-title hidden" href="tramites.xhtml">Tramites</a>
+			<a id='title-displays' class="page-title hidden" href="displays.xhtml">Displays</a>
+			<a id='title-puestos' class="page-title hidden" href="puestos.xhtml">Puestos</a>
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div> 
 		<div class="page-frame">
+			<div id='sub-title' class="frame-title"></div>
 			<h:form id='form'>
 				<div id="alta-mod-tramite-fields" class="form-line hidden">
 				<!-- TRAMITE -->
 					<label for="nombre">Nombre:</label>
-					<h:inputText id='tramite-selected-codigo' class="formInput" value="#{tramite.codigo}" />
+					<h:inputText id='tramite-selected-codigo' class="formInput hidden" value="#{tramite.codigo}" />
 					<h:inputText id='tramite-selected-nombre' class="formInput" value="#{tramite.nombre}" />
 				</div> 
 				<!-- DISPLAY -->
@@ -53,43 +56,16 @@
 					<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
 				</div>
 				<div class="buttons-container">
-					<f:ajax render=":form-error:text">
-						<h:commandButton id='alta-tramite-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{tramite.alta}" /> 
-					</f:ajax>
-					<f:ajax render=":form-error:text">
-						<h:commandButton id='mod-tramite-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{tramite.modificar}" /> 
-					</f:ajax>
-					<f:ajax render=":form-error:text">
-						<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}" /> 
-					</f:ajax>
-					<f:ajax render=":form-error:text">
-						<h:commandButton id='alta-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta}" /> 
-					</f:ajax>
-					<f:ajax render=":form-error:text">
-						<h:commandButton id='mod-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.modificar}" /> 
-					</f:ajax>
+					<h:commandButton id='alta-tramite-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{tramite.alta}"/> 
+					<h:commandButton id='mod-tramite-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{tramite.modificar}"/> 
+					<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}"/> 
+					<h:commandButton id='alta-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta}"/> 
+					<h:commandButton id='mod-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.modificar}"/> 
 					<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 				</div>
 			</h:form>
 		</div>
 	</div>
-	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{tramite.error == 'show'}">
-			<div id="action-popup" class="popup-overlay">
-				<div class="popup">
-					<h2 id="popup-title" class="sub-title">Advertencia</h2>
-					<div class="content">
-						<h:outputText value="#{tramite.error_message}" />
-						<h:form id='form-tramite'>
-							<div class="buttons-container">
-								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{tramite.hideError()}" />  
-							</div>
-						</h:form>
-					</div>
-				</div>
-			</div>
-		</h:panelGroup>
-	</h:form>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 </body> 

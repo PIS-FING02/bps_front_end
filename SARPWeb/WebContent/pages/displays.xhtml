@@ -8,49 +8,41 @@
 	<title>Pantalla Displays</title>
 
 	<ui:include src="header.xhtml" />
-	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
-	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
 </head> 
 
 <body> 
 	<div id='entidad' class="page-container"> 
-		<div class="page-title-container">
-			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
-			<div class="page-title arrow"> ➨ </div>
-			<a class="page-title" href="admin.xhtml"> Administración </a>
-			<div class="page-title page-title-last"> ➨  Displays </div>
-			<h:form>
+		<h:form>
+			<div class="page-title-container">
+				<a class="page-title" href="menu.xhtml">Menú Principal</a>
+				<div class="page-title arrow"> ➨ </div>
+				<a class="page-title" href="admin.xhtml">Administración</a>
+				<div class="page-title page-title-last"> ➨  Displays </div>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
-			</h:form>
-		</div> 
-		<div class="page-frame">
-			<div id='list-display-container' class='entity-list-container'>
-				<a id='alta-display' class='icon icon-alta alta-button tipo-display' href='forms.xhtml?tipoForm=altaDisplay'>Crear Display</a>
-				<ui:repeat id='repeat-' value='#{display.listar()}' var='d'>
-					<div id='#{d.displayId}' class='hidden'/>
-					<div class='list-entity display-element'>
-						<h:outputText class='element-list puesto-element' value='#{d.displayId}'/>
-						<h:commandButton id='baja-display' class='icon baja-button tipo-display baja-display'
-							action="#{display.baja(d.displayId)}" value='Borrar'/>
-					</div>
-				</ui:repeat>
+			</div> 
+			<a id='alta-display' class='icon icon-alta alta-button tipo-display' href='forms.xhtml?tipoForm=altaDisplay'>Crear Display</a>				
+			<div class="page-frame">
+				<div id='list-display-container' class='list-container'>
+					<ui:repeat id='repeat-' value='#{display.listar()}' var='d'>
+						<div id='#{d.displayId}' class='hidden'/>
+						<div class='element-list display-element'>
+							<h:outputText class='puesto-element' value='#{d.displayId}'/>
+							<h:commandButton id='baja-display' class='icon baja-button tipo-display baja-display'
+								action="#{display.baja(d.displayId)}" value='Borrar'/>
+						</div>
+					</ui:repeat>
+				</div>
 			</div>
-		</div>
+		</h:form>
 	</div>
 	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{display.error== 'show'}">
-			<div id="action-popup" class='popup-overlay'>
-				<div class="popup">
-					<h2 id="popup-title" class="sub-title">Advertencia</h2>
-					<div class="content">
-						<h:outputText value="#{display.error_message}" />
-						<h:form id='form-tramite'>
-							<div class="buttons-container">
-								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{display.hideError()}" />  
-							</div>
-						</h:form>
-					</div>
+		<h:panelGroup id="text" rendered="#{display.notice != 'hidden'}">
+			<div id="notice-holder" class='#{display.notice}'>
+				<div class='logo'/>
+				<div class="notice-container">
+					<h:outputText class='notice-title' value="#{display.notice_title}" />
+					<h:outputText class='notice-content' value="#{display.notice_message}" />
 				</div>
 			</div>
 		</h:panelGroup>

@@ -28,30 +28,16 @@
 					<h2 class='page-title list-title'>Sectores</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-tramites' value='#{sector.listar()}' var='s'>
-								<h:link value="#{s.nombre}" class="element-list tramite-element" outcome="listaNumeros?id=#{s.sectorId}" />
+	<!-- 					<h:link value="#{s.nombre}" class="element-list tramite-element" outcome="listaNumeros?id=#{s.sectorId}" /> -->
+							<h:form>
+								<h:commandButton class="num-line" value="#{s.codigo} - #{s.nombre}" action="#{sector.listarNumerosSector(s.sectorId)}"/>
+							</h:form>
 						</ui:repeat>
 					</div>
 				</div>
 			</h:form>
 		</div>
 	</div>
-	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{sector.error== 'show'}">
-			<div id="action-popup" class='popup-overlay'>
-				<div class="popup">
-					<h2 id="popup-title" class="sub-title">Mensaje error</h2>
-					<div class="content">
-						<h:outputText value="#{sector.error_message}" />
-						<h:form id='form-tramite'>
-							<div class="buttons-container">
-								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{sector.hideError()}" />  
-							</div>
-						</h:form>
-					</div>
-				</div>
-			</div>
-		</h:panelGroup>
-	</h:form>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 <script type="text/javascript" src="../scripts/lists.js"></script>
