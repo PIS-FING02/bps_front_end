@@ -173,7 +173,6 @@ public class ControladorREST {
 
 	public String comenzarAtencion(String input, String userRol) {
 		return this.attentionsFacade.comenzarAtencion(input,userRol);
-		
 	}
 
 	public String atrasarNumero(String maquina, String userRol) {
@@ -186,7 +185,6 @@ public class ControladorREST {
 
 	public String finalizarAtencion(String input, String userRol) {
 		return this.attentionsFacade.finalizarAtencion(input,userRol);
-		
 	}
 
 	public String llamarNumeroPausado(String input, String input2, String userRol) {
@@ -203,5 +201,21 @@ public class ControladorREST {
 
 	public String llamarNumeroDemanda(String internalId, String maquina, String userRol) {
 		return this.attentionsFacade.llamarNumeroDemanda(internalId,maquina, userRol);
+	}
+
+	public String listarTramiteSector(String idSector, String userRol) {
+		return this.tramiteFacade.listarTramiteSector(idSector,userRol);
+	}
+
+	public String listarNumerosPausadosSector(String idSector, String userRol) {
+		return this.sectorFacade.listarNumerosPausadosSector(idSector,userRol);
+	}
+	
+	public String listarNumerosAtrasadosSector(String idSector, String userRol) {
+		return this.sectorFacade.listarNumerosAtrasadosSector(idSector,userRol);
+	}
+
+	public String listarNumerosEnEsperaSector(String idSector, String userRol) {
+		return this.sectorFacade.listarNumerosEnEsperaSector(idSector,userRol);
 	}
 }

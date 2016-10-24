@@ -6,11 +6,17 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Sin autorizacion</title>
+	<ui:include src="header.xhtml" />
 </h:head>
-<h:body>
-	<p>Tu rol no tiene autorizacion para acceder este sitio</p>
-	<h:form>
-		<h:commandButton action="menu?faces-redirect=true" value="Inicio" />
-	</h:form>
-</h:body>
+<body>
+	
+	<div class="page-container">
+		<div class="page-title-container">
+			<h:form>
+				<div class="page-title page-title-last"> Tu rol no tiene autorizacion para acceder este sitio </div>
+				<a class="action-button" href="/SARPWeb/pages/login.xhtml"> Inicio </a>
+			</h:form>
+		</div>
+	</div>
+</body>
 </html>

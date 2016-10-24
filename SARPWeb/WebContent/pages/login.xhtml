@@ -6,8 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 	<title>Iniciar Sesión</title>
+	
 	<ui:include src="header.xhtml" />
-	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
 </head>
 
@@ -19,7 +19,7 @@
 				<div class="login-form">
 					<div class="form-line">
 						<h:outputLabel for="uname" value="Nombre de Usuario: " />
-						<h:inputText id="uname" class="formInput" value="#{loginBean.username}" />
+						<h:inputText id="uname" class="formInput" value="#{loginBean.username}"/>
 					</div>
 					<div class="form-line">
 						<h:outputLabel for="pass" value="Contraseña: "/>

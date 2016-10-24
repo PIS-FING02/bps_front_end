@@ -10,42 +10,41 @@
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
+	<script>console.log("entre");</script>
 </head> 
 
 <body> 
 	<div id='entidad' class="page-container"> 
 		<div class="page-title-container">
-			<a class="page-title" href="listaSectores.xhtml"> Sectores </a>
-			<div class="page-title page-title-last"> ➨  Numeros </div>
-			<h:outputText id='num_sector' class='hidden' value="#{param['id']}" />
+			<a class="page-title" href="listaSectoresGestion.xhtml"> Listar Números </a>
+			<div class="page-title page-title-last"> ➨    </div>
+			<div class="page-title page-title-last"> Números en Espera </div>
 			<h:form>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
-		</div> 
+		</div> 	
 		<div class="page-frame">
-			<h:form id='form-asociacion'> 
-				<div id='list-puestos-container' class='page-list'>
-					<h2 class='page-title list-title'>Numeros</h2>
-					<div class='list-container'>
-						<ui:repeat id='repeat-tramites' value='#{sector.listarNumerosSector()}' var='n'>
+			<div id='list-puestos-container' class='page-list'>
+				<h2 class='page-title list-title'>Números</h2>
+				<div class='list-container'>
+						<ui:repeat id='repeat-tramites' value='#{numero.listarNumerosEnEspera()}' var='n'>
 							<div class='element-list tramite-element'>
 								<h:outputText value='#{n.externalId}'/>
 								<h:outputText value='#{n.hora}'/> 
 								<h:outputText value='#{n.estado}'/>
 							</div>
 						</ui:repeat>
-					</div>
 				</div>
-			</h:form>
+			</div>
 		</div>
 	</div>
 	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{sector.notice != 'hidden'}">
+		<h:panelGroup id="text" rendered="#{sector.error== 'show'}">
 			<div id="action-popup" class='popup-overlay'>
 				<div class="popup">
 					<h2 id="popup-title" class="sub-title">Mensaje error</h2>
 					<div class="content">
-						<h:outputText value="#{sector.notice_message}" />
+						<h:outputText value="#{sector.error_message}" />
 						<h:form id='form-tramite'>
 							<div class="buttons-container">
 								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{sector.hideError()}" />  
@@ -56,8 +55,5 @@
 			</div>
 		</h:panelGroup>
 	</h:form>
-<script type="text/javascript" src="../scripts/shared.js"></script>
-<script type="text/javascript" src="../scripts/entidades.js"></script>
-<script type="text/javascript" src="../scripts/lists.js"></script>
 </body> 
 </html>

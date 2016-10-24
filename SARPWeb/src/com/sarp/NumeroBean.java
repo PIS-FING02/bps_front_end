@@ -1,11 +1,17 @@
 package com.sarp;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.sarp.controllers.ControladorREST;
+import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONDatosComp;
 import com.sarp.jsons.JSONNumero;
+import javax.annotation.PostConstruct;
 
 @ManagedBean(name = "numero", eager = true)
 @ViewScoped
@@ -20,6 +26,7 @@ public class NumeroBean {
 	private String hora;
 
 	private	ControladorREST c = new ControladorREST();
+	private static final JSONModeler modeler = new JSONModeler();
 	
 	public void sacarNumero() throws Exception {
 		JSONDatosComp jdatos = new JSONDatosComp(this.doc, this.tipoDoc, this.nombreCompleto);
@@ -87,5 +94,39 @@ public class NumeroBean {
 
 	public void setHora(String hora) {
 		this.hora = hora;
+	}
+	
+	public List<JSONNumero> listarNumerosPausados(){
+		Map<String, String> params =FacesContext.getCurrentInstance().
+                getExternalContext().getRequestParameterMap();
+		String idSector = params.get("idSector");
+		if(idSector != null){
+			return modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "ResponsableSector"));
+		}else{
+			return null;
+		}
+	}
+	
+	public List<JSONNumero> listarNumerosAtrasados(){
+		Map<String, String> params =FacesContext.getCurrentInstance().
+                getExternalContext().getRequestParameterMap();
+		String idSector = params.get("idSector");
+		if(idSector != null){
+			return modeler.toJSONNumeros(c.listarNumerosAtrasadosSector(idSector, "ResponsableSector"));
+		}else{
+			return null;
+		}	
+	}
+
+	@PostConstruct
+	public List<JSONNumero> listarNumerosEnEspera(){
+		Map<String, String> params =FacesContext.getCurrentInstance().
+                getExternalContext().getRequestParameterMap();
+		String idSector = params.get("idSector");
+		if(idSector != null){
+			return modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "ResponsableSector"));	
+		}else{
+			return null;
+		}
 	}
 }
