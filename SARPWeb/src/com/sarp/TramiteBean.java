@@ -1,5 +1,6 @@
 package com.sarp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ public class TramiteBean {
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONTramite> tramites;
 	private static final JSONModeler modeler = new JSONModeler();
+	private boolean entre = false;
+
 	
 	//Atributo para mensaje de errores
 	public String notice = "hidden";
@@ -84,6 +87,16 @@ public class TramiteBean {
 	public List<JSONTramite> listar() throws Exception{
 		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
 	}
+	
+	public List<String> listar1() throws Exception{
+		List<String> resultado = new ArrayList<String>();
+		resultado.add("Exito");
+		resultado.add("Error");
+		resultado.add("Desviado");
+		resultado.add("Putita");
+		return resultado;
+	}
+	
 	
 	public List<JSONTramite> listar_sector() throws Exception{
 		Map<String, String> params =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -154,6 +167,14 @@ public class TramiteBean {
 	public String hideError(){
 		this.notice="hidden";
 		return "/pages/admin.xhtml";
+	}
+
+	public boolean isEntre() {
+		return entre;
+	}
+
+	public void setEntre(boolean entre) {
+		this.entre = entre;
 	}
 	
 }

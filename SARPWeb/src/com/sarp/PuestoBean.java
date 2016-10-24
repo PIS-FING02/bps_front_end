@@ -35,6 +35,7 @@ public class PuestoBean {
 	//JSONDatosComp datosComplementarios;
 	private Integer idTramite;
 	private String idSector;
+	private String json_estado_tramites;
 	
 	//Atributo para mensaje de errores
 	public String notice = "hidden";
@@ -417,13 +418,16 @@ public class PuestoBean {
 		return modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina,"Operador"));
 	}
 	
-	public void showEstadosFinalizar(){
-		this.notice="show";
+	public String showEstadosFinalizar(){
+		return "/pages/finalizarAtencion.xhtml?faces-redirect=true&id="+ this.maquina;
 	}
 	
 	public void finalizarAtencion(){
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
-		c.finalizarAtencion(jpuesto.toString(),"Operador");
+		//JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
+		//c.finalizarAtencion(jpuesto.toString(),"Operador");
+		String json = this.json_estado_tramites.substring(0,this.json_estado_tramites.length()-1) + "]}";
+		c.finalizarAtencion(json, "Operador");
+		System.out.println(json);
 	}
 	
 	public void desviar(){
@@ -491,6 +495,15 @@ public class PuestoBean {
 	public String verAtrasados(){
 		//atrasar numero y liberar puesto cuando viene de pantalla de atencion
 		return "/pages/operadorAtrasados.xhtml?faces-redirect=true";
+	}
+
+
+	public String getJson_estado_tramites() {
+		return json_estado_tramites;
+	}
+
+	public void setJson_estado_tramites(String json_estado_tramites) {
+		this.json_estado_tramites = json_estado_tramites;
 	}
 	
 }
