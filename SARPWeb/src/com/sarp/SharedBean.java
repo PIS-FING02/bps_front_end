@@ -14,7 +14,8 @@ public class SharedBean {
 		instance = instance != null ? instance : new  SharedBean();
 		return instance;
 	}
-	
+
+	private static String icon = "check";
 	private static String notice = "hidden";
 	private static String notice_title = "";
 	private static String notice_message = "";
@@ -42,8 +43,31 @@ public class SharedBean {
 	public void setNotice(String notice) {
 		SharedBean.notice = notice;
 	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		SharedBean.icon = icon;
+	}
+	
+	public void updateNotice(String status, String msgPositive, String msgNegative) {
+		if (status.equals("OK")){
+			setNotice_title("Esto es un mensaje de Confirmación.");
+			setNotice_message(msgPositive);
+			setNotice("positive");
+			setIcon("check");
+		} else {
+			setNotice_title("Han ocurrido error/es que impiden continuar.");
+			setNotice_message(msgNegative);
+			setNotice("negative");
+			setIcon("error");
+		}
+	}
 	
 	public String redirect(String url){
+		SharedBean.notice = "check";
 		SharedBean.notice = "hidden";
 		SharedBean.notice_message = "";
 		SharedBean.notice_title = "";

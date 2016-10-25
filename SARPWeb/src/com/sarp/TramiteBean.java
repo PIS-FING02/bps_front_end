@@ -28,45 +28,24 @@ public class TramiteBean {
 	public String alta() throws Exception{
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.altaTramite(jtramite.toString(), "Administrador");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El tramite con codigo " + this.codigo + " y nombre "+ this.nombre + " se creo correctamente.");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al crear el tramite.");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El tramite con codigo " + this.codigo + " y nombre "+ this.nombre + " se creó correctamente.", 
+				"Ocurrió un error al crear el tramite.");
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
 	public String baja(String codigo) {
 		JSONTramite jtramite = new JSONTramite(codigo, "nombre");
 		String status = c.bajaTramite(jtramite.toString(), "Administrador");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El tramite con codigo " + codigo + " se elimino correctamente.");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al eliminar el tramite.");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El tramite con codigo " + codigo + " se eliminó correctamente.", 
+				"Ocurrió un error al eliminar el tramite.");
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
 	public String modificar(){
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.modTramite(jtramite.toString(), "Administrador");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El tramite con nombre "+ this.nombre + " se modifico correctamente.");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al modificar el tramite.");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El tramite con nombre "+ this.nombre + " se modificó correctamente.", 
+				"Ocurrió un error al modificar el tramite.");
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	

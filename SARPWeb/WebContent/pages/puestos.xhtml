@@ -29,9 +29,9 @@
 						<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
 						<div class='element-list  puesto-element'>
 							<h:outputText class='puesto-element' value='#{p.nombreMaquina} '/>
-							<h:commandButton id='baja-puesto' class='icon baja-button tipo-puesto baja-puesto' 
+							<h:commandButton id='baja-puesto' image='../images/trash.png' class='icon icon-baja baja-button tipo-puesto baja-puesto' 
 								action="#{puesto.baja(p.nombreMaquina)}" value='Borrar'/>
-							<h:commandButton id='mod-puesto' class='icon mod-button tipo-puesto editar-puesto' 
+							<h:commandButton id='mod-puesto' image='../images/edit.png' class='icon icon-mod mod-button tipo-puesto editar-puesto' 
 								action="#{puesto.goToPuesto(p.nombreMaquina, p.estado, p.usuarioId, p.numeroPuesto)}" value='Editar'/>
 							<a id='asignar-tramite' class='icon asignar-tramite-button tipo-puesto asig-tramite' href=''>Asignar Tramite</a>
 							<a id='desasignar-tramite' class='icon desasignar-tramite-button tipo-puesto asig-tramite' href=''>Desasignar Tramite</a>
@@ -41,17 +41,7 @@
 			</div>			
 		</h:form>
 	</div>
-	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{shared.notice != 'hidden'}">
-			<div id="notice-holder" class='#{shared.notice}'>
-				<div class='logo'/>
-				<div class="notice-container">
-					<h:outputText class='notice-title' value="#{shared.notice_title}" />
-					<h:outputText class='notice-content' value="#{shared.notice_message}" />
-				</div>
-			</div>
-		</h:panelGroup>
-	</h:form>
+	<ui:include src="notice.xhtml" />
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 </body> 

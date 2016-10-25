@@ -23,30 +23,16 @@ public class DisplayBean {
 		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		System.out.println(jdisplay.toString());
 		String status= c.altaDisplay(jdisplay.toString(), "Administrador");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El display con identificador "+ this.id + " se creo correctamente.");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al crear el display.");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El display con identificador "+ this.id + " se creó correctamente.", 
+				"Ocurrió un error al crear el display.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 	
 	public String baja(String id) {
 		JSONDisplay jdisplay = new JSONDisplay(id);
 		String status = c.bajaDisplay(jdisplay.toString(), "Administrador");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El display con identificador " + id + " se elimino correctamente.");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al eliminar el display.");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El display con identificador " + id + " se eliminó correctamente.", 
+				"Ocurrió un error al eliminar el display.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 

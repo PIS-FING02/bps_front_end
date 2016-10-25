@@ -23,9 +23,11 @@ public class PuestoBean {
 	private Integer numero;
 	private String estado;
 	private String roles;
+	
 	//atributos de tramite
 	private String codigo;
 	private String nombre;
+	
 	//atributos del numero
 	private Integer id;
 	private String externalId;
@@ -33,6 +35,7 @@ public class PuestoBean {
 	private String fecha;
 	private String estadoNumero;
 	private Integer prioridad;
+	
 	//JSONDatosComp datosComplementarios;
 	private Integer idTramite;
 	private String idSector;
@@ -43,10 +46,6 @@ public class PuestoBean {
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	public SharedBean notice = SharedBean.getInstance();
-	//List<JSONSector> sectores;
-	//List<JSONTramite> tramites;
-	//JSONNumero numeroAsignado;
-
 	public String getOperadorTest(){
 		try{
 			return UtilService.getStringProperty("MAQUINA_OPERADOR_TEST");
@@ -68,45 +67,24 @@ public class PuestoBean {
 	public String alta() throws Exception {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "", this.numero, "");
 		String status = c.altaPuesto(jpuesto.toString(), "ResponsableSector");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El puesto con nombre de maquina "+ this.maquina + " se creo correctamente.");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al crear el puesto.");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se creó correctamente.", 
+				"Ocurrió un error al crear el puesto.");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
 	public String baja(String maquina) throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(maquina, "id", 0, "CERRADO");
 		String status = c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El puesto con nombre de maquina "+ this.maquina + " se elimino correctamente.");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al eliminar el puesto.");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se eliminó correctamente.", 
+				"Ocurrió un error al eliminar el puesto.");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
 	public String modificar(){
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
 		String status = c.modPuesto(jpuesto.toString(), "ResponsableSector");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El puesto con nombre de maquina "+ this.maquina + " se modifico correctamente.");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al modificar el puesto.");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificó correctamente.", 
+				"Ocurrió un error al modificar el puesto.");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
