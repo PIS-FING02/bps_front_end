@@ -15,9 +15,9 @@
 	<div id='entidad' class="page-container"> 
 		<h:form>
 			<div class="page-title-container">
-				<a class="page-title" href="menu.xhtml"> Menú Principal </a>
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
 				<div class="page-title arrow"> ➨ </div>
-				<a class="page-title" href="admin.xhtml"> Administración </a>
+				<h:commandButton class="page-title" value='Administración' action="#{shared.redirect('admin')}" />
 				<div class="page-title page-title-last"> ➨  Tramites </div>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</div> 
@@ -29,26 +29,17 @@
 						<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
 						<div class='element-list tramite-element'>
 							<h:outputText class='puesto-element' value='#{t.codigo} - #{t.nombre}'/>
-							<h:commandButton id='baja-tramite' class='icon baja-button tipo-tramite baja-tramite'
-								action="#{tramite.baja(t.codigo)}" value='Borrar'/>
-							<h:commandButton id='mod-tramite' class='icon mod-button tipo-tramite editar-tramite' action="#{tramite.goToTramite(t.codigo, t.nombre)}" value='Editar'/>
+							<h:commandButton id='baja-tramite' image='../images/trash.png' class='icon icon-baja baja-button tipo-tramite baja-tramite'
+								action="#{tramite.baja(t.codigo)}"/>
+							<h:commandButton id='mod-tramite' image='../images/edit.png' class='icon icon-mod mod-button tipo-tramite editar-tramite' 
+							action="#{tramite.goToTramite(t.codigo, t.nombre)}"/>
 						</div>
 					</ui:repeat>
 				</div>
 			</div>
 		</h:form>	
 	</div>
-	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{tramite.notice != 'hidden'}">
-			<div id="notice-holder" class='#{tramite.notice}'>
-				<div class='logo'/>
-				<div class="notice-container">
-					<h:outputText class='notice-title' value="#{tramite.notice_title}" />
-					<h:outputText class='notice-content' value="#{tramite.notice_message}" />
-				</div>
-			</div>
-		</h:panelGroup>
-	</h:form>
+	<ui:include src="notice.xhtml" />
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 </body> 

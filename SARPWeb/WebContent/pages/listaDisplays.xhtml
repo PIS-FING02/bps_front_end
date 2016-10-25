@@ -14,42 +14,58 @@
 <body> 
 	<div id='entidad' class="page-container"> 
 		<div class="page-title-container">
-			<a class="page-title" href="menu.xhtml">Menú Principal</a>
-			<div class="page-title arrow"> ➨ </div>
-			<a class="page-title" href="respSector.xhtml">Gestión</a>
-			<div class="page-title arrow"> ➨ </div>
-			<a class="page-title" href="sectores.xhtml">Sectores</a>
-			<h:form>
+			<h:form id='form-links'>
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
+				<div class="page-title arrow"> ➨ </div>
+				<h:commandButton class="page-title" value='Gestión' action="#{shared.redirect('respSector')}" />
+				<div class="page-title arrow"> ➨ </div>
+				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirect('sectores')}" />
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div> 
 		<div class="page-frame">
-				<h:form id='form-asociacion'>
-					<h:outputText id='es-sector' class='hidden' value="#{param['esSec']}" />
-					<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
-					<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
-					<h:outputText id='es-asig' class='hidden' value="#{param['esAsig']}" />
-					<!--  TRAMITE -->
-					<div id='list-displays-container' class='page-list'>
-						<h2 class='page-title list-title'>Displays</h2>
-						<div class='list-container'>
-							<ui:repeat id='repeat-tramites' value='#{display.listar()}' var='d'>
-								<div displayId='#{d.displayId}' class='hidden'/>
-								<h:outputText class='element-list tramite-element' value='#{d.displayId}'/>
-							</ui:repeat>
-						</div>
+			<h:form id='form-asociacion'>
+				<h:outputText id='es-sector' class='hidden' value="#{param['esSec']}" />
+				<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
+				<h:outputText id='es-asig' class='hidden' value="#{param['esAsig']}" />
+				<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
+			</h:form>	
+			<!--  DISPLAY -->
+			<h:form id='form-listado-asignar' rendered="#{param['esAsig'] eq 'true'}">
+				<div id='list-displays-container' class='page-list'>
+					<h2 class='page-title list-title'>Displays</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-tramites' value='#{display.listar()}' var='d'>
+							<div displayId='#{d.displayId}' class='hidden'/>
+							<h:outputText class='element-list tramite-element' value='#{d.displayId}'/>
+						</ui:repeat>
 					</div>
-					<div id="id-display-sector" class="form-line hidden">
-						<label for="display-id">Display</label>
-						<h:inputText id='id-display-selected' class="formInput" value="#{sector.id}" />
+				</div>
+			</h:form>
+			<h:form id='form-listado-desasignar' rendered="#{param['esAsig'] eq 'false'}">
+				<div id='list-displays-container' class='page-list'>
+					<h2 class='page-title list-title'>Displays</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-tramites' value="#{display.listarDisplaysDeSector(param['id'])}" var='d'>
+							<div displayId='#{d.displayId}' class='hidden'/>
+							<h:outputText class='element-list tramite-element' value='#{d.displayId}'/>
+						</ui:repeat>
 					</div>
-					<div id="id-sector" class="form-line hidden">
-						<label for="sector-id">Asociacion</label>
-						<h:inputText id='id-display-sector-selected' class="formInput" value="#{sector.displayId}" />
-					</div>
+				</div>
+			</h:form>
+			<!-- ENTIDADES -->
+			<h:form id='form-entidades'>
+				<div id="id-display-sector" class="form-line hidden">
+					<label for="display-id">Display</label>
+					<h:inputText id='id-display-selected' class="formInput" value="#{sector.id}" />
+				</div>
+				<div id="id-sector" class="form-line hidden">
+					<label for="sector-id">Asociacion</label>
+					<h:inputText id='id-display-sector-selected' class="formInput" value="#{sector.displayId}" />
+				</div>
 				<div class="buttons-container">
-				<h:commandButton id='asignar-display-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarDisplaySector()}"/> 
-				<h:commandButton id='desasignar-display-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.desasignarDisplaySector()}"/> 
+					<h:commandButton id='asignar-display-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarDisplaySector()}"/> 
+					<h:commandButton id='desasignar-display-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.desasignarDisplaySector()}"/> 
 				</div>
 			</h:form>
 		</div>

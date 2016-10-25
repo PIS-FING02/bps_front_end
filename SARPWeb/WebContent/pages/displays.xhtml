@@ -15,9 +15,9 @@
 	<div id='entidad' class="page-container"> 
 		<h:form>
 			<div class="page-title-container">
-				<a class="page-title" href="menu.xhtml">Menú Principal</a>
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
 				<div class="page-title arrow"> ➨ </div>
-				<a class="page-title" href="admin.xhtml">Administración</a>
+				<h:commandButton class="page-title" value='Administración' action="#{shared.redirect('admin')}" />
 				<div class="page-title page-title-last"> ➨  Displays </div>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</div> 
@@ -28,7 +28,7 @@
 						<div id='#{d.displayId}' class='hidden'/>
 						<div class='element-list display-element'>
 							<h:outputText class='puesto-element' value='#{d.displayId}'/>
-							<h:commandButton id='baja-display' class='icon baja-button tipo-display baja-display'
+							<h:commandButton id='baja-display' image='../images/trash.png' class='icon icon-baja baja-button tipo-display baja-display'
 								action="#{display.baja(d.displayId)}" value='Borrar'/>
 						</div>
 					</ui:repeat>
@@ -36,17 +36,7 @@
 			</div>
 		</h:form>
 	</div>
-	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{display.notice != 'hidden'}">
-			<div id="notice-holder" class='#{display.notice}'>
-				<div class='logo'/>
-				<div class="notice-container">
-					<h:outputText class='notice-title' value="#{display.notice_title}" />
-					<h:outputText class='notice-content' value="#{display.notice_message}" />
-				</div>
-			</div>
-		</h:panelGroup>
-	</h:form>
+	<ui:include src="notice.xhtml" />
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 </body> 

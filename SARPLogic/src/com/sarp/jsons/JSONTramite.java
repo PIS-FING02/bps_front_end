@@ -5,7 +5,7 @@ package com.sarp.jsons;
 
 public class JSONTramite {
 
-	Integer codigo;
+	String codigo;
 	String nombre;
 
 	//List<JSONPuesto> puestos;
@@ -13,7 +13,7 @@ public class JSONTramite {
 	
 	public JSONTramite(){}
 	
-	public JSONTramite(Integer cod, String nom){
+	public JSONTramite(String cod, String nom){
 		this.codigo = cod;
 		this.nombre = nom;
 	}
@@ -33,12 +33,12 @@ public class JSONTramite {
 	public void setSectores(List<JSONSector> sectores) {
 		this.sectores = sectores;
 	}*/
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -52,11 +52,11 @@ public class JSONTramite {
 	
 	 @Override
 	    public String toString() {
-		 	String codigo = this.codigo!= null ? this.codigo.toString() : "null";
+		 	String codigo = this.codigo!= null ? this.codigo : "null";
 		 	String nombre = this.nombre!= null ? this.nombre : "null";
 		 	
 	        return "{\n"
-	        		+ "\"codigo\":" + codigo + ",\n"
+	        		+ "\"codigo\":\"" + codigo + "\",\n"
 	        		+ "\"nombre\":\"" + nombre + "\"\n"
 	     			+ "}";
 	    }

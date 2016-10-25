@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+	<title> Notice </title>
+	<link rel="stylesheet" type="text/css" href="../styles/notice.css"/>
+</head> 
+<body onload="startTime()"> 
+	<h:form id='form-error'>
+		<h:panelGroup id="text" rendered="#{shared.notice != 'hidden'}">
+			<div id="notice-holder" class='#{shared.notice}'>
+				<div class='logo'>
+ 					<img src="../images/#{shared.icon}.png" alt="status" />
+ 				</div>
+				<div class="notice-container">
+					<h:outputText class='notice-title' value="#{shared.notice_title}" />
+					<h:outputText class='notice-content' value="#{shared.notice_message}" />
+				</div>
+			</div>
+		</h:panelGroup>
+	</h:form>
+</body> 
+</html>

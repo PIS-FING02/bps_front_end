@@ -6,6 +6,7 @@ public class DisplayFacade {
 
 	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/display";
 	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/displays";
+	public static final String URL_DISPLAYS_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarDisplaysSector";
 	
 	public String alta(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
@@ -25,5 +26,10 @@ public class DisplayFacade {
 	public String displaysAll(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGet(URL_GET_ALL, userRol);
+	}
+
+	public String displaysSector(String input, String userRol) throws Exception {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_DISPLAYS_SECTOR + "?sectorId=" + input, userRol);
 	}
 }	

@@ -6,8 +6,9 @@ public class TramiteFacade {
 
 	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/tramite";
 	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/listarTramites";
-	public static final String URL_GET_FROM_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarTramitesSector";
-	public static final String URL_GET_FROM_PUESTO = "http://52.52.100.160:8080/SARPService/attentionsService/tramitesRecepcion";
+	public static final String URL_GET_FROM_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarTramitesSector?sectorId=";
+	public static final String URL_GET_FROM_RECEPCION = "http://52.52.100.160:8080/SARPService/attentionsService/tramitesRecepcion";
+	public static final String URL_GET_FROM_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/listarTramitesPuesto?nombreMaquina=";
 	
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
@@ -31,16 +32,16 @@ public class TramiteFacade {
 
 	public String tramitesSector(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_GET_FROM_SECTOR + "?sectorId=" + input, userRol);
-	}
-	
-	public String tramitesPuesto(String input, String userRol) throws Exception {
-		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_GET_FROM_PUESTO, userRol, input);
+		return  restClient.doGet(URL_GET_FROM_SECTOR + input, userRol);
 	}
 
-	public String listarTramiteSector(String idSector, String userRol) {
-		// TODO Auto-generated method stub
-		return null;
+	public String tramitesRecepcion(String input, String userRol) throws Exception {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_GET_FROM_RECEPCION, userRol, input);
+	}
+
+	public String tramitesPuesto(String input, String userRol) throws Exception {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_GET_FROM_PUESTO + input, userRol, input);
 	}
 }

@@ -8,18 +8,18 @@
 	<title>Pantalla Administrador</title>
 
 	<ui:include src="header.xhtml" />
-	<link rel="stylesheet" type="text/css" href="../styles/popup.css"/>
-	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
 </head> 
 
 <body> 
 	<div id='entidad' class="page-container"> 
 		<div class="page-title-container">
-			<a class="page-title" href="admin.xhtml"> Menú Principal </a>
-			<div class="page-title page-title-last"> ➨  Sectores </div>
-			<h:form>
-				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			<h:form id='form-links'>
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
+				<div class="page-title arrow"> ➨ </div>
+				<h:commandButton class="page-title" value='Administrador' action="#{shared.redirect('admin')}" />
+				<div class="page-title page-title-last"> ➨  Sectores </div> 
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" />
 			</h:form>
 		</div> 
 		<div class="page-frame">
@@ -27,11 +27,8 @@
 				<div id='list-puestos-container' class='page-list'>
 					<h2 class='page-title list-title'>Sectores</h2>
 					<div class='list-container'>
-						<ui:repeat id='repeat-tramites' value='#{sector.listar()}' var='s'>
-	<!-- 					<h:link value="#{s.nombre}" class="element-list tramite-element" outcome="listaNumeros?id=#{s.sectorId}" /> -->
-							<h:form>
-								<h:commandButton class="num-line" value="#{s.sectorId} - #{s.nombre}" action="#{sector.listarNumerosSector(s.sectorId)}"/>
-							</h:form>
+						<ui:repeat id='repeat-sectores' value='#{sector.listar()}' var='s'>
+							<h:link value="#{s.nombre}" class="element-list tramite-element" outcome="listaNumeros?id=#{s.sectorId}" /> 
 						</ui:repeat>
 					</div>
 				</div>

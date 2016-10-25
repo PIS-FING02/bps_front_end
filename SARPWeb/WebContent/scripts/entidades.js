@@ -15,17 +15,18 @@ var desasignarContainer = document.getElementsByClassName('desasignar-container'
 
 	// ALTA TRAMITE
 if (getURLParameter('tipoForm') == 'altaTramite') {
-	document.getElementById('alta-mod-tramite-fields').classList.remove('hidden');
+	document.getElementById('codigo-tramite').classList.remove('hidden');
+	document.getElementById('nombre-tramite').classList.remove('hidden');
 	document.getElementById('form:alta-tramite-button').classList.remove('hidden');
-	document.getElementById('title-admin').classList.remove('hidden');
-	document.getElementById('title-tramites').classList.remove('hidden');
+	document.getElementById('form-links:title-admin').classList.remove('hidden');
+	document.getElementById('form-links:title-tramites').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Tramite';
 	// MOD TRAMITE
 } else if (getURLParameter('tipoForm') == 'modTramite') {
-	document.getElementById('alta-mod-tramite-fields').classList.remove('hidden');
+	document.getElementById('nombre-tramite').classList.remove('hidden');
 	document.getElementById('form:mod-tramite-button').classList.remove('hidden');
-	document.getElementById('title-admin').classList.remove('hidden');
-	document.getElementById('title-tramites').classList.remove('hidden');
+	document.getElementById('form-links:title-admin').classList.remove('hidden');
+	document.getElementById('form-links:title-tramites').classList.remove('hidden');
 	document.getElementById('form:tramite-selected-codigo').value = getURLParameter('codigo').replace("+", " ");
 	document.getElementById('form:tramite-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
 	document.getElementById('sub-title').innerHTML= 'Modificar Tramite';
@@ -34,16 +35,16 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('maquina-puesto').classList.remove('hidden');
 	document.getElementById('numero-puesto').classList.remove('hidden');
 	document.getElementById('form:alta-puesto-button').classList.remove('hidden');
-	document.getElementById('title-gestion').classList.remove('hidden');
-	document.getElementById('title-puestos').classList.remove('hidden');
+	document.getElementById('form-links:title-gestion').classList.remove('hidden');
+	document.getElementById('form-links:title-puestos').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Puesto';
 	// MOD PUESTO
 } else if (getURLParameter('tipoForm') == 'modPuesto') {
 	document.getElementById('numero-puesto').classList.remove('hidden');
 	document.getElementById('estado-puesto').classList.remove('hidden');
 	document.getElementById('usuario-puesto').classList.remove('hidden');
-	document.getElementById('title-gestion').classList.remove('hidden');
-	document.getElementById('title-puestos').classList.remove('hidden');
+	document.getElementById('form-links:title-gestion').classList.remove('hidden');
+	document.getElementById('form-links:title-puestos').classList.remove('hidden');
 	document.getElementById('form:puesto-selected-numero').value = getURLParameter('numero').replace("+", " ");
 	document.getElementById('form:puesto-selected-estado').value = getURLParameter('estado').replace("+", " ");
 	document.getElementById('form:puesto-selected-usuario').value = getURLParameter('usuario').replace("+", " ");
@@ -54,15 +55,15 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 } else if (getURLParameter('tipoForm') == 'altaDisplay') {
 	document.getElementById('alta-display-fields').classList.remove('hidden');
 	document.getElementById('form:alta-display-button').classList.remove('hidden');
-	document.getElementById('title-admin').classList.remove('hidden');
-	document.getElementById('title-displays').classList.remove('hidden');
+	document.getElementById('form-links:title-admin').classList.remove('hidden');
+	document.getElementById('form-links:title-displays').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Display';
 }
 
 // ASIGNAR TRAMITE A SECTOR
 for (var i = 0; i < asignarTramiteSector.length; i++){
 	asignarTramiteSector[i].addEventListener('click', function(){
-		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 			this.href = 'listaTramites.xhtml?esSec=true&esAsig=true&entidad=tramite&id=' + id;
@@ -76,7 +77,7 @@ for (var i = 0; i < asignarTramiteSector.length; i++){
 // DESASIGNAR TRAMITE A SECTOR
 for (var i = 0; i < desasignarTramiteSector.length; i++){
 	desasignarTramiteSector[i].addEventListener('click', function(){
-		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 			this.href = 'listaTramites.xhtml?esSec=true&esAsig=false&entidad=tramite&id=' + id;
@@ -90,7 +91,7 @@ for (var i = 0; i < desasignarTramiteSector.length; i++){
 // ASIGNAR PUESTO A SECTOR
 for (var i = 0; i < asignarPuestoSector.length; i++){
 	asignarPuestoSector[i].addEventListener('click', function(){
-			var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+			var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 			if(esSector){
 				var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 				this.href = 'listaPuestos.xhtml?esSec=true&esAsig=true&entidad=puesto&id=' + id;
@@ -114,7 +115,7 @@ for (var i = 0; i < desasignarPuestoSector.length; i++){
 // ASIGNAR DISPLAY A SECTOR
 for (var i = 0; i < asignarDisplaySector.length; i++){
 	asignarDisplaySector[i].addEventListener('click', function(){
-		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 			this.href = 'listaDisplays.xhtml?esSec=true&esAsig=true&entidad=display&id=' + id;
@@ -125,7 +126,7 @@ for (var i = 0; i < asignarDisplaySector.length; i++){
 // DESASIGNAR DISPLAY A SECTOR
 for (var i = 0; i < desasignarDisplaySector.length; i++){
 	desasignarDisplaySector[i].addEventListener('click', function(){
-		var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
+		var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 		if(esSector){
 			var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
 			this.href = 'listaDisplays.xhtml?esSec=true&esAsig=false&entidad=display&id=' + id;
@@ -156,7 +157,7 @@ for (var i = 0; i < desasignarTramitePuesto.length; i++) {
 			this.href = 'listaTramites.xhtml?esSec=true&esAsig=false&id=' + id;
 		} else {
 			var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
-			this.href = 'listaTramitesDePuesto.xhtml?esSec=false&esAsig=false&id=' + id;
+			this.href = 'listaTramitesDePuesto.xhtml?esSec=false&esAsig=false&entidad=tramite&id=' + id;
 		}
 	}, false);
 }	
