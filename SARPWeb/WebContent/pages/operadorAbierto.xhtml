@@ -8,7 +8,6 @@
 	<title>Pantalla de Operador</title>
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/operador.css"/>
-	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 </head>
 <body>
 	<div class="page-container">
@@ -40,7 +39,7 @@
 				<h:form id='form-llamar'>
 					<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
 					<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
-					<h:commandButton class="action-button llamar-siguiente-button" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/>
+					<h:commandButton class="action-button atencion-buttons" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/>
 				</h:form>
 			</div>
 		</div>

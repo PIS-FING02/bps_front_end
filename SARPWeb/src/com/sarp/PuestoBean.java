@@ -23,7 +23,8 @@ public class PuestoBean {
 	private Integer numero;
 	private String estado;
 	private String roles;
-	
+	private List<JSONTramite> tramites;
+	//private List<JSONSector> sectores;
 	//atributos de tramite
 	private String codigo;
 	private String nombre;
@@ -40,8 +41,10 @@ public class PuestoBean {
 	private Integer idTramite;
 	private String idSector;
 	private String json_estado_tramites;
-	
+
 	Boolean ejecutado = false;
+	private String searchString;
+	private List<JSONPuesto> puestosList;
 	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
@@ -93,7 +96,8 @@ public class PuestoBean {
 	}
 
 	public List<JSONPuesto> listar() throws Exception{
-		return modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
+		this.puestosList = modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
+		return this.puestosList;
 	}
 
 	public List<JSONTramite> listarDeSector() throws Exception{
@@ -132,7 +136,7 @@ public class PuestoBean {
 				"OcurriÃ³ un error al desasignar el tramite con codigo "+ this.codigo + " del puesto con nombre de maquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
-	
+
 	public String abrir() throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
 		c.abrirPuesto(jpuesto.toString(), "Operador");
@@ -157,19 +161,20 @@ public class PuestoBean {
 	
 	public String llamarNumero() throws Exception{
 		String num = c.llamarNumero(this.maquina, "Operador");
-		System.out.print(num);
-		JSONNumero jnumero = modeler.toJSONNumero(num);
-		this.externalId = jnumero.getExternalId(); 
-		this.prioridad = jnumero.getPrioridad();
-		if(this.prioridad.equals(1)){
-			String[] arrayFechaHora = jnumero.getHora().split("-");
-			this.fecha = arrayFechaHora[0];
-			this.hora = arrayFechaHora[1];
-		}
-		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true"; 
-		}else{
+		if(num != null){
+			JSONNumero jnumero = modeler.toJSONNumero(num);
+			this.externalId = jnumero.getExternalId(); 
+			this.prioridad = jnumero.getPrioridad();
+			if(this.prioridad.equals(1)){
+				String[] arrayFechaHora = jnumero.getHora().split("-");
+				this.fecha = arrayFechaHora[0];
+				this.hora = arrayFechaHora[1];
+			}
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+		}else{
+			/*this.error_message = "No tienes números disponibles para llamar en este momento";
+			this.error = "show";*/
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 	}
 	
@@ -434,5 +439,21 @@ public class PuestoBean {
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+	
+	public List<JSONTramite> getTramites() {
+		return tramites;
+	}
+
+	public void setTramites(List<JSONTramite> tramites) {
+		this.tramites = tramites;
+	}
+	
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
 	}
 }

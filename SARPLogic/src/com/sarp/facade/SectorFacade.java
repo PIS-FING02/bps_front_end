@@ -14,7 +14,10 @@ public class SectorFacade {
 	public static final String URL_REST_DESASIGNAR_DISPLAY = "http://52.52.100.160:8080/SARPService/adminService/desasignarSectorDisplay";
 	public static final String URL_LISTAR_NUMEROS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosSector?idSector=";
 	public static final String URL_REST_DESASIGNAR_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/desasignarPuestoSector";
-	
+	public static final String URL_LISTAR_NUMEROS_PAUSADOS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosPausados?idSector=";
+	public static final String URL_LISTAR_NUMEROS_ATRASADOS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosAtrasados?idSector=";
+	public static final String URL_LISTAR_NUMEROS_ESPERA_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosEnEspera?idSector=";
+
 	
 	public String importarSectoresGafu(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
@@ -61,6 +64,19 @@ public class SectorFacade {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGet(URL_LISTAR_NUMEROS_SECTOR.concat(idSector), userRol);
 	}
-
 	
+	public String listarNumerosPausadosSector(String idSector, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_LISTAR_NUMEROS_PAUSADOS_SECTOR.concat(idSector), userRol);
+	}
+
+	public String listarNumerosAtrasadosSector(String idSector, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_LISTAR_NUMEROS_ATRASADOS_SECTOR.concat(idSector), userRol);
+	}
+
+	public String listarNumerosEnEsperaSector(String idSector, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_LISTAR_NUMEROS_ESPERA_SECTOR.concat(idSector), userRol);
+	}
 }

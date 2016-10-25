@@ -281,3 +281,11 @@ input {
 .tramite-finalizar-oprimido{
 	background:#1d304d !important;
 }
+
+.secondary-button:hover {
+	background-color: #1b468d; 
+}
+
+#search-form{
+	float: right;
+}

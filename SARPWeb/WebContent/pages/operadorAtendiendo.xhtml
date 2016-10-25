@@ -8,7 +8,6 @@
 	<title>Pantalla de Atención</title>
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/operador.css"/>
-	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 </head>
 <body>
 	<div class="page-container">
@@ -61,8 +60,8 @@
 			<div class="bottom-form">
 				<h:form id="options-form">
 					<h:commandButton class="action-button atender-button" value="Finalizar" action="#{puesto.showEstadosFinalizar()}"/>
-					<h:commandButton class="secondary-button llamar-siguiente-button" value="Pausar" action="#{puesto.pausar()}"/> 
-					<h:commandButton class="action-button liberar-button" value="Desviar" action="#{puesto.desviar(	)}"/>
+					<h:commandButton class="secondary-button atencion-buttons" value="Pausar" action="#{puesto.pausar()}"/> 
+					<h:commandButton class="action-button atencion-buttons" value="Desviar" action="#{puesto.desviar(	)}"/>
 				</h:form>
 			</div>
 				<h:form id='form-asociacion'> 
