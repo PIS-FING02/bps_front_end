@@ -120,30 +120,16 @@ public class PuestoBean {
 	public String asignarTramitePuesto(){
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El tramite con codigo "+ this.codigo + " se asigno correctamente al puesto con nombre de maquina " + this.maquina + ".");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al puesto con nombre de maquina " + this.maquina + ".", 
+				"Ocurrió un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 
 	public String desasignarTramitePuesto(){  //FALTA CAMBIAR
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.desasignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
-		if (status.equals("OK")){
-			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El tramite con codigo "+ this.codigo + " se desasigno correctamente del puesto con nombre de maquina " + this.maquina + ".");
-			notice.setNotice("positive");
-		} else {
-			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al desasignar el tramite con codigo "+ this.codigo + " del puesto con nombre de maquina " + this.maquina + ".");
-			notice.setNotice("negative");
-		}
+		notice.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del puesto con nombre de maquina " + this.maquina + ".", 
+				"Ocurrió un error al desasignar el tramite con codigo "+ this.codigo + " del puesto con nombre de maquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	

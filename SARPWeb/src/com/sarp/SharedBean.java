@@ -67,7 +67,7 @@ public class SharedBean {
 	}
 	
 	public String redirect(String url){
-		SharedBean.notice = "check";
+		SharedBean.notice = "";
 		SharedBean.notice = "hidden";
 		SharedBean.notice_message = "";
 		SharedBean.notice_title = "";
