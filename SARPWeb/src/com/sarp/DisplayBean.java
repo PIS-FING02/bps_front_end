@@ -53,6 +53,13 @@ public class DisplayBean {
 	public List<JSONDisplay> listar() throws Exception{
 		return modeler.toJSONDisplays(c.listarDisplays("Administrador"));
 	}
+
+	public List<JSONDisplay> listarDisplaysDeSector(String sectorId) throws Exception{
+		if (sectorId == "")
+			return null;
+		else
+			return modeler.toJSONDisplays(c.listarDisplaysSector(sectorId, "ResponsableSector"));
+	}
 	
 	public void setDisplays(List<JSONDisplay> displays) {
 		this.displays = displays;

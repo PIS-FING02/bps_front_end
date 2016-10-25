@@ -34,6 +34,10 @@ public class ControladorREST {
 	public String listarPuestos(String userRol) throws Exception {
 		return this.puestoFacade.puestosAll(userRol);
 	}
+	
+	public String listarPuestosSector(String input, String userRol) throws Exception {
+		return this.puestoFacade.puestosSector(input, userRol);
+	}
 
 	public String altaPuesto(String input, String userRol) throws Exception {
 		return this.puestoFacade.alta(input,  userRol);
@@ -68,6 +72,10 @@ public class ControladorREST {
 		return this.tramiteFacade.tramitesSector(input, userRol);
 	}
 
+	public String listarTramitesRecepcion(String input, String userRol) throws Exception {
+		return this.tramiteFacade.tramitesRecepcion(input, userRol);
+	}
+
 	public String listarTramitesPuesto(String input, String userRol) throws Exception {
 		return this.tramiteFacade.tramitesPuesto(input, userRol);
 	}
@@ -100,7 +108,11 @@ public class ControladorREST {
 	public String listarDisplays(String userRol) {
 		return this.displayFacade.displaysAll(userRol);
 	}
-	
+
+	public String listarDisplaysSector(String input, String userRol) throws Exception {
+		return this.displayFacade.displaysSector(input, userRol);
+	}
+
 	//SECTORES
 	public String importarSectoreGafu(String userRol)  {
 		return this.sectorFacade.importarSectoresGafu(userRol);

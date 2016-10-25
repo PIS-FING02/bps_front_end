@@ -15,14 +15,15 @@ var desasignarContainer = document.getElementsByClassName('desasignar-container'
 
 	// ALTA TRAMITE
 if (getURLParameter('tipoForm') == 'altaTramite') {
-	document.getElementById('alta-mod-tramite-fields').classList.remove('hidden');
+	document.getElementById('codigo-tramite').classList.remove('hidden');
+	document.getElementById('nombre-tramite').classList.remove('hidden');
 	document.getElementById('form:alta-tramite-button').classList.remove('hidden');
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-tramites').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Tramite';
 	// MOD TRAMITE
 } else if (getURLParameter('tipoForm') == 'modTramite') {
-	document.getElementById('alta-mod-tramite-fields').classList.remove('hidden');
+	document.getElementById('nombre-tramite').classList.remove('hidden');
 	document.getElementById('form:mod-tramite-button').classList.remove('hidden');
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-tramites').classList.remove('hidden');
@@ -156,7 +157,7 @@ for (var i = 0; i < desasignarTramitePuesto.length; i++) {
 			this.href = 'listaTramites.xhtml?esSec=true&esAsig=false&id=' + id;
 		} else {
 			var id = this.parentElement.previousSibling.previousSibling.getAttribute('maquina');
-			this.href = 'listaTramitesDePuesto.xhtml?esSec=false&esAsig=false&id=' + id;
+			this.href = 'listaTramitesDePuesto.xhtml?esSec=false&esAsig=false&entidad=tramite&id=' + id;
 		}
 	}, false);
 }	

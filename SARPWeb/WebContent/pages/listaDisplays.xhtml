@@ -30,17 +30,30 @@
 				<h:outputText id='es-asig' class='hidden' value="#{param['esAsig']}" />
 				<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
 			</h:form>	
-			<!--  TRAMITE -->
-			<div id='list-displays-container' class='page-list'>
-				<h2 class='page-title list-title'>Displays</h2>
-				<div class='list-container'>
-					<ui:repeat id='repeat-tramites' value='#{display.listar()}' var='d'>
-						<div displayId='#{d.displayId}' class='hidden'/>
-						<h:outputText class='element-list tramite-element' value='#{d.displayId}'/>
-					</ui:repeat>
+			<!--  DISPLAY -->
+			<h:form id='form-listado-asignar' rendered="#{param['esAsig'] eq 'true'}">
+				<div id='list-displays-container' class='page-list'>
+					<h2 class='page-title list-title'>Displays</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-tramites' value='#{display.listar()}' var='d'>
+							<div displayId='#{d.displayId}' class='hidden'/>
+							<h:outputText class='element-list tramite-element' value='#{d.displayId}'/>
+						</ui:repeat>
+					</div>
 				</div>
-			</div>
-			<!-- DISPLAY -->
+			</h:form>
+			<h:form id='form-listado-desasignar' rendered="#{param['esAsig'] eq 'false'}">
+				<div id='list-displays-container' class='page-list'>
+					<h2 class='page-title list-title'>Displays</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-tramites' value="#{display.listarDisplaysDeSector(param['id'])}" var='d'>
+							<div displayId='#{d.displayId}' class='hidden'/>
+							<h:outputText class='element-list tramite-element' value='#{d.displayId}'/>
+						</ui:repeat>
+					</div>
+				</div>
+			</h:form>
+			<!-- ENTIDADES -->
 			<h:form id='form-entidades'>
 				<div id="id-display-sector" class="form-line hidden">
 					<label for="display-id">Display</label>

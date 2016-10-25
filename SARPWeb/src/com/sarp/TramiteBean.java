@@ -2,10 +2,8 @@ package com.sarp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
@@ -28,11 +26,11 @@ public class TramiteBean {
 	public SharedBean notice = SharedBean.getInstance();
 	
 	public String alta() throws Exception{
-		JSONTramite jtramite = new JSONTramite(null, this.nombre);
+		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.altaTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
 			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El tramite con nombre "+ this.nombre + " se creo correctamente.");
+			notice.setNotice_message("El tramite con codigo " + this.codigo + " y nombre "+ this.nombre + " se creo correctamente.");
 			notice.setNotice("positive");
 		} else {
 			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
@@ -43,7 +41,7 @@ public class TramiteBean {
 	}
 	
 	public String baja(String codigo) {
-		JSONTramite jtramite = new JSONTramite(Integer.parseInt(codigo), "nombre");
+		JSONTramite jtramite = new JSONTramite(codigo, "nombre");
 		String status = c.bajaTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
 			notice.setNotice_title("Esto es un mensaje de Confirmación.");
@@ -58,7 +56,7 @@ public class TramiteBean {
 	}
 	
 	public String modificar(){
-		JSONTramite jtramite = new JSONTramite(Integer.parseInt(this.codigo), this.nombre);
+		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.modTramite(jtramite.toString(), "Administrador");
 		if (status.equals("OK")){
 			notice.setNotice_title("Esto es un mensaje de Confirmación.");
@@ -90,11 +88,21 @@ public class TramiteBean {
 	}
 	
 	public List<JSONTramite> listarDeSector(String idSector) throws Exception{
-		return modeler.toJSONTramites(c.listarTramitesSector(idSector,"ResponsableSector"));
+		if (idSector == "")
+			return null;
+		else
+			return modeler.toJSONTramites(c.listarTramitesSector(idSector, "ResponsableSector"));
 	}
 
-	public List<JSONTramiteRecepcion> listarDePuesto(String puesto) throws Exception {
-		return modeler.toJSONTramitesRecepcion(c.listarTramitesPuesto(puesto, "Recepcion"));
+	public List<JSONTramite> listarDePuesto(String idPuesto) throws Exception{
+		if (idPuesto == "")
+			return null;
+		else
+			return modeler.toJSONTramites(c.listarTramitesPuesto(idPuesto, "ResponsableSector"));
+	}
+
+	public List<JSONTramiteRecepcion> listarParaRecepcion(String puesto) throws Exception {
+		return modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "Recepcion"));
 	}
 
 	public void setTramites(List<JSONTramite> tramites) {

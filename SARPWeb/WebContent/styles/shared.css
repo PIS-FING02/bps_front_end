@@ -127,8 +127,8 @@ body{
 }
 
 .deactivated {
-	background-color: #abde69;
-	cursor: default;
+	background-color: #ababab !important;
+	cursor: default !important;
 }
 
 

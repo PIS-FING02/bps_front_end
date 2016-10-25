@@ -15,12 +15,12 @@
 	<div id='entidad' class="page-container"> 
 		<div class="page-title-container">
 			<h:form id='form-links'>
-				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}"/>
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Gestión' action="#{shared.redirect('respSector')}" />
+				<h:commandButton class="page-title" value='Gestión' action="#{shared.redirect('respSector')}"/>
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirect('sectores')}" />
-				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirect('sectores')}"/>
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}"/> 
 			</h:form>
 		</div> 
 		<div class="page-frame">
@@ -31,7 +31,7 @@
 				<h:outputText id='es-asig' class='hidden' value="#{param['esAsig']}" />
 			</h:form>	
 			<!--  TRAMITE -->
-			<h:form id='form-listado-asignar' rendered="#{param.esAsig eq 'true'}">
+			<h:form id='form-listado-asignar' rendered="#{param['esAsig'] eq 'true'}">
 				<div id='list-tramites-container' class='page-list'>
 					<h2 class='page-title list-title'>Trámites</h2>
 					<div class='list-container'>
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 			</h:form>
-			<h:form id='form-listado-desasignar' rendered="#{param.esAsig eq 'false'}">
+			<h:form id='form-listado-desasignar' rendered="#{param['esAsig'] eq 'false'}">
 				<div id='list-tramites-container' class='page-list'>
 					<h2 class='page-title list-title'>Trámites</h2>
 					<div class='list-container'>

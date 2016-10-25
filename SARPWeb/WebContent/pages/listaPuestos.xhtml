@@ -30,17 +30,30 @@
 				<h:outputText id='entidad-llamado' class='hidden' value="#{param['entidad']}" />
 				<h:outputText id='es-asig' class='hidden' value="#{param['esAsig']}" />
 			</h:form>	
-			<!--  TRAMITE -->
-			<div id='list-puestos-container' class='page-list'>
-				<h2 class='page-title list-title'>Puestos</h2>
-				<div class='list-container'>
-					<ui:repeat id='repeat-tramites' value='#{puesto.listar()}' var='p'>
-						<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
-						<h:outputText class='element-list tramite-element' value='#{p.nombreMaquina}'/>
-					</ui:repeat>
+			<!--  PUESTO -->
+			<h:form id='form-listado-asignar' rendered="#{param['esAsig'] eq 'true'}">
+				<div id='list-tramites-container' class='page-list'>
+					<h2 class='page-title list-title'>Puestos</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-puestos' value="#{puesto.listar()}" var='p'>
+							<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
+							<h:outputText class='element-list puesto-element' value='#{p.nombreMaquina}'/>
+						</ui:repeat>
+					</div>
 				</div>
-			</div>
-			<!-- PUESTO -->
+			</h:form>
+			<h:form id='form-listado-desasignar' rendered="#{param['esAsig'] eq 'false'}">
+				<div id='list-tramites-container' class='page-list'>
+					<h2 class='page-title list-title'>Puestos</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-puestos' value="#{puesto.listarPuestosDeSector(param['id'])}" var='p'>
+							<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
+							<h:outputText class='element-list puesto-element' value='#{p.nombreMaquina}'/>
+						</ui:repeat>
+					</div>
+				</div>
+			</h:form>
+			<!-- ENTIDADES -->
 			<h:form id='form-entidades'>
 				<div id="id-tramite-sector" class="form-line hidden">
 					<label for="tramite-id">Puesto</label>

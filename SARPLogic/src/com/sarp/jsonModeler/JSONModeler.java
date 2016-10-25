@@ -26,7 +26,7 @@ public class JSONModeler {
 	
 	public JSONTramite toJSONTramite(String jsonTramite) throws Exception{
 		JSONObject json = (JSONObject)new JSONParser().parse(jsonTramite);
-		JSONTramite tramite = new JSONTramite(Integer.parseInt(json.get("codigo").toString()),json.get("nombre").toString());
+		JSONTramite tramite = new JSONTramite(json.get("codigo").toString(),json.get("nombre").toString());
 		return tramite;
 	}
 	
@@ -116,7 +116,8 @@ public class JSONModeler {
         
     	Iterator<JSONObject> iterator = array.iterator();
     	while (iterator.hasNext()) {
-    		String hhh = iterator.next().toJSONString();
+    		JSONObject uuu = iterator.next();
+    		String hhh = uuu.toJSONString();
     		JSONTramite tttt = this.toJSONTramite(hhh);
     		tramitesReturn.add(tttt);
     	}

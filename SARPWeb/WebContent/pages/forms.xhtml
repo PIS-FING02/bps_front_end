@@ -27,12 +27,15 @@
 		<div class="page-frame">
 			<div id='sub-title' class="frame-title"></div>
 			<h:form id='form'>
-				<div id="alta-mod-tramite-fields" class="form-line hidden">
 				<!-- TRAMITE -->
-					<label for="nombre">Nombre:</label>
-					<h:inputText id='tramite-selected-codigo' class="formInput hidden" value="#{tramite.codigo}" />
+				<div id="codigo-tramite" class="form-line hidden">
+					<label for="codigo-tramite">Codigo:</label>
+					<h:inputText id='tramite-selected-codigo' class="formInput" value="#{tramite.codigo}" />
+				</div>
+				<div id="nombre-tramite" class="form-line hidden">
+					<label for="nombre-tramite">Nombre:</label>
 					<h:inputText id='tramite-selected-nombre' class="formInput" value="#{tramite.nombre}" />
-				</div> 
+				</div>
 				<!-- DISPLAY -->
 				<div id="alta-display-fields" class="form-line hidden">
 					<label for="id">Identificador:</label>

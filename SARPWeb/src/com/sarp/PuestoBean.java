@@ -38,6 +38,8 @@ public class PuestoBean {
 	private String idSector;
 	private String json_estado_tramites;
 	
+	Boolean ejecutado = false;
+	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	public SharedBean notice = SharedBean.getInstance();
@@ -119,10 +121,19 @@ public class PuestoBean {
 	public List<JSONTramite> listarDeSector() throws Exception{
 		return modeler.toJSONTramites(c.listarTramitesSector(this.maquina, "ResponsableSector"));
 	}
+	
+	public List<JSONPuesto> listarPuestosDeSector(String sectorId) throws Exception{
+		if (sectorId == "")
+			return null;
+		else
+			return modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "ResponsableSector"));
+	}
 
 	public List<JSONTramite> listarTramitesAsignables(String maquina) throws Exception{
 		if (!maquina.equals("")){
-			return modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "ResponsableSector"));
+			String hhh = c.listarTramitesAsignables(maquina, "ResponsableSector");
+			List<JSONTramite> ggg = modeler.toJSONTramites(hhh);;
+			return ggg;
 		} else {
 			return null;
 		}
@@ -145,14 +156,14 @@ public class PuestoBean {
 
 	public String desasignarTramitePuesto(){  //FALTA CAMBIAR
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
-		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
+		String status = c.desasignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
 		if (status.equals("OK")){
 			notice.setNotice_title("Esto es un mensaje de Confirmación.");
-			notice.setNotice_message("El tramite con codigo "+ this.codigo + " se asigno correctamente al puesto con nombre de maquina " + this.maquina + ".");
+			notice.setNotice_message("El tramite con codigo "+ this.codigo + " se desasigno correctamente del puesto con nombre de maquina " + this.maquina + ".");
 			notice.setNotice("positive");
 		} else {
 			notice.setNotice_title("Han ocurrido error/es que impiden continuar.");
-			notice.setNotice_message("Ocurrio un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".");
+			notice.setNotice_message("Ocurrio un error al desasignar el tramite con codigo "+ this.codigo + " del puesto con nombre de maquina " + this.maquina + ".");
 			notice.setNotice("negative");
 		}
 		return "/pages/puestos.xhtml?faces-redirect=true";
