@@ -203,8 +203,8 @@ public class ControladorREST {
 		return this.attentionsFacade.llamarNumeroDemanda(internalId,maquina, userRol);
 	}
 
-	public String listarTramiteSector(String idSector, String userRol) {
-		return this.tramiteFacade.listarTramiteSector(idSector,userRol);
+	public String listarTramiteSector(String idSector, String userRol) throws Exception {
+		return this.tramiteFacade.tramitesSector(idSector,userRol);
 	}
 
 	public String listarNumerosPausadosSector(String idSector, String userRol) {
