@@ -39,23 +39,7 @@
 			</h:form>
 		</div>
 	</div>
-	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{sector.notice != 'hidden'}">
-			<div id="action-popup" class='popup-overlay'>
-				<div class="popup">
-					<h2 id="popup-title" class="sub-title">Mensaje error</h2>
-					<div class="content">
-						<h:outputText value="#{sector.notice_message}" />
-						<h:form id='form-tramite'>
-							<div class="buttons-container">
-								<h:commandButton id='alta-tramite-button' class="action-button action-button-entity" value="Aceptar" action="#{sector.hideError()}" />  
-							</div>
-						</h:form>
-					</div>
-				</div>
-			</div>
-		</h:panelGroup>
-	</h:form>
+	<ui:include src="notice.xhtml" />
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 <script type="text/javascript" src="../scripts/lists.js"></script>

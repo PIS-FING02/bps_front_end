@@ -48,21 +48,27 @@
 				</div>
 				<div id="usuario-puesto" class="form-line hidden">
 					<label for="usuario-puesto">Usuario:</label>
-					<h:inputText id='puesto-selected-usuario' class="formInput" value="#{puesto.usuarioId}" />
-				</div>
-				<div id="estado-puesto" class="form-line hidden">
-					<label for="estado-puesto">Estado:</label>
-					<h:inputText id='puesto-selected-estado' class="formInput" value="#{puesto.estado}" />
+					<h:inputText id='puesto-selected-usuario' class="formInput hidden" value="#{puesto.usuarioId}" />
+					<input id='puesto-selected-usuario-dummy' class="formInput read-only hidden" value="No hay usuario" />
 				</div>
 				<div id="numero-puesto" class="form-line hidden">
 					<label for="numero-puesto">Numero:</label>
 					<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
 				</div>
+				<div id="estado-puesto" class="form-line hidden">
+					<label for="estado-puesto">Estado:</label>
+					<h:selectOneMenu id='puesto-selected-estado' class='combo-box' value="#{puesto.estado}">
+					   <f:selectItem itemValue="DISPONIBLE" itemLabel="DISPONIBLE" />
+					   <f:selectItem itemValue="ATENDIENDO" itemLabel="ATENDIENDO" />	   		
+					   <f:selectItem itemValue="LLAMANDO" itemLabel="LLAMANDO" />
+					   <f:selectItem itemValue="CERRADO" itemLabel="CERRADO" />	   							
+					</h:selectOneMenu>	
+				</div>
 				<div class="buttons-container">
-					<h:commandButton id='alta-tramite-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{tramite.alta}"/> 
+					<h:commandButton id='alta-tramite-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{tramite.alta}"/> 
 					<h:commandButton id='mod-tramite-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{tramite.modificar}"/> 
-					<h:commandButton id='alta-display-button' class="action-button action-button-popup hidden" value="Aceptar" action="#{display.alta}"/> 
-					<h:commandButton id='alta-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta}"/> 
+					<h:commandButton id='alta-display-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{display.alta}"/> 
+					<h:commandButton id='alta-puesto-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta}"/> 
 					<h:commandButton id='mod-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.modificar}"/> 
 					<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 				</div>

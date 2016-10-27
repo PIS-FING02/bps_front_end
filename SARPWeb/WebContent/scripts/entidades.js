@@ -17,6 +17,8 @@ var desasignarContainer = document.getElementsByClassName('desasignar-container'
 if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('codigo-tramite').classList.remove('hidden');
 	document.getElementById('nombre-tramite').classList.remove('hidden');
+	document.getElementById('form:tramite-selected-nombre').classList.add('in-form');
+	document.getElementById('form:tramite-selected-codigo').classList.add('in-form');
 	document.getElementById('form:alta-tramite-button').classList.remove('hidden');
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-tramites').classList.remove('hidden');
@@ -24,6 +26,11 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	// MOD TRAMITE
 } else if (getURLParameter('tipoForm') == 'modTramite') {
 	document.getElementById('nombre-tramite').classList.remove('hidden');
+	document.getElementById('codigo-tramite').classList.remove('hidden');
+	document.getElementById('form:tramite-selected-codigo').classList.add('in-form');
+	document.getElementById('form:tramite-selected-nombre').classList.add('in-form');
+	document.getElementById('form:tramite-selected-codigo').classList.add('read-only');
+	document.getElementById('form:tramite-selected-codigo').readOnly = 'true';
 	document.getElementById('form:mod-tramite-button').classList.remove('hidden');
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-tramites').classList.remove('hidden');
@@ -34,26 +41,43 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 } else if (getURLParameter('tipoForm') == 'altaPuesto') {
 	document.getElementById('maquina-puesto').classList.remove('hidden');
 	document.getElementById('numero-puesto').classList.remove('hidden');
+	document.getElementById('form:puesto-selected-numero').classList.add('in-form');
+	document.getElementById('form:puesto-selected-maquina').classList.add('in-form');
 	document.getElementById('form:alta-puesto-button').classList.remove('hidden');
 	document.getElementById('form-links:title-gestion').classList.remove('hidden');
 	document.getElementById('form-links:title-puestos').classList.remove('hidden');
+	document.getElementById('form:puesto-selected-numero').value = '';
+	document.getElementById('form:puesto-selected-maquina').value = '';
 	document.getElementById('sub-title').innerHTML= 'Crear Puesto';
 	// MOD PUESTO
 } else if (getURLParameter('tipoForm') == 'modPuesto') {
-	document.getElementById('numero-puesto').classList.remove('hidden');
-	document.getElementById('estado-puesto').classList.remove('hidden');
-	document.getElementById('usuario-puesto').classList.remove('hidden');
-	document.getElementById('form-links:title-gestion').classList.remove('hidden');
-	document.getElementById('form-links:title-puestos').classList.remove('hidden');
 	document.getElementById('form:puesto-selected-numero').value = getURLParameter('numero').replace("+", " ");
 	document.getElementById('form:puesto-selected-estado').value = getURLParameter('estado').replace("+", " ");
 	document.getElementById('form:puesto-selected-usuario').value = getURLParameter('usuario').replace("+", " ");
 	document.getElementById('form:puesto-selected-maquina').value = getURLParameter('maquina').replace("+", " ");
+	var usr = document.getElementById('form:puesto-selected-usuario').value;
+	document.getElementById('form:puesto-selected-numero').classList.add('in-form');
+	document.getElementById('usuario-puesto').classList.remove('hidden');
+	document.getElementById('estado-puesto').classList.remove('hidden');
+	document.getElementById('numero-puesto').classList.remove('hidden');
+	document.getElementById('maquina-puesto').classList.remove('hidden');
+	if (usr != '-') {
+		document.getElementById('form:puesto-selected-usuario').classList.remove('hidden');
+	} else {
+		document.getElementById('puesto-selected-usuario-dummy').classList.remove('hidden');
+	}
+	document.getElementById('form:puesto-selected-usuario').classList.add('read-only');
+	document.getElementById('form:puesto-selected-maquina').classList.add('read-only');
+	document.getElementById('form:puesto-selected-usuario').readOnly = 'true';
+	document.getElementById('form:puesto-selected-maquina').readOnly = 'true';
+	document.getElementById('form-links:title-gestion').classList.remove('hidden');
+	document.getElementById('form-links:title-puestos').classList.remove('hidden');
 	document.getElementById('form:mod-puesto-button').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Modificar Puesto';
 	// ALTA DISPLAY
 } else if (getURLParameter('tipoForm') == 'altaDisplay') {
 	document.getElementById('alta-display-fields').classList.remove('hidden');
+	document.getElementById('form:display-selected-id').classList.add('in-form');
 	document.getElementById('form:alta-display-button').classList.remove('hidden');
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-displays').classList.remove('hidden');

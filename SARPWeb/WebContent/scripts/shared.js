@@ -7,26 +7,24 @@ var listElements = document.getElementsByClassName('element-list');
 var entityActionButtons = document.getElementsByClassName('action-button-entity');
 var listActionButtons = document.getElementsByClassName('action-button-list');
 var formInputs = document.getElementsByClassName('formInput');
+var inFormInputs = document.getElementsByClassName('in-form');
 var popupOpenButtons = document.getElementsByClassName('popup-open-button');
 
 var elementsToHide = [];
-var elementsToSelect = {
-	"tramite": {
-		"toSelect": false,
-		"selected": false
-	},
-	"display": {
-		"toSelect": false,
-		"selected": false
-	},
-	"puesto": {
-		"toSelect": false,
-		"selected": false
-	},
-	"sector": {
-		"toSelect": false,
-		"selected": false
-	}
+
+// ACTIVATE/DEACTIVATE FORM BUTTONS ACCORDING TO INPUTS BEIGN EMPTY OR NOT
+for (var i = 0; i < formInputs.length; i++) {
+	formInputs[i].addEventListener('input', function(){
+		if (inputsNotEmpty()) {
+			for (var i = 0; i < entityActionButtons.length; i++) {
+				entityActionButtons[i].classList.remove("deactivated");
+			}
+		} else {
+			for (var i = 0; i < entityActionButtons.length; i++) {
+				entityActionButtons[i].classList.add("deactivated");
+			}
+		}
+	});
 }
 
 // BLOCK PAGE SCROLL WHEN POPUP OPEN
@@ -57,7 +55,6 @@ for (var i = 0; i < optionButtons.length; i++) {
 // CLOSE POPUP AND CLEANUP
 cancelButton.addEventListener('click', function(){
 	popup.classList.add("hidden");
-	resetElementsToSelect();
 	for (var i = 0; i < listElements.length; i++) {
 		if (hasClass(listElements[i], 'element-list-selected')) {
 			listElements[i].classList.remove('element-list-selected');
@@ -76,7 +73,6 @@ cancelButton.addEventListener('click', function(){
 
 //CLOSE POPUP AND CLEANUP
 closeButton.addEventListener('click', function(){
-	resetElementsToSelect();
 	popup.classList.add("hidden");
 	for (var i = 0; i < listElements.length; i++) {
 		if (hasClass(listElements[i], 'element-list-selected')) {
@@ -93,6 +89,17 @@ closeButton.addEventListener('click', function(){
 	}	
 	document.getElementsByTagName("BODY")[0].classList.remove('body-not-scroll')
 }, false);
+
+// CHECK IN-FOMRS INPUTS EMPTY
+function inputsNotEmpty() {
+	var res = true;
+	var i = 0;
+	while (res && i < inFormInputs.length){
+		res = inFormInputs[i].value != "";
+		i++;
+	}
+	return res;
+}
 
 //HAS CLASS
 function hasClass(elem, klass) {
@@ -122,62 +129,8 @@ function updateInputs (element) {
 		document.getElementById('form-popup:display-selected-ruta').value = element.previousSibling.getAttribute('ruta');
 	} else if (hasClass(element, 'puesto-element')){
 		document.getElementById('form-popup:puesto-selected-maquina').value = element.previousSibling.getAttribute('maquina');
-		document.getElementById('form-popup:puesto-selected-usuario').value = element.previousSibling.getAttribute('usuario');
 		document.getElementById('form-popup:puesto-selected-estado').value = element.previousSibling.getAttribute('estado');
 		document.getElementById('form-popup:puesto-selected-numero').value = element.previousSibling.getAttribute('numero');
+		document.getElementById('form-popup:puesto-selected-usuario').value = element.previousSibling.getAttribute('usuario');
 	}
-}
-
-//SELECTED CORRECT AMOUNT OF LIST ELEMENTS
-function doneSelecting() {
-	if (elementsToSelect.tramite.toSelect != elementsToSelect.tramite.selected) {
-		return false;
-	} else if (elementsToSelect.puesto.toSelect != elementsToSelect.puesto.selected) {
-		return false;
-	} else if (elementsToSelect.display.toSelect != elementsToSelect.display.selected) {
-		return false;
-	} else if (elementsToSelect.sector.toSelect != elementsToSelect.sector.selected) {
-		return false;
-	} else {
-		return true;
-	}
-}
-
-// RESET ELEMENTS TO SELECT
-function resetElementsToSelect () {
-	elementsToSelect = {
-		"tramite": {
-			"toSelect": false,
-			"selected": false
-		},
-		"display": {
-			"toSelect": false,
-			"selected": false
-		},
-		"puesto": {
-			"toSelect": false,
-			"selected": false
-		},
-		"sector": {
-			"toSelect": false,
-			"selected": false
-		}
-	}
-}
-
-// SELECT ELEMENT FROM LIST ACCORDING TO ITS TYPE
-function selectElement (element){
-	if (hasClass(element, 'tramite-element')) {
-		var otherElements = document.getElementsByClassName('tramite-element');
-	} else if (hasClass(element, 'puesto-element')) {
-		var otherElements = document.getElementsByClassName('puesto-element');
-	} else if (hasClass(element, 'display-element')) {
-		var otherElements = document.getElementsByClassName('display-element');
-	} else if (hasClass(element, 'sector-element')) {
-		var otherElements = document.getElementsByClassName('sector-element');
-	}
-	for (var i = 0; i < otherElements.length; i++) {
-		otherElements[i].classList.remove('element-list-selected');
-	}
-	element.classList.add('element-list-selected');
 }

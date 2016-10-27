@@ -14,33 +14,23 @@
 	<div class="page-container"> 
 		<div class="page-title-container">
 			<h:form>
-				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}"/>
 				<div class="page-title page-title-last"> ➨  Administración </div>
-				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}"/> 
 			</h:form>
 		</div> 
 		<div class="page-frame">
 			<div class="options-buttons-container">
-				<a class="option-button option-link" href="tramites.xhtml">Trámites</a>
-				<a class="option-button option-link" href="displays.xhtml">Displays</a>
 				<h:form>
-					<h:commandButton id="listar-numeros" class="option-button" value="Importar Sectores" action="#{sector.importarSecotesGAFU()}" />
+					<h:commandButton class="option-button" value='Trámites' action="#{shared.redirect('tramites')}"/>
+					<h:commandButton class="option-button" value='Displays' action="#{shared.redirect('displays')}"/>
+					<h:commandButton id="listar-numeros" class="option-button" value="Importar Sectores" action="#{sector.importarSecotesGAFU()}"/>
+					<h:commandButton class="option-button" value='Listar Números del Sistema' action="#{shared.redirect('listaSectores')}"/>
 				</h:form>
-				<a id='listar-numeros-sistema' class="option-button option-link" href="listaSectores.xhtml">Listar Números del Sistema</a>
 			</div>
 		</div>
 	</div>
-	<h:form id='form-error'>
-		<h:panelGroup id="text" rendered="#{shared.notice != 'hidden'}">
-			<div id="notice-holder" class='#{shared.notice}'>
-				<div class='logo'/>
-				<div class="notice-container">
-					<h:outputText class='notice-title' value="#{shared.notice_title}" />
-					<h:outputText class='notice-content' value="#{shared.notice_message}" />
-				</div>
-			</div>
-		</h:panelGroup>
-	</h:form>
+	<ui:include src="notice.xhtml"/>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 </body> 
 </html>

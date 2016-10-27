@@ -34,6 +34,7 @@ body{
 
 .page-title {
     display: inline;
+    padding: 0;
     float: left;
     margin: 0 10px 0 0;
     line-height: 35px;
@@ -111,11 +112,9 @@ body{
 	white-space: normal;
 }
 
-.option-link {
-	word-break: break-all;
-	box-sizing: border-box;
-    text-align: center;
-    padding: 42px 10px;
+.option-button-menu {
+	width: 151px;
+	height: 120px;
 }
 
 .option-button:hover {
@@ -129,6 +128,7 @@ body{
 .deactivated {
 	background-color: #ababab !important;
 	cursor: default !important;
+	pointer-events: none;
 }
 
 
@@ -226,13 +226,18 @@ label {
 }
 
 input { 
-    margin-left: 20px;
+    margin-left: 0;
     float: right;
     width: calc(100% - 158px);
     height: 20px;
     padding-left: 5px;
     border: 1px solid #a9a9a9;
     background: #f1f2f4;
+}
+
+.read-only {
+	background: transparent;
+    border: none;
 }
 
 .sub-title {
@@ -257,6 +262,15 @@ input {
 	border-radius: 4px;
 	cursor: pointer;
 	margin-left: 10px;
+}
+
+.combo-box {
+	margin-right: 339px;
+    float: right;
+    height: 20px;
+    padding-left: 5px;
+    border: 1px solid #a9a9a9;
+    background: #f1f2f4;
 }
 
 .action-button:hover {
