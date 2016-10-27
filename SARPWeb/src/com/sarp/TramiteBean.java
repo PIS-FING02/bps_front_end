@@ -81,7 +81,7 @@ public class TramiteBean {
 	}
 
 	public List<JSONTramiteRecepcion> listarParaRecepcion(String puesto) throws Exception {
-		return modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "Recepcion"));
+		return modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "Recepcionista"));
 	}
 
 	public void setTramites(List<JSONTramite> tramites) {

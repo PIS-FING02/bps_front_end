@@ -1,6 +1,6 @@
 #notice-holder {
     position: absolute;
-    width: calc(100% - 30px);
+    width: calc(100% - 32px);
     height: 40px;
     top: 64px;
     padding: 10px;

@@ -21,11 +21,11 @@
 		</div>
 		<div class="page-frame">
 			<div class="options-buttons-container">
-				<a class="option-button option-link" href="puestos.xhtml">Puestos</a>
-				<a class="option-button option-link" href="sectores.xhtml">Sectores</a>
-				<a class="option-button option-link" href="listaSectoresGestion.xhtml">Listar Números Por Sector</a>
-				<button id='sectores-resp-sector' class="option-button">Obtener Sectores Responsable Sector</button>
-				<button id='conf-tiempo-rellamado' class="option-button">Configurar Tiempo de Re-llamado</button>
+				<h:form>
+					<h:commandButton class="option-button" value='Puestos' action="#{shared.redirect('puestos')}"/>
+					<h:commandButton class="option-button" value='Sectores' action="#{shared.redirect('sectores')}"/>
+					<h:commandButton class="option-button" value='Listar Números Por Sector' action="#{shared.redirect('listaSectoresGestion')}"/>
+				</h:form>
 			</div>
 		</div>
 	</div>

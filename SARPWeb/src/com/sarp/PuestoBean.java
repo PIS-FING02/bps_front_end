@@ -85,6 +85,7 @@ public class PuestoBean {
 	
 	public String modificar(){
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		System.out.println(jpuesto);
 		String status = c.modPuesto(jpuesto.toString(), "ResponsableSector");
 		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificó correctamente.", 
 				"Ocurrió un error al modificar el puesto.");
@@ -111,11 +112,16 @@ public class PuestoBean {
 			return modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "ResponsableSector"));
 	}
 
-	public List<JSONTramite> listarTramitesAsignables(String maquina) throws Exception{
+	public List<JSONTramite> listarTramitesAsignables(String maquina) {
 		if (!maquina.equals("")){
-			String hhh = c.listarTramitesAsignables(maquina, "ResponsableSector");
-			List<JSONTramite> ggg = modeler.toJSONTramites(hhh);;
-			return ggg;
+			try {
+				return modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "ResponsableSector"));
+			} catch (Exception e) {
+				e.printStackTrace();
+				notice.updateNotice("ERROR", "Este mensaje nunca se va a mostrar, si se esta mostrando, algo salio mal, muy mal.", 
+						"El puesto con nombre de maquina " + maquina + " no tiene ningun sector asociado.");
+				return null;
+			}
 		} else {
 			return null;
 		}
@@ -172,7 +178,7 @@ public class PuestoBean {
 			}
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 		}else{
-			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
+			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
 			this.error = "show";*/
 			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}

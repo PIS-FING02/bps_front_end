@@ -20,12 +20,14 @@
 		</div>
 		<div class="page-frame">
 			<div class="options-buttons-container">
-				<a class="option-button hidden" id="operador-button" href="operador.xhtml" > Atención Operador </a>
-				<a class="option-button hidden" id="operador-sr-button" href="operador.xhtml" > Atención OperSr </a>
-				<a class="option-button hidden" id="recepcion-button" href="recepcion.xhtml"  > Entrega de Números </a>
-				<a class="option-button hidden" id="admin-button" href="admin.xhtml" > Administración </a>
-				<a class="option-button hidden" id="consultor-button" href="consultor.xhtml" > Consultas </a>
-				<a class="option-button hidden" id="respsec-button" href="respSector.xhtml" > Gestión </a>
+				<h:form id='form'>
+					<h:commandButton id="operador-button" class="option-button option-button-menu hidden" value='Atención Operador' action="#{shared.redirect('operador')}"/>
+					<h:commandButton id="operador-sr-button" class="option-button option-button-menu hidden" value='Atención OperSr' action="#{shared.redirect('operador')}"/>
+					<h:commandButton id="recepcion-button" class="option-button option-button-menu hidden" value='Entrega de Números' action="#{shared.redirect('recepcion')}"/>
+					<h:commandButton id="admin-button" class="option-button option-button-menu hidden" value='Administración' action="#{shared.redirect('admin')}"/>
+					<h:commandButton id="consultor-button" class="option-button option-button-menu hidden" value='Consultas' action="#{shared.redirect('consultor')}"/>
+					<h:commandButton id="respsec-button" class="option-button option-button-menu hidden" value='Gestión' action="#{shared.redirect('respSector')}"/>
+				</h:form>
 			</div>
 		</div>
 	</div>
