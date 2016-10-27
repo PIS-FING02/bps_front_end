@@ -72,6 +72,10 @@ public class ControladorREST {
 		return this.tramiteFacade.tramitesAll(userRol, user);
 	}
 
+	public String listarTramiteParaSector(String input, String userRol, String user) throws Exception {
+		return this.tramiteFacade.tramitesParaSector(input, userRol, user);
+	}
+
 	public String listarTramitesSector(String input, String userRol) throws Exception {
 		return this.tramiteFacade.tramitesSector(input, userRol);
 	}
