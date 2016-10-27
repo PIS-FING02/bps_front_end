@@ -25,9 +25,9 @@ public class TramiteFacade {
 		return  restClient.doPut(URL_REST_FULL, input, userRol);
 	}	
 
-	public String tramitesAll(String userRol) throws Exception {
+	public String tramitesAll(String userRol, String user) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_GET_ALL, userRol);
+		return  restClient.doGetList(URL_GET_ALL, userRol, user);
 	}
 
 	public String tramitesSector(String input, String userRol) throws Exception {

@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
@@ -42,13 +43,16 @@ public class PuestoBean {
 	private String idSector;
 	private String json_estado_tramites;
 
-	Boolean ejecutado = false;
 	private String searchString;
 	private List<JSONPuesto> puestosList;
 	
+
+	@ManagedProperty("#{login}")
+	public LoginBean login;
+	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
-	public SharedBean notice = SharedBean.getInstance();
+	public SharedBean shared = SharedBean.getInstance();
 	public String getOperadorTest(){
 		try{
 			return UtilService.getStringProperty("MAQUINA_OPERADOR_TEST");
@@ -69,16 +73,16 @@ public class PuestoBean {
 	
 	public String alta() throws Exception {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "", this.numero, "");
-		String status = c.altaPuesto(jpuesto.toString(), "ResponsableSector");
-		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se creó correctamente.", 
+		String status = c.altaPuesto(jpuesto.toString(), "RESPSEC");
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se creó correctamente.", 
 				"Ocurrió un error al crear el puesto.");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 	
 	public String baja(String maquina) throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(maquina, "id", 0, "CERRADO");
-		String status = c.bajaPuesto(jpuesto.toString(), "ResponsableSector");
-		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se eliminó correctamente.", 
+		String status = c.bajaPuesto(jpuesto.toString(), "RESPSEC");
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se eliminó correctamente.", 
 				"Ocurrió un error al eliminar el puesto.");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
@@ -86,8 +90,8 @@ public class PuestoBean {
 	public String modificar(){
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
 		System.out.println(jpuesto);
-		String status = c.modPuesto(jpuesto.toString(), "ResponsableSector");
-		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificó correctamente.", 
+		String status = c.modPuesto(jpuesto.toString(), "RESPSEC");
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificó correctamente.", 
 				"Ocurrió un error al modificar el puesto.");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
@@ -97,28 +101,40 @@ public class PuestoBean {
 	}
 
 	public List<JSONPuesto> listar() throws Exception{
-		this.puestosList = modeler.toJSONPuestos(c.listarPuestos("ResponsableSector"));
-		return this.puestosList;
+		if (shared.getRolesMap().get("RESPSEC")){				
+			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC", shared.getUser()));
+			return this.puestosList;
+		} else {
+			return null;
+		}
+	}
+
+	public List<JSONPuesto> listarParaSector(String input) throws Exception{
+		if (shared.getRolesMap().get("RESPSEC")) {
+			return modeler.toJSONPuestos(c.listarPuestosParaSector(input, "RESPSEC", shared.getUser()));
+		} else {
+			return null;
+		}
 	}
 
 	public List<JSONTramite> listarDeSector() throws Exception{
-		return modeler.toJSONTramites(c.listarTramitesSector(this.maquina, "ResponsableSector"));
+		return modeler.toJSONTramites(c.listarTramitesSector(this.maquina, "RESPSEC"));
 	}
 	
 	public List<JSONPuesto> listarPuestosDeSector(String sectorId) throws Exception{
 		if (sectorId == "")
 			return null;
 		else
-			return modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "ResponsableSector"));
+			return modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "RESPSEC"));
 	}
 
 	public List<JSONTramite> listarTramitesAsignables(String maquina) {
 		if (!maquina.equals("")){
 			try {
-				return modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "ResponsableSector"));
+				return modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "RESPSEC"));
 			} catch (Exception e) {
 				e.printStackTrace();
-				notice.updateNotice("ERROR", "Este mensaje nunca se va a mostrar, si se esta mostrando, algo salio mal, muy mal.", 
+				shared.updateNotice("ERROR", "Este mensaje nunca se va a mostrar, si se esta mostrando, algo salio mal, muy mal.", 
 						"El puesto con nombre de maquina " + maquina + " no tiene ningun sector asociado.");
 				return null;
 			}
@@ -127,25 +143,25 @@ public class PuestoBean {
 		}
 	}
 	
-	public String asignarTramitePuesto(){
+	public String asignarTramitePuesto() {
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
-		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
-		notice.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al puesto con nombre de maquina " + this.maquina + ".", 
+		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
+		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al puesto con nombre de maquina " + this.maquina + ".", 
 				"Ocurrió un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 
-	public String desasignarTramitePuesto(){  //FALTA CAMBIAR
+	public String desasignarTramitePuesto() {  
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
-		String status = c.desasignarTramite(jppuestotramiteuestotramite.toString(), "ResponsableSector");
-		notice.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del puesto con nombre de maquina " + this.maquina + ".", 
+		String status = c.desasignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
+		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del puesto con nombre de maquina " + this.maquina + ".", 
 				"Ocurrió un error al desasignar el tramite con codigo "+ this.codigo + " del puesto con nombre de maquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?faces-redirect=true";
 	}
 
-	public String abrir() throws Exception{
+	public String abrir() throws Exception {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
-		c.abrirPuesto(jpuesto.toString(), "Operador");
+		c.abrirPuesto(jpuesto.toString(), "OPERADOR");
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorsrAbierto.xhtml";
 		}else{
@@ -153,20 +169,20 @@ public class PuestoBean {
 		}
 	}
 	
-	public String cerrar() throws Exception{
+	public String cerrar() throws Exception {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, null, null, null);
-		c.cerrarPuesto(jpuesto.toString(), "Operador");
+		c.cerrarPuesto(jpuesto.toString(), "OPERADOR");
 		return "/pages/operador.xhtml?faces-redirect=true";
 	}
 	
-	public String comenzarAtencion(){
+	public String comenzarAtencion() {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
-		c.comenzarAtencion(jpuesto.toString(),"Operador");
+		c.comenzarAtencion(jpuesto.toString(),"OPERADOR");
 		return "/pages/operadorAtendiendo.xhtml?faces-redirect=true";
 	}
 	
-	public String llamarNumero() throws Exception{
-		String num = c.llamarNumero(this.maquina, "Operador");
+	public String llamarNumero() throws Exception {
+		String num = c.llamarNumero(this.maquina, "OPERADOR");
 		if(num != null){
 			JSONNumero jnumero = modeler.toJSONNumero(num);
 			this.externalId = jnumero.getExternalId(); 
@@ -186,7 +202,7 @@ public class PuestoBean {
 	
 	public String liberar(){
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
-		c.atrasarNumero(jpuesto.toString(),"Operador");
+		c.atrasarNumero(jpuesto.toString(),"OPERADOR");
 		this.estado="DISPONIBLE";
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
@@ -197,7 +213,7 @@ public class PuestoBean {
 	
 	public String pausar() {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
-		c.pausarNumero(jpuesto.toString(),"Operador");
+		c.pausarNumero(jpuesto.toString(),"OPERADOR");
 		this.estado="DISPONIBLE";
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
@@ -207,11 +223,11 @@ public class PuestoBean {
 	}
 	
 	public List<JSONNumero> listarNumeros() throws Exception{
-		return modeler.toJSONNumeros(c.listarNumeros(this.maquina,"Operador"));
+		return modeler.toJSONNumeros(c.listarNumeros(this.maquina, "OPERADOR"));
 	}
 	
 	public String llamarNumeroDemanda(String internalId){
-		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroDemanda(internalId,this.maquina,"Operador"));
+		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroDemanda(internalId,this.maquina, "OPERADOR"));
 		this.externalId = num.getExternalId();
 		this.estadoNumero = num.getEstado();
 		this.prioridad = num.getPrioridad();
@@ -233,22 +249,22 @@ public class PuestoBean {
 	}
 
 	public List<JSONNumero> listarNumerosPausados() {
-		return modeler.toJSONNumeros(c.listarNumerosPausados(this.maquina,"Operador"));
+		return modeler.toJSONNumeros(c.listarNumerosPausados(this.maquina, "OPERADOR"));
 	}
 	
 	public List<JSONNumero> listarNumerosAtrasados(){
-		return modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina,"Operador"));
+		return modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina, "OPERADOR"));
 	}
 	
 	public String showEstadosFinalizar(){
-		return "/pages/finalizarAtencion.xhtml?faces-redirect=true&id="+ this.maquina;
+		return "/pages/finalizarAtencion.xhtml?faces-redirect=true&idSector="+ this.idSector;
 	}
 	
 	public void finalizarAtencion(){
 		//JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
 		//c.finalizarAtencion(jpuesto.toString(),"Operador");
 		String json = this.json_estado_tramites.substring(0,this.json_estado_tramites.length()-1) + "]}";
-		c.finalizarAtencion(json, "Operador");
+		c.finalizarAtencion(json, "OPERADOR");
 		System.out.println(json);
 	}
 	
@@ -265,7 +281,7 @@ public class PuestoBean {
 	}
 	
 	public String llamarNumeroPausado(String internalId){
-		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroPausado(internalId,this.maquina,"Operador"));
+		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroPausado(internalId,this.maquina, "OPERADOR"));
 		this.externalId = num.getExternalId();
 		this.estadoNumero = num.getEstado();
 		this.prioridad = num.getPrioridad();
@@ -287,7 +303,7 @@ public class PuestoBean {
 	}
 	
 	public String llamarNumeroAtrasado(String internalId){
-		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroAtrasado(internalId,this.maquina,"Operador"));
+		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroAtrasado(internalId,this.maquina, "OPERADOR"));
 		this.externalId = num.getExternalId();
 		this.estadoNumero = num.getEstado();
 		this.prioridad = num.getPrioridad();

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
@@ -23,28 +24,30 @@ public class TramiteBean {
 	private static final JSONModeler modeler = new JSONModeler();
 	private boolean entre = false;
 
-	public SharedBean notice = SharedBean.getInstance();
+	@ManagedProperty("#{login}")
+	public LoginBean login;
+	public SharedBean shared = SharedBean.getInstance();
 	
 	public String alta() throws Exception{
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
-		String status = c.altaTramite(jtramite.toString(), "Administrador");
-		notice.updateNotice(status, "El tramite con codigo " + this.codigo + " y nombre "+ this.nombre + " se creó correctamente.", 
+		String status = c.altaTramite(jtramite.toString(), "ADMIN");
+		shared.updateNotice(status, "El tramite con codigo " + this.codigo + " y nombre "+ this.nombre + " se creó correctamente.", 
 				"Ocurrió un error al crear el tramite.");
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
 	public String baja(String codigo) {
 		JSONTramite jtramite = new JSONTramite(codigo, "nombre");
-		String status = c.bajaTramite(jtramite.toString(), "Administrador");
-		notice.updateNotice(status, "El tramite con codigo " + codigo + " se eliminó correctamente.", 
+		String status = c.bajaTramite(jtramite.toString(), "ADMIN");
+		shared.updateNotice(status, "El tramite con codigo " + codigo + " se eliminó correctamente.", 
 				"Ocurrió un error al eliminar el tramite.");
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
 	
 	public String modificar(){
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
-		String status = c.modTramite(jtramite.toString(), "Administrador");
-		notice.updateNotice(status, "El tramite con nombre "+ this.nombre + " se modificó correctamente.", 
+		String status = c.modTramite(jtramite.toString(), "ADMIN");
+		shared.updateNotice(status, "El tramite con nombre "+ this.nombre + " se modificó correctamente.", 
 				"Ocurrió un error al modificar el tramite.");
 		return "/pages/tramites.xhtml?faces-redirect=true";
 	}
@@ -54,7 +57,10 @@ public class TramiteBean {
 	}
 
 	public List<JSONTramite> listar() throws Exception{
-		return modeler.toJSONTramites(c.listarTramite("ResponsableSector"));
+		if (shared.getRolesMap().get("ADMIN")) {		
+			return modeler.toJSONTramites(c.listarTramite("ADMIN", shared.getUser()));		
+		} else 
+			return modeler.toJSONTramites(c.listarTramite("RESPSEC", login.getUsername()));
 	}
 	
 	public List<String> listar1() throws Exception{
@@ -70,18 +76,18 @@ public class TramiteBean {
 		if (idSector == "")
 			return null;
 		else
-			return modeler.toJSONTramites(c.listarTramitesSector(idSector, "ResponsableSector"));
+			return modeler.toJSONTramites(c.listarTramitesSector(idSector, "RESPSEC"));
 	}
 
 	public List<JSONTramite> listarDePuesto(String idPuesto) throws Exception{
 		if (idPuesto == "")
 			return null;
 		else
-			return modeler.toJSONTramites(c.listarTramitesPuesto(idPuesto, "ResponsableSector"));
+			return modeler.toJSONTramites(c.listarTramitesPuesto(idPuesto, "RESPSEC"));
 	}
 
 	public List<JSONTramiteRecepcion> listarParaRecepcion(String puesto) throws Exception {
-		return modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "Recepcionista"));
+		return modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "RESPSEC"));
 	}
 
 	public void setTramites(List<JSONTramite> tramites) {

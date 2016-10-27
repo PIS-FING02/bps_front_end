@@ -37,7 +37,7 @@ public class NumeroBean {
 		jnumero.setPrioridad(2);
 		jnumero.setDatosComplementarios(jdatos);
 		System.out.println(jnumero);
-		this.c.sacarNumero(jnumero.toStringSacar(), "ResponsableSector");
+		this.c.sacarNumero(jnumero.toStringSacar(), "RESPSEC");
 	}	
 
 	public String getPrioridad() {
@@ -101,7 +101,7 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			return modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "ResponsableSector"));
+			return modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "RESPSEC"));
 		}else{
 			return null;
 		}
@@ -112,7 +112,7 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			return modeler.toJSONNumeros(c.listarNumerosAtrasadosSector(idSector, "ResponsableSector"));
+			return modeler.toJSONNumeros(c.listarNumerosAtrasadosSector(idSector, "RESPSEC"));
 		}else{
 			return null;
 		}	
@@ -124,7 +124,7 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			return modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "ResponsableSector"));	
+			return modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "RESPSEC"));	
 		}else{
 			return null;
 		}

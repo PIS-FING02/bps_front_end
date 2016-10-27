@@ -1,5 +1,7 @@
 package com.sarp;
 
+import java.util.HashMap;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -19,6 +21,16 @@ public class SharedBean {
 	private static String notice = "hidden";
 	private static String notice_title = "";
 	private static String notice_message = "";
+	private static String user = "";
+	private HashMap<String, Boolean> rolesMap = new HashMap<String, Boolean>();
+
+	public HashMap<String, Boolean> getRolesMap() {
+		return this.rolesMap;
+	}
+
+	public void setRol(String rol, Boolean val) {
+    	this.rolesMap.put(rol, val);        
+	}
 	
 	public String getNotice_message() {
 		return notice_message;
@@ -72,5 +84,13 @@ public class SharedBean {
 		SharedBean.notice_message = "";
 		SharedBean.notice_title = "";
 		return "/pages/" + url + ".xhtml?faces-redirect=true";
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		SharedBean.user = user;
 	}
 }

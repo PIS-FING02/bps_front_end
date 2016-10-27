@@ -1,5 +1,7 @@
 package com.sarp;
 
+import java.util.HashMap;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -19,7 +21,8 @@ public class LoginBean {
 	private String message;
 	private String roles = "";
 	private Boolean loggedIn = false;
-		
+	public SharedBean shared = SharedBean.getInstance();
+	
 	public String getUsernameHeader() {
 		return usernameHeader;
 	}
@@ -65,8 +68,12 @@ public class LoginBean {
 	}
 	
 	public void addRol(String rol, HttpServletRequest request) {
-        if(request.isUserInRole(rol))
+        if(request.isUserInRole(rol)){
         	roles += rol + " ";
+        	shared.setRol(rol, true);
+        } else {
+        	shared.setRol(rol, false);      	
+        }
 	}
 	
     public String Login() {
@@ -76,6 +83,7 @@ public class LoginBean {
 	        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	        request.login(username, password);
 	        this.usernameHeader = this.username;
+	        shared.setUser(this.username);
 	        addRol("ADMIN", request);
 	        addRol("RESPSEC", request);
 	        addRol("CONSULTOR", request);
