@@ -31,8 +31,12 @@ public class ControladorREST {
 	}
 	
 	//PUESTOS
-	public String listarPuestos(String userRol) throws Exception {
-		return this.puestoFacade.puestosAll(userRol);
+	public String listarPuestos(String userRol, String user) throws Exception {
+		return this.puestoFacade.puestosAll(userRol, user);
+	}
+
+	public String listarPuestosParaSector(String input, String userRol, String user) throws Exception {
+		return this.puestoFacade.puestosParaSector(input, userRol, user);
 	}
 	
 	public String listarPuestosSector(String input, String userRol) throws Exception {
@@ -64,8 +68,8 @@ public class ControladorREST {
 	}
 	
 	//TRAMITES
-	public String listarTramite(String userRol) throws Exception {
-		return this.tramiteFacade.tramitesAll(userRol);
+	public String listarTramite(String userRol, String user) throws Exception {
+		return this.tramiteFacade.tramitesAll(userRol, user);
 	}
 
 	public String listarTramitesSector(String input, String userRol) throws Exception {

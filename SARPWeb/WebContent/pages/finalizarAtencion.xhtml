@@ -24,9 +24,8 @@
 			</h:form>
 		</div> 
 		<div class="page-frame">
-		<h:outputText id='id-asig' class='hidden' value="#{param['id']}" />
 			<div id='list-tramites-container' class='page-list'>
-				<ui:repeat id='repeat-tramites' value="#{tramite.listar()}" var='t'>
+				<ui:repeat id='repeat-tramites' value="#{tramite.listarDeSector(param[idSector])}" var='t'>
 					<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
 					<div class='element-list puesto-element'>
 						<h:outputText class='puesto-element hidden' value='#{t.codigo}'/>
@@ -34,9 +33,9 @@
 						<div class='icon icon-container'>Asignar</div>
 						<div id='asignar-container' class='asignar-container hidden'>
 							<div class='asignar-container-triangle'/>
-								<ui:repeat id='repeat-tramites' value="#{tramite.listar1()}" var='t2'>
-									<a id='#{t2}' class='class-#{t2} icon asignar-sector-button tipo-puesto asig-tramite'>#{t2}</a>
-								</ui:repeat>
+							<ui:repeat id='repeat-tramites' value="#{tramite.listar1()}" var='t2'>
+								<a id='#{t2}' class='class-#{t2} icon asignar-sector-button tipo-puesto asig-tramite'>#{t2}</a>
+							</ui:repeat>
 						</div>
 					</div>
 				</ui:repeat>

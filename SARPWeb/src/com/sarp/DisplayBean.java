@@ -22,7 +22,7 @@ public class DisplayBean {
 	public String alta() throws Exception{
 		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		System.out.println(jdisplay.toString());
-		String status= c.altaDisplay(jdisplay.toString(), "Administrador");
+		String status= c.altaDisplay(jdisplay.toString(), "ADMIN");
 		notice.updateNotice(status, "El display con identificador "+ this.id + " se creó correctamente.", 
 				"Ocurrió un error al crear el display.");
 		return "/pages/displays.xhtml?faces-redirect=true";
@@ -30,21 +30,21 @@ public class DisplayBean {
 	
 	public String baja(String id) {
 		JSONDisplay jdisplay = new JSONDisplay(id);
-		String status = c.bajaDisplay(jdisplay.toString(), "Administrador");
+		String status = c.bajaDisplay(jdisplay.toString(), "ADMIN");
 		notice.updateNotice(status, "El display con identificador " + id + " se eliminó correctamente.", 
 				"Ocurrió un error al eliminar el display.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 
 	public List<JSONDisplay> listar() throws Exception{
-		return modeler.toJSONDisplays(c.listarDisplays("Administrador"));
+		return modeler.toJSONDisplays(c.listarDisplays("ADMIN"));
 	}
 
 	public List<JSONDisplay> listarDisplaysDeSector(String sectorId) throws Exception{
 		if (sectorId == "")
 			return null;
 		else
-			return modeler.toJSONDisplays(c.listarDisplaysSector(sectorId, "ResponsableSector"));
+			return modeler.toJSONDisplays(c.listarDisplaysSector(sectorId, "RESPSEC"));
 	}
 	
 	public void setDisplays(List<JSONDisplay> displays) {
