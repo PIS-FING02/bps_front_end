@@ -62,6 +62,13 @@ public class TramiteBean {
 		} else 
 			return modeler.toJSONTramites(c.listarTramite("RESPSEC", login.getUsername()));
 	}
+
+	public List<JSONTramite> listarParaSector(String input) throws Exception{
+		if (shared.getRolesMap().get("RESPSEC")) 
+			return modeler.toJSONTramites(c.listarTramiteParaSector(input, "RESPSEC", shared.getUser()));		
+		else 
+			return null;
+	}
 	
 	public List<String> listar1() throws Exception{
 		List<String> resultado = new ArrayList<String>();
