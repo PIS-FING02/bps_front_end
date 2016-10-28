@@ -303,3 +303,24 @@ input {
 #search-form{
 	float: right;
 }
+
+.icon-search{
+	cursor: pointer;
+    width: 24px;
+    height: 24px;
+	margin-left: 20px;
+    padding-left: 0px;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.input-search{
+	margin-left: 20px;
+    height: 20px;
+    padding-left: 0px;
+    float: none;
+    margin: 0px;
+    width: 155px;
+    background: white;
+}

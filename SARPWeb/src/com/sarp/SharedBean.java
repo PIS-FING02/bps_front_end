@@ -86,6 +86,14 @@ public class SharedBean {
 		return "/pages/" + url + ".xhtml?faces-redirect=true";
 	}
 
+	public String redirectWithParam(String url, String param){
+		SharedBean.notice = "";
+		SharedBean.notice = "hidden";
+		SharedBean.notice_message = "";
+		SharedBean.notice_title = "";
+		return "/pages/" + url + ".xhtml?" + param + "&faces-redirect=true";
+	}
+	
 	public String getUser() {
 		return user;
 	}

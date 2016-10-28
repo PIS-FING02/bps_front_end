@@ -1,11 +1,13 @@
 package com.sarp;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
@@ -16,7 +18,7 @@ import com.sarp.jsons.JSONTramite;
 import com.sarp.utils.UtilService;
 
 @ManagedBean(name = "puesto", eager = true)
-@ViewScoped
+@SessionScoped
 public class PuestoBean {
 	
 	private String maquina;
@@ -37,14 +39,14 @@ public class PuestoBean {
 	private String fecha;
 	private String estadoNumero;
 	private Integer prioridad;
-	
 	//JSONDatosComp datosComplementarios;
 	private Integer idTramite;
 	private String idSector;
 	private String json_estado_tramites;
 
 	private String searchString;
-	private List<JSONPuesto> puestosList;
+	private List<JSONPuesto> puestosList = new ArrayList<JSONPuesto>();
+	private List<JSONPuesto> puestosListBusqueda = new ArrayList<JSONPuesto>();
 	
 
 	@ManagedProperty("#{login}")
@@ -53,6 +55,7 @@ public class PuestoBean {
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	public SharedBean shared = SharedBean.getInstance();
+
 	public String getOperadorTest(){
 		try{
 			return UtilService.getStringProperty("MAQUINA_OPERADOR_TEST");
@@ -101,8 +104,9 @@ public class PuestoBean {
 	}
 
 	public List<JSONPuesto> listar() throws Exception{
+		this.puestosList.clear();
 		if (shared.getRolesMap().get("RESPSEC")){				
-			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC", shared.getUser()));
+			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC",shared.getUser()));
 			return this.puestosList;
 		} else {
 			return null;
@@ -333,7 +337,18 @@ public class PuestoBean {
 		//atrasar numero y liberar puesto cuando viene de pantalla de atencion
 		return "/pages/operadorAtrasados.xhtml?faces-redirect=true";
 	}
-
+	
+	public String listarPuestosBusqueda(){
+		this.puestosListBusqueda.clear();
+		Iterator<JSONPuesto> iter = this.puestosList.iterator();
+		while(iter.hasNext()){
+			JSONPuesto puestoIter = iter.next();
+           	if(puestoIter.getNombreMaquina().toLowerCase().contains(this.searchString.toLowerCase())){
+           		this.puestosListBusqueda.add(puestoIter);
+           	}
+	    }
+		return "/pages/puestos.xhtml?busqueda=true&faces-redirect=true";
+	}
 
 	public String getJson_estado_tramites() {
 		return json_estado_tramites;
@@ -470,12 +485,28 @@ public class PuestoBean {
 	public void setTramites(List<JSONTramite> tramites) {
 		this.tramites = tramites;
 	}
-	
+
 	public String getSearchString() {
 		return searchString;
 	}
 
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
+	}
+
+	public List<JSONPuesto> getPuestosList() {
+		return puestosList;
+	}
+
+	public void setPuestosList(List<JSONPuesto> puestosList) {
+		this.puestosList = puestosList;
+	}
+
+	public List<JSONPuesto> getPuestosListBusqueda() {
+		return puestosListBusqueda;
+	}
+
+	public void setPuestosListBusqueda(List<JSONPuesto> puestosListBusqueda) {
+		this.puestosListBusqueda = puestosListBusqueda;
 	}
 }

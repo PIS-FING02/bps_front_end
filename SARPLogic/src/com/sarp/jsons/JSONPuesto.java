@@ -21,7 +21,7 @@ public class JSONPuesto {
 	
 	public JSONPuesto(){}
 	
-	public JSONPuesto(	String nombreMaquina, String usuarioId, Integer numeroPuesto, String estado){
+	public JSONPuesto(String nombreMaquina, String usuarioId, Integer numeroPuesto, String estado){
 		 this.nombreMaquina = nombreMaquina;
 		 this.usuarioId = usuarioId;
 		 this.numeroPuesto = numeroPuesto;
