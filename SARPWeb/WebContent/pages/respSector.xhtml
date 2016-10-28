@@ -22,7 +22,7 @@
 		<div class="page-frame">
 			<div class="options-buttons-container">
 				<h:form>
-					<h:commandButton class="option-button" value='Puestos' action="#{shared.redirect('puestos')}"/>
+					<h:commandButton class="option-button" value='Puestos' action="#{shared.redirectWithParam('puestos','busqueda=false')}"/>
 					<h:commandButton class="option-button" value='Sectores' action="#{shared.redirect('sectores')}"/>
 					<h:commandButton class="option-button" value='Listar Números Por Sector' action="#{shared.redirect('listaSectoresGestion')}"/>
 				</h:form>

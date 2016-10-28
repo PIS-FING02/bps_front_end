@@ -106,7 +106,7 @@ public class PuestoBean {
 	public List<JSONPuesto> listar() throws Exception{
 		this.puestosList.clear();
 		if (shared.getRolesMap().get("RESPSEC")){				
-			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC", shared.getUser()));
+			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC",shared.getUser()));
 			return this.puestosList;
 		} else {
 			return null;
