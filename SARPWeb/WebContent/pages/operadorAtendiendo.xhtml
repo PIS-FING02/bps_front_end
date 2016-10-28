@@ -64,28 +64,6 @@
 					<h:commandButton class="action-button atencion-buttons" value="Desviar" action="#{puesto.desviar(	)}"/>
 				</h:form>
 			</div>
-				<h:form id='form-asociacion'> 
-		<h:panelGroup id="text" rendered="#{puesto.notice != 'hidden'}">
-				<div id='list-puestos-container' class='page-list'>
-					<h2 class='page-title list-title'>Estados</h2>
-					<div class='list-container'>
-							<div class='element-list tramite-element'>
-								<h:outputText value='Finalizado con exito'/>
-							</div>
-							<div class='element-list tramite-element'>
-								<h:outputText value='Error'/>
-							</div>
-							<div class='element-list tramite-element'>
-								<h:outputText value='Atrasado'/>
-							</div>
-							<div class='element-list tramite-element'>
-								<h:outputText value='Prueba 2'/>
-							</div>
-					</div>
-				<h:commandButton class="action-button" value="Confirmar" action="#{puesto.showEstadosFinalizar()}"/>
-				</div>
-				</h:panelGroup>
-			</h:form>
 		</div>
 	</div>
 
