@@ -6,6 +6,7 @@ public class TramiteFacade {
 
 	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/tramite";
 	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/listarTramites";
+	public static final String URL_GET_ALL_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarTramites";
 	public static final String URL_GET_FROM_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarTramitesSector?sectorId=";
 	public static final String URL_GET_FROM_RECEPCION = "http://52.52.100.160:8080/SARPService/attentionsService/tramitesRecepcion";
 	public static final String URL_GET_FROM_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/listarTramitesPuesto?nombreMaquina=";
@@ -25,9 +26,14 @@ public class TramiteFacade {
 		return  restClient.doPut(URL_REST_FULL, input, userRol);
 	}	
 
-	public String tramitesAll(String userRol) throws Exception {
+	public String tramitesAll(String userRol, String user) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_GET_ALL, userRol);
+		return  restClient.doGetList(URL_GET_ALL, userRol, user);
+	}
+
+	public String tramitesParaSector(String input, String userRol, String user) throws Exception {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGetList(URL_GET_ALL_SECTOR + "?sectorId=" , userRol, user);
 	}
 
 	public String tramitesSector(String input, String userRol) throws Exception {

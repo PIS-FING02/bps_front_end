@@ -35,7 +35,7 @@
 				<div id='list-tramites-container' class='page-list'>
 					<h2 class='page-title list-title'>Puestos</h2>
 					<div class='list-container'>
-						<ui:repeat id='repeat-puestos' value="#{puesto.listar()}" var='p'>
+						<ui:repeat id='repeat-puestos' value="#{puesto.listarParaSector(param['id'])}" var='p'>
 							<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
 							<h:outputText class='element-list puesto-element' value='#{p.nombreMaquina}'/>
 						</ui:repeat>
