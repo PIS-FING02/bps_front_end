@@ -238,6 +238,8 @@ input {
 .read-only {
 	background: transparent;
     border: none;
+    padding-left: 0;
+    width: calc(100% - 153px);
 }
 
 .sub-title {

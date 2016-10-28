@@ -36,7 +36,7 @@
 				<div id='list-displays-container' class='page-list'>
 					<h2 class='page-title list-title'>Displays</h2>
 					<div class='list-container'>
-						<ui:repeat id='repeat-tramites' value='#{display.listar()}' var='d'>
+						<ui:repeat id='repeat-displays' value='#{display.listarParaSector(param["id"])}' var='d'>
 							<div displayId='#{d.displayId}' class='hidden'/>
 							<h:outputText class='element-list tramite-element' value='#{d.displayId}'/>
 						</ui:repeat>
@@ -71,6 +71,7 @@
 			</h:form>
 		</div>
 	</div>
+	<ui:include src="notice.xhtml"/>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 <script type="text/javascript" src="../scripts/lists.js"></script>

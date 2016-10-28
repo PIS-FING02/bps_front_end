@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONDisplay;
+import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "display", eager = true)
 @ViewScoped
@@ -17,13 +18,13 @@ public class DisplayBean {
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONDisplay> displays;
 	private static final JSONModeler modeler = new JSONModeler();
-	public SharedBean notice = SharedBean.getInstance();
+	public SharedBean shared = SharedBean.getInstance();
 
 	public String alta() throws Exception{
 		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		System.out.println(jdisplay.toString());
 		String status= c.altaDisplay(jdisplay.toString(), "ADMIN");
-		notice.updateNotice(status, "El display con identificador "+ this.id + " se creó correctamente.", 
+		shared.updateNotice(status, "El display con identificador "+ this.id + " se creó correctamente.", 
 				"Ocurrió un error al crear el display.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
@@ -31,20 +32,40 @@ public class DisplayBean {
 	public String baja(String id) {
 		JSONDisplay jdisplay = new JSONDisplay(id);
 		String status = c.bajaDisplay(jdisplay.toString(), "ADMIN");
-		notice.updateNotice(status, "El display con identificador " + id + " se eliminó correctamente.", 
+		shared.updateNotice(status, "El display con identificador " + id + " se eliminó correctamente.", 
 				"Ocurrió un error al eliminar el display.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 
-	public List<JSONDisplay> listar() throws Exception{
-		return modeler.toJSONDisplays(c.listarDisplays("ADMIN"));
+	public List<JSONDisplay> listar() throws Exception {
+		List<JSONDisplay> list =  modeler.toJSONDisplays(c.listarDisplays("ADMIN"));
+		if (list.isEmpty())
+			shared.updateNoticeInfo("No se encontraron displays en el sistema.");
+		return list;
+	}
+	
+	public List<JSONDisplay> listarParaSector(String sectorId) throws Exception {
+		shared.clean();
+		if (shared.getRolesMap().get("RESPSEC")) {
+			List<JSONDisplay> list = modeler.toJSONDisplays(c.listarDisplaysParaSector(sectorId, "RESPSEC", shared.getUser()));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("No se encontraron displays disponibles.");
+			return list;
+		} else {
+			return null;
+		}
 	}
 
-	public List<JSONDisplay> listarDisplaysDeSector(String sectorId) throws Exception{
+	public List<JSONDisplay> listarDisplaysDeSector(String sectorId) throws Exception {
+		shared.clean();
 		if (sectorId == "")
 			return null;
-		else
-			return modeler.toJSONDisplays(c.listarDisplaysSector(sectorId, "RESPSEC"));
+		else {
+			List<JSONDisplay> list = modeler.toJSONDisplays(c.listarDisplaysSector(sectorId, "RESPSEC"));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningun display asignado.");
+			return list;
+		}
 	}
 	
 	public void setDisplays(List<JSONDisplay> displays) {

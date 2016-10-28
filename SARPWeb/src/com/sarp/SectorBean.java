@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
+import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONSectorDisplay;
@@ -35,16 +36,23 @@ public class SectorBean {
 
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
-	public SharedBean notice = SharedBean.getInstance();
+	public SharedBean shared = SharedBean.getInstance();
 	
-	public List<JSONSector> listar() throws Exception{
-		List<JSONSector> prueba = modeler.toJSONSectores(c.listarSectores("ADMIN"));
-		return prueba;
+	public List<JSONSector> listar() throws Exception {
+		if (shared.getRolesMap().get("RESPSEC")) {
+			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("RESPSEC", shared.getUser()));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("No tienes sectpres asignados.");
+			return list;
+		} else {
+			shared.updateNoticeInfo("No tienes permisos suficientes.");
+			return null;
+		}
 	}
 	
 	public String importarSecotesGAFU(){
 		String status = this.c.importarSectoreGafu("ADMIN");
-		notice.updateNotice(status, "Los sectores se actualizaron correctamente.", 
+		shared.updateNotice(status, "Los sectores se actualizaron correctamente.", 
 				"Ocurrió un error al actualizar los sectores.");
 		return "/pages/admin.xhtml?faces-redirect=true";
 	}
@@ -52,7 +60,7 @@ public class SectorBean {
 	public String asignarTramiteSector() {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
 		String status = this.c.asignarTramiteSector(jsectortramite.toString(), "RESPSEC");
-		notice.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al sector con codigo " + this.id + ".", 
+		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al sector con codigo " + this.id + ".", 
 				"Ocurrió un error al asignar el tramite con codigo "+ this.codigo + " al sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?faces-redirect=true";
 	}
@@ -60,7 +68,7 @@ public class SectorBean {
 	public String asignarDisplaySector() {
 		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id, this.displayId);
 		String status = this.c.asignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
-		notice.updateNotice(status, "El display con identificador "+ this.displayId + " se asignó correctamente al sector con codigo " + this.id + ".", 
+		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se asignó correctamente al sector con codigo " + this.id + ".", 
 				"Ocurrió un error al asignar el display con identificador "+ this.displayId + " al sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?faces-redirect=true";
 	}
@@ -68,7 +76,7 @@ public class SectorBean {
 	public String asignarPuestoSector() {
 		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
 		String status =this.c.asignarPuestoSector( jsectorpuesto.toString(), "RESPSEC");
-		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se asignó correctamente al sector con codigo " + this.id + ".", 
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se asignó correctamente al sector con codigo " + this.id + ".", 
 				"Ocurrió un error al asignar el puesto con nombre de maquina "+ this.nombreMaquina + " al sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?faces-redirect=true";
 	}
@@ -76,7 +84,7 @@ public class SectorBean {
 	public String desasignarTramiteSector() {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
 		String status = this.c.desasignarTramiteSector( jsectortramite.toString(), "RESPSEC");
-		notice.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del sector con codigo " + this.id + ".", 
+		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del sector con codigo " + this.id + ".", 
 				"Ocurrió un error al desasignar el tramite con codigo "+ this.codigo + " del sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?faces-redirect=true";
 	}
@@ -84,7 +92,7 @@ public class SectorBean {
 	public String desasignarDisplaySector() {
 		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id, this.displayId);
 		String status = this.c.desasignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
-		notice.updateNotice(status, "El display con identificador "+ this.displayId + " se desasignó correctamente del sector con codigo " + this.id + ".", 
+		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se desasignó correctamente del sector con codigo " + this.id + ".", 
 				"Ocurrió un error al desasignar el display con identificador "+ this.displayId + " del sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?faces-redirect=true";
 	}
@@ -92,12 +100,13 @@ public class SectorBean {
 	public String desasignarPuestoSector() {
 		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
 		String status =this.c.desasignarPuestoSector( jsectorpuesto.toString(), "RESPSEC");
-		notice.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se desasignó correctamente al sector con codigo " + this.id + ".",
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se desasignó correctamente al sector con codigo " + this.id + ".",
 				"Ocurrió un error al desasignar el puesto con nombre de maquina "+ this.nombreMaquina + " del sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?faces-redirect=true";
 	}
 	
-	public List<JSONNumero> listarNumerosSector(){
+	public List<JSONNumero> listarNumerosSector() {
+		shared.clean();
 		Map<String, String> params =FacesContext.getCurrentInstance().
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("id");

@@ -32,4 +32,9 @@ public class DisplayFacade {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGet(URL_DISPLAYS_SECTOR + "?sectorId=" + input, userRol);
 	}
+
+	public String displaysParaSector(String input, String userRol, String user) throws Exception {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGetList(URL_GET_ALL + "?sectorId=" + input, userRol, user);
+	}
 }	
