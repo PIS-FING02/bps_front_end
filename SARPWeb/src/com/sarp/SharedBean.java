@@ -82,7 +82,7 @@ public class SharedBean {
 		setNotice_title("Este es un mensaje de Informacion.");
 		setNotice_message(msgInfo);
 		setNotice("info");
-		setIcon("check");
+		setIcon("info");
 	}
 
 	public String redirect(String url){
