@@ -14,33 +14,64 @@
 
 <body> 
 	<div id='entidad' class="page-container page-puestos"> 
-		<h:form>
-			<div class="page-title-container">
+		<div class="page-title-container">
+			<h:form>
 				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Gestion' action="#{shared.redirect('respSector')}" />
+				<h:commandButton class="page-title" value='Gestión' action="#{shared.redirect('respSector')}" />
 				<div class="page-title page-title-last"> ➨  Puestos </div>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
-			</div> 
-			<a id='alta-puesto' class='icon icon-alta alta-button tipo-puesto' 
-				href='forms.xhtml?tipoForm=altaPuesto'>Crear Puesto</a>
-			<div class="page-frame">
-				<div id='list-puesto-container' class='list-container'>
-					<ui:repeat id='repeat-puestos' value='#{puesto.listar()}' var='p'>
-						<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
-						<div class='element-list  puesto-element'>
-							<h:outputText class='puesto-element' value='#{p.nombreMaquina} '/>
-							<h:commandButton id='baja-puesto' image='../images/trash.png' class='icon icon-baja baja-button tipo-puesto baja-puesto' 
-								action="#{puesto.baja(p.nombreMaquina)}" value='Borrar'/>
-							<h:commandButton id='mod-puesto' image='../images/edit.png' class='icon icon-mod mod-button tipo-puesto editar-puesto' 
-								action="#{puesto.goToPuesto(p.nombreMaquina, p.estado, p.usuarioId, p.numeroPuesto)}" value='Editar'/>
-							<a id='asignar-tramite' class='icon asignar-tramite-button tipo-puesto asig-tramite' href=''>Asignar Tramite</a>
-							<a id='desasignar-tramite' class='icon desasignar-tramite-button tipo-puesto asig-tramite' href=''>Desasignar Tramite</a>
-						</div>
-					</ui:repeat>
-				</div>
-			</div>			
+			</h:form>
+		</div> 
+		<h:form id="search-form">
+			<h:inputText id="search" class="input-search formInput" value="#{puesto.searchString}"/>
+			<h:commandButton class="icon-search" image='../images/lupa.png' action="#{puesto.listarPuestosBusqueda()}" /> 
 		</h:form>
+		<a id='alta-puesto' class='icon icon-alta alta-button tipo-puesto' 
+			href='forms.xhtml?tipoForm=altaPuesto'>Crear Puesto</a>
+		<div class="page-frame">
+			<h:form id='form-asociacion'>
+				<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />
+			</h:form>			
+			<h:form id='form-listado-puestos' rendered="#{param['busqueda'] eq 'false'}">
+				<div id='list-puesto-container' class='page-list'>
+					<a class='page-title list-title' href="puestos.xhtml?busqueda=false">Puestos</a>
+					<div class='list-container'>
+						<ui:repeat id='repeat-puestos' value="#{puesto.listar()}" var='p'>
+							<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
+							<div class='element-list  puesto-element'>
+								<h:outputText class='puesto-element' value='#{p.nombreMaquina} '/>
+								<h:commandButton id='baja-puesto' image='../images/trash.png' class='icon icon-baja baja-button tipo-puesto baja-puesto' 
+									action="#{puesto.baja(p.nombreMaquina)}" value='Borrar'/>
+								<h:commandButton id='mod-puesto' image='../images/edit.png' class='icon icon-mod mod-button tipo-puesto editar-puesto' 
+									action="#{puesto.goToPuesto(p.nombreMaquina, p.estado, p.usuarioId, p.numeroPuesto)}" value='Editar'/>
+								<a id='asignar-tramite' class='icon asignar-tramite-button tipo-puesto asig-tramite' href=''>Asignar Tramite</a>
+								<a id='desasignar-tramite' class='icon desasignar-tramite-button tipo-puesto asig-tramite' href=''>Desasignar Tramite</a>
+							</div>
+						</ui:repeat>
+					</div>
+				</div>
+			</h:form>	
+			<h:form id='form-listado-busqueda' rendered="#{param['busqueda'] eq 'true'}">
+				<div id='list-puesto-container' class='page-list'>
+					<a class='page-title list-title' href="puestos.xhtml?busqueda=false">Puestos</a>
+					<div class='list-container'>
+						<ui:repeat id='repeat-puestos' value="#{puesto.getPuestosListBusqueda()}" var='p'>
+							<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
+							<div class='element-list  puesto-element'>
+								<h:outputText class='puesto-element' value='#{p.nombreMaquina} '/>
+								<h:commandButton id='baja-puesto' image='../images/trash.png' class='icon icon-baja baja-button tipo-puesto baja-puesto' 
+									action="#{puesto.baja(p.nombreMaquina)}" value='Borrar'/>
+								<h:commandButton id='mod-puesto' image='../images/edit.png' class='icon icon-mod mod-button tipo-puesto editar-puesto' 
+									action="#{puesto.goToPuesto(p.nombreMaquina, p.estado, p.usuarioId, p.numeroPuesto)}" value='Editar'/>
+								<a id='asignar-tramite' class='icon asignar-tramite-button tipo-puesto asig-tramite' href=''>Asignar Tramite</a>
+								<a id='desasignar-tramite' class='icon desasignar-tramite-button tipo-puesto asig-tramite' href=''>Desasignar Tramite</a>
+							</div>
+						</ui:repeat>
+					</div>
+				</div>
+			</h:form>
+		</div>			
 	</div>
 	<ui:include src="notice.xhtml"/>
 <script type="text/javascript" src="../scripts/shared.js"></script>
