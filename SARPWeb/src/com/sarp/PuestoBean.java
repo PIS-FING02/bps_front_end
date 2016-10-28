@@ -207,6 +207,7 @@ public class PuestoBean {
 			JSONNumero jnumero = modeler.toJSONNumero(num);
 			this.externalId = jnumero.getExternalId(); 
 			this.prioridad = jnumero.getPrioridad();
+			this.idSector = jnumero.getIdSector();
 			if(this.prioridad.equals(1)){
 				String[] arrayFechaHora = jnumero.getHora().split("-");
 				this.fecha = arrayFechaHora[0];
@@ -279,9 +280,8 @@ public class PuestoBean {
 	}
 	
 	public void finalizarAtencion(){
-		//JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
-		//c.finalizarAtencion(jpuesto.toString(),"Operador");
-		String json = this.json_estado_tramites.substring(0,this.json_estado_tramites.length()-1) + "]}";
+		String json = "{\"nombreMaquina\" : \"" + this.maquina + "\",\"id\":" + this.id.toString() + ",\"tramiteResultado\": "+
+			this.json_estado_tramites.substring(0,this.json_estado_tramites.length()-1) + "]}";
 		c.finalizarAtencion(json, "OPERADOR");
 		System.out.println(json);
 	}
