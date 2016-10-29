@@ -238,7 +238,12 @@ public class ControladorREST {
 		return this.attentionsFacade.reLlamarNumero(maquina, userRol);
 	}
 
-	public String listarSectoresDesvio(String maquina, String userRol) {
-		return this.sectorFacade.listarSectoresDesvio(maquina, userRol);
+	public String listarSectoresDesvio(String idSector, String userRol) {
+		return this.sectorFacade.listarSectoresDesvio(idSector, userRol);
+	}
+
+	public String desviarFinaizarAtencion(String json, String sector_desvio, String userRol) {
+		return this.attentionsFacade.desviarFinalizarAtencion(json,sector_desvio,userRol);
+		
 	}
 }
