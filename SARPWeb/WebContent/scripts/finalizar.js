@@ -1,13 +1,10 @@
 var countEstados= document.getElementsByClassName('asignar-container')[0].querySelectorAll('a').length;
-var eventLis = document.getElementById('Exito').parentElement.previousElementSibling.innerHTML
 var sectores = document.getElementsByClassName('asignar-container');
 var asignarContainer = document.getElementsByClassName('asignar-container');
 var iconContainer = document.getElementsByClassName('icon-container');
 var json_estado_tramites="[";
 var inputtext = document.getElementById('form-finalizar:json_estado_tramites');
 
-console.log(countEstados);
-console.log(eventLis);
 
 for (var i = 0; i < iconContainer.length; i++) {
 	iconContainer[i].addEventListener('click', function(e){

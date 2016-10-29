@@ -61,7 +61,13 @@
 				<h:form id="options-form">
 					<h:commandButton class="action-button atender-button" value="Finalizar" action="#{puesto.showEstadosFinalizar()}"/>
 					<h:commandButton class="secondary-button atencion-buttons" value="Pausar" action="#{puesto.pausar()}"/> 
-					<h:commandButton class="action-button atencion-buttons" value="Desviar" action="#{puesto.desviar(	)}"/>
+					<div class='icon icon-container'>Desviar</div>
+						<div id='asignar-container' class='asignar-container hidden'>
+							<div class='asignar-container-triangle'/>
+							<ui:repeat id='repeat-tramites' value="#{puesto.listarSectoresDesvio()}" var='s'>
+								<h:commandButton class="icon asignar-sector-button tipo-puesto asig-tramite" value="#{s.nombre}" action="#{puesto.desviarNumero(s.sectorId)}"/>
+							</ui:repeat>
+					</div>
 				</h:form>
 			</div>
 		</div>
@@ -69,5 +75,7 @@
 
 	<div id="prioridad" class="hidden">#{puesto.getPrioridad()}</div>
 	<script type="text/javascript" src="../scripts/operadorAtencion.js"></script>
+		 <script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/entidades.js"></script>
 </body>
 </html>

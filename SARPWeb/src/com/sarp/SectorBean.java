@@ -149,6 +149,7 @@ public class SectorBean {
 			return null;
 	}
 	
+
 	public List<JSONSector> listarSectoresDesvio() throws Exception{
 		if (shared.getRolesMap().get("OPERADOR"))
 			return modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));

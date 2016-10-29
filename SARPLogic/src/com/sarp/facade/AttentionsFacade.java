@@ -17,7 +17,8 @@ public class AttentionsFacade {
 	public static final String URL_LLAMAR_NUMERO_PAUSADO ="http://52.52.100.160:8080/SARPService/attentionsService/llamarPausado";
 	public static final String URL_LLAMAR_NUMERO_ATRASADO ="http://52.52.100.160:8080/SARPService/attentionsService/llamarAtrasado";
 	public static final String URL_LLAMAR_NUMERO_DEMANDA ="http://52.52.100.160:8080/SARPService/attentionsService/llamarNumeroDemanda";
-	public static final String URL_RELLAMAR_NUMERO ="http://52.52.100.160:8080/SARPService/attentionsService/reLlamarNumeroDemanda";
+	public static final String URL_RELLAMAR_NUMERO ="http://52.52.100.160:8080/SARPService/attentionsService/reLlamarNumero";
+	public static final String URL_DESVIAR_NUMERO = "http://52.52.100.160:8080/SARPService/attentionsService/desviarNumero";
 	//public static final String URL_LISTAR_TRAMITE_SECTOR=
 	
 	
@@ -88,13 +89,14 @@ public class AttentionsFacade {
 
 	public String reLlamarNumero(String maquina, String userRol) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doPut(URL_RELLAMAR_NUMERO, maquina, userRol);
+		return  restClient.doPut2(URL_RELLAMAR_NUMERO, maquina, userRol);
 	}
 
-	//public String listarTramiteSector(String idSector, String userRol) {
-	//	RestClient restClient = RestClient.getInstance();
-	//	return  restClient.doGet(URL_LISTAR_TRAMITE_SECTOR.concat(idSector), userRol);
-	//}
+	public String desviarFinalizarAtencion(String json, String sector_desvio, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doPut2(URL_DESVIAR_NUMERO, json, sector_desvio, userRol);
+	}
+	
 
 
 }
