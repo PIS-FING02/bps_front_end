@@ -3,7 +3,7 @@ var eventLis = document.getElementById('Exito').parentElement.previousElementSib
 var sectores = document.getElementsByClassName('asignar-container');
 var asignarContainer = document.getElementsByClassName('asignar-container');
 var iconContainer = document.getElementsByClassName('icon-container');
-var json_estado_tramites= '{ [' ;
+var json_estado_tramites="[";
 var inputtext = document.getElementById('form-finalizar:json_estado_tramites');
 
 console.log(countEstados);
@@ -38,7 +38,7 @@ for (var i = 0; i < sectores.length; i++){
 		a_classes[j].addEventListener('click', function(){
 				var  estado = this.getAttribute('id');
 				var id_tramite = this.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
-				json_estado_tramites = json_estado_tramites + '{ "idTramite":"'+id_tramite+'" , "estado":"' + estado +'" },';
+				json_estado_tramites = json_estado_tramites + '{ "codigo":"'+id_tramite+'" , "resultadoAtencion":"' + estado +'" },';
 				console.log(json_estado_tramites);
 				inputtext.value = json_estado_tramites;
 				this.parentElement.previousElementSibling.innerHTML = estado;

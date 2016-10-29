@@ -1,5 +1,6 @@
 package com.sarp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -122,6 +123,14 @@ public class SectorBean {
 			return list;
 		} else
 			return null;
+	}
+	
+	public List<JSONSector> listarSectoresDesvio() throws Exception{
+		if (notice.getRolesMap().get("OPERADOR"))
+			return modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));
+		else
+			return  modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));
+		
 	}
 	
 	public String getDisplayId() {

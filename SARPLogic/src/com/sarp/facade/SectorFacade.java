@@ -1,5 +1,7 @@
 package com.sarp.facade;
 
+import java.util.List;
+
 import com.sarp.facade.client.RestClient;
 
 public class SectorFacade {
@@ -17,7 +19,7 @@ public class SectorFacade {
 	public static final String URL_LISTAR_NUMEROS_PAUSADOS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosPausados?idSector=";
 	public static final String URL_LISTAR_NUMEROS_ATRASADOS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosAtrasados?idSector=";
 	public static final String URL_LISTAR_NUMEROS_ESPERA_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosEnEspera?idSector=";
-
+	public static final String URL_LISTAR_SECTORES_DESVIO = "http://52.52.100.160:8080/SARPService/numberService/obtenerSectoresDesvio";
 	
 	public String importarSectoresGafu(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
@@ -78,5 +80,10 @@ public class SectorFacade {
 	public String listarNumerosEnEsperaSector(String idSector, String userRol) {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGet(URL_LISTAR_NUMEROS_ESPERA_SECTOR.concat(idSector), userRol);
+	}
+
+	public String listarSectoresDesvio(String maquina, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doPut1(URL_LISTAR_SECTORES_DESVIO,maquina, userRol);
 	}
 }

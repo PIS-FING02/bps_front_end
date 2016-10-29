@@ -21,11 +21,12 @@
 			<a class="page-title" href="puestos.xhtml">Puestos</a>
 			<h:form id="myForm">
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:outputText id='num_sector'  value="#{param['idSector']}" />
 			</h:form>
 		</div> 
 		<div class="page-frame">
 			<div id='list-tramites-container' class='page-list'>
-				<ui:repeat id='repeat-tramites' value="#{tramite.listarDeSector(param[idSector])}" var='t'>
+				<ui:repeat id='repeat-tramites' value="#{tramite.listarDeSector(param['idSector'])}" var='t'>
 					<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
 					<div class='element-list puesto-element'>
 						<h:outputText class='puesto-element hidden' value='#{t.codigo}'/>
