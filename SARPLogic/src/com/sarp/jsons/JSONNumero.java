@@ -11,12 +11,12 @@ public class JSONNumero {
 	String estado;
 	Integer prioridad;
 	JSONDatosComp datosComplementarios;
-	Integer idTramite;
+	String idTramite;
 	String idSector;
 	
 	public JSONNumero(){}
 
-	public JSONNumero(Integer id, String externalId, String hora, String estado, Integer prioridad, Integer idTramite,
+	public JSONNumero(Integer id, String externalId, String hora, String estado, Integer prioridad, String idTramite,
 			String idSector) {
 		super();
 		this.id = id;
@@ -76,11 +76,11 @@ public class JSONNumero {
 		this.prioridad = prioridad;
 	}
 
-	public Integer getIdTramite() {
+	public String getIdTramite() {
 		return idTramite;
 	}
 
-	public void setIdTramite(Integer idTramite) {
+	public void setIdTramite(String idTramite) {
 		this.idTramite = idTramite;
 	}
 
@@ -101,8 +101,8 @@ public class JSONNumero {
 	 	
         return "{\n"
      			+ "\"hora\":\"" + hora + "\",\n"
+     	     	+ "\"prioridad\":\"" + prioridad + "\",\n"
     	    	+ "\"datosComplementarios\":" + datosComplementarios + ",\n"
-     			+ "\"prioridad\":\"" + prioridad + "\",\n"
      			+ "\"idTramite\":\"" + idTramite + "\",\n"
      			+ "\"idSector\":\"" + idSector + "\"\n"
         		+ "}";

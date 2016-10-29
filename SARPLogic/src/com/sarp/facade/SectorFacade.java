@@ -25,9 +25,9 @@ public class SectorFacade {
 		
 	}
 	
-	public String sectoresAll(String userRol)  {
+	public String sectoresAll(String userRol, String user)  {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_GET_ALL, userRol);
+		return  restClient.doGetList(URL_GET_ALL, userRol, user);
 	}
 
 	public String asignarTramiteSector(String input, String userRol) {

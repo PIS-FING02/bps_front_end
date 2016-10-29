@@ -67,6 +67,15 @@
     border-left: 5px solid #4e769b;
 }
 
+.asignar-container-numeros {
+	width: 75px;
+	right: 56px !important;
+}
+
+.asignar-container-triangle-numeros {
+	left: 75px;
+}
+
 .asignar-container .icon {
     width: 100%;
     text-align: center;

@@ -27,17 +27,22 @@ public class NumeroBean {
 
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
+	public SharedBean shared = SharedBean.getInstance();
 	
-	public void sacarNumero() throws Exception {
+	public void sacarNumero() throws Exception{
 		JSONDatosComp jdatos = new JSONDatosComp(this.doc, this.tipoDoc, this.nombreCompleto);
 		JSONNumero jnumero = new JSONNumero();
 		jnumero.setHora(this.hora);
 		jnumero.setIdSector(this.idSector);
-		jnumero.setIdTramite(Integer.parseInt(this.idTramite));
+		jnumero.setIdTramite(this.idTramite);
 		jnumero.setPrioridad(2);
 		jnumero.setDatosComplementarios(jdatos);
 		System.out.println(jnumero);
-		this.c.sacarNumero(jnumero.toStringSacar(), "RESPSEC");
+		String status = c.sacarNumero(jnumero.toStringSacar(), "RESPSEC");
+		if (status.equals("erorr_client"))
+			shared.updateNotice("ERROR", "", "Ocurrio un error al solicitar el número");
+		else
+			shared.updateNotice("OK", "El numero " + status + " fue entregado con exito.", "");
 	}	
 
 	public String getPrioridad() {
@@ -101,7 +106,12 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			return modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "RESPSEC"));
+			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "RESPSEC"));	
+			if (list == null)
+				shared.updateNoticeInfo("No se encontraron números pausados para el sector con identificador " + idSector + " .");
+			else if (list.isEmpty())
+				shared.updateNoticeInfo("No se encontraron números pausados para el sector con identificador " + idSector + " .");
+			return list;
 		}else{
 			return null;
 		}
@@ -112,7 +122,12 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			return modeler.toJSONNumeros(c.listarNumerosAtrasadosSector(idSector, "RESPSEC"));
+			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosAtrasadosSector(idSector, "RESPSEC"));	
+			if (list == null)
+				shared.updateNoticeInfo("No se encontraron números atrasados para el sector con identificador " + idSector + " .");
+			else if (list.isEmpty())
+				shared.updateNoticeInfo("No se encontraron números atrasados para el sector con identificador " + idSector + " .");
+			return list;
 		}else{
 			return null;
 		}	
@@ -124,7 +139,12 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			return modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "RESPSEC"));	
+			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "RESPSEC"));	
+			if (list == null)
+				shared.updateNoticeInfo("No se encontraron números en espera para el sector con identificador " + idSector + " .");
+			else if (list.isEmpty())
+				shared.updateNoticeInfo("No se encontraron números en espera para el sector con identificador " + idSector + " .");
+			return list;
 		}else{
 			return null;
 		}

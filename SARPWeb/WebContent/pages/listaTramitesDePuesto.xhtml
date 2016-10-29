@@ -72,7 +72,9 @@
 				</div>
 				<div class="buttons-container">
 					<h:commandButton id='asignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.asignarTramitePuesto}"/>
-					<h:commandButton id='desasignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.desasignarTramitePuesto}"/> 
+					<h:commandButton id='desasignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.desasignarTramitePuesto}"/>
+					<label class='reference-input' for="codigo-tramite">Puesto:</label>
+					<h:inputText id='puesto-selected' class="reference-input formInput read-only" readonly='true' value="#{param['id']}" /> 
 				</div>
 			</h:form>
 		</div>

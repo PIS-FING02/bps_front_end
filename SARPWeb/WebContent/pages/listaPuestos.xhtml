@@ -66,10 +66,13 @@
 				<div class="buttons-container">
 					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarPuestoSector()}"/> 
 					<h:commandButton id='desasignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.desasignarPuestoSector()}"/>
+					<label class='reference-input' for="codigo-tramite">Sector:</label>
+					<h:inputText id='sector-selected' class="reference-input formInput read-only" readonly='true' value="#{param['id']}" />
 				</div>
 			</h:form>
 		</div>
 	</div>
+	<ui:include src="notice.xhtml"/>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 <script type="text/javascript" src="../scripts/lists.js"></script>

@@ -27,8 +27,6 @@ public class PuestoBean {
 	private String estado;
 	private String roles;
 	private List<JSONTramite> tramites;
-	//private List<JSONSector> sectores;
-	//atributos de tramite
 	private String codigo;
 	private String nombre;
 	
@@ -39,18 +37,13 @@ public class PuestoBean {
 	private String fecha;
 	private String estadoNumero;
 	private Integer prioridad;
-	//JSONDatosComp datosComplementarios;
-	private Integer idTramite;
+	private String idTramite;
 	private String idSector;
 	private String json_estado_tramites;
 
 	private String searchString;
 	private List<JSONPuesto> puestosList = new ArrayList<JSONPuesto>();
 	private List<JSONPuesto> puestosListBusqueda = new ArrayList<JSONPuesto>();
-	
-
-	@ManagedProperty("#{login}")
-	public LoginBean login;
 	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
@@ -103,43 +96,60 @@ public class PuestoBean {
 		return "/pages/forms.xhtml?tipoForm=modPuesto&estado=" + estado + "&maquina=" + maquina + "&usuario=" + usuario + "&numero=" + numero + "faces-redirect=true";
 	}
 
-	public List<JSONPuesto> listar() throws Exception{
-		this.puestosList.clear();
+	public List<JSONPuesto> listar() throws Exception {
 		if (shared.getRolesMap().get("RESPSEC")){				
-			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC",shared.getUser()));
+			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC", shared.getUser()));
+			if (this.puestosList.isEmpty())
+				shared.updateNoticeInfo("No se encontraron puestos para el sector/es donde tienes autorización.");
 			return this.puestosList;
 		} else {
 			return null;
 		}
 	}
 
-	public List<JSONPuesto> listarParaSector(String input) throws Exception{
+	public List<JSONPuesto> listarParaSector(String input) throws Exception {
+		shared.clean();
 		if (shared.getRolesMap().get("RESPSEC")) {
-			return modeler.toJSONPuestos(c.listarPuestosParaSector(input, "RESPSEC", shared.getUser()));
+			List<JSONPuesto> list = modeler.toJSONPuestos(c.listarPuestosParaSector(input, "RESPSEC", shared.getUser()));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("No se encontraron puestos disponibles en el sistema.");
+			return list;
 		} else {
 			return null;
 		}
 	}
 
-	public List<JSONTramite> listarDeSector() throws Exception{
-		return modeler.toJSONTramites(c.listarTramitesSector(this.maquina, "RESPSEC"));
+	public List<JSONTramite> listarDeSector() throws Exception {
+		shared.clean();
+		List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesSector(this.maquina, "RESPSEC"));
+		if (list.isEmpty())
+			shared.updateNoticeInfo("El puesto con nombre de maquina " + this.maquina + " no tiene ningun tramite asignado.");
+		return list;
 	}
 	
-	public List<JSONPuesto> listarPuestosDeSector(String sectorId) throws Exception{
+	public List<JSONPuesto> listarPuestosDeSector(String sectorId) throws Exception {
+		shared.clean();
 		if (sectorId == "")
 			return null;
-		else
-			return modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "RESPSEC"));
+		else {
+			List<JSONPuesto> list = modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "RESPSEC"));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningun puesto asignado.");
+			return list;
+		}
 	}
 
 	public List<JSONTramite> listarTramitesAsignables(String maquina) {
+		shared.clean();
 		if (!maquina.equals("")){
 			try {
-				return modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "RESPSEC"));
+				List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "RESPSEC"));
+				if (list.isEmpty())
+					shared.updateNoticeInfo("No se encontraron tramites disponibles para asignarle al puesto con nombre de maquina " + maquina + ".");
+				return list;
 			} catch (Exception e) {
 				e.printStackTrace();
-				shared.updateNotice("ERROR", "Este mensaje nunca se va a mostrar, si se esta mostrando, algo salio mal, muy mal.", 
-						"El puesto con nombre de maquina " + maquina + " no tiene ningun sector asociado.");
+				shared.updateNoticeInfo("El puesto con nombre de maquina " + maquina + " no tiene ningun sector asociado.");
 				return null;
 			}
 		} else {
@@ -198,8 +208,6 @@ public class PuestoBean {
 			}
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 		}else{
-			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
-			this.error = "show";*/
 			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 	}
@@ -406,11 +414,11 @@ public class PuestoBean {
 		this.prioridad = prioridad;
 	}
 
-	public Integer getIdTramite() {
+	public String getIdTramite() {
 		return idTramite;
 	}
 
-	public void setIdTramite(Integer idTramite) {
+	public void setIdTramite(String idTramite) {
 		this.idTramite = idTramite;
 	}
 

@@ -14,21 +14,19 @@
 <body> 
 	<ui:include src="header.xhtml" />
 	<div class="page-container recepcion-page">
-		<div class="page-title-container">
-			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
-			<h2 class="page-title page-title-last"> ➨   Entrega de Números </h2>
-			<h:form>
+		<h:form>
+			<div class="page-title-container">
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
+				<h2 class="page-title page-title-last"> ➨   Entrega de Números </h2>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
-			</h:form>
-		</div>
-		<div class="page-frame">
-			<div class="frame-title"> Nuevo Número </div>	
-						
+			</div> 
+		</h:form>
+		<div id='recepcion-page' class="page-frame">
+			<div class="frame-title">Nuevo Número</div>	
 			<ui:repeat id='repeat-tramites' class="options-buttons-container" value="#{tramite.listarParaRecepcion(puesto.getRecepcionTest())}" var='t'>
 				<div tramiteId='#{t.tramiteId}' tramiteNombre='#{t.tramiteNombre}' sectorId='#{t.sectorId}' sectorNombre='#{t.sectorNombre}' class='hidden'/>
 				<h:outputText class='option-button ' value='#{t.sectorNombre} #{t.tramiteNombre}'/>
 			</ui:repeat>
-			
 			<div class="options-footer">
 				<div class="reference-container"> 
 					<div class="color-reference no-select-color-reference"></div>
@@ -50,13 +48,14 @@
 				<h:form id='numero-form'>
 					<h:inputText id="tramite-selected" class="form-line hidden" value="#{numero.idTramite}" />
 					<h:inputText id="sector-selected" class="form-line hidden" value="#{numero.idSector}" />
+					<h:inputText id="hora-selected" class="formInput hidden" value="#{numero.hora}"/>
 					<div class="form-line">
 						<label >Sector: </label>
-						<input class="sector-selected" readonly="readonly"></input>
+						<input class="sector-selected read-only" readonly="readonly"></input>
 					</div>
 					<div class="form-line">	
 						<label >Tramite: </label>
-						<input class="tramite-selected" readonly="readonly"></input>
+						<input class="tramite-selected read-only" readonly="readonly"></input>
 					</div>
 					<div class="form-line">
 						<h:outputLabel for="nombre" value="Nombre: " />
@@ -64,24 +63,25 @@
 					</div>
 					<div class="form-line">
 						<h:outputLabel for="tipoDoc" value="Tipo de Doc.: " />
-						<h:inputText id="tipoDoc" class="formInput" value="#{numero.tipoDoc}" />
+						<h:inputText id="tipoDoc" class="formInput" value="#{numero.tipoDoc}"/>
 					</div>
 					<div class="form-line">
-						<h:outputLabel for="doc" value="Núm. Doc.: " />
-						<h:inputText id="doc" class="formInput" value="#{numero.doc}" />
+						<h:outputLabel for="doc" value="Núm. Doc.: "/>
+						<h:inputText id="doc" class="formInput" value="#{numero.doc}"/>
 					</div>
 					<div class="form-line">
-						<h:outputLabel for="hora" value="Hora: " />
-						<h:inputText id="hora" class="formInput" value="#{numero.hora}" />
+						<h:outputLabel for="hora" value="Hora: "/>
+						<input class="hora-selected read-only" readonly="readonly"></input>
 					</div>
 					<div class="buttons-container">
-						<h:commandButton class="action-button" value="Imprimir" action="#{numero.sacarNumero()}" /> 
+						<h:commandButton class="action-button" value="Imprimir" action="#{numero.sacarNumero()}"/> 
 						<div class="action-button cancel-button" id="popup-cancel-button">Cancelar</div>
 					</div>
 				</h:form>
 			</div>
 		</div>
 	</div>	
+	<ui:include src="notice.xhtml"/>
 <script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/recepcion.js"></script>
 </body> 

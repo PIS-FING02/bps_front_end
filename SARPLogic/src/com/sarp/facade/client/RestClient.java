@@ -31,7 +31,7 @@ public class RestClient {
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
-			conn.setRequestProperty("user-rol",userRol);
+			conn.setRequestProperty("user-rol", userRol);
 
 			OutputStream os = conn.getOutputStream();
 			os.write(input.getBytes());

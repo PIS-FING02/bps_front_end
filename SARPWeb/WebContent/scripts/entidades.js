@@ -51,7 +51,6 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('sub-title').innerHTML= 'Crear Puesto';
 	// MOD PUESTO
 } else if (getURLParameter('tipoForm') == 'modPuesto') {
-	document.getElementById('form:puesto-selected-numero').value = getURLParameter('numero').replace("+", " ");
 	document.getElementById('form:puesto-selected-estado').value = getURLParameter('estado').replace("+", " ");
 	document.getElementById('form:puesto-selected-usuario').value = getURLParameter('usuario').replace("+", " ");
 	document.getElementById('form:puesto-selected-maquina').value = getURLParameter('maquina').replace("+", " ");

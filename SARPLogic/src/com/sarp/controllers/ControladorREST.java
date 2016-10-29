@@ -117,6 +117,10 @@ public class ControladorREST {
 		return this.displayFacade.displaysAll(userRol);
 	}
 
+	public String listarDisplaysParaSector(String input, String userRol, String user) throws Exception {
+		return this.displayFacade.displaysParaSector(input, userRol, user);
+	}
+
 	public String listarDisplaysSector(String input, String userRol) throws Exception {
 		return this.displayFacade.displaysSector(input, userRol);
 	}
@@ -126,8 +130,8 @@ public class ControladorREST {
 		return this.sectorFacade.importarSectoresGafu(userRol);
 	}
 	
-	public String listarSectores(String userRol)  {
-		return this.sectorFacade.sectoresAll(userRol);
+	public String listarSectores(String userRol, String user)  {
+		return this.sectorFacade.sectoresAll(userRol, user);
 	}
 
 	//ATENCION

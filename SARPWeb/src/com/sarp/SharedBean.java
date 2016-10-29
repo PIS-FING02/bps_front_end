@@ -78,12 +78,23 @@ public class SharedBean {
 		}
 	}
 	
+	public void updateNoticeInfo(String msgInfo) {
+		setNotice_title("Este es un mensaje de Informacion.");
+		setNotice_message(msgInfo);
+		setNotice("info");
+		setIcon("info");
+	}
+
 	public String redirect(String url){
+		clean();
+		return "/pages/" + url + ".xhtml?faces-redirect=true";
+	}
+
+	public void clean(){
 		SharedBean.notice = "";
 		SharedBean.notice = "hidden";
 		SharedBean.notice_message = "";
 		SharedBean.notice_title = "";
-		return "/pages/" + url + ".xhtml?faces-redirect=true";
 	}
 
 	public String redirectWithParam(String url, String param){

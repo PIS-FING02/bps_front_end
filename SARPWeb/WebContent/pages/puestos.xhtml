@@ -58,7 +58,7 @@
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{puesto.getPuestosListBusqueda()}" var='p'>
 							<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
-							<div class='element-list  puesto-element'>
+							<div class='element-list puesto-element'>
 								<h:outputText class='puesto-element' value='#{p.nombreMaquina} '/>
 								<h:commandButton id='baja-puesto' image='../images/trash.png' class='icon icon-baja baja-button tipo-puesto baja-puesto' 
 									action="#{puesto.baja(p.nombreMaquina)}" value='Borrar'/>

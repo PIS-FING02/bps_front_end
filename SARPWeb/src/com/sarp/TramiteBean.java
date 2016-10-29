@@ -56,14 +56,15 @@ public class TramiteBean {
 		return "/pages/forms.xhtml?tipoForm=modTramite&codigo=" + codigo + "&nombre=" + nombre + "faces-redirect=true";
 	}
 
-	public List<JSONTramite> listar() throws Exception{
+	public List<JSONTramite> listar() throws Exception {
 		if (shared.getRolesMap().get("ADMIN")) {		
 			return modeler.toJSONTramites(c.listarTramite("ADMIN", shared.getUser()));		
 		} else 
-			return modeler.toJSONTramites(c.listarTramite("RESPSEC", login.getUsername()));
+			return modeler.toJSONTramites(c.listarTramite("RESPSEC", shared.getUser()));
 	}
 
-	public List<JSONTramite> listarParaSector(String input) throws Exception{
+	public List<JSONTramite> listarParaSector(String input) throws Exception {
+		shared.clean();
 		if (shared.getRolesMap().get("RESPSEC")) 
 			return modeler.toJSONTramites(c.listarTramiteParaSector(input, "RESPSEC", shared.getUser()));		
 		else 
@@ -79,22 +80,40 @@ public class TramiteBean {
 		return resultado;
 	}
 	
-	public List<JSONTramite> listarDeSector(String idSector) throws Exception{
+	public List<JSONTramite> listarDeSector(String idSector) throws Exception {
+		shared.clean();
 		if (idSector == "")
 			return null;
-		else
-			return modeler.toJSONTramites(c.listarTramitesSector(idSector, "RESPSEC"));
+		else {
+			List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesSector(idSector, "RESPSEC"));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("El sector con identificador " + idSector + " no tiene tramites asignados.");
+			return list;
+		}
 	}
 
-	public List<JSONTramite> listarDePuesto(String idPuesto) throws Exception{
+	public List<JSONTramite> listarDePuesto(String idPuesto) throws Exception {
+		shared.clean();
 		if (idPuesto == "")
 			return null;
-		else
-			return modeler.toJSONTramites(c.listarTramitesPuesto(idPuesto, "RESPSEC"));
+		else {
+			List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesPuesto(idPuesto, "RESPSEC"));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("El puesto con nombre de maquina " + idPuesto + " no tiene tramites asignados.");
+			return list;
+		}
 	}
 
 	public List<JSONTramiteRecepcion> listarParaRecepcion(String puesto) throws Exception {
-		return modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "RESPSEC"));
+		if (shared.getRolesMap().get("RECEPCION")) {
+			List<JSONTramiteRecepcion> list = modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "RECEPCION"));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene tramites habilitados para hacer entrega de números");
+			return list;
+		} else {
+			shared.updateNoticeInfo("No tienes permisos suficientes.");
+			return null;
+		}
 	}
 
 	public void setTramites(List<JSONTramite> tramites) {
