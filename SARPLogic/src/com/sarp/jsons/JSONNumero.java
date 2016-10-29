@@ -115,7 +115,7 @@ public class JSONNumero {
 		String hora = this.hora!= null ? this.hora : "null";
 		String estado = this.estado!= null ? this.estado : "null";
 		String prioridad = this.prioridad!= null ? this.prioridad.toString() : "null";
-		String idTramite = this.idTramite!= null ? this.idTramite.toString() : "null";
+		String idTramite = this.idTramite!= null ? this.idTramite : "null";
 		String idSector = this.idSector!= null ? this.idSector : "null";
 		String datosComplementarios = this.datosComplementarios != null ? this.datosComplementarios.toString() : "null";
 	 	

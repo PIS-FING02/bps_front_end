@@ -36,6 +36,8 @@ public class PuestoBean {
 	private String fecha;
 	private String estadoNumero;
 	private Integer prioridad;
+	//JSONDatosComp datosComplementarios;
+
 	private String idTramite;
 	private String idSector;
 	private String json_estado_tramites;
@@ -50,7 +52,6 @@ public class PuestoBean {
 
 	@ManagedProperty("#{login}")
 	public LoginBean login;
-	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	public SharedBean shared = SharedBean.getInstance();
@@ -208,6 +209,33 @@ public class PuestoBean {
 			this.externalId = jnumero.getExternalId(); 
 			this.prioridad = jnumero.getPrioridad();
 			this.idSector = jnumero.getIdSector();
+			this.id = jnumero.getId();
+			if(this.prioridad.equals(1)){
+				String[] arrayFechaHora = jnumero.getHora().split("-");
+				this.fecha = arrayFechaHora[0];
+				this.hora = arrayFechaHora[1];
+			}
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+		}else{
+			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
+			this.error = "show";*/
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+		}
+	}
+	
+	public String reLlamarNumero() throws Exception {
+		String num;
+		if (shared.getRolesMap().get("OPERADOR"))
+			num = c.rellamarNumero(this.maquina, "OPERADOR");
+		else
+			num = c.rellamarNumero(this.maquina, "OPERADORSR");
+		
+		if(num != null){
+			JSONNumero jnumero = modeler.toJSONNumero(num);
+			this.externalId = jnumero.getExternalId(); 
+			this.prioridad = jnumero.getPrioridad();
+			this.idSector = jnumero.getIdSector();
+			this.id = jnumero.getId();
 			if(this.prioridad.equals(1)){
 				String[] arrayFechaHora = jnumero.getHora().split("-");
 				this.fecha = arrayFechaHora[0];
@@ -276,14 +304,19 @@ public class PuestoBean {
 	}
 	
 	public String showEstadosFinalizar(){
+		System.out.println("/pages/finalizarAtencion.xhtml?faces-redirect=true&idSector="+ this.idSector);
 		return "/pages/finalizarAtencion.xhtml?faces-redirect=true&idSector="+ this.idSector;
 	}
 	
-	public void finalizarAtencion(){
+	public String finalizarAtencion(){
+		
 		String json = "{\"nombreMaquina\" : \"" + this.maquina + "\",\"id\":" + this.id.toString() + ",\"tramiteResultado\": "+
-			this.json_estado_tramites.substring(0,this.json_estado_tramites.length()-1) + "]}";
+		this.json_estado_tramites.substring(0,this.json_estado_tramites.length()-1) + "]}";
 		c.finalizarAtencion(json, "OPERADOR");
-		System.out.println(json);
+		if(shared.getRolesMap().containsKey("OPERADOR"))
+			return "/pages/operadorAbierto.xhtml?faces-redirect";
+		else
+			return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
 	}
 	
 	public void desviar(){
@@ -303,6 +336,7 @@ public class PuestoBean {
 		this.externalId = num.getExternalId();
 		this.estadoNumero = num.getEstado();
 		this.prioridad = num.getPrioridad();
+		this.id = num.getId();
 		if(this.prioridad.equals(1)){
 			String[] arrayFechaHora = hora.split("-");
 			this.fecha = arrayFechaHora[0];
@@ -341,7 +375,7 @@ public class PuestoBean {
 			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
 		}
 	}
-	
+		
 	public String verPausados(){
 		//atrasar numero y liberar puesto cuando viene de pantalla de atencion
 		return "/pages/operadorPausados.xhtml?faces-redirect=true";
