@@ -1,9 +1,14 @@
 package com.sarp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import com.sarp.jsons.JSONSector;
+import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "shared", eager = true)
 @SessionScoped
@@ -23,7 +28,12 @@ public class SharedBean {
 	private static String notice_message = "";
 	private static String user = "";
 	private HashMap<String, Boolean> rolesMap = new HashMap<String, Boolean>();
-
+	private List<JSONSector> sectoresListBusqueda = new ArrayList<JSONSector>();
+	private List<JSONSector> sectoresList;
+	private List<JSONTramite> tramitesListBusqueda = new ArrayList<JSONTramite>();
+	private List<JSONTramite> tramitesList;
+	
+	
 	public HashMap<String, Boolean> getRolesMap() {
 		return this.rolesMap;
 	}
@@ -111,5 +121,37 @@ public class SharedBean {
 
 	public void setUser(String user) {
 		SharedBean.user = user;
+	}
+
+	public List<JSONSector> getSectoresListBusqueda() {
+		return this.sectoresListBusqueda;
+	}
+
+	public void setSectoresListBusqueda(List<JSONSector> sectoresListBusqueda) {
+		this.sectoresListBusqueda = sectoresListBusqueda;
+	}
+
+	public List<JSONSector> getSectoresList() {
+		return this.sectoresList;
+	}
+
+	public void setSectoresList(List<JSONSector> sectoresList) {
+		this.sectoresList = sectoresList;
+	}
+
+	public List<JSONTramite> getTramitesListBusqueda() {
+		return tramitesListBusqueda;
+	}
+
+	public void setTramitesListBusqueda(List<JSONTramite> tramitedListBusqueda) {
+		this.tramitesListBusqueda = tramitedListBusqueda;
+	}
+
+	public List<JSONTramite> getTramitesList() {
+		return tramitesList;
+	}
+
+	public void setTramitesList(List<JSONTramite> tramitesList) {
+		this.tramitesList = tramitesList;
 	}
 }

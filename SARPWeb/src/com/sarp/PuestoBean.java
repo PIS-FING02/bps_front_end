@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -42,8 +41,15 @@ public class PuestoBean {
 	private String json_estado_tramites;
 
 	private String searchString;
-	private List<JSONPuesto> puestosList = new ArrayList<JSONPuesto>();
+	private List<JSONPuesto> puestosList;
 	private List<JSONPuesto> puestosListBusqueda = new ArrayList<JSONPuesto>();
+	private List<JSONPuesto> puestosListAsignar;
+	private List<JSONPuesto> puestosListBusquedaAsignar = new ArrayList<JSONPuesto>();
+	private List<JSONPuesto> puestosListDesasignar;
+	private List<JSONPuesto> puestosListBusquedaDesasignar = new ArrayList<JSONPuesto>();
+
+	@ManagedProperty("#{login}")
+	public LoginBean login;
 	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
@@ -96,9 +102,9 @@ public class PuestoBean {
 		return "/pages/forms.xhtml?tipoForm=modPuesto&estado=" + estado + "&maquina=" + maquina + "&usuario=" + usuario + "&numero=" + numero + "faces-redirect=true";
 	}
 
-	public List<JSONPuesto> listar() throws Exception {
-		if (shared.getRolesMap().get("RESPSEC")){				
-			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC", shared.getUser()));
+	public List<JSONPuesto> listar() throws Exception{
+		if (shared.getRolesMap().get("RESPSEC")){	
+			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC",shared.getUser()));
 			if (this.puestosList.isEmpty())
 				shared.updateNoticeInfo("No se encontraron puestos para el sector/es donde tienes autorización.");
 			return this.puestosList;
@@ -110,10 +116,10 @@ public class PuestoBean {
 	public List<JSONPuesto> listarParaSector(String input) throws Exception {
 		shared.clean();
 		if (shared.getRolesMap().get("RESPSEC")) {
-			List<JSONPuesto> list = modeler.toJSONPuestos(c.listarPuestosParaSector(input, "RESPSEC", shared.getUser()));
-			if (list.isEmpty())
+			this.puestosListAsignar = modeler.toJSONPuestos(c.listarPuestosParaSector(input, "RESPSEC", shared.getUser()));
+			if (this.puestosListAsignar.isEmpty())
 				shared.updateNoticeInfo("No se encontraron puestos disponibles en el sistema.");
-			return list;
+			return this.puestosListAsignar;
 		} else {
 			return null;
 		}
@@ -127,15 +133,15 @@ public class PuestoBean {
 		return list;
 	}
 	
-	public List<JSONPuesto> listarPuestosDeSector(String sectorId) throws Exception {
+	public List<JSONPuesto> listarPuestosDeSector(String sectorId) throws Exception{
 		shared.clean();
-		if (sectorId == "")
+		if (sectorId == ""){
 			return null;
-		else {
-			List<JSONPuesto> list = modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "RESPSEC"));
-			if (list.isEmpty())
+		}else{
+			this.puestosListDesasignar = modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "RESPSEC"));
+			if (this.puestosListDesasignar.isEmpty())
 				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningun puesto asignado.");
-			return list;
+			return this.puestosListDesasignar;
 		}
 	}
 
@@ -346,7 +352,7 @@ public class PuestoBean {
 		return "/pages/operadorAtrasados.xhtml?faces-redirect=true";
 	}
 	
-	public String listarPuestosBusqueda(){
+	public String listarPuestosBusqueda(String page){
 		this.puestosListBusqueda.clear();
 		Iterator<JSONPuesto> iter = this.puestosList.iterator();
 		while(iter.hasNext()){
@@ -355,9 +361,33 @@ public class PuestoBean {
            		this.puestosListBusqueda.add(puestoIter);
            	}
 	    }
-		return "/pages/puestos.xhtml?busqueda=true&faces-redirect=true";
+		return ("/pages/" + page + ".xhtml?busqueda=true&faces-redirect=true");
 	}
-
+	
+	public String listarPuestosBusquedaAsignaciones(String page,boolean esAsig, String sectorId){
+		if(!esAsig){
+			this.puestosListBusquedaDesasignar.clear();
+			Iterator<JSONPuesto> iter = this.puestosListDesasignar.iterator();
+			while(iter.hasNext()){
+				JSONPuesto puestoIter = iter.next();
+	           	if(puestoIter.getNombreMaquina().toLowerCase().contains(this.searchString.toLowerCase())){
+	           		this.puestosListBusquedaDesasignar.add(puestoIter);
+	           	}
+		    }
+			return ("/pages/" + page + ".xhtml?busqueda=true&esSec=true&esAsig=false&entidad=puesto&id=BPS&faces-redirect=true");
+		}else{ 
+			this.puestosListBusquedaAsignar.clear();
+			Iterator<JSONPuesto> iter = this.puestosListAsignar.iterator();
+			while(iter.hasNext()){
+				JSONPuesto puestoIter = iter.next();
+	           	if(puestoIter.getNombreMaquina().toLowerCase().contains(this.searchString.toLowerCase())){
+	           		this.puestosListBusquedaAsignar.add(puestoIter);
+	           	}
+		    }
+			return ("/pages/" + page + ".xhtml?busqueda=true&esSec=true&esAsig=true&entidad=puesto&id=BPS&faces-redirect=true");
+		}
+	}
+	
 	public String getJson_estado_tramites() {
 		return json_estado_tramites;
 	}
@@ -516,5 +546,37 @@ public class PuestoBean {
 
 	public void setPuestosListBusqueda(List<JSONPuesto> puestosListBusqueda) {
 		this.puestosListBusqueda = puestosListBusqueda;
+	}
+
+	public List<JSONPuesto> getPuestosListAsignar() {
+		return puestosListAsignar;
+	}
+
+	public void setPuestosListAsignar(List<JSONPuesto> puestosListAsignar) {
+		this.puestosListAsignar = puestosListAsignar;
+	}
+
+	public List<JSONPuesto> getPuestosListBusquedaAsignar() {
+		return puestosListBusquedaAsignar;
+	}
+
+	public void setPuestosListBusquedaAsignar(List<JSONPuesto> puestosListBusquedaAsignar) {
+		this.puestosListBusquedaAsignar = puestosListBusquedaAsignar;
+	}
+
+	public List<JSONPuesto> getPuestosListDesasignar() {
+		return puestosListDesasignar;
+	}
+
+	public void setPuestosListDesasignar(List<JSONPuesto> puestosListDesasignar) {
+		this.puestosListDesasignar = puestosListDesasignar;
+	}
+
+	public List<JSONPuesto> getPuestosListBusquedaDesasignar() {
+		return puestosListBusquedaDesasignar;
+	}
+
+	public void setPuestosListBusquedaDesasignar(List<JSONPuesto> puestosListBusquedaDesasignar) {
+		this.puestosListBusquedaDesasignar = puestosListBusquedaDesasignar;
 	}
 }

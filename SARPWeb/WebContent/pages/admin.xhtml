@@ -22,10 +22,10 @@
 		<div class="page-frame">
 			<div class="options-buttons-container">
 				<h:form>
-					<h:commandButton class="option-button" value='Trámites' action="#{shared.redirect('tramites')}"/>
+					<h:commandButton class="option-button" value='Trámites' action="#{shared.redirectWithParam('tramites','busqueda=false')}"/>
 					<h:commandButton class="option-button" value='Displays' action="#{shared.redirect('displays')}"/>
 					<h:commandButton id="listar-numeros" class="option-button" value="Importar Sectores" action="#{sector.importarSecotesGAFU()}"/>
-					<h:commandButton class="option-button" value='Listar Números del Sistema' action="#{shared.redirect('listaSectores')}"/>
+					<h:commandButton class="option-button" value='Listar Números del Sistema' action="#{shared.redirectWithParam('listaSectores','busqueda=false')}"/>
 				</h:form>
 			</div>
 		</div>

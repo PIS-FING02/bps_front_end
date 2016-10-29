@@ -1,5 +1,7 @@
 package com.sarp;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,6 @@ import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
-import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONSectorDisplay;
@@ -33,6 +34,9 @@ public class SectorBean {
 	
 	//Atributo Display
 	private String displayId;
+	
+	//Atributo Busqueda
+	private String searchString;
 
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
@@ -41,18 +45,39 @@ public class SectorBean {
 	public List<JSONSector> listar() throws Exception {
 		if (shared.getRolesMap().get("ADMIN")) {
 			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("ADMIN", shared.getUser()));
+			shared.setSectoresList(list);
 			if (list.isEmpty())
 				shared.updateNoticeInfo("No se enontraron sectores en el sistema.");
-			return list;
+			return shared.getSectoresList();
 		} else if (shared.getRolesMap().get("RESPSEC")) {
 			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("RESPSEC", shared.getUser()));	
+			shared.setSectoresList(list);
 			if (list.isEmpty())
 				shared.updateNoticeInfo("No tienes sectores asignados.");
-			return list;
+			return shared.getSectoresList();
 		} else {
 			shared.updateNoticeInfo("No tienes permisos suficientes.");
 			return null;
 		}
+	}
+	
+	public String listarSectoresBusqueda(String page){
+		List<JSONSector> sectoresListBusqueda = new ArrayList<JSONSector>();
+		Iterator<JSONSector> iter = shared.getSectoresList().iterator();
+		while(iter.hasNext()){
+			JSONSector sectorIter = iter.next();
+           	if((sectorIter.getNombre().toLowerCase().contains(this.searchString.toLowerCase()))||
+           	sectorIter.getRuta().toLowerCase().contains(this.searchString.toLowerCase())||
+           	sectorIter.getSectorId().toLowerCase().contains(this.searchString.toLowerCase())){
+           		sectoresListBusqueda.add(sectorIter);
+           	}
+	    }
+		shared.setSectoresListBusqueda(sectoresListBusqueda);
+		return ("/pages/" + page +  ".xhtml?busqueda=true&faces-redirect=true");
+	}
+	
+	public List<JSONSector> listarResultadoBusqueda(){
+		return shared.getSectoresListBusqueda();
 	}
 	
 	public String importarSecotesGAFU(){
@@ -170,5 +195,13 @@ public class SectorBean {
 
 	public void setNombreMaquina(String nombreMaquina) {
 		this.nombreMaquina = nombreMaquina;
+	}
+
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
 	}
 }

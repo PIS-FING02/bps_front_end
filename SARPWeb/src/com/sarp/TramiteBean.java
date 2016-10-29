@@ -1,6 +1,7 @@
 package com.sarp;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -23,6 +24,8 @@ public class TramiteBean {
 	private List<JSONTramite> tramites;
 	private static final JSONModeler modeler = new JSONModeler();
 	private boolean entre = false;
+	private String searchString;
+
 
 	@ManagedProperty("#{login}")
 	public LoginBean login;
@@ -56,14 +59,34 @@ public class TramiteBean {
 		return "/pages/forms.xhtml?tipoForm=modTramite&codigo=" + codigo + "&nombre=" + nombre + "faces-redirect=true";
 	}
 
-	public List<JSONTramite> listar() throws Exception {
-		if (shared.getRolesMap().get("ADMIN")) {		
-			return modeler.toJSONTramites(c.listarTramite("ADMIN", shared.getUser()));		
-		} else 
-			return modeler.toJSONTramites(c.listarTramite("RESPSEC", shared.getUser()));
+	public List<JSONTramite> listar() throws Exception{
+		if (shared.getRolesMap().get("ADMIN")) {	
+			shared.setTramitesList(modeler.toJSONTramites(c.listarTramite("ADMIN", shared.getUser())));
+		} else {
+			shared.setTramitesList(modeler.toJSONTramites(c.listarTramite("RESPSEC", shared.getUser())));
+		}
+		return shared.getTramitesList();
 	}
-
-	public List<JSONTramite> listarParaSector(String input) throws Exception {
+	
+	public String listarTramitesBusqueda(String page){
+		List<JSONTramite> tramitesListBusqueda = new ArrayList<JSONTramite>();
+		Iterator<JSONTramite> iter = shared.getTramitesList().iterator();
+		while(iter.hasNext()){
+			JSONTramite tramiteIter = iter.next();
+           	if((tramiteIter.getNombre().toLowerCase().contains(this.searchString.toLowerCase()))||
+           			(tramiteIter.getCodigo().toLowerCase().contains(this.searchString.toLowerCase()))){
+           		tramitesListBusqueda.add(tramiteIter);
+           	}
+	    }
+		shared.setTramitesListBusqueda(tramitesListBusqueda);
+		return ("/pages/" + page +  ".xhtml?busqueda=true&faces-redirect=true");
+	}
+	
+	public List<JSONTramite> listarResultadoBusqueda(){
+		return shared.getTramitesListBusqueda();
+	}
+	
+	public List<JSONTramite> listarParaSector(String input) throws Exception{
 		shared.clean();
 		if (shared.getRolesMap().get("RESPSEC")) 
 			return modeler.toJSONTramites(c.listarTramiteParaSector(input, "RESPSEC", shared.getUser()));		
@@ -154,5 +177,13 @@ public class TramiteBean {
 
 	public void setEntre(boolean entre) {
 		this.entre = entre;
+	}
+
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
 	}
 }
