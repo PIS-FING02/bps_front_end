@@ -71,7 +71,7 @@ body{
     position: relative;
     float: left;
     left: calc((100% - 624px)/2);
-    min-width: 600px;
+    min-width: 605px;
 }
 
 .frame-title{
@@ -94,6 +94,10 @@ body{
 
 #listar-numeros-sistema {
 	padding: 34px 10px;
+}
+
+#recepcion-page .option-button {
+	word-break: break-all;
 }
 
 .option-button {
@@ -199,10 +203,18 @@ a, a:active, a:target {
 	background: #f5f5f5;
 }
 
+#list-puestos-container a {
+	color: black;
+}
+
+a:nth-of-type(2n) {
+	background: #f5f5f5;
+}
+
 .element-list-selected {
 	background: #4e769b !important;
 	font-weight: bold;
-	color: white;
+	color: white !important;
 }
 
 /*---------------FORM STUFF------------------*/

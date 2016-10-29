@@ -105,8 +105,15 @@ public class TramiteBean {
 	}
 
 	public List<JSONTramiteRecepcion> listarParaRecepcion(String puesto) throws Exception {
-		shared.clean();
-		return modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "RESPSEC"));
+		if (shared.getRolesMap().get("RECEPCION")) {
+			List<JSONTramiteRecepcion> list = modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "RECEPCION"));
+			if (list.isEmpty())
+				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene tramites habilitados para hacer entrega de números");
+			return list;
+		} else {
+			shared.updateNoticeInfo("No tienes permisos suficientes.");
+			return null;
+		}
 	}
 
 	public void setTramites(List<JSONTramite> tramites) {

@@ -112,10 +112,16 @@ public class SectorBean {
 	
 	public List<JSONNumero> listarNumerosSector() {
 		shared.clean();
-		Map<String, String> params =FacesContext.getCurrentInstance().
+		Map<String, String> params = FacesContext.getCurrentInstance().
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("id");
-		return modeler.toJSONNumeros(c.listarNumerosSector(idSector, "ADMIN"));
+		if (idSector != null) {
+			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosSector(idSector, "ADMIN"));
+			if (list.isEmpty()) 
+				shared.updateNoticeInfo("No se encontraron números en el sistema para el sector con identificador " + idSector + " .");
+			return list;
+		} else
+			return null;
 	}
 	
 	public String getDisplayId() {

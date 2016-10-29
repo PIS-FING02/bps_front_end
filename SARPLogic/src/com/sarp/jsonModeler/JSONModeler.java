@@ -149,7 +149,7 @@ public class JSONModeler {
 		String hora = ((json.get("hora") == null) ? null : json.get("hora").toString());
 		String estado = ((json.get("estado") == null) ? null : json.get("estado").toString());
 		Integer prioridad = ((json.get("prioridad") == null) ? null : Integer.parseInt(json.get("prioridad").toString()));
-		Integer idTramite = ((json.get("idTramite") == null) ? null : Integer.parseInt(json.get("idTramite").toString()));
+		String idTramite = ((json.get("idTramite") == null) ? null : json.get("idTramite").toString());
 		String idSector = ((json.get("idSector") == null) ? null : json.get("idSector").toString());
 		JSONNumero numero = new JSONNumero(id,externalId,hora,estado,prioridad,idTramite,idSector);
 		return numero;

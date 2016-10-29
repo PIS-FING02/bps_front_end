@@ -37,7 +37,7 @@ public class PuestoBean {
 	private String fecha;
 	private String estadoNumero;
 	private Integer prioridad;
-	private Integer idTramite;
+	private String idTramite;
 	private String idSector;
 	private String json_estado_tramites;
 
@@ -208,8 +208,6 @@ public class PuestoBean {
 			}
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 		}else{
-			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
-			this.error = "show";*/
 			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 	}
@@ -416,11 +414,11 @@ public class PuestoBean {
 		this.prioridad = prioridad;
 	}
 
-	public Integer getIdTramite() {
+	public String getIdTramite() {
 		return idTramite;
 	}
 
-	public void setIdTramite(Integer idTramite) {
+	public void setIdTramite(String idTramite) {
 		this.idTramite = idTramite;
 	}
 
