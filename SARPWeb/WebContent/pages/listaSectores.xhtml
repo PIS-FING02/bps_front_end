@@ -22,13 +22,30 @@
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" />
 			</h:form>
 		</div> 
+		<h:form id="search-form">
+			<h:inputText id="search" class="input-search formInput" value="#{sector.searchString}"/>
+			<h:commandButton class="icon-search" image='../images/lupa.png' action="#{sector.listarSectoresBusqueda('listaSectores')}" /> 
+		</h:form>
 		<div class="page-frame">
-			<h:form id='form-asociacion'>
+			<h:form id='form-busqueda'>
+				<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />
+			</h:form>	
+			<h:form id='form-listado-sectores' rendered="#{param['busqueda'] eq 'false'}">
+				<a class='page-title list-title' href="listaSectores.xhtml?busqueda=false">Sectores</a>
 				<div id='list-puestos-container' class='page-list'>
-					<h2 class='page-title list-title'>Sectores</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-sectores' value='#{sector.listar()}' var='s'>
 							<h:link value="#{s.nombre}" class="element-list element-list-link tramite-element" outcome="listaNumeros?id=#{s.sectorId}" /> 
+						</ui:repeat>
+					</div>
+				</div>
+			</h:form>
+			<h:form id='form-listado-sectores-busqueda' rendered="#{param['busqueda'] eq 'true'}">
+				<a class='page-title list-title' href="listaSectores.xhtml?busqueda=false">Sectores</a>
+				<div id='list-puestos-container' class='page-list'>
+					<div class='list-container'>
+						<ui:repeat id='repeat-sectores' value='#{sector.listarResultadoBusqueda()}' var='s'>
+							<h:link value="#{s.nombre}" class="element-list tramite-element" outcome="listaNumeros?id=#{s.sectorId}" /> 
 						</ui:repeat>
 					</div>
 				</div>

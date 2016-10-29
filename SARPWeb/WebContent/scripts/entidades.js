@@ -117,7 +117,7 @@ for (var i = 0; i < asignarPuestoSector.length; i++){
 			var esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 			if(esSector){
 				var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
-				this.href = 'listaPuestos.xhtml?esSec=true&esAsig=true&entidad=puesto&id=' + id;
+				this.href = 'listaPuestos.xhtml?busqueda=false&esSec=true&esAsig=true&entidad=puesto&id=' + id;
 			} 
 			
 		}, false);
@@ -129,9 +129,9 @@ for (var i = 0; i < desasignarPuestoSector.length; i++){
 			var  esSector = hasClass(document.getElementById("entidad"), "page-sectores");
 			if(esSector){
 				var id = this.parentElement.parentElement.previousElementSibling.getAttribute('idSector');
-				this.href = 'listaPuestos.xhtml?esSec=true&esAsig=false&entidad=puesto&id=' + id;
+				this.href = 'listaPuestos.xhtml?busqueda=false&esSec=true&esAsig=false&entidad=puesto&id=' + id;
 			} 
-			
+	
 		}, false);
 	}
 
