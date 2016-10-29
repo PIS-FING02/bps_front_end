@@ -39,10 +39,15 @@ public class SectorBean {
 	public SharedBean shared = SharedBean.getInstance();
 	
 	public List<JSONSector> listar() throws Exception {
-		if (shared.getRolesMap().get("RESPSEC")) {
-			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("RESPSEC", shared.getUser()));
+		if (shared.getRolesMap().get("ADMIN")) {
+			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("ADMIN", shared.getUser()));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("No tienes sectpres asignados.");
+				shared.updateNoticeInfo("No se enontraron sectores en el sistema.");
+			return list;
+		} else if (shared.getRolesMap().get("RESPSEC")) {
+			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("RESPSEC", shared.getUser()));	
+			if (list.isEmpty())
+				shared.updateNoticeInfo("No tienes sectores asignados.");
 			return list;
 		} else {
 			shared.updateNoticeInfo("No tienes permisos suficientes.");

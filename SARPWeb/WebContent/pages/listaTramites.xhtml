@@ -77,6 +77,8 @@
 					<h:commandButton id='asignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.asignarTramiteSector}"/> 
 					<h:commandButton id='desasignar-tramite-puesto-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{puesto.desasignarTramitePuesto}"/>
 					<h:commandButton id='desasignar-tramite-sector-button' class='action-button action-button-list hidden deactivated' value="Aceptar" action="#{sector.desasignarTramiteSector}"/>
+					<label class='reference-input' for="codigo-tramite">Sector:</label>
+					<h:inputText id='sector-selected' class="reference-input formInput read-only" readonly='true' value="#{param['id']}" />
 				</div>
 			</h:form>
 		</div>

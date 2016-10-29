@@ -27,8 +27,6 @@ public class PuestoBean {
 	private String estado;
 	private String roles;
 	private List<JSONTramite> tramites;
-	//private List<JSONSector> sectores;
-	//atributos de tramite
 	private String codigo;
 	private String nombre;
 	
@@ -39,7 +37,6 @@ public class PuestoBean {
 	private String fecha;
 	private String estadoNumero;
 	private Integer prioridad;
-	//JSONDatosComp datosComplementarios;
 	private Integer idTramite;
 	private String idSector;
 	private String json_estado_tramites;
@@ -47,10 +44,6 @@ public class PuestoBean {
 	private String searchString;
 	private List<JSONPuesto> puestosList = new ArrayList<JSONPuesto>();
 	private List<JSONPuesto> puestosListBusqueda = new ArrayList<JSONPuesto>();
-	
-
-	@ManagedProperty("#{login}")
-	public LoginBean login;
 	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();

@@ -235,6 +235,11 @@ input {
     background: #f1f2f4;
 }
 
+.reference-input {
+	line-height: 35px;
+	height: 30px;
+}
+
 .read-only {
 	background: transparent;
     border: none;
@@ -320,9 +325,9 @@ input {
 .input-search{
 	margin-left: 20px;
     height: 20px;
-    padding-left: 0px;
+    padding-left: 10px;
     float: none;
-    margin: 0px;
+    margin-right: 5px;
     width: 155px;
     background: white;
 }
