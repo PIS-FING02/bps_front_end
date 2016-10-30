@@ -126,6 +126,7 @@ public class LoginBean {
     	HttpSession session = request.getSession(false);
         SecurityContextAssociation.clearSecurityContext();
         session= request.getSession(false);
+        shared.logout();
         if(session != null) {
         	setUsernameHeader("Bienvenido");
         	session.invalidate();

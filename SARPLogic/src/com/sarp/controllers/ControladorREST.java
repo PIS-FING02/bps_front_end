@@ -246,4 +246,8 @@ public class ControladorREST {
 		return this.attentionsFacade.desviarFinalizarAtencion(json,sector_desvio,userRol);
 		
 	}
+
+	public String listarTramite(String idSector, String userRol, String user) throws Exception {
+		return this.tramiteFacade.tramitesParaSector(idSector, userRol, user);
+	}
 }

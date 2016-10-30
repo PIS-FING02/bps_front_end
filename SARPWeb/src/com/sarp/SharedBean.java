@@ -112,4 +112,14 @@ public class SharedBean {
 	public void setUser(String user) {
 		SharedBean.user = user;
 	}
+
+	public void logout() {
+		SharedBean.icon = "check";
+		SharedBean.notice = "hidden";
+		SharedBean.notice_title = "";
+		SharedBean.notice_message = "";
+		SharedBean.user = "";
+		this.rolesMap.clear();
+		
+	}
 }

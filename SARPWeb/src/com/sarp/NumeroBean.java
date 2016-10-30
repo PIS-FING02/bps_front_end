@@ -39,6 +39,9 @@ public class NumeroBean {
 		jnumero.setDatosComplementarios(jdatos);
 		System.out.println(jnumero);
 		String status = c.sacarNumero(jnumero.toStringSacar(), "RESPSEC");
+		this.tipoDoc="";
+		this.doc="";
+		this.nombreCompleto="";
 		if (status.equals("erorr_client"))
 			shared.updateNotice("ERROR", "", "Ocurrio un error al solicitar el número");
 		else

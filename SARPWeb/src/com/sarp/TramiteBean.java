@@ -62,6 +62,13 @@ public class TramiteBean {
 		} else 
 			return modeler.toJSONTramites(c.listarTramite("RESPSEC", shared.getUser()));
 	}
+	
+	public List<JSONTramite> listar(String idSector) throws Exception {
+		if (shared.getRolesMap().get("RESPSEC")) 		
+			return modeler.toJSONTramites(c.listarTramite(idSector, "RESPSEC", shared.getUser()));
+		else
+			return null;
+	}
 
 	public List<JSONTramite> listarParaSector(String input) throws Exception {
 		shared.clean();

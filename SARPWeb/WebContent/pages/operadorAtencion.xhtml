@@ -34,18 +34,12 @@
 				</div>
 			</div>
 			<div>
-				<div class="right-frame "> 	
-					<h:form>
-						<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
-						<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
-					</h:form>
-				</div>
 				<div id="left-frame" class="left-frame">
 					<div class="data-line">
-						<div class="label"> Serie: </div>
+						<div class="label"> Serie: #{puesto.serie} </div>
 					</div>
 					<div class="data-line">
-						<div class="label"> Número: #{puesto.externalId}</div>
+						<div class="label"> Número: #{puesto.externalNum}</div>
 					</div>
 					<div class="data-line hidden" id="info-sae-hora">
 						<div class="label" > Hora: #{puesto.hora}</div>
@@ -54,7 +48,7 @@
 						<div class="label"> Fecha de Entrega: #{puesto.fecha} </div>
 					</div> 
 					<div class="data-line" >
-						<div class="label"> Tiempo de Espera: </div>
+						<div class="label"> Tiempo de Espera: #{puesto.tiempoEspera}</div>
 					</div>
 				</div>
 			</div>
@@ -62,7 +56,7 @@
 				<h:form id="options-form">
 					<h:commandButton class="action-button atender-button" value="Atender" action="#{puesto.comenzarAtencion()}"/>
 					<h:commandButton class="action-button atencion-button" value="Rellamar" action="#{puesto.reLlamarNumero()}"/>
-					<h:commandButton class="secondary-button atencion-buttons" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/> 
+					<h:commandButton class="secondary-button atencion-buttons" value="Llamar Siguiente" action="#{puesto.atrasaryLlamarSiguiente()}"/> 
 					<h:commandButton class="action-button atencion-buttons" value="Liberar" action="#{puesto.liberar()}"/> 					
 				</h:form>
 			</div>
