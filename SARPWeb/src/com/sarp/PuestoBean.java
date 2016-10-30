@@ -1,13 +1,13 @@
 package com.sarp;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONNumero;
@@ -37,6 +37,9 @@ public class PuestoBean {
 	private String fecha;
 	private String estadoNumero;
 	private Integer prioridad;
+	private String tiempoEspera;
+	private String serie;
+	private String externalNum;
 	//JSONDatosComp datosComplementarios;
 
 	private String idTramite;
@@ -213,11 +216,23 @@ public class PuestoBean {
 			this.prioridad = jnumero.getPrioridad();
 			this.idSector = jnumero.getIdSector();
 			this.id = jnumero.getId();
+			this.hora = jnumero.getHora();
+
 			if(this.prioridad.equals(1)){
 				String[] arrayFechaHora = jnumero.getHora().split("-");
 				this.fecha = arrayFechaHora[0];
 				this.hora = arrayFechaHora[1];
 			}
+			this.serie= jnumero.getExternalId().split("-")[0];
+			this.externalNum = jnumero.getExternalId().split("-")[1];
+			GregorianCalendar hora_actual = new GregorianCalendar();
+			int dia = Integer.parseInt(this.hora.substring(0, 2));
+			int mes = Integer.parseInt(this.hora.substring(3, 5)) - 1;
+			int ano = Integer.parseInt(this.hora.substring(6, 10));
+			int hora= Integer.parseInt(this.hora.substring(11, 13));
+			int min = Integer.parseInt(this.hora.substring(14));
+			GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
+			this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 		}else{
 			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
@@ -260,7 +275,14 @@ public class PuestoBean {
 		return modeler.toJSONNumeros(c.listarNumeros(this.maquina, "OPERADOR"));
 	}
 	
-	public String llamarNumeroDemanda(String internalId){
+	public String atrasaryLlamarSiguiente() throws Exception{
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
+		c.atrasarNumero(jpuesto.toString(),"OPERADOR");
+		this.estado="DISPONIBLE";
+		return this.llamarNumero();
+	}
+	
+public String llamarNumeroDemanda(String internalId){
 		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroDemanda(internalId,this.maquina, "OPERADOR"));
 		this.externalId = num.getExternalId();
 		this.estadoNumero = num.getEstado();
@@ -274,6 +296,16 @@ public class PuestoBean {
 			this.hora = "";
 		}
 		this.idTramite = num.getIdTramite();
+		this.serie= num.getExternalId().split("-")[0];
+		this.externalNum = num.getExternalId().split("-")[1];
+		GregorianCalendar hora_actual = new GregorianCalendar();
+		int dia = Integer.parseInt(this.hora.substring(0, 2));
+		int mes = Integer.parseInt(this.hora.substring(3, 5)) - 1;
+		int ano = Integer.parseInt(this.hora.substring(6, 10));
+		int hora= Integer.parseInt(this.hora.substring(11, 13));
+		int min = Integer.parseInt(this.hora.substring(14));
+		GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
+		this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 			
@@ -341,6 +373,16 @@ public class PuestoBean {
 			this.hora = "";
 		}
 		this.idTramite = num.getIdTramite();
+		this.serie= num.getExternalId().split("-")[0];
+		this.externalNum = num.getExternalId().split("-")[1];
+		GregorianCalendar hora_actual = new GregorianCalendar();
+		int dia = Integer.parseInt(this.hora.substring(0, 2));
+		int mes = Integer.parseInt(this.hora.substring(3, 5)) - 1;
+		int ano = Integer.parseInt(this.hora.substring(6, 10));
+		int hora= Integer.parseInt(this.hora.substring(11, 13));
+		int min = Integer.parseInt(this.hora.substring(14));
+		GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
+		this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 			
@@ -363,6 +405,16 @@ public class PuestoBean {
 			this.hora = "";
 		}
 		this.idTramite = num.getIdTramite();
+		this.serie= num.getExternalId().split("-")[0];
+		this.externalNum = num.getExternalId().split("-")[1];
+		GregorianCalendar hora_actual = new GregorianCalendar();
+		int dia = Integer.parseInt(this.hora.substring(0, 2));
+		int mes = Integer.parseInt(this.hora.substring(3, 5)) - 1;
+		int ano = Integer.parseInt(this.hora.substring(6, 10));
+		int hora= Integer.parseInt(this.hora.substring(11, 13));
+		int min = Integer.parseInt(this.hora.substring(14));
+		GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
+		this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
 		if(roles.contains("OPERADORSR")){
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 			
@@ -633,5 +685,39 @@ public class PuestoBean {
 
 	public void setSector_desvio(String sector_desvio) {
 		this.sector_desvio = sector_desvio;
+	}
+
+	public String getTiempoEspera() {
+		return tiempoEspera;
+	}
+
+	public void setTiempoEspera(String tiempoEspera) {
+		this.tiempoEspera = tiempoEspera;
+	}
+	
+	public  String restaFechas(GregorianCalendar g1,GregorianCalendar g2){
+        g1.add(Calendar.HOUR_OF_DAY, -g2.get(Calendar.HOUR_OF_DAY));
+        g1.add(Calendar.MINUTE, -g2.get(Calendar.MINUTE));
+        g1.add(Calendar.SECOND, -g2.get(Calendar.SECOND));
+        if (g1.get(Calendar.HOUR_OF_DAY) > 0)
+        	return Integer.toString(g1.get(Calendar.HOUR_OF_DAY))+" hora "+Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + "segundos.";        
+        else
+        	return Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + " segundos.";        
+	}
+
+	public String getSerie() {
+		return serie;
+	}
+
+	public void setSerie(String serie) {
+		this.serie = serie;
+	}
+
+	public String getExternalNum() {
+		return externalNum;
+	}
+
+	public void setExternalNum(String externalNum) {
+		this.externalNum = externalNum;
 	}
 }

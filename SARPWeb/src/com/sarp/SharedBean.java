@@ -154,4 +154,14 @@ public class SharedBean {
 	public void setTramitesList(List<JSONTramite> tramitesList) {
 		this.tramitesList = tramitesList;
 	}
+
+	public void logout() {
+		SharedBean.icon = "check";
+		SharedBean.notice = "hidden";
+		SharedBean.notice_title = "";
+		SharedBean.notice_message = "";
+		SharedBean.user = "";
+		this.rolesMap.clear();
+
+	}
 }

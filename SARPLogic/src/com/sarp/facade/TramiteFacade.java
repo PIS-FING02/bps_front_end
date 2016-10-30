@@ -30,10 +30,11 @@ public class TramiteFacade {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doGetList(URL_GET_ALL, userRol, user);
 	}
+	
 
 	public String tramitesParaSector(String input, String userRol, String user) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGetList(URL_GET_ALL_SECTOR + "?sectorId=" , userRol, user);
+		return  restClient.doGetList(URL_GET_ALL_SECTOR + "?sectorId="+input , userRol, user);
 	}
 
 	public String tramitesSector(String input, String userRol) throws Exception {

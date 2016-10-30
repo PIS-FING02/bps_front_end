@@ -33,18 +33,12 @@
 				</div>
 			</div>
 			<div>
-				<div class="right-frame"> 	
-					<h:form>
-						<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
-						<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
-					</h:form>
-				</div>
 				<div id="left-frame" class="left-frame">
 					<div class="data-line">
-						<div class="label"> Serie: </div>
+						<div class="label"> Serie: #{puesto.serie}</div>
 					</div>
 					<div class="data-line">
-						<div class="label"> Número: #{puesto.externalId}</div>
+						<div class="label"> Número: #{puesto.externalNum}</div>
 				</div>
 					<div class="data-line hidden" id="info-sae-hora">
 						<div class="label"> Hora: #{puesto.hora}</div>
@@ -74,8 +68,8 @@
 	</div>
 
 	<div id="prioridad" class="hidden">#{puesto.getPrioridad()}</div>
-	<script type="text/javascript" src="../scripts/operadorAtencion.js"></script>
-		 <script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/operadorAtencion.js"></script>
+<script type="text/javascript" src="../scripts/shared.js"></script>
 <script type="text/javascript" src="../scripts/entidades.js"></script>
 </body>
 </html>
