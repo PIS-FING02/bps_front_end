@@ -68,6 +68,7 @@ public class TramiteBean {
 		return shared.getTramitesList();
 	}
 	
+
 	public String listarTramitesBusqueda(String page){
 		List<JSONTramite> tramitesListBusqueda = new ArrayList<JSONTramite>();
 		Iterator<JSONTramite> iter = shared.getTramitesList().iterator();
@@ -86,7 +87,10 @@ public class TramiteBean {
 		return shared.getTramitesListBusqueda();
 	}
 	
-	public List<JSONTramite> listarParaSector(String input) throws Exception{
+
+
+	public List<JSONTramite> listarParaSector(String input) throws Exception {
+
 		shared.clean();
 		if (shared.getRolesMap().get("RESPSEC")) 
 			return modeler.toJSONTramites(c.listarTramiteParaSector(input, "RESPSEC", shared.getUser()));		

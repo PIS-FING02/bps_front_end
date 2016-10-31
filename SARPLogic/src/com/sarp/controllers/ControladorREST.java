@@ -3,6 +3,9 @@ package com.sarp.controllers;
 import com.sarp.facade.PuestoFacade;
 import com.sarp.facade.SectorFacade;
 import com.sarp.facade.TramiteFacade;
+
+import java.util.List;
+
 import com.sarp.facade.AttentionsFacade;
 import com.sarp.facade.DisplayFacade;
 import com.sarp.facade.NumeroFacade;
@@ -229,5 +232,22 @@ public class ControladorREST {
 
 	public String listarNumerosEnEsperaSector(String idSector, String userRol) {
 		return this.sectorFacade.listarNumerosEnEsperaSector(idSector,userRol);
+	}
+
+	public String rellamarNumero(String maquina, String userRol) {
+		return this.attentionsFacade.reLlamarNumero(maquina, userRol);
+	}
+
+	public String listarSectoresDesvio(String idSector, String userRol) {
+		return this.sectorFacade.listarSectoresDesvio(idSector, userRol);
+	}
+
+	public String desviarFinaizarAtencion(String json, String sector_desvio, String userRol) {
+		return this.attentionsFacade.desviarFinalizarAtencion(json,sector_desvio,userRol);
+		
+	}
+
+	public String listarTramite(String idSector, String userRol, String user) throws Exception {
+		return this.tramiteFacade.tramitesParaSector(idSector, userRol, user);
 	}
 }

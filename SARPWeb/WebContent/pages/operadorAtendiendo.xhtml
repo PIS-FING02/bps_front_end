@@ -33,18 +33,12 @@
 				</div>
 			</div>
 			<div>
-				<div class="right-frame"> 	
-					<h:form>
-						<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
-						<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
-					</h:form>
-				</div>
 				<div id="left-frame" class="left-frame">
 					<div class="data-line">
-						<div class="label"> Serie: </div>
+						<div class="label"> Serie: #{puesto.serie}</div>
 					</div>
 					<div class="data-line">
-						<div class="label"> Número: #{puesto.externalId}</div>
+						<div class="label"> Número: #{puesto.externalNum}</div>
 				</div>
 					<div class="data-line hidden" id="info-sae-hora">
 						<div class="label"> Hora: #{puesto.hora}</div>
@@ -61,35 +55,21 @@
 				<h:form id="options-form">
 					<h:commandButton class="action-button atender-button" value="Finalizar" action="#{puesto.showEstadosFinalizar()}"/>
 					<h:commandButton class="secondary-button atencion-buttons" value="Pausar" action="#{puesto.pausar()}"/> 
-					<h:commandButton class="action-button atencion-buttons" value="Desviar" action="#{puesto.desviar(	)}"/>
+					<div class='icon icon-container'>Desviar</div>
+						<div id='asignar-container' class='asignar-container hidden'>
+							<div class='asignar-container-triangle'/>
+							<ui:repeat id='repeat-tramites' value="#{puesto.listarSectoresDesvio()}" var='s'>
+								<h:commandButton class="icon asignar-sector-button tipo-puesto asig-tramite" value="#{s.nombre}" action="#{puesto.desviarNumero(s.sectorId)}"/>
+							</ui:repeat>
+					</div>
 				</h:form>
 			</div>
-				<h:form id='form-asociacion'> 
-		<h:panelGroup id="text" rendered="#{puesto.notice != 'hidden'}">
-				<div id='list-puestos-container' class='page-list'>
-					<h2 class='page-title list-title'>Estados</h2>
-					<div class='list-container'>
-							<div class='element-list tramite-element'>
-								<h:outputText value='Finalizado con exito'/>
-							</div>
-							<div class='element-list tramite-element'>
-								<h:outputText value='Error'/>
-							</div>
-							<div class='element-list tramite-element'>
-								<h:outputText value='Atrasado'/>
-							</div>
-							<div class='element-list tramite-element'>
-								<h:outputText value='Prueba 2'/>
-							</div>
-					</div>
-				<h:commandButton class="action-button" value="Confirmar" action="#{puesto.showEstadosFinalizar()}"/>
-				</div>
-				</h:panelGroup>
-			</h:form>
 		</div>
 	</div>
 
 	<div id="prioridad" class="hidden">#{puesto.getPrioridad()}</div>
-	<script type="text/javascript" src="../scripts/operadorAtencion.js"></script>
+<script type="text/javascript" src="../scripts/operadorAtencion.js"></script>
+<script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/entidades.js"></script>
 </body>
 </html>

@@ -351,5 +351,162 @@ public class RestClient {
 			  e.printStackTrace();
 		  }
 		return resultado.toString();
+}
+
+	
+public String doPut1(String URL, String input, String userRol) {
+	StringBuilder resultado = new StringBuilder();
+	try {
+		URL url = new URL(URL);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setDoOutput(true);
+		conn.setRequestMethod("PUT");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("user-rol",userRol);
+		conn.setRequestProperty("idSector", input);
+
+
+		if (conn.getResponseCode() != 200) {
+			resultado.append("Error");
+		}
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+			(conn.getInputStream())));
+
+		String output;
+		System.out.println("RestClient GET con " + URL );
+		while ((output = br.readLine()) != null) {
+			resultado.append(output);
+		}
+		conn.disconnect();
+
+	  }catch (MalformedURLException e) {
+			resultado = new StringBuilder();
+			resultado.append("resuest_error");
+			e.printStackTrace();
+	  } catch (IOException e) {
+			resultado = new StringBuilder();  
+			resultado.append("erorr_client");
+			e.printStackTrace();
+	  }catch (UnauthorizedException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_autothorized");
+		  e.printStackTrace();
+	  }catch (InternalServerErrorException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("error_server");
+		  e.printStackTrace();
+	  }catch (NotFoundException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_found_error");
+		  e.printStackTrace();
+	  }
+	return resultado.toString();
+}
+
+
+
+public String doPut2(String URL, String input, String sector_desvio, String userRol) {
+	StringBuilder resultado = new StringBuilder();
+	try {
+		URL url = new URL(URL);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setDoOutput(true);
+		conn.setRequestMethod("PUT");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("user-rol",userRol);
+		conn.setRequestProperty("idSectorDesvio", sector_desvio);
+
+
+		OutputStream os = conn.getOutputStream();
+		os.write(input.getBytes());
+		os.flush();
+		
+		if (conn.getResponseCode() != 200) {
+			resultado.append("Error");
+		}
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+			(conn.getInputStream())));
+
+		String output;
+		System.out.println("RestClient GET con " + URL );
+		while ((output = br.readLine()) != null) {
+			resultado.append(output);
+		}
+		conn.disconnect();
+
+	  }catch (MalformedURLException e) {
+			resultado = new StringBuilder();
+			resultado.append("resuest_error");
+			e.printStackTrace();
+	  } catch (IOException e) {
+			resultado = new StringBuilder();  
+			resultado.append("erorr_client");
+			e.printStackTrace();
+	  }catch (UnauthorizedException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_autothorized");
+		  e.printStackTrace();
+	  }catch (InternalServerErrorException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("error_server");
+		  e.printStackTrace();
+	  }catch (NotFoundException e) {
+		  resultado = new StringBuilder();
+		  resultado.append("not_found_error");
+		  e.printStackTrace();
+	  }
+	return resultado.toString();
 	}
+
+
+
+public String doPut2(String URL, String idPuesto, String userRol) {
+StringBuilder resultado = new StringBuilder();
+try {
+	URL url = new URL(URL);
+	HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	conn.setDoOutput(true);
+	conn.setRequestMethod("PUT");
+	conn.setRequestProperty("Content-Type", "application/json");
+	conn.setRequestProperty("user-rol",userRol);
+	conn.setRequestProperty("idPuesto", idPuesto);
+
+
+	if (conn.getResponseCode() != 200) {
+		resultado.append("Error");
+	}
+	BufferedReader br = new BufferedReader(new InputStreamReader(
+		(conn.getInputStream())));
+
+	String output;
+	System.out.println("RestClient GET con " + URL );
+	while ((output = br.readLine()) != null) {
+		resultado.append(output);
+	}
+	conn.disconnect();
+
+  }catch (MalformedURLException e) {
+		resultado = new StringBuilder();
+		resultado.append("resuest_error");
+		e.printStackTrace();
+  } catch (IOException e) {
+		resultado = new StringBuilder();  
+		resultado.append("erorr_client");
+		e.printStackTrace();
+  }catch (UnauthorizedException e) {
+	  resultado = new StringBuilder();
+	  resultado.append("not_autothorized");
+	  e.printStackTrace();
+  }catch (InternalServerErrorException e) {
+	  resultado = new StringBuilder();
+	  resultado.append("error_server");
+	  e.printStackTrace();
+  }catch (NotFoundException e) {
+	  resultado = new StringBuilder();
+	  resultado.append("not_found_error");
+	  e.printStackTrace();
+  }
+return resultado.toString();
+}
+
 }
