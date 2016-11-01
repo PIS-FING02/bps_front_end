@@ -26,6 +26,8 @@ public class TramiteBean {
 	private boolean entre = false;
 	private String searchString;
 
+	@ManagedProperty("#{login}")
+	public LoginBean login;
 	public SharedBean shared = SharedBean.getInstance();
 	
 	public String alta() throws Exception{
