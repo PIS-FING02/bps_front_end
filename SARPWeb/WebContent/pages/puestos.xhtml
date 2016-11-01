@@ -40,7 +40,7 @@
 						<ui:repeat id='repeat-puestos' value="#{puesto.listar()}" var='p'>
 							<div maquina='#{p.nombreMaquina}' usuario='#{p.usuarioId}' estado='#{p.estado}' numero='#{p.numeroPuesto}' class='hidden'/>
 							<div class='element-list  puesto-element'>
-								<h:outputText class='puesto-element' value='#{p.nombreMaquina} '/>
+								<h:link class='details-link puesto-detail-link puesto-element' value='#{p.nombreMaquina}'/>
 								<h:commandButton id='baja-puesto' image='../images/trash.png' class='icon icon-baja baja-button tipo-puesto baja-puesto' 
 									action="#{puesto.baja(p.nombreMaquina)}" value='Borrar'/>
 								<h:commandButton id='mod-puesto' image='../images/edit.png' class='icon icon-mod mod-button tipo-puesto editar-puesto' 

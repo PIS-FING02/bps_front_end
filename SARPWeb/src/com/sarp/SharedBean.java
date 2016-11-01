@@ -107,12 +107,12 @@ public class SharedBean {
 		SharedBean.notice_title = "";
 	}
 
-	public String redirectWithParam(String url, String param){
+	public String redirectWithParam(String url, String params){
 		SharedBean.notice = "";
 		SharedBean.notice = "hidden";
 		SharedBean.notice_message = "";
 		SharedBean.notice_title = "";
-		return "/pages/" + url + ".xhtml?" + param + "&faces-redirect=true";
+		return "/pages/" + url + ".xhtml?" + params + "&faces-redirect=true";
 	}
 	
 	public String getUser() {

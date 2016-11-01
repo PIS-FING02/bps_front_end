@@ -119,7 +119,7 @@ function getURLParameter(name) {
 	return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 }
 
-// UPDATE INPUT VALUES AFTER SELECTING ELEMENT FROM LIST
+// UPDATE INPUT VALUES 
 function updateInputs (element) {
 	if (hasClass(element, 'tramite-element')) {
 		document.getElementById('form-popup:tramite-selected-codigo').value = element.previousSibling.getAttribute('codigo');
