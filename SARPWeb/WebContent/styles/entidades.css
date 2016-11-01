@@ -102,3 +102,13 @@
 .baja-button {
 	background-color: #ea0303 !important;
 }	
+
+.details-link {
+	color: black;
+    width: calc(100% - 70px);
+    display: inline-block;
+}
+
+#list-puesto-container .details-link {
+	width: calc(100% - 328px);
+}

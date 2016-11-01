@@ -13,29 +13,30 @@
 
 <body> 
 	<div id='entidad' class="page-container"> 
-			<div class="page-title-container">
-				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
-				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Administración' action="#{shared.redirect('admin')}" />
-				<div class="page-title page-title-last"> ➨  Tramites </div>
-				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
-			</div> 
-			<h:form id="search-form">
-				<h:inputText id="search" class="input-search formInput" value="#{tramite.searchString}"/>
-				<h:commandButton class="icon-search" image='../images/lupa.png' action="#{tramite.listarTramitesBusqueda('tramites')}" /> 
-			</h:form>
-			<a id='alta-tramite' class='icon icon-alta alta-button tipo-tramite' 
-				href='forms.xhtml?tipoForm=altaTramite'>Crear Tramite</a>
-			<div class="page-frame">
-				<h:form id='form-asociacion'>
-					<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />
-				</h:form>	
-				<h:form id='form-listado-tramites' rendered="#{param['busqueda'] eq 'false'}">
-					<div id='list-tramites-container' class='list-container'>
+		<div class="page-title-container">
+			<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
+			<div class="page-title arrow"> ➨ </div>
+			<h:commandButton class="page-title" value='Administración' action="#{shared.redirect('admin')}" />
+			<div class="page-title page-title-last"> ➨  Tramites </div>
+			<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+		</div> 
+		<h:form id="search-form">
+			<h:inputText id="search" class="input-search formInput" value="#{tramite.searchString}"/>
+			<h:commandButton class="icon-search" image='../images/lupa.png' action="#{tramite.listarTramitesBusqueda('tramites')}" /> 
+		</h:form>
+		<a id='alta-tramite' class='icon icon-alta alta-button tipo-tramite' 
+			href='forms.xhtml?tipoForm=altaTramite'>Crear Tramite</a>
+		<div class="page-frame">
+			<h:form id='form-asociacion'>
+				<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />
+			</h:form>	
+			<h:form id='form-listado-tramites' rendered="#{param['busqueda'] eq 'false'}">
+				<div id='list-tramites-container' class='page-list'>
+					<div class='list-container'>
 						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
 							<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
 							<div class='element-list tramite-element'>
-								<h:outputText class='puesto-element' value='#{t.codigo} - #{t.nombre}'/>
+								<h:link class='details-link tramite-detail-link puesto-element' value='#{t.codigo} - #{t.nombre}'/>
 								<h:commandButton id='baja-tramite' image='../images/trash.png' class='icon icon-baja baja-button tipo-tramite baja-tramite'
 									action="#{tramite.baja(t.codigo)}"/>
 								<h:commandButton id='mod-tramite' image='../images/edit.png' class='icon icon-mod mod-button tipo-tramite editar-tramite' 
@@ -43,22 +44,23 @@
 							</div>
 						</ui:repeat>
 					</div>
-				</h:form>
-				<h:form id='form-listado-tramites-busqueda' rendered="#{param['busqueda'] eq 'true'}">
-					<div id='list-tramites-container' class='list-container'>
-						<ui:repeat id='repeat-tramites' value='#{tramite.listarResultadoBusqueda()}' var='t'>
-							<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
-							<div class='element-list tramite-element'>
-								<h:outputText class='puesto-element' value='#{t.codigo} - #{t.nombre}'/>
-								<h:commandButton id='baja-tramite' image='../images/trash.png' class='icon icon-baja baja-button tipo-tramite baja-tramite'
-									action="#{tramite.baja(t.codigo)}"/>
-								<h:commandButton id='mod-tramite' image='../images/edit.png' class='icon icon-mod mod-button tipo-tramite editar-tramite' 
-								action="#{tramite.goToTramite(t.codigo, t.nombre)}"/>
-							</div>
-						</ui:repeat>
-					</div>
-				</h:form>
-			</div>
+				</div>
+			</h:form>
+			<h:form id='form-listado-tramites-busqueda' rendered="#{param['busqueda'] eq 'true'}">
+				<div id='list-tramites-container' class='list-container'>
+					<ui:repeat id='repeat-tramites' value='#{tramite.listarResultadoBusqueda()}' var='t'>
+						<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
+						<div class='element-list tramite-element'>
+							<h:outputText class='puesto-element' value='#{t.codigo} - #{t.nombre}'/>
+							<h:commandButton id='baja-tramite' image='../images/trash.png' class='icon icon-baja baja-button tipo-tramite baja-tramite'
+								action="#{tramite.baja(t.codigo)}"/>
+							<h:commandButton id='mod-tramite' image='../images/edit.png' class='icon icon-mod mod-button tipo-tramite editar-tramite' 
+							action="#{tramite.goToTramite(t.codigo, t.nombre)}"/>
+						</div>
+					</ui:repeat>
+				</div>
+			</h:form>
+		</div>
 	</div>
 	<ui:include src="notice.xhtml"/>
 <script type="text/javascript" src="../scripts/shared.js"></script>

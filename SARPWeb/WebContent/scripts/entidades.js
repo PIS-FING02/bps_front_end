@@ -12,6 +12,20 @@ var desasignarDisplaySector = document.getElementsByClassName('desasignar-displa
 var iconContainer = document.getElementsByClassName('icon-container');
 var asignarContainer = document.getElementsByClassName('asignar-container');
 var desasignarContainer = document.getElementsByClassName('desasignar-container');
+var detallesLinks = document.getElementsByClassName('details-link');
+
+for (var i = 0; i < detallesLinks.length; i++){
+	var props = detallesLinks[i].parentElement.previousElementSibling;
+	if (hasClass(detallesLinks[i], 'tramite-detail-link')) {
+		detallesLinks[i].href = 'forms.xhtml?tipoForm=detallesTramite&nombre=' + props.getAttribute('nombre') + '&codigo=' + props.getAttribute('codigo');
+	} else if (hasClass(detallesLinks[i], 'puesto-detail-link')) {
+		detallesLinks[i].href = 'forms.xhtml?tipoForm=detallesPuesto&maquina=' + props.getAttribute('maquina') + '&usuario='
+		+ props.getAttribute('usuario') + '&estado=' + props.getAttribute('estado') + '&numero=' + props.getAttribute('numero');
+	} else if (hasClass(detallesLinks[i], 'sector-detail-link')) {
+		detallesLinks[i].href = 'forms.xhtml?tipoForm=detallesSector&id=' + props.getAttribute('idSector') + '&nombre='
+		+ props.getAttribute('nombre') + '&ruta=' + props.getAttribute('ruta');
+	}
+}
 
 	// ALTA TRAMITE
 if (getURLParameter('tipoForm') == 'altaTramite') {
@@ -81,6 +95,65 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-displays').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Display';
+} else if (getURLParameter('tipoForm') == 'detallesTramite') {
+	document.getElementById('nombre-tramite').classList.remove('hidden');
+	document.getElementById('codigo-tramite').classList.remove('hidden');
+	document.getElementById('form:tramite-selected-codigo').classList.add('read-only');
+	document.getElementById('form:tramite-selected-nombre').classList.add('read-only');
+	document.getElementById('form:tramite-selected-codigo').readOnly = 'true';
+	document.getElementById('form:tramite-selected-nombre').readOnly = 'true';
+	document.getElementById('form-links:title-admin').classList.remove('hidden');
+	document.getElementById('form-links:title-tramites').classList.remove('hidden');
+	document.getElementById('form:tramite-selected-codigo').value = getURLParameter('codigo').replace("+", " ");
+	document.getElementById('form:tramite-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
+	document.getElementById('popup-cancel-button').classList.add('hidden');
+	document.getElementById('sub-title').innerHTML= 'Detalles de Tramite';
+} else if (getURLParameter('tipoForm') == 'detallesPuesto') {
+	document.getElementById('form:puesto-selected-estado-forshow').value = getURLParameter('estado').replace("+", " ");
+	document.getElementById('form:puesto-selected-usuario').value = getURLParameter('usuario').replace("+", " ");
+	document.getElementById('form:puesto-selected-maquina').value = getURLParameter('maquina').replace("+", " ");
+	document.getElementById('form:puesto-selected-numero').value = getURLParameter('numero').replace("+", " ");
+	var usr = document.getElementById('form:puesto-selected-usuario').value;
+	document.getElementById('usuario-puesto').classList.remove('hidden');
+	document.getElementById('numero-puesto').classList.remove('hidden');
+	document.getElementById('maquina-puesto').classList.remove('hidden');
+	document.getElementById('estado-puesto').classList.remove('hidden');
+	document.getElementById('form:puesto-selected-estado').classList.add('hidden');
+	document.getElementById('form:puesto-selected-estado-forshow').classList.remove('hidden');
+	if (usr != '-') {
+		document.getElementById('form:puesto-selected-usuario').classList.remove('hidden');
+	} else {
+		document.getElementById('puesto-selected-usuario-dummy').classList.remove('hidden');
+	}
+	document.getElementById('form:puesto-selected-usuario').classList.add('read-only');
+	document.getElementById('form:puesto-selected-maquina').classList.add('read-only');
+	document.getElementById('form:puesto-selected-estado-forshow').classList.add('read-only');
+	document.getElementById('form:puesto-selected-numero').classList.add('read-only');
+	document.getElementById('form:puesto-selected-usuario').readOnly = 'true';
+	document.getElementById('form:puesto-selected-maquina').readOnly = 'true';
+	document.getElementById('form:puesto-selected-estado-forshow').readOnly = 'true';
+	document.getElementById('form:puesto-selected-numero').readOnly = 'true';
+	document.getElementById('form-links:title-gestion').classList.remove('hidden');
+	document.getElementById('form-links:title-puestos').classList.remove('hidden');
+	document.getElementById('popup-cancel-button').classList.add('hidden');
+	document.getElementById('sub-title').innerHTML= 'Detalles de Puesto';
+} else if (getURLParameter('tipoForm') == 'detallesSector') {
+	document.getElementById('id-sector').classList.remove('hidden');
+	document.getElementById('nombre-sector').classList.remove('hidden');
+	document.getElementById('ruta-sector').classList.remove('hidden');
+	document.getElementById('form:sector-selected-id').classList.add('read-only');
+	document.getElementById('form:sector-selected-nombre').classList.add('read-only');
+	document.getElementById('form:sector-selected-ruta').classList.add('read-only');
+	document.getElementById('form:sector-selected-id').readOnly = 'true';
+	document.getElementById('form:sector-selected-nombre').readOnly = 'true';
+	document.getElementById('form:sector-selected-ruta').readOnly = 'true';
+	document.getElementById('form-links:title-gestion').classList.remove('hidden');
+	document.getElementById('form-links:title-puestos').classList.remove('hidden');
+	document.getElementById('form:sector-selected-id').value = getURLParameter('id').replace("+", " ");
+	document.getElementById('form:sector-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
+	document.getElementById('form:sector-selected-ruta').value = getURLParameter('ruta').replace("+", " ");
+	document.getElementById('popup-cancel-button').classList.add('hidden');
+	document.getElementById('sub-title').innerHTML= 'Detalles de Sector';
 }
 
 // ASIGNAR TRAMITE A SECTOR

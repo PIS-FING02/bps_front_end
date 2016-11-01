@@ -18,7 +18,7 @@
 				<div class="page-title arrow"> ➨ </div>
 				<h:commandButton class="page-title" value='Gestión' action="#{shared.redirect('respSector')}" />
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Puestos' action="#{shared.redirect('puestos')}" />
+				<h:commandButton class="page-title" value='Puestos' action="#{shared.redirectWithParam('puestos', 'busqueda=false')}" />
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div> 
