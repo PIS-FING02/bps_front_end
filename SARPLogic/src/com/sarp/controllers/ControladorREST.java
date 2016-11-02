@@ -250,4 +250,8 @@ public class ControladorREST {
 	public String listarTramite(String idSector, String userRol, String user) throws Exception {
 		return this.tramiteFacade.tramitesParaSector(idSector, userRol, user);
 	}
+
+	public String obtenerNumEnEspera(String idPuesto, String userRol) {
+		return this.attentionsFacade.obtenerNumEnEspera(idPuesto,userRol);
+	}
 }

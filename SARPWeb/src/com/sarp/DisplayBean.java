@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONDisplay;
-import com.sarp.jsons.JSONTramite;
+
 
 @ManagedBean(name = "display", eager = true)
 @ViewScoped

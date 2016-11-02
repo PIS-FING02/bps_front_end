@@ -37,6 +37,9 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-tramites').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Tramite';
+	document.getElementById('action-button cancel-button').href='tramites.xhtml?busqueda=false&faces-redirect=true';
+
+	
 	// MOD TRAMITE
 } else if (getURLParameter('tipoForm') == 'modTramite') {
 	document.getElementById('nombre-tramite').classList.remove('hidden');
@@ -51,6 +54,8 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form:tramite-selected-codigo').value = getURLParameter('codigo').replace("+", " ");
 	document.getElementById('form:tramite-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
 	document.getElementById('sub-title').innerHTML= 'Modificar Tramite';
+	document.getElementById('action-button cancel-button').href='tramites.xhtml?busqueda=false&faces-redirect=true';
+	
 	// ALTA PUESTO
 } else if (getURLParameter('tipoForm') == 'altaPuesto') {
 	document.getElementById('maquina-puesto').classList.remove('hidden');
@@ -63,6 +68,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form:puesto-selected-numero').value = '';
 	document.getElementById('form:puesto-selected-maquina').value = '';
 	document.getElementById('sub-title').innerHTML= 'Crear Puesto';
+	document.getElementById('action-button cancel-button').href='puestos.xhtml?busqueda=false&faces-redirect=true';
 	// MOD PUESTO
 } else if (getURLParameter('tipoForm') == 'modPuesto') {
 	document.getElementById('form:puesto-selected-estado').value = getURLParameter('estado').replace("+", " ");
@@ -87,6 +93,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form-links:title-puestos').classList.remove('hidden');
 	document.getElementById('form:mod-puesto-button').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Modificar Puesto';
+	document.getElementById('action-button cancel-button').href='puestos.xhtml?busqueda=false&faces-redirect=true';
 	// ALTA DISPLAY
 } else if (getURLParameter('tipoForm') == 'altaDisplay') {
 	document.getElementById('alta-display-fields').classList.remove('hidden');
@@ -154,6 +161,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form:sector-selected-ruta').value = getURLParameter('ruta').replace("+", " ");
 	document.getElementById('popup-cancel-button').classList.add('hidden');
 	document.getElementById('sub-title').innerHTML= 'Detalles de Sector';
+	document.getElementById('action-button cancel-button').href='displays.xhtml?busqueda=false&faces-redirect=true';
 }
 
 // ASIGNAR TRAMITE A SECTOR

@@ -28,10 +28,16 @@
 					<div class="top-line"> Sectores: </div>
 					<div class="top-line"> Trámites: </div>
 				</div>
-				<div class="right-frame">
-					<div id="nros-espera" class="top-line"> Números en espera: </div>
 					<h:form id='form-cerrar'>
 						<h:commandButton id='cerrar-puesto-button' class="secondary-button estado-puesto-button" value="Cerrar Puesto" action="#{puesto.cerrar}"/>
+						<div class="right-frame">
+							<div id="nros-espera" class="top-line"> Números en espera </div>
+							<ui:repeat id='repeat-' value='#{puesto.getNumEnEspera()}' var='n'>
+								<div class='element-list display-element'>
+									<h:outputText class='puesto-element' value='#{n.nombre} : #{n.cantNumEspera}'/>
+								</div>
+						</ui:repeat>
+						</div>
 					</h:form>
 				</div>
 			</div>
@@ -43,6 +49,5 @@
 				</h:form>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

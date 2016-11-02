@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
+import com.sarp.jsons.JSONCantNumEnSector;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONPuestoTramite;
@@ -242,11 +243,10 @@ public class PuestoBean {
 	}
 	
 	public void reLlamarNumero() throws Exception {
-		String num;
 		if (shared.getRolesMap().get("OPERADOR"))
-			num = c.rellamarNumero(this.maquina, "OPERADOR");
+			c.rellamarNumero(this.maquina, "OPERADOR");
 		else
-			num = c.rellamarNumero(this.maquina, "OPERADORSR");
+			c.rellamarNumero(this.maquina, "OPERADORSR");
 	}
 	
 	public String liberar(){
@@ -720,4 +720,12 @@ public String llamarNumeroDemanda(String internalId){
 	public void setExternalNum(String externalNum) {
 		this.externalNum = externalNum;
 	}
+
+	public List<JSONCantNumEnSector> getNumEnEspera() {
+		if(roles.contains("OPERADOR"))
+			return   modeler.toJSONCantNumEnSectores(c.obtenerNumEnEspera(this.maquina,"OPERADOR"));
+		else
+			return   modeler.toJSONCantNumEnSectores(c.obtenerNumEnEspera(this.maquina,"OPERADORSR"));
+	}
+
 }
