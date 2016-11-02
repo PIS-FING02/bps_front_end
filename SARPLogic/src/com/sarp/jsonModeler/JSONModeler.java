@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.sarp.jsons.JSONCantNumEnSector;
 import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
@@ -173,6 +174,42 @@ public class JSONModeler {
 	    		numerosReturn.add(this.toJSONNumero(iterator.next().toJSONString()));
 	    	}
 			return numerosReturn;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public JSONCantNumEnSector toJSONCantNumEnSector(String jsonNumEnEspera) {
+		JSONObject json;
+		try {
+			json = (JSONObject)new JSONParser().parse(jsonNumEnEspera);
+
+			Integer num = ((json.get("cantNumEspera") == null) ? null : Integer.parseInt(json.get("cantNumEspera").toString()));
+			String codigo = ((json.get("codigo") == null) ? null : json.get("codigo").toString());
+			String nombre = ((json.get("nombre") == null) ? null : json.get("nombre").toString());
+			JSONCantNumEnSector numEnSector = new JSONCantNumEnSector(codigo,nombre,num);
+			return numEnSector;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} 
+	}
+	
+	public List<JSONCantNumEnSector> toJSONCantNumEnSectores(String jsonNumEnEspera) {
+		JSONParser parser = new JSONParser();
+		Object obj;
+		try {
+			obj = parser.parse(jsonNumEnEspera);
+	        JSONArray array = (JSONArray)obj;
+	        List<JSONCantNumEnSector> numerosEnSectorReturn = new ArrayList<JSONCantNumEnSector>();
+	        
+	    	Iterator<JSONObject> iterator = array.iterator();
+	    	while (iterator.hasNext()) {
+	    		numerosEnSectorReturn.add(this.toJSONCantNumEnSector(iterator.next().toJSONString()));
+	    	}
+			return numerosEnSectorReturn;
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return null;

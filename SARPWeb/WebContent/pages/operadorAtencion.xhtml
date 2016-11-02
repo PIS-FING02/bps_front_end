@@ -30,7 +30,7 @@
 					<div class="top-line"> Trámites: </div>
 				</div>
 				<div class="right-frame">
-					<div id="nros-espera" class="top-line"> Números en espera: </div>
+					<div id="nros-espera" class="top-line"> Números en espera: #{puesto.numEnEspera}</div>
 				</div>
 			</div>
 			<div>
@@ -56,7 +56,7 @@
 				<h:form id="options-form">
 					<h:commandButton class="action-button atender-button" value="Atender" action="#{puesto.comenzarAtencion()}"/>
 					<h:commandButton class="action-button atencion-button" value="Rellamar" action="#{puesto.reLlamarNumero()}"/>
-					<h:commandButton class="secondary-button atencion-buttons" value="Llamar Siguiente" action="#{puesto.atrasaryLlamarSiguiente()}"/> 
+					<h:commandButton class="action-button atencion-buttons" value="Llamar Siguiente" action="#{puesto.atrasaryLlamarSiguiente()}"/> 
 					<h:commandButton class="action-button atencion-buttons" value="Liberar" action="#{puesto.liberar()}"/> 					
 				</h:form>
 			</div>

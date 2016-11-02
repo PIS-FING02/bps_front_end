@@ -19,6 +19,7 @@ public class AttentionsFacade {
 	public static final String URL_LLAMAR_NUMERO_DEMANDA ="http://52.52.100.160:8080/SARPService/attentionsService/llamarNumeroDemanda";
 	public static final String URL_RELLAMAR_NUMERO ="http://52.52.100.160:8080/SARPService/attentionsService/reLlamarNumero";
 	public static final String URL_DESVIAR_NUMERO = "http://52.52.100.160:8080/SARPService/attentionsService/desviarNumero";
+	public static final String URL_CANT_NUM_EN_ESPERA= "http://52.52.100.160:8080/SARPService/numberService/obtenerCantNumerosEnEspera?idPuesto=";
 	//public static final String URL_LISTAR_TRAMITE_SECTOR=
 	
 	
@@ -95,6 +96,11 @@ public class AttentionsFacade {
 	public String desviarFinalizarAtencion(String json, String sector_desvio, String userRol) {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPut2(URL_DESVIAR_NUMERO, json, sector_desvio, userRol);
+	}
+
+	public String obtenerNumEnEspera(String idPuesto, String userRol) {
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGet(URL_CANT_NUM_EN_ESPERA.concat(idPuesto), userRol);
 	}
 	
 
