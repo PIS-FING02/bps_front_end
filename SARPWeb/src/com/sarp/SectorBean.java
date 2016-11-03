@@ -84,7 +84,7 @@ public class SectorBean {
 		String status = this.c.importarSectoreGafu("ADMIN");
 		shared.updateNotice(status, "Los sectores se actualizaron correctamente.", 
 				"Ocurrió un error al actualizar los sectores.");
-		return "/pages/admin.xhtml?faces-redirect=true";
+		return "/pages/admin.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String asignarTramiteSector() {
@@ -92,7 +92,7 @@ public class SectorBean {
 		String status = this.c.asignarTramiteSector(jsectortramite.toString(), "RESPSEC");
 		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al sector con codigo " + this.id + ".", 
 				"Ocurrió un error al asignar el tramite con codigo "+ this.codigo + " al sector con codigo " + this.id + ".");
-		return "/pages/sectores.xhtml?faces-redirect=true";
+		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String asignarDisplaySector() {
@@ -100,7 +100,7 @@ public class SectorBean {
 		String status = this.c.asignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
 		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se asignó correctamente al sector con codigo " + this.id + ".", 
 				"Ocurrió un error al asignar el display con identificador "+ this.displayId + " al sector con codigo " + this.id + ".");
-		return "/pages/sectores.xhtml?faces-redirect=true";
+		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String asignarPuestoSector() {
@@ -108,7 +108,7 @@ public class SectorBean {
 		String status =this.c.asignarPuestoSector( jsectorpuesto.toString(), "RESPSEC");
 		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se asignó correctamente al sector con codigo " + this.id + ".", 
 				"Ocurrió un error al asignar el puesto con nombre de maquina "+ this.nombreMaquina + " al sector con codigo " + this.id + ".");
-		return "/pages/sectores.xhtml?faces-redirect=true";
+		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarTramiteSector() {
@@ -116,7 +116,7 @@ public class SectorBean {
 		String status = this.c.desasignarTramiteSector( jsectortramite.toString(), "RESPSEC");
 		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del sector con codigo " + this.id + ".", 
 				"Ocurrió un error al desasignar el tramite con codigo "+ this.codigo + " del sector con codigo " + this.id + ".");
-		return "/pages/sectores.xhtml?faces-redirect=true";
+		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarDisplaySector() {
@@ -124,7 +124,7 @@ public class SectorBean {
 		String status = this.c.desasignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
 		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se desasignó correctamente del sector con codigo " + this.id + ".", 
 				"Ocurrió un error al desasignar el display con identificador "+ this.displayId + " del sector con codigo " + this.id + ".");
-		return "/pages/sectores.xhtml?faces-redirect=true";
+		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarPuestoSector() {
@@ -132,7 +132,7 @@ public class SectorBean {
 		String status =this.c.desasignarPuestoSector( jsectorpuesto.toString(), "RESPSEC");
 		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se desasignó correctamente al sector con codigo " + this.id + ".",
 				"Ocurrió un error al desasignar el puesto con nombre de maquina "+ this.nombreMaquina + " del sector con codigo " + this.id + ".");
-		return "/pages/sectores.xhtml?faces-redirect=true";
+		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public List<JSONNumero> listarNumerosSector() {
@@ -148,14 +148,12 @@ public class SectorBean {
 		} else
 			return null;
 	}
-	
 
 	public List<JSONSector> listarSectoresDesvio() throws Exception{
 		if (shared.getRolesMap().get("OPERADOR"))
 			return modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));
 		else
-			return  modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));
-		
+			return  modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));	
 	}
 	
 	public String getDisplayId() {

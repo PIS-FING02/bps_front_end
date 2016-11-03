@@ -18,7 +18,7 @@
 				<h:commandButton id='title-admin' class="page-title hidden" value='Administración' action="#{shared.redirect('admin')}"/>
 				<h:commandButton id='title-gestion' class="page-title hidden" value='Gestion' action="#{shared.redirect('respSector')}"/>
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton id='title-tramites' class="page-title hidden" value='Tramites' action="#{shared.redirect('tramites')}"/>
+				<h:commandButton id='title-tramites' class="page-title hidden" value='Tramites' action="#{shared.redirectWithParam('tramites', 'busqueda=false')}"/>
 				<h:commandButton id='title-displays' class="page-title hidden" value='Displays' action="#{shared.redirect('displays')}"/>
 				<h:commandButton id='title-puestos' class="page-title hidden" value='Puestos' action="#{shared.redirectWithParam('puestos', 'busqueda=false')}"/>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
@@ -84,7 +84,7 @@
 					<h:commandButton id='alta-display-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{display.alta}"/> 
 					<h:commandButton id='alta-puesto-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta}"/> 
 					<h:commandButton id='mod-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.modificar}"/> 
-					<a id="action-button cancel-button" class="action-button atender-button"  href=''>Cancelar</a>
+					<a id="action-button cancel-button" class="action-button cancel-button"  href=''>Cancelar</a>
 				</div>
 			</h:form>
 		</div>

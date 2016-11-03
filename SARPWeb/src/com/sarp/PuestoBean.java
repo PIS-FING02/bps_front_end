@@ -98,7 +98,8 @@ public class PuestoBean {
 	}
 	
 	public String modificar(){
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, this.numero, this.estado);
+		Integer numero = this.numero;
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, numero, this.estado);
 		System.out.println(jpuesto);
 		String status = c.modPuesto(jpuesto.toString(), "RESPSEC");
 		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificó correctamente.", 
@@ -176,7 +177,7 @@ public class PuestoBean {
 		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
 		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al puesto con nombre de maquina " + this.maquina + ".", 
 				"Ocurrió un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".");
-		return "/pages/puestos.xhtml?faces-redirect=true";
+		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String desasignarTramitePuesto() {  
@@ -184,7 +185,7 @@ public class PuestoBean {
 		String status = c.desasignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
 		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del puesto con nombre de maquina " + this.maquina + ".", 
 				"Ocurrió un error al desasignar el tramite con codigo "+ this.codigo + " del puesto con nombre de maquina " + this.maquina + ".");
-		return "/pages/puestos.xhtml?faces-redirect=true";
+		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String abrir() throws Exception {

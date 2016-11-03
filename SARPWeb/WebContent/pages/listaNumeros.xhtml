@@ -20,7 +20,7 @@
 				<div class="page-title arrow"> ➨ </div>
 				<h:commandButton class="page-title" value='Administración' action="#{shared.redirect('admin')}" />
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirect('listaSectores')}" />
+				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirectWithParam('listaSectores', 'busqueda=false')}" />
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 				<h:outputText id='num_sector' class='hidden' value="#{param['id']}" />
 			</h:form>
@@ -31,9 +31,9 @@
 					<h2 class='page-title list-title'>Números</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-tramites' value='#{sector.listarNumerosSector()}' var='n'>
-							<div class='element-list tramite-element'>
-								<h:outputText value='#{n.externalId}'/>
-								<h:outputText value='#{n.hora}'/> 
+							<div class='element-list element-list-numero tramite-element'>
+								<h:outputText value='#{n.externalId}  '/>
+								<h:outputText value='#{n.hora}  '/> 
 								<h:outputText value='#{n.estado}'/>
 							</div>
 						</ui:repeat>

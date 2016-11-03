@@ -45,7 +45,7 @@ public class NumeroBean {
 		if (status.equals("erorr_client"))
 			shared.updateNotice("ERROR", "", "Ocurrio un error al solicitar el número");
 		else
-			shared.updateNotice("OK", "El numero " + status + " fue entregado con exito.", "");
+			shared.updateNotice("OK", "El numero " + status + " para el tramite con codigo " + this.idTramite + " en el sector con identificador " + this.idSector + " fue entregado con exito.", "");
 	}	
 
 	public String getPrioridad() {
