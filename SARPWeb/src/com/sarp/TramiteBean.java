@@ -35,7 +35,7 @@ public class TramiteBean {
 		String status = c.altaTramite(jtramite.toString(), "ADMIN");
 		shared.updateNotice(status, "El tramite con codigo " + this.codigo + " y nombre "+ this.nombre + " se creó correctamente.", 
 				"Ocurrió un error al crear el tramite.");
-		return "/pages/tramites.xhtml?faces-redirect=true";
+		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String baja(String codigo) {
@@ -43,7 +43,7 @@ public class TramiteBean {
 		String status = c.bajaTramite(jtramite.toString(), "ADMIN");
 		shared.updateNotice(status, "El tramite con codigo " + codigo + " se eliminó correctamente.", 
 				"Ocurrió un error al eliminar el tramite.");
-		return "/pages/tramites.xhtml?faces-redirect=true";
+		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String modificar(){
@@ -51,7 +51,7 @@ public class TramiteBean {
 		String status = c.modTramite(jtramite.toString(), "ADMIN");
 		shared.updateNotice(status, "El tramite con nombre "+ this.nombre + " se modificó correctamente.", 
 				"Ocurrió un error al modificar el tramite.");
-		return "/pages/tramites.xhtml?faces-redirect=true";
+		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String goToTramite(String codigo, String nombre) {
@@ -64,7 +64,8 @@ public class TramiteBean {
 		} else {
 			shared.setTramitesList(modeler.toJSONTramites(c.listarTramite("RESPSEC", shared.getUser())));
 		}
-		return shared.getTramitesList();
+		List<JSONTramite> oooo =  shared.getTramitesList();
+		return oooo;
 	}
 	
 
@@ -85,11 +86,8 @@ public class TramiteBean {
 	public List<JSONTramite> listarResultadoBusqueda(){
 		return shared.getTramitesListBusqueda();
 	}
-	
-
 
 	public List<JSONTramite> listarParaSector(String input) throws Exception {
-
 		shared.clean();
 		if (shared.getRolesMap().get("RESPSEC")) 
 			return modeler.toJSONTramites(c.listarTramiteParaSector(input, "RESPSEC", shared.getUser()));		
@@ -102,7 +100,7 @@ public class TramiteBean {
 		resultado.add("Exito");
 		resultado.add("Error");
 		resultado.add("Desviado");
-		resultado.add("Putita");
+		resultado.add("Otro");
 		return resultado;
 	}
 	

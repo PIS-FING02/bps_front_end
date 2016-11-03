@@ -43,6 +43,7 @@
 .asignar-container {
     display: inline;
     width: 60px;
+    top: 5px;
     float: right;
     right: 70px;
     position: absolute;
@@ -96,7 +97,6 @@
 
 .page-list .element-list {
 	display: block;
-	cursor: pointer;
 }
 
 .baja-button {

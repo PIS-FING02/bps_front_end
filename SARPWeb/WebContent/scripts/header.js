@@ -3,9 +3,12 @@ function startTime() {
     var year = today.getFullYear();
     var month = today.getMonth() +1;
     var day = today.getDate();
-    var h = addZeroBefore(today.getHours());
+    var h = today.getHours();
     var m = today.getMinutes();
     var s = today.getSeconds();
+    month = checkTime(month);
+    day = checkTime(day);
+    h = checkTime(h);
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('date-time').innerHTML = day + "/" + month + "/" + year +"\n"+ h + ":" + m + ":" + s;
@@ -15,8 +18,4 @@ function startTime() {
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
-}
-
-function addZeroBefore(n) {
-    return (n < 10 ? '0' : '') + n;
 }

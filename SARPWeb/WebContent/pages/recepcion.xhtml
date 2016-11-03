@@ -63,7 +63,10 @@
 					</div>
 					<div class="form-line">
 						<h:outputLabel for="tipoDoc" value="Tipo de Doc.: " />
-						<h:inputText id="tipoDoc" class="formInput" value="#{numero.tipoDoc}"/>
+						<h:selectOneMenu id='tipoDoc' class='combo-box combo-box-recepcion' value="#{numero.tipoDoc}">
+						   <f:selectItem itemValue="CEDULA" itemLabel="CEDULA" />
+						   <f:selectItem itemValue="RUT" itemLabel="RUT" />	   	
+						</h:selectOneMenu>
 					</div>
 					<div class="form-line">
 						<h:outputLabel for="doc" value="Núm. Doc.: "/>

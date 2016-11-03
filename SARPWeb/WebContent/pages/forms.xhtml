@@ -18,7 +18,7 @@
 				<h:commandButton id='title-admin' class="page-title hidden" value='Administración' action="#{shared.redirect('admin')}"/>
 				<h:commandButton id='title-gestion' class="page-title hidden" value='Gestion' action="#{shared.redirect('respSector')}"/>
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton id='title-tramites' class="page-title hidden" value='Tramites' action="#{shared.redirect('tramites')}"/>
+				<h:commandButton id='title-tramites' class="page-title hidden" value='Tramites' action="#{shared.redirectWithParam('tramites', 'busqueda=false')}"/>
 				<h:commandButton id='title-displays' class="page-title hidden" value='Displays' action="#{shared.redirect('displays')}"/>
 				<h:commandButton id='title-puestos' class="page-title hidden" value='Puestos' action="#{shared.redirectWithParam('puestos', 'busqueda=false')}"/>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
