@@ -30,9 +30,6 @@
 					<div class="top-line"> Sectores: </div>
 					<div class="top-line"> Trámites: </div>
 				</div>
-				<div class="right-frame">
-					<div id="nros-espera" class="top-line"> Números en espera: #{puesto.numEnEspera}</div>
-				</div>
 			</div>
 			<div>
 				<div id="left-frame" class="left-frame">
@@ -52,6 +49,16 @@
 						<div class="label"> Tiempo de Espera: #{puesto.tiempoEspera} </div>
 					</div>
 				</div> 
+				<h:form>
+				<div class="right-frame">
+							<div id="nros-espera" class="top-line"> Números en espera </div>
+							<ui:repeat id='repeat-' value='#{puesto.getNumEnEspera()}' var='n'>
+								<div class='element-list display-element'>
+									<h:outputText class='puesto-element' value='#{n.nombre} : #{n.cantNumEspera}'/>
+								</div>
+						</ui:repeat>
+						</div>
+				</h:form>
 			</div>
 			<div class="bottom-form">
 				<h:form id="options-form">
