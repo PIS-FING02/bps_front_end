@@ -11,6 +11,12 @@
 	
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
+	<script type="text/javascript">
+		if(document.getElementsByClassName('user-time-container')[0].childNodes[1].innerHTML != "Bienvenido"){
+			window.location="menu.xhtml"
+			console.log("Putitas");
+		}
+      </script>
 </head>
 
 <body>

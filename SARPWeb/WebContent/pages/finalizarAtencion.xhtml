@@ -22,8 +22,8 @@
 			<div class="page-title arrow"> ➨ </div>
 			<a class="page-title" href="puestos.xhtml">Puestos</a>
 			<h:form id="myForm">
-				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
-				<h:outputText id='num_sector'  value="#{param['idSector']}" />
+				<h:commandButton class="action-button deactivated" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:outputText id='num_sector' class="hidden" value="#{param['idSector']}" />
 			</h:form>
 		</div> 
 		<div class="page-frame">
@@ -46,6 +46,7 @@
 			<h:form id='form-finalizar'>
 				<h:inputHidden id="json_estado_tramites" value="#{puesto.json_estado_tramites}" />
 				<h:commandButton class="num-line action-button" value="Confirmar" action="#{puesto.finalizarAtencion()}"/>
+				<h:commandButton class="cancel-button" value="Cancelar" action="#{shared.redirect('operadorAtendiendo')}"/>
 			</h:form>
 		</div>
 	</div>

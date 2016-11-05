@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONCantNumEnSector;
+import com.sarp.jsons.JSONEstadoPuesto;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONPuestoTramite;
@@ -190,12 +191,26 @@ public class PuestoBean {
 
 	public String abrir() throws Exception {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
-		c.abrirPuesto(jpuesto.toString(), "OPERADOR");
-		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorsrAbierto.xhtml";
-		}else{
-			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+		JSONEstadoPuesto jestadoPuesto = modeler.toJSONEstadoPuesto(c.abrirPuesto(jpuesto.toString(), "OPERADOR"));
+		if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO") && jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO")){
+			this.estado=jestadoPuesto.getPuesto().getEstado();
+			this.id = jestadoPuesto.getNumero().getId();
+			this.externalId = jestadoPuesto.getNumero().getExternalId();
+			this.hora= jestadoPuesto.getNumero().getHora();
+			this.estadoNumero =  jestadoPuesto.getNumero().getEstado();
+			this.prioridad = jestadoPuesto.getNumero().getPrioridad();
+			this.idSector = jestadoPuesto.getNumero().getIdSector();
 		}
+		
+		if(jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO"))
+			return "/pages/operadorAtendiendo.xhtml?faces-redirect=true";
+		else if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO"))
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+		else if(roles.contains("OPERADORSR"))
+			return "/pages/operadorsrAbierto.xhtml";
+		else
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+		
 	}
 	
 	public String cerrar() throws Exception {

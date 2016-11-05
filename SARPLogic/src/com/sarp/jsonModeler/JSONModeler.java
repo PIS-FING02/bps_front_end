@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 
 import com.sarp.jsons.JSONCantNumEnSector;
 import com.sarp.jsons.JSONDisplay;
+import com.sarp.jsons.JSONEstadoPuesto;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONSector;
@@ -36,6 +37,14 @@ public class JSONModeler {
 		JSONTramiteRecepcion tramite = new JSONTramiteRecepcion(json.get("tramiteId").toString(), 
 				json.get("tramiteNombre").toString(), json.get("sectorId").toString(), json.get("sectorNombre").toString());
 		return tramite;
+	}
+	
+	public JSONEstadoPuesto toJSONEstadoPuesto(String jsonEstadoPuesto) throws Exception{
+		JSONObject json = (JSONObject)new JSONParser().parse(jsonEstadoPuesto);
+		JSONPuesto jpuesto = toJSONPuesto(json.get("puesto").toString());
+		JSONNumero jnumero = toJSONNumero(json.get("numero").toString());
+		JSONEstadoPuesto estadoPuesto = new JSONEstadoPuesto(jpuesto,jnumero);
+		return estadoPuesto;
 	}
 	
 	public JSONPuesto toJSONPuesto(String jsonPuesto) throws Exception{
