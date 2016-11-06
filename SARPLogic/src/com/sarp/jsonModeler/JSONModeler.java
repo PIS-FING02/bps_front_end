@@ -40,11 +40,14 @@ public class JSONModeler {
 	}
 	
 	public JSONEstadoPuesto toJSONEstadoPuesto(String jsonEstadoPuesto) throws Exception{
+		
+		System.out.println(jsonEstadoPuesto);
 		JSONObject json = (JSONObject)new JSONParser().parse(jsonEstadoPuesto);
-		JSONPuesto jpuesto = toJSONPuesto(json.get("puesto").toString());
-		JSONNumero jnumero = toJSONNumero(json.get("numero").toString());
+		JSONPuesto jpuesto = (json.get("puesto")!= null)? toJSONPuesto(json.get("puesto").toString()) : null;
+		JSONNumero jnumero = (json.get("numero")!= null)? toJSONNumero(json.get("numero").toString()) : null;
 		JSONEstadoPuesto estadoPuesto = new JSONEstadoPuesto(jpuesto,jnumero);
-		return estadoPuesto;
+		
+		return estadoPuesto;	
 	}
 	
 	public JSONPuesto toJSONPuesto(String jsonPuesto) throws Exception{
