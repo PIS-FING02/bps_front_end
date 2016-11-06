@@ -97,56 +97,49 @@ public class SectorBean {
 	
 	public String importarSecotesGAFU(){
 		String status = this.c.importarSectoreGafu("ADMIN");
-		shared.updateNotice(status, "Los sectores se actualizaron correctamente.", 
-				"Ocurrió un error al actualizar los sectores.");
+		shared.updateNotice(status, "Los sectores se actualizaron correctamente.");
 		return "/pages/admin.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String asignarTramiteSector() throws Exception {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
 		String status = this.c.asignarTramiteSector(jsectortramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al sector con codigo " + this.id + ".", 
-				"Ocurrió un error al asignar el tramite con codigo "+ this.codigo + " al sector con codigo " + this.id + ".");
+		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String asignarDisplaySector() throws Exception {
 		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id, this.displayId);
 		String status = this.c.asignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se asignó correctamente al sector con codigo " + this.id + ".", 
-				"Ocurrió un error al asignar el display con identificador "+ this.displayId + " al sector con codigo " + this.id + ".");
+		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se asignó correctamente al sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String asignarPuestoSector() throws Exception {
 		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id, this.nombreMaquina);
 		String status = this.c.asignarPuestoSector(jsectorpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se asignó correctamente al sector con codigo " + this.id + ".", 
-				"Ocurrió un error al asignar el puesto con nombre de maquina "+ this.nombreMaquina + " al sector con codigo " + this.id + ".");
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se asignó correctamente al sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarTramiteSector() {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
 		String status = this.c.desasignarTramiteSector( jsectortramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del sector con codigo " + this.id + ".", 
-				"Ocurrió un error al desasignar el tramite con codigo "+ this.codigo + " del sector con codigo " + this.id + ".");
+		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarDisplaySector() {
 		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id, this.displayId);
 		String status = this.c.desasignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se desasignó correctamente del sector con codigo " + this.id + ".", 
-				"Ocurrió un error al desasignar el display con identificador "+ this.displayId + " del sector con codigo " + this.id + ".");
+		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se desasignó correctamente del sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarPuestoSector() {
 		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
 		String status =this.c.desasignarPuestoSector( jsectorpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se desasignó correctamente al sector con codigo " + this.id + ".",
-				"Ocurrió un error al desasignar el puesto con nombre de maquina "+ this.nombreMaquina + " del sector con codigo " + this.id + ".");
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se desasignó correctamente al sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -157,7 +150,7 @@ public class SectorBean {
 		String idSector = params.get("id");
 		if (idSector != null) {
 			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosSector(idSector, "ADMIN"));
-			if (list.isEmpty()) 
+			if (list == null || list.isEmpty()) 
 				shared.updateNoticeInfo("No se encontraron números en el sistema para el sector con identificador " + idSector + " .");
 			return list;
 		} else
@@ -168,7 +161,7 @@ public class SectorBean {
 		if (shared.getRolesMap().get("OPERADOR"))
 			return modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));
 		else
-			return  modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));	
+			return modeler.toJSONSectores(c.listarSectoresDesvio(this.id, "OPERADOR"));	
 	}
 	
 	public String getDisplayId() {

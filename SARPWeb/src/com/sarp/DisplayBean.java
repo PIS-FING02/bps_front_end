@@ -24,16 +24,14 @@ public class DisplayBean {
 		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		System.out.println(jdisplay.toString());
 		String status= c.altaDisplay(jdisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador "+ this.id + " se creó correctamente.", 
-				"Ocurrió un error al crear el display.");
+		shared.updateNotice(status, "El display con identificador "+ this.id + " se creó correctamente.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 	
 	public String baja(String id) {
 		JSONDisplay jdisplay = new JSONDisplay(id);
 		String status = c.bajaDisplay(jdisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador " + id + " se eliminó correctamente.", 
-				"Ocurrió un error al eliminar el display.");
+		shared.updateNotice(status, "El display con identificador " + id + " se eliminó correctamente.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 
@@ -42,7 +40,7 @@ public class DisplayBean {
 		List<JSONDisplay> list;
 		if (response.startsWith("ERROR")) {
 			list = null;
-			shared.updateNotice("ERROR", "", response.substring(7));
+			shared.updateNotice(response, "");
 		} else {
 			list =  modeler.toJSONDisplays(response);
 			if (list.isEmpty())

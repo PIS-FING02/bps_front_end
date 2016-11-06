@@ -86,7 +86,10 @@
 					<h:commandButton id='alta-display-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{display.alta}"/> 
 					<h:commandButton id='alta-puesto-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta()}"/> 
 					<h:commandButton id='mod-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.modificar}"/> 
-					<a id="cancel-button" class="action-button cancel-button"  href=''>Cancelar</a>
+					
+					<h:commandButton id='cancel-button-tramites' class="action-button cancel-button hidden" value="Cancelar" action="#{shared.redirectWithParam('tramites', 'busqueda=false')}"/> 
+					<h:commandButton id='cancel-button-puestos' class="action-button cancel-button hidden" value="Cancelar" action="#{shared.redirectWithParam('puestos', 'busqueda=false')}"/> 
+					<h:commandButton id='cancel-button-displays' class="action-button cancel-button hidden" value="Cancelar" action="#{shared.redirectWithParam('displays', 'busqueda=false')}"/> 
 				</div>
 			</h:form>
 		</div>

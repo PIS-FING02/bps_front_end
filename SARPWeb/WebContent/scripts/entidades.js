@@ -37,7 +37,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-tramites').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Tramite';
-	document.getElementById('cancel-button').href='tramites.xhtml?busqueda=false&faces-redirect=true';
+	document.getElementById('form:cancel-button-tramites').classList.remove("hidden");
 	// MOD TRAMITE
 } else if (getURLParameter('tipoForm') == 'modTramite') {
 	document.getElementById('nombre-tramite').classList.remove('hidden');
@@ -52,7 +52,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form:tramite-selected-codigo').value = getURLParameter('codigo').replace("+", " ");
 	document.getElementById('form:tramite-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
 	document.getElementById('sub-title').innerHTML= 'Modificar Tramite';
-	document.getElementById('cancel-button').href='tramites.xhtml?busqueda=false&faces-redirect=true';
+	document.getElementById('form:cancel-button-tramites').classList.remove("hidden");
 	// ALTA PUESTO
 } else if (getURLParameter('tipoForm') == 'altaPuesto') {
 	document.getElementById('maquina-puesto').classList.remove('hidden');
@@ -70,7 +70,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form:sector-selected-id').value = getURLParameter('id').replace("+", " ");
 	document.getElementById('id-label').innerHTML = 'Sector: ';
 	document.getElementById('sub-title').innerHTML= 'Crear Puesto';
-	document.getElementById('cancel-button').href='puestos.xhtml?busqueda=false&faces-redirect=true';
+	document.getElementById('form:cancel-button-puestos').classList.remove("hidden");
 	// MOD PUESTO
 } else if (getURLParameter('tipoForm') == 'modPuesto') {
 	document.getElementById('form:puesto-selected-estado').value = getURLParameter('estado').replace("+", " ");
@@ -95,7 +95,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form-links:title-puestos').classList.remove('hidden');
 	document.getElementById('form:mod-puesto-button').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Modificar Puesto';
-	document.getElementById('cancel-button').href='puestos.xhtml?busqueda=false&faces-redirect=true';
+	document.getElementById('form:cancel-button-puestos').classList.remove("hidden");
 	// ALTA DISPLAY
 } else if (getURLParameter('tipoForm') == 'altaDisplay') {
 	document.getElementById('alta-display-fields').classList.remove('hidden');
@@ -104,6 +104,7 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form-links:title-admin').classList.remove('hidden');
 	document.getElementById('form-links:title-displays').classList.remove('hidden');
 	document.getElementById('sub-title').innerHTML= 'Crear Display';
+	document.getElementById('form:cancel-button-displays').classList.remove("hidden");
 	// DETALLES TRAMITE
 } else if (getURLParameter('tipoForm') == 'detallesTramite') {
 	document.getElementById('nombre-tramite').classList.remove('hidden');
@@ -166,7 +167,6 @@ if (getURLParameter('tipoForm') == 'altaTramite') {
 	document.getElementById('form:sector-selected-ruta').value = getURLParameter('ruta').replace("+", " ");
 	document.getElementById('cancel-button').classList.add('hidden');
 	document.getElementById('sub-title').innerHTML= 'Detalles de Sector';
-	document.getElementById('action-button cancel-button').href='displays.xhtml?busqueda=false&faces-redirect=true';
 }
 
 // ASIGNAR TRAMITE A SECTOR

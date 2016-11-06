@@ -74,7 +74,7 @@ public class SharedBean {
 		SharedBean.icon = icon;
 	}
 	
-	public void updateNotice(String status, String msgPositive, String msgNegative) {
+	public void updateNotice(String status, String msgPositive ) {
 		if (status.equals("OK")){
 			setNotice_title("Esto es un mensaje de Confirmación.");
 			setNotice_message(msgPositive);
@@ -82,7 +82,7 @@ public class SharedBean {
 			setIcon("check");
 		} else {
 			setNotice_title("Han ocurrido error/es que impiden continuar.");
-			setNotice_message(msgNegative);
+			setNotice_message(status.substring(7));
 			setNotice("negative");
 			setIcon("error");
 		}
