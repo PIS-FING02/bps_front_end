@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -16,6 +17,7 @@ import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONPuestoTramite;
 import com.sarp.jsons.JSONSector;
+import com.sarp.jsons.JSONSectorPuesto;
 import com.sarp.jsons.JSONTramite;
 import com.sarp.utils.UtilService;
 
@@ -60,6 +62,9 @@ public class PuestoBean {
 
 	@ManagedProperty("#{login}")
 	public LoginBean login;
+	@ManagedProperty("#{sector}")
+	public SectorBean sector;
+	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	public SharedBean shared = SharedBean.getInstance();
@@ -85,16 +90,24 @@ public class PuestoBean {
 	public String alta() throws Exception {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "", this.numero, "");
 		String status = c.altaPuesto(jpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se creó correctamente.", 
-				"Ocurrió un error al crear el puesto.");
-		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
+		
+		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.idSector, this.maquina);
+		String response = c.asignarPuestoSector(jsectorpuesto.toString(), "RESPSEC");
+		
+		if (status.contains("existe")) {
+			shared.updateNotice(response, "El puesto con nombre de maquina "+ this.maquina + " ya se econtraba en el sistema, se asignó correctamente al sector con codigo " + this.idSector + ".");
+		} else if (status.equals("OK")) {
+			shared.updateNotice(response, "El puesto con nombre de maquina "+ this.maquina + " fue creado y se asignó correctamente al sector con codigo " + this.idSector + ".");
+		} else {
+			shared.updateNotice(status, "");
+		}
+		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String baja(String maquina) throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(maquina, "id", 0, "CERRADO");
 		String status = c.bajaPuesto(jpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se eliminó correctamente.", 
-				"Ocurrió un error al eliminar el puesto.");
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ maquina + " se eliminó correctamente.");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -103,8 +116,7 @@ public class PuestoBean {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, numero, this.estado);
 		System.out.println(jpuesto);
 		String status = c.modPuesto(jpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificó correctamente.", 
-				"Ocurrió un error al modificar el puesto.");
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificó correctamente.");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -173,44 +185,49 @@ public class PuestoBean {
 		}
 	}
 	
-	public String asignarTramitePuesto() {
+	public String asignarTramitePuesto() throws Exception {
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al puesto con nombre de maquina " + this.maquina + ".", 
-				"Ocurrió un error al asignar el tramite con codigo "+ this.codigo + " al puesto con nombre de maquina " + this.maquina + ".");
+		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al puesto con nombre de maquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String desasignarTramitePuesto() {  
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.desasignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del puesto con nombre de maquina " + this.maquina + ".", 
-				"Ocurrió un error al desasignar el tramite con codigo "+ this.codigo + " del puesto con nombre de maquina " + this.maquina + ".");
+		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignó correctamente del puesto con nombre de maquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String abrir() throws Exception {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, null, null);
-		JSONEstadoPuesto jestadoPuesto = modeler.toJSONEstadoPuesto(c.abrirPuesto(jpuesto.toString(), "OPERADOR"));
-		if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO") && jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO")){
-			this.estado=jestadoPuesto.getPuesto().getEstado();
-			this.id = jestadoPuesto.getNumero().getId();
-			this.externalId = jestadoPuesto.getNumero().getExternalId();
-			this.hora= jestadoPuesto.getNumero().getHora();
-			this.estadoNumero =  jestadoPuesto.getNumero().getEstado();
-			this.prioridad = jestadoPuesto.getNumero().getPrioridad();
-			this.idSector = jestadoPuesto.getNumero().getIdSector();
-		}
+		String response = c.abrirPuesto(jpuesto.toString(), "OPERADOR");
 		
-		if(jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO"))
-			return "/pages/operadorAtendiendo.xhtml?faces-redirect=true";
-		else if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO"))
+		if (response.startsWith("ERROR")) {
+			shared.updateNotice(response, "");
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
-		else if(roles.contains("OPERADORSR"))
-			return "/pages/operadorsrAbierto.xhtml";
-		else
-			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
-		
+		} else {
+			JSONEstadoPuesto jestadoPuesto = modeler.toJSONEstadoPuesto(response);
+			
+			if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO") && jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO")){
+				this.estado=jestadoPuesto.getPuesto().getEstado();
+				this.id = jestadoPuesto.getNumero().getId();
+				this.externalId = jestadoPuesto.getNumero().getExternalId();
+				this.hora= jestadoPuesto.getNumero().getHora();
+				this.estadoNumero =  jestadoPuesto.getNumero().getEstado();
+				this.prioridad = jestadoPuesto.getNumero().getPrioridad();
+				this.idSector = jestadoPuesto.getNumero().getIdSector();
+			}
+			
+			if(jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO"))
+				return "/pages/operadorAtendiendo.xhtml?faces-redirect=true";
+			else if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO"))
+				return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+			else if(roles.contains("OPERADORSR"))
+				return "/pages/operadorsrAbierto.xhtml";
+			else
+				return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+		}
 	}
 	
 	public String cerrar() throws Exception {
@@ -500,6 +517,14 @@ public String llamarNumeroDemanda(String internalId){
 
 	public void setJson_estado_tramites(String json_estado_tramites) {
 		this.json_estado_tramites = json_estado_tramites;
+	}
+	
+	public SectorBean getSectorBean() {
+		return this.sector;
+	}
+	
+	public void setSectorBean(SectorBean sector) {
+		this.sector = sector;
 	}
 	
 	public Integer getId() {

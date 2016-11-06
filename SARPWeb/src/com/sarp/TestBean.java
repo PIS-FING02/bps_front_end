@@ -32,15 +32,15 @@ public class TestBean {
 	}
 	
 	public void testPuesto() throws Exception {
-		pb.setEstado("CERRADO");
-		pb.setMaquina("nombreMAquinaTest");
-		pb.setNumero(0);
-		pb.setUsuarioId("15");
-		pb.alta();
-		pb.setEstado("ATENDIENDO");
-		pb.setNumero(5);
-		pb.setUsuarioId("150");
-		pb.modificar();
-		pb.baja("");
+//		pb.setEstado("CERRADO");
+//		pb.setMaquina("nombreMAquinaTest");
+//		pb.setNumero(0);
+//		pb.setUsuarioId("15");
+//		pb.alta();
+//		pb.setEstado("ATENDIENDO");
+//		pb.setNumero(5);
+//		pb.setUsuarioId("150");
+//		pb.modificar();
+//		pb.baja("");
 	}
 }

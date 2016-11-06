@@ -22,52 +22,29 @@ public class RestClient {
 		return instance;
 	}
 	
-	public String doPost(String URL, String input, String userRol){
+	public String doPost(String URL, String input, String userRol) throws Exception{
 		StringBuilder resultado = new StringBuilder();
-		try {
-			System.out.println(input);
-			URL url = new URL(URL);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type", "application/json");
-			conn.setRequestProperty("user-rol", userRol);
+		System.out.println(input);
+		URL url = new URL(URL);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setDoOutput(true);
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("user-rol", userRol);
 
-			OutputStream os = conn.getOutputStream();
-			os.write(input.getBytes());
-			os.flush();
-		
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
-			
-			String output;
-			System.out.println("RestClient POST con " + URL+ "input = "+ input );
-			while ((output = br.readLine()) != null) {
-				resultado.append(output);
-			}
-			conn.disconnect();
+		OutputStream os = conn.getOutputStream();
+		os.write(input.getBytes());
+		os.flush();
 	
-		}catch (MalformedURLException e) {
-			resultado = new StringBuilder();
-			resultado.append("resuest_error");
-			e.printStackTrace();
-	  } catch (IOException e) {
-			resultado = new StringBuilder();  
-			resultado.append("erorr_client");
-			e.printStackTrace();
-	  }catch (UnauthorizedException e) {
-		  resultado = new StringBuilder();
-		  resultado.append("not_autothorized");
-		  e.printStackTrace();
-	  }catch (InternalServerErrorException e) {
-		  resultado = new StringBuilder();
-		  resultado.append("error_server");
-		  e.printStackTrace();
-	  }catch (NotFoundException e) {
-		  resultado = new StringBuilder();
-		  resultado.append("not_found_error");
-		  e.printStackTrace();
-	  }
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+		
+		String output;
+		System.out.println("RestClient POST con " + URL+ "input = "+ input );
+		while ((output = br.readLine()) != null) {
+			resultado.append(output);
+		}
+		conn.disconnect();
 		return resultado.toString();	
 	}
 	

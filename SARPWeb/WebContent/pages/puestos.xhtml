@@ -29,8 +29,6 @@
 			<h:inputText id="search" class="input-search formInput" value="#{puesto.searchString}"/>
 			<h:commandButton class="icon-search" image='../images/lupa.png' action="#{puesto.listarPuestosBusqueda('puestos')}" /> 
 		</h:form>
-		<a id='alta-puesto' class='icon icon-alta alta-button tipo-puesto' 
-			href='forms.xhtml?tipoForm=altaPuesto'>Crear Puesto</a>
 		<div class="page-frame">
 			<h:form id='form-asociacion'>
 				<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />

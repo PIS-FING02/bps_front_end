@@ -1,5 +1,7 @@
 package com.sarp.facade;
 
+import java.io.IOException;
+
 import com.sarp.facade.client.RestClient;
 
 public class PuestoFacade {
@@ -15,7 +17,8 @@ public class PuestoFacade {
 	
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doPost(URL_REST_FULL, input, userRol);	
+		String status = restClient.doPost(URL_REST_FULL, input, userRol);
+		return status;	
 	}
 
 	public String baja(String input, String userRol) {
@@ -33,7 +36,7 @@ public class PuestoFacade {
 		return  restClient.doGetList(URL_GET_ALL, userRol, user);
 	}
 
-	public String asignarTramite(String input, String userRol) {
+	public String asignarTramite(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_ASIG_TRAMITE, input, userRol);
 	}	

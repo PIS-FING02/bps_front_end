@@ -63,8 +63,3 @@ if(entidad == "display"){
 			document.getElementById('form-entidades:desasignar-display-sector-button').classList.remove('hidden');
 	}
 }
-
-
-
-
-
