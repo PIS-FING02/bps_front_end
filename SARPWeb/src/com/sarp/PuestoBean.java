@@ -209,7 +209,7 @@ public class PuestoBean {
 		} else {
 			JSONEstadoPuesto jestadoPuesto = modeler.toJSONEstadoPuesto(response);
 			
-			if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO") && jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO")){
+			if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO") || jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO")){
 				this.estado=jestadoPuesto.getPuesto().getEstado();
 				this.id = jestadoPuesto.getNumero().getId();
 				this.externalId = jestadoPuesto.getNumero().getExternalId();
