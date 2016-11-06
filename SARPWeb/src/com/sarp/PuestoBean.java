@@ -1,13 +1,18 @@
 package com.sarp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.el.ELContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONCantNumEnSector;
@@ -16,6 +21,7 @@ import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONPuestoTramite;
 import com.sarp.jsons.JSONSector;
+import com.sarp.jsons.JSONSectorPuesto;
 import com.sarp.jsons.JSONTramite;
 import com.sarp.utils.UtilService;
 
@@ -60,6 +66,9 @@ public class PuestoBean {
 
 	@ManagedProperty("#{login}")
 	public LoginBean login;
+	@ManagedProperty("#{sector}")
+	public SectorBean sector;
+	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	public SharedBean shared = SharedBean.getInstance();
@@ -85,6 +94,15 @@ public class PuestoBean {
 	public String alta() throws Exception {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, "", this.numero, "");
 		String status = c.altaPuesto(jpuesto.toString(), "RESPSEC");
+		
+		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.idSector, this.maquina);
+		String response = c.asignarPuestoSector(jsectorpuesto.toString(), "RESPSEC");
+		
+		if (status.contains("existe")) {
+			shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se creó correctamente.", 
+					"Ocurrió un error al crear el puesto.");
+		}
+		
 		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se creó correctamente.", 
 				"Ocurrió un error al crear el puesto.");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
@@ -93,7 +111,7 @@ public class PuestoBean {
 	public String baja(String maquina) throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(maquina, "id", 0, "CERRADO");
 		String status = c.bajaPuesto(jpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se eliminó correctamente.", 
+		shared.updateNotice(status, "El puesto con nombre de maquina "+ maquina + " se eliminó correctamente.", 
 				"Ocurrió un error al eliminar el puesto.");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
@@ -173,7 +191,7 @@ public class PuestoBean {
 		}
 	}
 	
-	public String asignarTramitePuesto() {
+	public String asignarTramitePuesto() throws Exception {
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
 		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al puesto con nombre de maquina " + this.maquina + ".", 
@@ -500,6 +518,14 @@ public String llamarNumeroDemanda(String internalId){
 
 	public void setJson_estado_tramites(String json_estado_tramites) {
 		this.json_estado_tramites = json_estado_tramites;
+	}
+	
+	public SectorBean getSectorBean() {
+		return this.sector;
+	}
+	
+	public void setSectorBean(SectorBean sector) {
+		this.sector = sector;
 	}
 	
 	public Integer getId() {

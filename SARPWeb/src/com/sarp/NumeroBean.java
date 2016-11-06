@@ -109,7 +109,7 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "RESPSEC"));	
+			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "RESPSEC", shared.getUser()));	
 			if (list == null)
 				shared.updateNoticeInfo("No se encontraron números pausados para el sector con identificador " + idSector + " .");
 			else if (list.isEmpty())
@@ -125,7 +125,7 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosAtrasadosSector(idSector, "RESPSEC"));	
+			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosAtrasadosSector(idSector, "RESPSEC", shared.getUser()));	
 			if (list == null)
 				shared.updateNoticeInfo("No se encontraron números atrasados para el sector con identificador " + idSector + " .");
 			else if (list.isEmpty())
@@ -142,7 +142,7 @@ public class NumeroBean {
                 getExternalContext().getRequestParameterMap();
 		String idSector = params.get("idSector");
 		if(idSector != null){
-			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "RESPSEC"));	
+			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "RESPSEC", shared.getUser()));	
 			if (list == null)
 				shared.updateNoticeInfo("No se encontraron números en espera para el sector con identificador " + idSector + " .");
 			else if (list.isEmpty())

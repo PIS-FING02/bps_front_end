@@ -96,6 +96,9 @@ function inputsNotEmpty() {
 	var i = 0;
 	while (res && i < inFormInputs.length){
 		res = inFormInputs[i].value != "";
+		if (inFormInputs[i].getAttribute('id') == 'form:puesto-selected-numero'){
+			res = !hasNotNumber(inFormInputs[i].value) && inFormInputs[i].value != "";
+		}
 		i++;
 	}
 	return res;
@@ -117,6 +120,11 @@ function hideAll() {
 // GET URL PARAMETER
 function getURLParameter(name) {
 	return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+}
+
+// CHECK IF INPUT HAS SOMETHING OTHER THAN NUMBERS
+function hasNotNumber(myString) {
+	return /\D/.test(myString);
 }
 
 // UPDATE INPUT VALUES 

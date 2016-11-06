@@ -1,6 +1,6 @@
 package com.sarp.facade;
 
-import java.util.List;
+import java.io.IOException;
 
 import com.sarp.facade.client.RestClient;
 
@@ -32,7 +32,7 @@ public class SectorFacade {
 		return  restClient.doGetList(URL_GET_ALL, userRol, user);
 	}
 
-	public String asignarTramiteSector(String input, String userRol) {
+	public String asignarTramiteSector(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_ASIGNAR_TRAMITE, input, userRol);
 	}
@@ -42,7 +42,7 @@ public class SectorFacade {
 		return  restClient.doDelete(URL_REST_DESASIGNAR_TRAMITE, input, userRol);
 	}
 
-	public String asignarPuestoSector(String input, String userRol) {
+	public String asignarPuestoSector(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_ASIGNAR_PUESTO, input, userRol);
 	}
@@ -52,7 +52,7 @@ public class SectorFacade {
 		return  restClient.doDelete(URL_REST_DESASIGNAR_PUESTO, input, userRol);
 	}
 
-	public String asignarDisplaySector(String input, String userRol) {
+	public String asignarDisplaySector(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_ASIGNAR_DISPLAY, input, userRol);
 	}
@@ -67,19 +67,19 @@ public class SectorFacade {
 		return  restClient.doGet(URL_LISTAR_NUMEROS_SECTOR.concat(idSector), userRol);
 	}
 	
-	public String listarNumerosPausadosSector(String idSector, String userRol) {
+	public String listarNumerosPausadosSector(String idSector, String userRol, String user) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_LISTAR_NUMEROS_PAUSADOS_SECTOR.concat(idSector), userRol);
+		return  restClient.doGetList(URL_LISTAR_NUMEROS_PAUSADOS_SECTOR.concat(idSector), userRol, user);
 	}
 
-	public String listarNumerosAtrasadosSector(String idSector, String userRol) {
+	public String listarNumerosAtrasadosSector(String idSector, String userRol, String user) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_LISTAR_NUMEROS_ATRASADOS_SECTOR.concat(idSector), userRol);
+		return  restClient.doGetList(URL_LISTAR_NUMEROS_ATRASADOS_SECTOR.concat(idSector), userRol, user);
 	}
 
-	public String listarNumerosEnEsperaSector(String idSector, String userRol) {
+	public String listarNumerosEnEsperaSector(String idSector, String userRol, String user) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_LISTAR_NUMEROS_ESPERA_SECTOR.concat(idSector), userRol);
+		return  restClient.doGetList(URL_LISTAR_NUMEROS_ESPERA_SECTOR.concat(idSector), userRol, user);
 	}
 
 	public String listarSectoresDesvio(String idSector, String userRol) {

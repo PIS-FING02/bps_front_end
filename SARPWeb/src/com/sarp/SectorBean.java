@@ -1,5 +1,6 @@
 package com.sarp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,7 +42,7 @@ public class SectorBean {
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	public SharedBean shared = SharedBean.getInstance();
-	
+
 	public List<JSONSector> listar() throws Exception {
 		if (shared.getRolesMap().get("ADMIN")) {
 			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("ADMIN", shared.getUser()));
@@ -49,7 +50,21 @@ public class SectorBean {
 			if (list.isEmpty())
 				shared.updateNoticeInfo("No se enontraron sectores en el sistema.");
 			return shared.getSectoresList();
+
 		} else if (shared.getRolesMap().get("RESPSEC")) {
+				List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("RESPSEC", shared.getUser()));	
+			shared.setSectoresList(list);
+			if (list.isEmpty())
+				shared.updateNoticeInfo("No tienes sectores asignados.");
+			return shared.getSectoresList();
+		} else {
+			shared.updateNoticeInfo("No tienes permisos suficientes.");
+			return null;
+		}
+	}
+
+	public List<JSONSector> listarDeUsuario() throws Exception {
+		if (shared.getRolesMap().get("RESPSEC")) {
 			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("RESPSEC", shared.getUser()));	
 			shared.setSectoresList(list);
 			if (list.isEmpty())
@@ -87,7 +102,7 @@ public class SectorBean {
 		return "/pages/admin.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
-	public String asignarTramiteSector() {
+	public String asignarTramiteSector() throws Exception {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
 		String status = this.c.asignarTramiteSector(jsectortramite.toString(), "RESPSEC");
 		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignó correctamente al sector con codigo " + this.id + ".", 
@@ -95,7 +110,7 @@ public class SectorBean {
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
-	public String asignarDisplaySector() {
+	public String asignarDisplaySector() throws Exception {
 		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id, this.displayId);
 		String status = this.c.asignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
 		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se asignó correctamente al sector con codigo " + this.id + ".", 
@@ -103,9 +118,9 @@ public class SectorBean {
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 
-	public String asignarPuestoSector() {
-		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
-		String status =this.c.asignarPuestoSector( jsectorpuesto.toString(), "RESPSEC");
+	public String asignarPuestoSector() throws Exception {
+		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id, this.nombreMaquina);
+		String status = this.c.asignarPuestoSector(jsectorpuesto.toString(), "RESPSEC");
 		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.nombreMaquina + " se asignó correctamente al sector con codigo " + this.id + ".", 
 				"Ocurrió un error al asignar el puesto con nombre de maquina "+ this.nombreMaquina + " al sector con codigo " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";

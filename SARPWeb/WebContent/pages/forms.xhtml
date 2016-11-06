@@ -23,7 +23,7 @@
 				<h:commandButton id='title-tramites' class="page-title hidden" value='Tramites' action="#{shared.redirectWithParam('tramites', 'busqueda=false')}"/>
 				<h:commandButton id='title-displays' class="page-title hidden" value='Displays' action="#{shared.redirect('displays')}"/>
 				<h:commandButton id='title-puestos' class="page-title hidden" value='Puestos' action="#{shared.redirectWithParam('puestos', 'busqueda=false')}"/>
-				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}"/> 
 			</h:form>
 		</div> 
 		<div class="page-frame">
@@ -45,8 +45,8 @@
 				</div> 
 				<!-- SECTOR -->
 				<div id="id-sector" class="form-line hidden">
-					<label for="id-sector">Identificador:</label>
-					<h:inputText id='sector-selected-id' class="formInput"/>
+					<label id='id-label' for="id-sector">Identificador:</label>
+					<h:inputText id='sector-selected-id' class="formInput" value="#{puesto.idSector}"/>
 				</div>
 				<div id="nombre-sector" class="form-line hidden">
 					<label for="nombre-sector">Nombre:</label>
@@ -84,9 +84,9 @@
 					<h:commandButton id='alta-tramite-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{tramite.alta}"/> 
 					<h:commandButton id='mod-tramite-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{tramite.modificar}"/> 
 					<h:commandButton id='alta-display-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{display.alta}"/> 
-					<h:commandButton id='alta-puesto-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta}"/> 
+					<h:commandButton id='alta-puesto-button' class="deactivated action-button action-button-entity hidden" value="Aceptar" action="#{puesto.alta()}"/> 
 					<h:commandButton id='mod-puesto-button' class="action-button action-button-entity hidden" value="Aceptar" action="#{puesto.modificar}"/> 
-					<a id="action-button cancel-button" class="action-button cancel-button"  href=''>Cancelar</a>
+					<a id="cancel-button" class="action-button cancel-button"  href=''>Cancelar</a>
 				</div>
 			</h:form>
 		</div>

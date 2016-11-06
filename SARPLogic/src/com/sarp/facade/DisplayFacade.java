@@ -8,7 +8,7 @@ public class DisplayFacade {
 	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/displays";
 	public static final String URL_DISPLAYS_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarDisplaysSector";
 	
-	public String alta(String input, String userRol) {
+	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
 		return  restClient.doPost(URL_REST_FULL, input, userRol);
 	}

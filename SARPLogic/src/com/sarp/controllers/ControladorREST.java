@@ -4,7 +4,7 @@ import com.sarp.facade.PuestoFacade;
 import com.sarp.facade.SectorFacade;
 import com.sarp.facade.TramiteFacade;
 
-import java.util.List;
+import java.io.IOException;
 
 import com.sarp.facade.AttentionsFacade;
 import com.sarp.facade.DisplayFacade;
@@ -58,7 +58,7 @@ public class ControladorREST {
 		return this.puestoFacade.mod(input, userRol);
 	}
 
-	public String asignarTramite(String input, String userRol) {
+	public String asignarTramite(String input, String userRol) throws Exception {
 		return this.puestoFacade.asignarTramite(input, userRol);
 	}
 	
@@ -146,7 +146,7 @@ public class ControladorREST {
 		return this.attentionsFacade.cerrar(input, userRol);
 	}
 	
-	public String asignarTramiteSector(String input, String userRol)  {
+	public String asignarTramiteSector(String input, String userRol) throws Exception  {
 		return this.sectorFacade.asignarTramiteSector(input, userRol);
 	}
 	
@@ -154,7 +154,7 @@ public class ControladorREST {
 		return this.sectorFacade.desasignarTramiteSector(input, userRol);
 	}
 	
-	public String asignarPuestoSector(String input, String userRol) {
+	public String asignarPuestoSector(String input, String userRol) throws Exception {
 		return this.sectorFacade.asignarPuestoSector(input, userRol);
 	}
 	
@@ -162,7 +162,7 @@ public class ControladorREST {
 		return this.sectorFacade.desasignarPuestoSector(input, userRol);
 	}
 
-	public String asignarDisplayoSector(String input, String userRol) {
+	public String asignarDisplayoSector(String input, String userRol) throws Exception {
 		return this.sectorFacade.asignarDisplaySector(input,userRol);	
 	}
 	
@@ -222,16 +222,16 @@ public class ControladorREST {
 		return this.tramiteFacade.tramitesSector(idSector,userRol);
 	}
 
-	public String listarNumerosPausadosSector(String idSector, String userRol) {
-		return this.sectorFacade.listarNumerosPausadosSector(idSector,userRol);
+	public String listarNumerosPausadosSector(String idSector, String userRol, String user) {
+		return this.sectorFacade.listarNumerosPausadosSector(idSector, userRol, user);
 	}
 	
-	public String listarNumerosAtrasadosSector(String idSector, String userRol) {
-		return this.sectorFacade.listarNumerosAtrasadosSector(idSector,userRol);
+	public String listarNumerosAtrasadosSector(String idSector, String userRol, String user) {
+		return this.sectorFacade.listarNumerosAtrasadosSector(idSector, userRol, user);
 	}
 
-	public String listarNumerosEnEsperaSector(String idSector, String userRol) {
-		return this.sectorFacade.listarNumerosEnEsperaSector(idSector,userRol);
+	public String listarNumerosEnEsperaSector(String idSector, String userRol, String user) {
+		return this.sectorFacade.listarNumerosEnEsperaSector(idSector, userRol, user);
 	}
 
 	public String rellamarNumero(String maquina, String userRol) {

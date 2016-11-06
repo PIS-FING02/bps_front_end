@@ -38,9 +38,16 @@ public class DisplayBean {
 	}
 
 	public List<JSONDisplay> listar() throws Exception {
-		List<JSONDisplay> list =  modeler.toJSONDisplays(c.listarDisplays("ADMIN"));
-		if (list.isEmpty())
-			shared.updateNoticeInfo("No se encontraron displays en el sistema.");
+		String response = c.listarDisplays("ADMIN");
+		List<JSONDisplay> list;
+		if (response.startsWith("ERROR")) {
+			list = null;
+			shared.updateNotice("ERROR", "", response.substring(7));
+		} else {
+			list =  modeler.toJSONDisplays(response);
+			if (list.isEmpty())
+				shared.updateNoticeInfo("No se encontraron displays en el sistema.");
+		}
 		return list;
 	}
 	
