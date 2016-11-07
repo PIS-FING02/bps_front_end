@@ -34,14 +34,14 @@ body{
     float: left;
     margin: 0 10px 0 0;
     line-height: 35px;
-    font-size: 20px;
+    font-size: 1.3vw;
     font-weight: bold;
     color: #1d304d;
     text-decoration: underline;
-    width: initial;
+    width: auto;
     border: none;
-    height: initial;
-    background: initial;
+    height: auto;
+    background: none;
     cursor: pointer;
 }
 
@@ -52,7 +52,7 @@ body{
 
 .page-title-last {
 	text-decoration: none !important;
-	cursor: initial;
+	cursor: auto;
 }
 
 .arrow {
@@ -164,7 +164,7 @@ a, a:active, a:target {
 	cursor: pointer;
     margin-left: 10px;
     margin-top: 10px;
-    width: initial;
+    width: auto;
 }
 
 .secondary-button:hover {
@@ -244,7 +244,7 @@ label {
 input { 
     margin-left: 0;
     float: right;
-    width: calc(100% - 158px);
+    width: calc(100% - 180px);
     height: 20px;
     padding-left: 5px;
     border: 1px solid #a9a9a9;
@@ -260,7 +260,7 @@ input {
 	background: transparent;
     border: none;
     padding-left: 0;
-    width: calc(100% - 153px);
+    width: calc(100% - 173px);
 }
 
 .sub-title {
@@ -274,7 +274,7 @@ input {
 }	
 
 .action-button {
-	width: initial !important;
+	width: auto !important;
 	background-color:#508110; 
 	color: #fff;
 	border: none;	
@@ -297,7 +297,7 @@ input {
 }
 
 .combo-box-recepcion {
-	margin-right: 147px;
+	margin-right: 117px;
 }
 
 .action-button:hover {
