@@ -56,9 +56,10 @@ public class JSONModeler {
 		String usuario = ((json.get("usuarioId") == null) ? null : json.get("usuarioId").toString());
 		Integer numero = ((json.get("numeroPuesto") == null) ? null : Integer.parseInt(json.get("numeroPuesto").toString()));
 		String estado = ((json.get("estado") == null) ? null : json.get("estado").toString());
-		
+		List<JSONSector> sectores = (json.get("sectores")!= null)? toJSONSectores(json.get("sectores").toString()) : null;
+		List<JSONTramite> tramites = (json.get("tramites")!= null)? toJSONTramites(json.get("tramites").toString()) : null;
 		usuario = ((json.get("usuarioId") == null) ? null : json.get("usuarioId").toString());
-		JSONPuesto puesto = new JSONPuesto(json.get("nombreMaquina").toString(), usuario, numero, estado);
+		JSONPuesto puesto = new JSONPuesto(json.get("nombreMaquina").toString(), usuario, numero, estado,sectores,tramites);
 		return puesto;
 	}
 	

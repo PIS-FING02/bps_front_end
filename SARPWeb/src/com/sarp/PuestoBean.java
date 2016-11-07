@@ -31,6 +31,7 @@ public class PuestoBean {
 	private String estado;
 	private String roles;
 	private List<JSONTramite> tramites;
+	private List<JSONSector> sectores;
 	private String codigo;
 	private String nombre;
 	
@@ -208,15 +209,19 @@ public class PuestoBean {
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 		} else {
 			JSONEstadoPuesto jestadoPuesto = modeler.toJSONEstadoPuesto(response);
+			this.estado=jestadoPuesto.getPuesto().getEstado();
+			this.sectores = jestadoPuesto.getPuesto().getSectores();
+			this.tramites = jestadoPuesto.getPuesto().getTramites();
 			
 			if(jestadoPuesto.getPuesto().getEstado().equals("LLAMANDO") || jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO")){
-				this.estado=jestadoPuesto.getPuesto().getEstado();
+				
 				this.id = jestadoPuesto.getNumero().getId();
 				this.externalId = jestadoPuesto.getNumero().getExternalId();
 				this.hora= jestadoPuesto.getNumero().getHora();
 				this.estadoNumero =  jestadoPuesto.getNumero().getEstado();
 				this.prioridad = jestadoPuesto.getNumero().getPrioridad();
 				this.idSector = jestadoPuesto.getNumero().getIdSector();
+
 			}
 			
 			if(jestadoPuesto.getPuesto().getEstado().equals("ATENDIENDO"))
@@ -767,6 +772,14 @@ public String llamarNumeroDemanda(String internalId){
 			return   modeler.toJSONCantNumEnSectores(c.obtenerNumEnEspera(this.maquina,"OPERADOR"));
 		else
 			return   modeler.toJSONCantNumEnSectores(c.obtenerNumEnEspera(this.maquina,"OPERADORSR"));
+	}
+
+	public List<JSONSector> getSectores() {
+		return sectores;
+	}
+
+	public void setSectores(List<JSONSector> sectores) {
+		this.sectores = sectores;
 	}
 
 }

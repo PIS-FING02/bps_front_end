@@ -31,17 +31,14 @@
 					<div class="top-line"> Trámites: </div>
 				</div>
 				<div class="right-frame">
-					<div id="nros-espera" class="top-line"> Números en espera: </div>
 					<h:form id='form-cerrar'>
-											<div class="right-frame">
+							<h:commandButton id='cerrar-puesto-button' class="secondary-button estado-puesto-button" value="Cerrar Puesto" action="#{puesto.cerrar}"/>
 							<div id="nros-espera" class="top-line"> Números en espera </div>
 							<ui:repeat id='repeat-' value='#{puesto.getNumEnEspera()}' var='n'>
 								<div class='element-list display-element'>
 									<h:outputText class='puesto-element' value='#{n.nombre} : #{n.cantNumEspera}'/>
 								</div>
 						</ui:repeat>
-						</div>
-						<h:commandButton id='cerrar-puesto-button' class="secondary-button estado-puesto-button" value="Cerrar Puesto" action="#{puesto.cerrar}"/>
 					</h:form>
 				</div>
 			</div>
