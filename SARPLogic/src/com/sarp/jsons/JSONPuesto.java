@@ -1,5 +1,7 @@
 package com.sarp.jsons;
 
+import java.util.List;
+
 //import java.util.List;
 
 public class JSONPuesto {
@@ -8,19 +10,29 @@ public class JSONPuesto {
 	String usuarioId;
 	Integer numeroPuesto;
 	String estado;
-	//List<JSONSector> sectores;
-	//List<JSONTramite> tramites;
+	List<JSONSector> sectores;
+	List<JSONTramite> tramites;
 	//JSONNumero numeroAsignado;
 	
-	/*public List<JSONTramite> getTramites() {
+	public List<JSONTramite> getTramites() {
 		return tramites;
 	}
 	public void setTramites(List<JSONTramite> tramites) {
 		this.tramites = tramites;
-	}*/
+	}
 	
 	public JSONPuesto(){}
 	
+	
+	public JSONPuesto(String nombreMaquina, String usuarioId, Integer numeroPuesto, String estado,
+			List<JSONSector> sectores, List<JSONTramite> tramites) {
+		this.nombreMaquina = nombreMaquina;
+		this.usuarioId = usuarioId;
+		this.numeroPuesto = numeroPuesto;
+		this.estado = estado;
+		this.sectores = sectores;
+		this.tramites = tramites;
+	}
 	public JSONPuesto(String nombreMaquina, String usuarioId, Integer numeroPuesto, String estado){
 		 this.nombreMaquina = nombreMaquina;
 		 this.usuarioId = usuarioId;
@@ -47,13 +59,14 @@ public class JSONPuesto {
 	public void setNumeroPuesto(Integer numeroPuesto) {
 		this.numeroPuesto = numeroPuesto;
 	}
-	/*public List<JSONSector> getSectores() {
+	public List<JSONSector> getSectores() {
 		return sectores;
 	}
 	public void setSectores(List<JSONSector> sectores) {
 		this.sectores = sectores;
 	}
-	public JSONNumero getNumeroAsignado() {
+	
+	/*public JSONNumero getNumeroAsignado() {
 		return numeroAsignado;
 	}
 	public void setNumeroAsignado(JSONNumero numeroAsignado) {

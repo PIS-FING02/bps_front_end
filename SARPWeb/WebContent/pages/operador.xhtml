@@ -24,7 +24,6 @@
 			<div class="top-frame">
 					<c:set value="#{loginBean.username}" target="#{puesto}" property="usuarioId" />
 					<c:set value="#{loginBean.getRoles()}" target="#{puesto}" property="roles" />
-					<c:set value="#{puesto.getOperadorTest()}" target="#{puesto}" property="maquina" />
 					<div class="top-line"> Puesto: #{puesto.maquina} </div>
 					<div class="top-line"> Sectores: </div>
 					<div class="top-line"> Trámites: </div>

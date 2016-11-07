@@ -12,10 +12,22 @@
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/login.css"/>
 	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function(){
 		if(document.getElementsByClassName('user-time-container')[0].childNodes[1].innerHTML != "Bienvenido"){
 			window.location="menu.xhtml"
-			console.log("Putitas");
 		}
+
+		try {
+			ax= new ActiveXObject("WScript.Network");
+			document.getElementById('form-login:nombre_maquina').value = ax.ComputerName
+		}
+		catch(err) {
+			document.getElementById('form-login:nombre_maquina').value = "maq1"
+		}s
+
+		}, false);
+		
+		
       </script>
 </head>
 
@@ -23,9 +35,10 @@
 	<div id="login"> 
 		<div class="form-container"> 
 			<div class="sub-title">Inicio de Sesión</div>
-			<h:form>
+			<h:form id ="form-login">
 				<div class="login-form">
 					<div class="form-line">
+						<h:inputHidden id="nombre_maquina" value="#{puesto.maquina}"/> 
 						<h:outputLabel for="uname" value="Nombre de Usuario: " />
 						<h:inputText id="uname" class="formInput" value="#{loginBean.username}"/>
 					</div>
