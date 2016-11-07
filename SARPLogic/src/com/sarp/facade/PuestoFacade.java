@@ -8,11 +8,12 @@ public class PuestoFacade {
 
 	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/puesto";
 	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/listarPuestos";
-	public static final String URL_GET_ALL_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarPuestos";
+	public static final String URL_GET_ALL_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarPuestosSector";
 	public static final String URL_ASIG_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/asignarTramitePuesto";
 	public static final String URL_TRAMITES_ASIGNABLES = "http://52.52.100.160:8080/SARPService/adminService/listarTramitesPosibles?nombreMaquina=";
 	public static final String URL_DESASIG_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/desasignarTramitePuesto";
 	public static final String URL_PUESTOS_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarPuestosSector";
+	public static final String URL_GET_METRICAS_PUESTOS = "http://52.52.100.160:8080/SARPService/metricsService/listarMetricasPuesto";
 
 	
 	public String alta(String input, String userRol) throws Exception {
@@ -61,4 +62,13 @@ public class PuestoFacade {
 		return  restClient.doDelete(URL_DESASIG_TRAMITE, input, userRol);
 	}	
 
+	public String listarMetricasPuestos(String userRol,String user){
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGetList(URL_GET_METRICAS_PUESTOS, userRol, user);
+	}
+
+	public String listarMetricasPuesto(String input, String userRol,String user){
+		RestClient restClient = RestClient.getInstance();
+		return  restClient.doGetList(URL_GET_METRICAS_PUESTOS + "?nombreMaquina=" + input, userRol, user);
+	}
 }

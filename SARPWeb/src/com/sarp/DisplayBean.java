@@ -24,14 +24,14 @@ public class DisplayBean {
 		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		System.out.println(jdisplay.toString());
 		String status= c.altaDisplay(jdisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador "+ this.id + " se creÃ³ correctamente.");
+		shared.updateNotice(status, "El display con identificador "+ this.id + " se creó correctamente.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 	
 	public String baja(String id) {
 		JSONDisplay jdisplay = new JSONDisplay(id);
 		String status = c.bajaDisplay(jdisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador " + id + " se eliminÃ³ correctamente.");
+		shared.updateNotice(status, "El display con identificador " + id + " se eliminó correctamente.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 
@@ -68,7 +68,7 @@ public class DisplayBean {
 		else {
 			List<JSONDisplay> list = modeler.toJSONDisplays(c.listarDisplaysSector(sectorId, "RESPSEC"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningun display asignado.");
+				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningún display asignado.");
 			return list;
 		}
 	}

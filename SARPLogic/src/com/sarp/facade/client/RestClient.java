@@ -2,6 +2,7 @@ package com.sarp.facade.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -55,6 +56,7 @@ public class RestClient {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Accept-Charset", "UTF-8");
 			conn.setRequestProperty("user-rol",userRol);
 			
 			if (conn.getResponseCode() != 200) {
@@ -100,14 +102,15 @@ public class RestClient {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Accept-Charset", "UTF-8");
 			conn.setRequestProperty("user-rol", userRol);
 			conn.setRequestProperty("user", user);
 			
 			if (conn.getResponseCode() != 200) {
 				resultado.append("Error");
 			}
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-				(conn.getInputStream())));
+			InputStream instream = conn.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(instream, "UTF-8"));
 	
 			String output;
 			System.out.println("RestClient GET con " + URL );
@@ -146,14 +149,15 @@ public class RestClient {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Accept-Charset", "UTF-8");
 			conn.setRequestProperty("user-rol", userRol);
 			conn.setRequestProperty("hparam", headerParam);
 			
 			if (conn.getResponseCode() != 200) {
 				resultado.append("Error");
 			}
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-				(conn.getInputStream())));
+			InputStream instream = conn.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(instream, "UTF-8"));
 	
 			String output;
 			System.out.println("RestClient GET con " + URL );
@@ -193,6 +197,7 @@ public class RestClient {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Accept-Charset", "UTF-8");
 			conn.setRequestProperty("user-rol", userRol);
 			conn.setRequestProperty("idNumero", headerParam);
 			conn.setRequestProperty("idPuesto", headerParam1);
@@ -200,8 +205,8 @@ public class RestClient {
 			if (conn.getResponseCode() != 200) {
 				resultado.append("Error");
 			}
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-				(conn.getInputStream())));
+			InputStream instream = conn.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(instream, "UTF-8"));
 	
 			String output;
 			System.out.println("RestClient GET con " + URL );

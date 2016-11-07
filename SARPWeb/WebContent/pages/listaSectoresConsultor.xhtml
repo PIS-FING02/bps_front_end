@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+	<title>Pantalla Consultor</title>
+
+	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
+</head> 
+
+<body> 
+	<div id='entidad' class="page-container"> 
+		<div class="page-title-container">
+			<h:form id='form-links'>
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
+				<div class="page-title arrow"> ➨ </div>
+				<h:commandButton class="page-title" value='Consultor' action="#{shared.redirect('consultor')}" />
+				<div class="page-title page-title-last"> ➨  Sectores </div> 
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" />
+			</h:form>
+		</div> 
+		<h:form id="search-form">
+			<h:inputText id="search" class="input-search formInput" value="#{sector.searchString}"/>
+			<h:commandButton class="icon-search" image='../images/lupa.png' action="#{sector.listarSectoresBusqueda('listaSectoresConsultor')}" /> 
+		</h:form>
+		<div class="page-frame">
+			<h:form id='form-busqueda'>
+				<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />
+			</h:form>	
+			<h:form id='form-listado-sectores' rendered="#{param['busqueda'] eq 'false'}">
+				<a class='page-title list-title' href="listaSectoresConsultor.xhtml?busqueda=false">Sectores</a>
+				<div id='list-sector-container' class='entity-list-container'>
+					<ui:repeat id='repeat-puestos' value='#{sector.listar()}' var='sectores'>
+						<div idSector='#{sectores.sectorId}' nombre='#{sectores.nombre}' ruta='#{sectores.ruta}' class='hidden'/>
+						<div class='list-entity puesto-element'>
+							<h:outputText class='puesto-element' value='#{sectores.nombre} '/>
+							<div class='icon icon-container'>Métricas</div>
+							<div id='asignar-container' class='asignar-container asignar-container-numeros hidden'>
+								<h:form>
+									<h:link value="Puestos" class="icon" outcome="listaPuestosMetricas">
+										<f:param name="id" value="#{sectores.sectorId}"/>
+										<f:param name="busqueda" value="false" />
+									</h:link>
+									<h:link value="Números" class="icon" outcome="listaNumerosMetricas">
+										<f:param name="id" value="#{sectores.sectorId}"/>
+										<f:param name="busqueda" value="false" />
+									</h:link>
+								</h:form>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+			</h:form>
+			<h:form id='form-listado-sectores-busqueda' rendered="#{param['busqueda'] eq 'true'}">
+				<a class='page-title list-title' href="listaSectoresGestion.xhtml?busqueda=false">Sectores</a>
+				<div id='list-sector-container' class='entity-list-container'>
+					<ui:repeat id='repeat-puestos' value='#{sector.listarResultadoBusqueda()}' var='sectores'>
+						<div idSector='#{sectores.sectorId}' nombre='#{sectores.nombre}' ruta='#{sectores.ruta}' class='hidden'/>
+						<div class='list-entity puesto-element'>
+							<h:outputText class='element-list puesto-element' value='#{sectores.nombre} '/>
+							<div class='icon icon-container'>Listar</div>
+							<div id='asignar-container' class='asignar-container hidden'>
+								<h:form>
+									<h:link value="Puestos" class="icon" outcome="listaPuestosMetricas">
+										<f:param name="id" value="#{sectores.sectorId}"/>
+										<f:param name="busqueda" value="false" />
+									</h:link>
+									<h:link value="Números" class="icon" outcome="listaNumerosMetricas">
+										<f:param name="id" value="#{sectores.sectorId}"/>
+										<f:param name="busqueda" value="false" />
+									</h:link>
+								</h:form>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+			</h:form>
+		</div>
+	</div>
+	<ui:include src="notice.xhtml"/>
+<script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/entidades.js"></script>
+<script type="text/javascript" src="../scripts/lists.js"></script>
+</body> 
+</html>

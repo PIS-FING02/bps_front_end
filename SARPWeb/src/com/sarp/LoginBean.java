@@ -129,7 +129,7 @@ public class LoginBean {
         if(session != null) {
         	setUsernameHeader("Bienvenido");
         	session.invalidate();
-        	System.out.println("Se cerro la sesion correctamente");        	
+        	System.out.println("Se cerró la sesión correctamente");        	
         }
         this.loggedIn = false;
         return "/pages/login.xhtml?faces-redirect=true";

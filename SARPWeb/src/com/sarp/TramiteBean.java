@@ -33,21 +33,21 @@ public class TramiteBean {
 	public String alta() throws Exception{
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.altaTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El tramite con codigo " + this.codigo + " y nombre "+ this.nombre + " se creÃ³ correctamente.");
+		shared.updateNotice(status, "El trámite con código " + this.codigo + " y nombre "+ this.nombre + " se creó correctamente.");
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String baja(String codigo) {
 		JSONTramite jtramite = new JSONTramite(codigo, "nombre");
 		String status = c.bajaTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El tramite con codigo " + codigo + " se eliminÃ³ correctamente.");
+		shared.updateNotice(status, "El trámite con código " + codigo + " se eliminó correctamente.");
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String modificar(){
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.modTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El tramite con nombre "+ this.nombre + " se modificÃ³ correctamente.");
+		shared.updateNotice(status, "El trámite con nombre "+ this.nombre + " se modificó correctamente.");
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -108,7 +108,7 @@ public class TramiteBean {
 		else {
 			List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesSector(idSector, "RESPSEC"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("El sector con identificador " + idSector + " no tiene tramites asignados.");
+				shared.updateNoticeInfo("El sector con identificador " + idSector + " no tiene trámites asignados.");
 			return list;
 		}
 	}
@@ -120,7 +120,7 @@ public class TramiteBean {
 		else {
 			List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesPuesto(idPuesto, "RESPSEC"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("El puesto con nombre de maquina " + idPuesto + " no tiene tramites asignados.");
+				shared.updateNoticeInfo("El puesto con nombre de máquina " + idPuesto + " no tiene trámites asignados.");
 			return list;
 		}
 	}
@@ -129,7 +129,7 @@ public class TramiteBean {
 		if (shared.getRolesMap().get("RECEPCION")) {
 			List<JSONTramiteRecepcion> list = modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "RECEPCION"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene tramites habilitados para hacer entrega de nÃºmeros");
+				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene trámites habilitados para hacer entrega de números");
 			return list;
 		} else {
 			shared.updateNoticeInfo("No tienes permisos suficientes.");

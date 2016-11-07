@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+	<title>Lista Puestos</title>
+
+	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
+</head> 
+
+<body> 
+	<div id='entidad' class="page-container"> 
+		<div class="page-title-container">
+			<h:form id='form-links'>
+				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
+				<div class="page-title arrow"> ➨ </div>
+				<h:commandButton class="page-title" value='Consultor' action="#{shared.redirect('consultor')}" />
+				<div class="page-title arrow"> ➨ </div>
+				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirect('listaSectoresConsultor')}" />
+				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
+			</h:form>
+		</div> 
+		<h:form id="search-form">
+			<h:inputText id="search" class="input-search formInput" value="#{puesto.searchString}"/>
+			<h:commandButton class="icon-search" image='../images/lupa.png' action="#{puesto.listarPuestosBusqueda('listaPuestosMetricas',param['id'])}" /> 
+		</h:form>
+		<div class="page-frame">
+			<h:form id='form-asociacion'>
+				<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />
+				<h:outputText id='id-sector' class='hidden' value="#{param['id']}" />
+			</h:form>	
+			<!--  PUESTO -->
+			<h:form id='form-listado-asignar' rendered="#{(param['busqueda'] eq 'false') }">
+				<div id='list-tramites-container' class='page-list'>
+					<h2 class='page-title list-title'>Puestos</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-puestos' value="#{puesto.listarParaSector(param['id'])}" var='p'>
+							<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
+							<h:link value="#{p.nombreMaquina}" class="element-list element-list-link puesto-element" outcome="metricasPuesto?nombreMaquina=#{p.nombreMaquina}" /> 
+						</ui:repeat>
+					</div>
+				</div>
+				<h:commandButton class='action-button' value="Todos los Puestos" action="#{puesto.metricasPuestos()}"/> 
+			</h:form>
+			<h:form id='form-listado-asig-busqueda' rendered="#{(param['busqueda'] eq 'true')}">
+				<div id='list-tramites-container' class='page-list'>
+					<h2 class='page-title list-title'>Puestos</h2>
+					<div class='list-container'>
+						<ui:repeat id='repeat-puestos' value="#{puesto.getPuestosListBusqueda()}" var='p'>
+							<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
+							<h:link value="#{p.nombreMaquina}" class="element-list element-list-link puesto-element" outcome="metricasPuesto?nombreMaquina=#{p.nombreMaquina}" /> 
+						</ui:repeat>
+					</div>
+				</div>
+				<h:commandButton class='action-button' value="Todos los Puestos" action="#{metricas.metricasPuestos()}"/> 
+			</h:form>
+		</div>
+	</div>
+	<ui:include src="notice.xhtml"/>
+<script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/entidades.js"></script>
+<script type="text/javascript" src="../scripts/lists.js"></script>
+</body> 
+</html>
