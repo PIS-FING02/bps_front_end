@@ -76,7 +76,7 @@ public class SharedBean {
 	
 	public void updateNotice(String status, String msgPositive ) {
 		if (status.equals("OK")){
-			setNotice_title("Esto es un mensaje de ConfirmaciÃ³n.");
+			setNotice_title("Esto es un mensaje de Confirmación.");
 			setNotice_message(msgPositive);
 			setNotice("positive");
 			setIcon("check");
@@ -89,7 +89,7 @@ public class SharedBean {
 	}
 	
 	public void updateNoticeInfo(String msgInfo) {
-		setNotice_title("Este es un mensaje de Informacion.");
+		setNotice_title("Este es un mensaje de Información.");
 		setNotice_message(msgInfo);
 		setNotice("info");
 		setIcon("info");

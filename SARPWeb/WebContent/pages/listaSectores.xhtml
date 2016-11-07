@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Pantalla Administrador</title>
-
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
 </head> 
@@ -30,7 +29,7 @@
 		</h:form>
 		<div class="page-frame">
 			<h:form id='form-busqueda'>
-				<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />
+				<h:outputText id='busqueda' class='hidden'  value="#{param['busqueda']}" />
 			</h:form>	
 			<h:form id='form-listado-sectores' rendered="#{param['busqueda'] eq 'false'}">
 				<a class='page-title list-title' href="listaSectores.xhtml?busqueda=false">Sectores</a>

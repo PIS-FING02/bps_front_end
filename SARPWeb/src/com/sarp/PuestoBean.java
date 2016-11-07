@@ -61,7 +61,7 @@ public class PuestoBean {
 	private List<JSONPuesto> puestosListBusquedaAsignar = new ArrayList<JSONPuesto>();
 	private List<JSONPuesto> puestosListDesasignar;
 	private List<JSONPuesto> puestosListBusquedaDesasignar = new ArrayList<JSONPuesto>();
-
+	
 	@ManagedProperty("#{login}")
 	public LoginBean login;
 	@ManagedProperty("#{sector}")
@@ -97,9 +97,9 @@ public class PuestoBean {
 		String response = c.asignarPuestoSector(jsectorpuesto.toString(), "RESPSEC");
 		
 		if (status.contains("existe")) {
-			shared.updateNotice(response, "El puesto con nombre de maquina "+ this.maquina + " ya se econtraba en el sistema, se asignÃ³ correctamente al sector con codigo " + this.idSector + ".");
+			shared.updateNotice(response, "El puesto con nombre de máquina "+ this.maquina + " ya se encontraba en el sistema, se asignó correctamente al sector con código " + this.idSector + ".");
 		} else if (status.equals("OK")) {
-			shared.updateNotice(response, "El puesto con nombre de maquina "+ this.maquina + " fue creado y se asignÃ³ correctamente al sector con codigo " + this.idSector + ".");
+			shared.updateNotice(response, "El puesto con nombre de máquina "+ this.maquina + " fue creado y se asignó correctamente al sector con código " + this.idSector + ".");
 		} else {
 			shared.updateNotice(status, "");
 		}
@@ -109,7 +109,7 @@ public class PuestoBean {
 	public String baja(String maquina) throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(maquina, "id", 0, "CERRADO");
 		String status = c.bajaPuesto(jpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de maquina "+ maquina + " se eliminÃ³ correctamente.");
+		shared.updateNotice(status, "El puesto con nombre de máquina "+ maquina + " se eliminó correctamente.");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -118,7 +118,7 @@ public class PuestoBean {
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, numero, this.estadoComboBox);
 		System.out.println(jpuesto);
 		String status = c.modPuesto(jpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificÃ³ correctamente.");
+		shared.updateNotice(status, "El puesto con nombre de máquina "+ this.maquina + " se modificó correctamente.");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -130,7 +130,7 @@ public class PuestoBean {
 		if (shared.getRolesMap().get("RESPSEC")){	
 			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC",shared.getUser()));
 			if (this.puestosList.isEmpty())
-				shared.updateNoticeInfo("No se encontraron puestos para el sector/es donde tienes autorizaciÃ³n.");
+				shared.updateNoticeInfo("No se encontraron puestos para el sector/es donde tienes autorización.");
 			return this.puestosList;
 		} else {
 			return null;
@@ -144,7 +144,12 @@ public class PuestoBean {
 			if (this.puestosListAsignar.isEmpty())
 				shared.updateNoticeInfo("No se encontraron puestos disponibles en el sistema.");
 			return this.puestosListAsignar;
-		} else {
+		} else if (shared.getRolesMap().get("CONSULTOR")) {
+			this.puestosListAsignar = modeler.toJSONPuestos(c.listarPuestosParaSector(input, "CONSULTOR", shared.getUser()));
+			if (this.puestosListAsignar.isEmpty())
+				shared.updateNoticeInfo("No se encontraron puestos disponibles en el sistema.");
+			return this.puestosListAsignar;
+		}else{
 			return null;
 		}
 	}
@@ -153,7 +158,7 @@ public class PuestoBean {
 		shared.clean();
 		List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesSector(this.maquina, "RESPSEC"));
 		if (list.isEmpty())
-			shared.updateNoticeInfo("El puesto con nombre de maquina " + this.maquina + " no tiene ningun tramite asignado.");
+			shared.updateNoticeInfo("El puesto con nombre de máquina " + this.maquina + " no tiene ningún trámite asignado.");
 		return list;
 	}
 	
@@ -164,7 +169,7 @@ public class PuestoBean {
 		}else{
 			this.puestosListDesasignar = modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "RESPSEC"));
 			if (this.puestosListDesasignar.isEmpty())
-				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningun puesto asignado.");
+				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningún puesto asignado.");
 			return this.puestosListDesasignar;
 		}
 	}
@@ -175,11 +180,11 @@ public class PuestoBean {
 			try {
 				List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "RESPSEC"));
 				if (list.isEmpty())
-					shared.updateNoticeInfo("No se encontraron tramites disponibles para asignarle al puesto con nombre de maquina " + maquina + ".");
+					shared.updateNoticeInfo("No se encontraron trámites disponibles para asignarle al puesto con nombre de máquina " + maquina + ".");
 				return list;
 			} catch (Exception e) {
 				e.printStackTrace();
-				shared.updateNoticeInfo("El puesto con nombre de maquina " + maquina + " no tiene ningun sector asociado.");
+				shared.updateNoticeInfo("El puesto con nombre de máquina " + maquina + " no tiene ningún sector asociado.");
 				return null;
 			}
 		} else {
@@ -190,14 +195,14 @@ public class PuestoBean {
 	public String asignarTramitePuesto() throws Exception {
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se asignÃ³ correctamente al puesto con nombre de maquina " + this.maquina + ".");
+		shared.updateNotice(status, "El trámite con código "+ this.codigo + " se asignó correctamente al puesto con nombre de máquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String desasignarTramitePuesto() {  
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.desasignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El tramite con codigo "+ this.codigo + " se desasignÃ³ correctamente del puesto con nombre de maquina " + this.maquina + ".");
+		shared.updateNotice(status, "El trámite con código "+ this.codigo + " se desasignó correctamente del puesto con nombre de máquina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 
@@ -386,7 +391,6 @@ public String llamarNumeroDemanda(String internalId){
 		this.es_desvio = true;
 		this.setSector_desvio(idSector);
 		return "/pages/finalizarAtencion.xhtml?faces-redirect=true&idSector="+ this.idSector;
-		
 	}
 
 	public String volver(){

@@ -254,4 +254,29 @@ public class ControladorREST {
 	public String obtenerNumEnEspera(String idPuesto, String userRol) {
 		return this.attentionsFacade.obtenerNumEnEspera(idPuesto,userRol);
 	}
+	
+	//METRICAS
+	public String listarMetricasPuestos(String userRol,String user){
+		return this.puestoFacade.listarMetricasPuestos(userRol,user);
+	}
+	
+	public String listarMetricasPuesto(String nombreMaquina, String userRol, String user){
+		return this.puestoFacade.listarMetricasPuesto(nombreMaquina,userRol,user);
+	}
+	
+	public String listarMetricasNumeros(String userRol,String user){
+		return this.numeroFacade.listarMetricasNumeros(userRol,user);
+	}
+	
+	public String listarMetricasNumero(String externalId, String userRol, String user){
+		return this.numeroFacade.listarMetricasNumero(externalId,userRol,user);
+	}
+	
+	public String listarMetricasNumerosEstado(String userRol,String user){
+		return this.numeroFacade.listarMetricasNumerosEstado(userRol,user);
+	}
+	
+	public String listarMetricasNumeroEstado(String externalId, String userRol, String user){
+		return this.numeroFacade.listarMetricasNumeroEstado(externalId,userRol,user);
+	}
 }

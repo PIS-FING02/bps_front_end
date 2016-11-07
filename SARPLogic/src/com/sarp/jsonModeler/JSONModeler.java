@@ -12,6 +12,8 @@ import org.json.simple.parser.ParseException;
 import com.sarp.jsons.JSONCantNumEnSector;
 import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONEstadoPuesto;
+import com.sarp.jsons.JSONMetricasNumero;
+import com.sarp.jsons.JSONMetricasPuesto;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
 import com.sarp.jsons.JSONSector;
@@ -60,6 +62,20 @@ public class JSONModeler {
 		List<JSONTramite> tramites = (json.get("tramites")!= null)? toJSONTramites(json.get("tramites").toString()) : null;
 		usuario = ((json.get("usuarioId") == null) ? null : json.get("usuarioId").toString());
 		JSONPuesto puesto = new JSONPuesto(json.get("nombreMaquina").toString(), usuario, numero, estado,sectores,tramites);
+		return puesto;
+	}
+	
+	public JSONMetricasPuesto toJSONMetricasPuesto(String jsonMetricasPuesto) throws Exception{
+		JSONObject json = (JSONObject)new JSONParser().parse(jsonMetricasPuesto);
+		
+		String nombreMaquina = ((json.get("nombreMaquina") == null) ? null : json.get("nombreMaquina").toString());
+		String usuarioAtencion = ((json.get("usuarioAtencion") == null) ? null : json.get("usuarioAtencion").toString());
+		String estado = ((json.get("estado") == null) ? null : json.get("estado").toString());
+		String timeSpent = ((json.get("timeSpent") == null) ? null : json.get("timeSpent").toString());
+		String lastUpdated = ((json.get("lastUpdated") == null) ? null : json.get("lastUpdated").toString());
+		String dateCreated = ((json.get("dateCreated") == null) ? null : json.get("dateCreated").toString());
+		
+		JSONMetricasPuesto puesto = new JSONMetricasPuesto(nombreMaquina,usuarioAtencion,estado,timeSpent,lastUpdated,dateCreated);
 		return puesto;
 	}
 	
@@ -174,6 +190,21 @@ public class JSONModeler {
 		} 
 	}
 	
+	public JSONMetricasNumero toJSONMetricasNumero(String jsonNumero) {
+		JSONObject json;
+		try {
+			json = (JSONObject)new JSONParser().parse(jsonNumero);
+	
+		String externalId = ((json.get("externalId") == null) ? null : json.get("externalId").toString());
+		JSONMetricasNumero numero = new JSONMetricasNumero(externalId);
+		return numero;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} 
+	}
+	
 	public List<JSONNumero> toJSONNumeros(String jsonNumero){
 		JSONParser parser = new JSONParser();
 		Object obj;
@@ -223,6 +254,44 @@ public class JSONModeler {
 	    		numerosEnSectorReturn.add(this.toJSONCantNumEnSector(iterator.next().toJSONString()));
 	    	}
 			return numerosEnSectorReturn;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<JSONMetricasPuesto> toJSONMetricasPuestos(String jsonMetricasPuesto) throws Exception{
+		JSONParser parser = new JSONParser();
+		Object obj;
+		try {
+			obj = parser.parse(jsonMetricasPuesto);
+	        JSONArray array = (JSONArray)obj;
+	        List<JSONMetricasPuesto> metricasReturn = new ArrayList<JSONMetricasPuesto>();
+	        
+	    	Iterator<JSONObject> iterator = array.iterator();
+	    	while (iterator.hasNext()) {
+	    		metricasReturn.add(this.toJSONMetricasPuesto(iterator.next().toJSONString()));
+	    	}
+			return metricasReturn;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<JSONMetricasNumero> toJSONMetricasNumeros(String jsonMetricasNumero) throws Exception{
+		JSONParser parser = new JSONParser();
+		Object obj;
+		try {
+			obj = parser.parse(jsonMetricasNumero);
+	        JSONArray array = (JSONArray)obj;
+	        List<JSONMetricasNumero> metricasReturn = new ArrayList<JSONMetricasNumero>();
+	        
+	    	Iterator<JSONObject> iterator = array.iterator();
+	    	while (iterator.hasNext()) {
+	    		metricasReturn.add(this.toJSONMetricasNumero(iterator.next().toJSONString()));
+	    	}
+			return metricasReturn;
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return null;
