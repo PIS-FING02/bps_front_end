@@ -25,11 +25,21 @@
 				<c:set value="#{loginBean.username}" target="#{puesto}" property="usuarioId" />
 				<c:set value="#{loginBean.getRoles()}" target="#{puesto}" property="roles" />
 				<c:set value="#{puesto.getOperadorTest()}" target="#{puesto}" property="maquina" />
+				<h:form>
 				<div class="left-frame">
 					<div class="top-line"> Puesto: #{puesto.maquina}</div>
-					<div class="top-line"> Sectores: </div>
-					<div class="top-line"> Trámites: </div>
+					<div class="top-line"> Sectores:
+							<ui:repeat id='repeat-sectores' value='#{puesto.getSectores()}' var='s'>
+								<h:outputText class='puesto-element' value=' #{s.nombre}'/>
+							</ui:repeat>
+					 </div>
+					<div class="top-line"> Trámites: 
+						<ui:repeat id='repeat-tramites' value='#{puesto.getTramites()}' var='t'>
+								<h:outputText class='puesto-element' value=' #{t.nombre}'/>
+						</ui:repeat>
+					</div>
 				</div>
+				</h:form>
 			</div>
 			<div>
 				<div id="left-frame" class="left-frame">
