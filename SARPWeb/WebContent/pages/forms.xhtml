@@ -72,11 +72,11 @@
 				</div>
 				<div id="estado-puesto" class="form-line hidden">
 					<label for="estado-puesto">Estado:</label>
-					<h:selectOneMenu id='puesto-selected-estado' class='combo-box' value="#{puesto.estado}">
-					   <f:selectItem itemValue="DISPONIBLE" itemLabel="DISPONIBLE" />
-					   <f:selectItem itemValue="ATENDIENDO" itemLabel="ATENDIENDO" />	   		
-					   <f:selectItem itemValue="LLAMANDO" itemLabel="LLAMANDO" />
-					   <f:selectItem itemValue="CERRADO" itemLabel="CERRADO" />	   							
+					<h:selectOneMenu id='puesto-selected-estado' class='combo-box' value="#{puesto.estadoComboBox}">
+					   <f:selectItem itemValue="DISPONIBLE"/>
+					   <f:selectItem itemValue="ATENDIENDO"/>	   		
+					   <f:selectItem itemValue="LLAMANDO"/>
+					   <f:selectItem itemValue="CERRADO"/>	   							
 					</h:selectOneMenu>	
 					<h:inputText id='puesto-selected-estado-forshow' class="formInput hidden" value="#{puesto.estado}" />
 				</div>

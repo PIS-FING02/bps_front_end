@@ -25,6 +25,7 @@ import com.sarp.utils.UtilService;
 @SessionScoped
 public class PuestoBean {
 	
+	private String estadoComboBox;
 	private String maquina;
 	private String usuarioId;
 	private Integer numero;
@@ -114,7 +115,7 @@ public class PuestoBean {
 	
 	public String modificar(){
 		Integer numero = this.numero;
-		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, numero, this.estado);
+		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, numero, this.estadoComboBox);
 		System.out.println(jpuesto);
 		String status = c.modPuesto(jpuesto.toString(), "RESPSEC");
 		shared.updateNotice(status, "El puesto con nombre de maquina "+ this.maquina + " se modificó correctamente.");
@@ -780,6 +781,14 @@ public String llamarNumeroDemanda(String internalId){
 
 	public void setSectores(List<JSONSector> sectores) {
 		this.sectores = sectores;
+	}
+
+	public String getEstadoComboBox() {
+		return estadoComboBox;
+	}
+
+	public void setEstadoComboBox(String estadoComboBox) {
+		this.estadoComboBox = estadoComboBox;
 	}
 
 }
