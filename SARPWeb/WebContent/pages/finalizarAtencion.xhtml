@@ -11,6 +11,7 @@
 
 	<ui:include src="header.xhtml" />
 	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
+	<link rel="stylesheet" type="text/css" href="../styles/shared.css"/>
 </head> 
 
 <body> 
@@ -46,7 +47,7 @@
 			<h:form id='form-finalizar'>
 				<h:inputHidden id="json_estado_tramites" value="#{puesto.json_estado_tramites}" />
 				<h:commandButton class="num-line action-button" value="Confirmar" action="#{puesto.finalizarAtencion()}"/>
-				<h:commandButton class="cancel-button" value="Cancelar" action="#{shared.redirect('operadorAtendiendo')}"/>
+				<h:commandButton class="action-button cancel-button" value="Cancelar" action="#{shared.redirect('operadorAtendiendo')}"/>
 			</h:form>
 		</div>
 	</div>

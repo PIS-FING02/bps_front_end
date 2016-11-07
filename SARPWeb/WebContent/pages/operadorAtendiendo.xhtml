@@ -74,7 +74,7 @@
 				<h:form id="options-form">
 					<h:commandButton class="action-button atender-button" value="Finalizar" action="#{puesto.showEstadosFinalizar()}"/>
 					<h:commandButton class="secondary-button atencion-buttons" value="Pausar" action="#{puesto.pausar()}"/> 
-					<div class='icon icon-container'>Desviar</div>
+					<div class="action-button desviar-button">Desviar</div>
 						<div id='asignar-container' class='asignar-container hidden'>
 							<div class='asignar-container-triangle'/>
 							<ui:repeat id='repeat-tramites' value="#{puesto.listarSectoresDesvio()}" var='s'>
