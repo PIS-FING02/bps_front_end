@@ -1,31 +1,33 @@
 package com.sarp.facade;
 
 import com.sarp.facade.client.RestClient;
+import com.sarp.utils.UtilService;
 
 public class DisplayFacade {
 
-	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/display";
-	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/displays";
-	public static final String URL_DISPLAYS_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarDisplaysSector";
+	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
+	public static final String URL_REST_DISPLAY_FULL = SERVER + UtilService.getStringProperty("URL_REST_DISPLAY_FULL");
+	public static final String URL_GET_DISPLAY_ALL = SERVER + UtilService.getStringProperty("URL_GET_DISPLAY_ALL");
+	public static final String URL_DISPLAYS_SECTOR = SERVER + UtilService.getStringProperty("URL_DISPLAYS_SECTOR");
 	
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doPost(URL_REST_FULL, input, userRol);
+		return  restClient.doPost(URL_REST_DISPLAY_FULL, input, userRol);
 	}
 
 	public String baja(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doDelete(URL_REST_FULL, input, userRol);
+		return  restClient.doDelete(URL_REST_DISPLAY_FULL, input, userRol);
 	}
 	
 	public String mod(String input, String userRol) {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doPut(URL_REST_FULL, input, userRol);
+		return  restClient.doPut(URL_REST_DISPLAY_FULL, input, userRol);
 	}	
 	
 	public String displaysAll(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGet(URL_GET_ALL, userRol);
+		return  restClient.doGet(URL_GET_DISPLAY_ALL, userRol);
 	}
 
 	public String displaysSector(String input, String userRol) throws Exception {
@@ -35,6 +37,6 @@ public class DisplayFacade {
 
 	public String displaysParaSector(String input, String userRol, String user) throws Exception {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGetList(URL_GET_ALL + "?sectorId=" + input, userRol, user);
+		return  restClient.doGetList(URL_GET_DISPLAY_ALL + "?sectorId=" + input, userRol, user);
 	}
 }	

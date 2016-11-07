@@ -1,25 +1,27 @@
 package com.sarp.facade;
 
 import com.sarp.facade.client.RestClient;
+import com.sarp.utils.UtilService;
 
 public class AttentionsFacade {
-
-	public static final String URL_ABRIR_PUESTO = "http://52.52.100.160:8080/SARPService/attentionsService/abrirPuesto";
-	public static final String URL_CERRAR_PUESTO = "http://52.52.100.160:8080/SARPService/attentionsService/cerrarPuesto";
-	public static final String URL_LLAMAR_NUMERO = "http://52.52.100.160:8080/SARPService/attentionsService/llamarNumero";
-	public static final String URL_LISTAR_NUMEROS = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosEnEspera?idPuesto=";
-	public static final String URL_LISTAR_NUMEROS_PAUSADOS = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosPausados?idPuesto=";
-	public static final String URL_LISTAR_NUMEROS_ATRASADOS = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosAtrasados?idPuesto=";
-	public static final String URL_COMENZAR_ATENCION ="http://52.52.100.160:8080/SARPService/attentionsService/comenzarAtencion";
-	public static final String URL_ATRASAR_NUMERO ="http://52.52.100.160:8080/SARPService/attentionsService/atrasarNumero";
-	public static final String URL_PAUSAR_NUMERO ="http://52.52.100.160:8080/SARPService/attentionsService/pausarNumero";
-	public static final String URL_FINALIZAR_NUMERO = "http://52.52.100.160:8080/SARPService/attentionsService/finalizarAtencion";
-	public static final String URL_LLAMAR_NUMERO_PAUSADO ="http://52.52.100.160:8080/SARPService/attentionsService/llamarPausado";
-	public static final String URL_LLAMAR_NUMERO_ATRASADO ="http://52.52.100.160:8080/SARPService/attentionsService/llamarAtrasado";
-	public static final String URL_LLAMAR_NUMERO_DEMANDA ="http://52.52.100.160:8080/SARPService/attentionsService/llamarNumeroDemanda";
-	public static final String URL_RELLAMAR_NUMERO ="http://52.52.100.160:8080/SARPService/attentionsService/reLlamarNumero";
-	public static final String URL_DESVIAR_NUMERO = "http://52.52.100.160:8080/SARPService/attentionsService/desviarNumero";
-	public static final String URL_CANT_NUM_EN_ESPERA= "http://52.52.100.160:8080/SARPService/numberService/obtenerCantNumerosEnEspera?idPuesto=";
+	
+	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
+	public static final String URL_ABRIR_PUESTO = SERVER + UtilService.getStringProperty("URL_ABRIR_PUESTO");
+	public static final String URL_CERRAR_PUESTO = SERVER + UtilService.getStringProperty("URL_CERRAR_PUESTO");
+	public static final String URL_LLAMAR_NUMERO = SERVER + UtilService.getStringProperty("URL_LLAMAR_NUMERO");
+	public static final String URL_LISTAR_NUMEROS = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS");
+	public static final String URL_LISTAR_NUMEROS_PAUSADOS = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_PAUSADOS");
+	public static final String URL_LISTAR_NUMEROS_ATRASADOS = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_ATRASADOS");
+	public static final String URL_COMENZAR_ATENCION =SERVER + UtilService.getStringProperty("URL_COMENZAR_ATENCION");
+	public static final String URL_ATRASAR_NUMERO =SERVER + UtilService.getStringProperty("URL_ATRASAR_NUMERO");
+	public static final String URL_PAUSAR_NUMERO =SERVER + UtilService.getStringProperty("URL_PAUSAR_NUMERO");
+	public static final String URL_FINALIZAR_NUMERO = SERVER + UtilService.getStringProperty("URL_FINALIZAR_NUMERO");
+	public static final String URL_LLAMAR_NUMERO_PAUSADO =SERVER + UtilService.getStringProperty("URL_LLAMAR_NUMERO_PAUSADO");
+	public static final String URL_LLAMAR_NUMERO_ATRASADO =SERVER + UtilService.getStringProperty("URL_LLAMAR_NUMERO_ATRASADO");
+	public static final String URL_LLAMAR_NUMERO_DEMANDA =SERVER + UtilService.getStringProperty("URL_LLAMAR_NUMERO_DEMANDA");
+	public static final String URL_RELLAMAR_NUMERO =SERVER + UtilService.getStringProperty("URL_RELLAMAR_NUMERO");
+	public static final String URL_DESVIAR_NUMERO = SERVER + UtilService.getStringProperty("URL_DESVIAR_NUMERO");
+	public static final String URL_CANT_NUM_EN_ESPERA= SERVER + UtilService.getStringProperty("URL_CANT_NUM_EN_ESPERA");
 	//public static final String URL_LISTAR_TRAMITE_SECTOR=
 	
 	
