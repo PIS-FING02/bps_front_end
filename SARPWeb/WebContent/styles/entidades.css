@@ -32,8 +32,8 @@
     border-radius: 3px;
     margin-left: 10px;
     cursor: pointer;    
-    width: initial;
-    height: initial;
+    width: auto;
+    height: auto;
 }
 
 .icon-mod, .icon-baja, .icon-add, .icon-remove {
@@ -110,5 +110,5 @@
 }
 
 #list-puesto-container .details-link {
-	width: calc(100% - 330px);
+	width: auto;
 }
