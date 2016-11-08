@@ -113,12 +113,12 @@
       <web-resource-name>Operador Senior</web-resource-name>
       <url-pattern>/pages/operador.xhtml</url-pattern>
       <url-pattern>/pages/operadorsrAbierto.xhtml</url-pattern>
-      <url-pattern>/pages/operadorsrAtencion.xhtml</url-pattern>
+      <url-pattern>/pages/operadorAtencion.xhtml</url-pattern>
       <url-pattern>/pages/operadorAtrasados.xhtml</url-pattern>
       <url-pattern>/pages/operadorPausados.xhtml</url-pattern>
       <url-pattern>/pages/operador.jsf</url-pattern>
       <url-pattern>/pages/operadorsrAbierto.jsf</url-pattern>
-      <url-pattern>/pages/operadorsrAtencion.jsf</url-pattern>
+      <url-pattern>/pages/operadorAtencion.jsf</url-pattern>
       <url-pattern>/pages/operadorAtrasados.jsf</url-pattern>
       <url-pattern>/pages/operadorPausados.jsf</url-pattern>
     </web-resource-collection>

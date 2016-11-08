@@ -36,8 +36,21 @@ public class TramiteBean implements Serializable{
 	@ManagedProperty("#{sessionScope.shared}")
 	public SharedBean shared;
 	
+	@ManagedProperty("#{sessionScope.puesto}")
+	public PuestoBean puesto;
 	
 	
+	
+	
+	
+	public PuestoBean getPuesto() {
+		return puesto;
+	}
+
+	public void setPuesto(PuestoBean puesto) {
+		this.puesto = puesto;
+	}
+
 	public LoginBean getLogin() {
 		return login;
 	}
@@ -156,9 +169,9 @@ public class TramiteBean implements Serializable{
 		}
 	}
 
-	public List<JSONTramiteRecepcion> listarParaRecepcion(String puesto) throws Exception {
+	public List<JSONTramiteRecepcion> listarParaRecepcion() throws Exception {
 		if (shared.getRolesMap().get("RECEPCION")) {
-			List<JSONTramiteRecepcion> list = modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "RECEPCION"));
+			List<JSONTramiteRecepcion> list = modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(this.puesto.getMaquina(), "RECEPCION"));
 			if (list.isEmpty())
 				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene tr�mites habilitados para hacer entrega de n�meros");
 			return list;

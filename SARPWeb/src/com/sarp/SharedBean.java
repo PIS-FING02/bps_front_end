@@ -11,40 +11,38 @@ import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "shared")
 @SessionScoped
-public class SharedBean implements Serializable{
-	
+public class SharedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public SharedBean() {
+	}
 
-	public SharedBean() {}
-	
-	private static String icon = "check";
-	private static String notice = "hidden";
-	private static String notice_title = "";
-	private static String notice_message = "";
-	private static String user = "";
+	private String icon = "check";
+	private String notice = "hidden";
+	private String notice_title = "";
+	private String notice_message = "";
+	private String user = "";
 	private HashMap<String, Boolean> rolesMap = new HashMap<String, Boolean>();
 	private List<JSONSector> sectoresListBusqueda = new ArrayList<JSONSector>();
 	private List<JSONSector> sectoresList;
 	private List<JSONTramite> tramitesListBusqueda = new ArrayList<JSONTramite>();
 	private List<JSONTramite> tramitesList;
-	
-	
+
 	public HashMap<String, Boolean> getRolesMap() {
 		return this.rolesMap;
 	}
 
 	public void setRol(String rol, Boolean val) {
-    	this.rolesMap.put(rol, val);        
+		this.rolesMap.put(rol, val);
 	}
-	
+
 	public String getNotice_message() {
 		return notice_message;
 	}
 
 	public void setNotice_message(String notice_message) {
-		SharedBean.notice_message = notice_message;
+		this.notice_message = notice_message;
 	}
 
 	public String getNotice_title() {
@@ -52,15 +50,15 @@ public class SharedBean implements Serializable{
 	}
 
 	public void setNotice_title(String notice_title) {
-		SharedBean.notice_title = notice_title;
+		this.notice_title = notice_title;
 	}
-	
+
 	public String getNotice() {
 		return notice;
 	}
 
 	public void setNotice(String notice) {
-		SharedBean.notice = notice;
+		this.notice = notice;
 	}
 
 	public String getIcon() {
@@ -68,11 +66,11 @@ public class SharedBean implements Serializable{
 	}
 
 	public void setIcon(String icon) {
-		SharedBean.icon = icon;
+		this.icon = icon;
 	}
-	
-	public void updateNotice(String status, String msgPositive ) {
-		if (status.equals("OK")){
+
+	public void updateNotice(String status, String msgPositive) {
+		if (status.equals("OK")) {
 			setNotice_title("Esto es un mensaje de Confirmaci�n.");
 			setNotice_message(msgPositive);
 			setNotice("positive");
@@ -84,7 +82,7 @@ public class SharedBean implements Serializable{
 			setIcon("error");
 		}
 	}
-	
+
 	public void updateNoticeInfo(String msgInfo) {
 		setNotice_title("Este es un mensaje de Informaci�n.");
 		setNotice_message(msgInfo);
@@ -92,32 +90,32 @@ public class SharedBean implements Serializable{
 		setIcon("info");
 	}
 
-	public String redirect(String url){
+	public String redirect(String url) {
 		clean();
 		return "/pages/" + url + ".xhtml?faces-redirect=true";
 	}
 
-	public void clean(){
-		SharedBean.notice = "";
-		SharedBean.notice = "hidden";
-		SharedBean.notice_message = "";
-		SharedBean.notice_title = "";
+	public void clean() {
+		this.notice = "";
+		this.notice = "hidden";
+		this.notice_message = "";
+		this.notice_title = "";
 	}
 
-	public String redirectWithParam(String url, String params){
-		SharedBean.notice = "";
-		SharedBean.notice = "hidden";
-		SharedBean.notice_message = "";
-		SharedBean.notice_title = "";
+	public String redirectWithParam(String url, String params) {
+		this.notice = "";
+		this.notice = "hidden";
+		this.notice_message = "";
+		this.notice_title = "";
 		return "/pages/" + url + ".xhtml?" + params + "&faces-redirect=true";
 	}
-	
+
 	public String getUser() {
 		return user;
 	}
 
 	public void setUser(String user) {
-		SharedBean.user = user;
+		this.user = user;
 	}
 
 	public List<JSONSector> getSectoresListBusqueda() {
@@ -153,11 +151,11 @@ public class SharedBean implements Serializable{
 	}
 
 	public void logout() {
-		SharedBean.icon = "check";
-		SharedBean.notice = "hidden";
-		SharedBean.notice_title = "";
-		SharedBean.notice_message = "";
-		SharedBean.user = "";
+		this.icon = "check";
+		this.notice = "hidden";
+		this.notice_title = "";
+		this.notice_message = "";
+		this.user = "";
 		this.rolesMap.clear();
 
 	}
