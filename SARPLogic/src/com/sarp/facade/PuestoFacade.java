@@ -1,7 +1,5 @@
 package com.sarp.facade;
 
-import java.io.IOException;
-
 import com.sarp.facade.client.RestClient;
 import com.sarp.utils.UtilService;
 
@@ -10,7 +8,7 @@ public class PuestoFacade {
 	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
 	
 	public static final String URL_GET_METRICAS_PUESTOS =  UtilService.getStringProperty("URL_GET_METRICAS_PUESTOS");
-	public static final String URL_REST_PUESTO_FULL =  UtilService.getStringProperty("URL_REST_FULL");
+	public static final String URL_REST_PUESTO_FULL =  UtilService.getStringProperty("URL_REST_PUESTO_FULL");
 	public static final String URL_GET_PUESTO_ALL =  UtilService.getStringProperty("URL_GET_PUESTO_ALL");
 	public static final String URL_GET_ALL_PUESTO_SECTOR =  UtilService.getStringProperty("URL_GET_ALL_PUESTO_SECTOR");
 	public static final String URL_ASIG_TRAMITE =  UtilService.getStringProperty("URL_ASIG_TRAMITE");

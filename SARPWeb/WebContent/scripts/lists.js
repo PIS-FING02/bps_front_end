@@ -53,6 +53,7 @@ if(entidad == "puesto"){
 			document.getElementById('form-entidades:asignar-tramite-sector-button').classList.remove('hidden');
 		} else {
 			document.getElementById('form-entidades:desasignar-tramite-sector-button').classList.remove('hidden');
+			document.getElementById('alta-puesto').classList.add('hidden');
 		}
 }
 
