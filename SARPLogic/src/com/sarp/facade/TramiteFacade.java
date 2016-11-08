@@ -1,15 +1,18 @@
 package com.sarp.facade;
 
 import com.sarp.facade.client.RestClient;
+import com.sarp.utils.UtilService;
 
 public class TramiteFacade {
 
-	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/tramite";
-	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/listarTramites";
-	public static final String URL_GET_ALL_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarTramites";
-	public static final String URL_GET_FROM_SECTOR = "http://52.52.100.160:8080/SARPService/adminService/listarTramitesSector?sectorId=";
-	public static final String URL_GET_FROM_RECEPCION = "http://52.52.100.160:8080/SARPService/attentionsService/tramitesRecepcion";
-	public static final String URL_GET_FROM_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/listarTramitesPuesto?nombreMaquina=";
+	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
+
+	public static final String URL_REST_FULL = SERVER + UtilService.getStringProperty("URL_REST_FULL");
+	public static final String URL_GET_ALL = SERVER + UtilService.getStringProperty("URL_GET_ALL");
+	public static final String URL_GET_ALL_SECTOR = SERVER + UtilService.getStringProperty("URL_GET_ALL_SECTOR");
+	public static final String URL_GET_FROM_SECTOR = SERVER + UtilService.getStringProperty("URL_GET_FROM_SECTOR");
+	public static final String URL_GET_FROM_RECEPCION = SERVER + UtilService.getStringProperty("URL_GET_FROM_RECEPCION");
+	public static final String URL_GET_FROM_PUESTO = SERVER + UtilService.getStringProperty("URL_GET_FROM_PUESTO");
 	
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();

@@ -3,23 +3,26 @@ package com.sarp.facade;
 import java.io.IOException;
 
 import com.sarp.facade.client.RestClient;
+import com.sarp.utils.UtilService;
 
 public class SectorFacade {
 	
-	public static final String URL_REST_FULL = "http://52.52.100.160:8080/SARPService/adminService/sector";
-	public static final String URL_GET_ALL = "http://52.52.100.160:8080/SARPService/adminService/listarSectores";
-	public static final String URL_REST_GAFU = "http://52.52.100.160:8080/SARPService/adminService/actualizarGAFU";
-	public static final String URL_REST_ASIGNAR_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/asignarTramiteSector";
-	public static final String URL_REST_DESASIGNAR_TRAMITE = "http://52.52.100.160:8080/SARPService/adminService/desasignarTramiteSector";
-	public static final String URL_REST_ASIGNAR_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/asignarPuestoSector";
-	public static final String URL_REST_ASIGNAR_DISPLAY = "http://52.52.100.160:8080/SARPService/adminService/asignarSectorDisplay";
-	public static final String URL_REST_DESASIGNAR_DISPLAY = "http://52.52.100.160:8080/SARPService/adminService/desasignarSectorDisplay";
-	public static final String URL_LISTAR_NUMEROS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosSector?idSector=";
-	public static final String URL_REST_DESASIGNAR_PUESTO = "http://52.52.100.160:8080/SARPService/adminService/desasignarPuestoSector";
-	public static final String URL_LISTAR_NUMEROS_PAUSADOS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosPausados?idSector=";
-	public static final String URL_LISTAR_NUMEROS_ATRASADOS_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosAtrasados?idSector=";
-	public static final String URL_LISTAR_NUMEROS_ESPERA_SECTOR = "http://52.52.100.160:8080/SARPService/numberService/listarNumerosEnEspera?idSector=";
-	public static final String URL_LISTAR_SECTORES_DESVIO = "http://52.52.100.160:8080/SARPService/attentionsService/obtenerSectoresDesvio";
+	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
+
+	public static final String URL_REST_SECTOR_FULL = SERVER + UtilService.getStringProperty("URL_REST_SECTOR_FULL");
+	public static final String URL_GET_SECTOR_ALL = SERVER + UtilService.getStringProperty("URL_GET_SECTOR_ALL");
+	public static final String URL_REST_GAFU = SERVER + UtilService.getStringProperty("URL_REST_GAFU");
+	public static final String URL_REST_ASIGNAR_TRAMITE = SERVER + UtilService.getStringProperty("URL_REST_ASIGNAR_TRAMITE");
+	public static final String URL_REST_DESASIGNAR_TRAMITE = SERVER + UtilService.getStringProperty("URL_REST_DESASIGNAR_TRAMITE");
+	public static final String URL_REST_ASIGNAR_PUESTO = SERVER + UtilService.getStringProperty("URL_REST_ASIGNAR_PUESTO");
+	public static final String URL_REST_ASIGNAR_DISPLAY = SERVER + UtilService.getStringProperty("URL_REST_ASIGNAR_DISPLAY");
+	public static final String URL_REST_DESASIGNAR_DISPLAY = SERVER + UtilService.getStringProperty("URL_REST_DESASIGNAR_DISPLAY");
+	public static final String URL_LISTAR_NUMEROS_SECTOR = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_SECTOR");
+	public static final String URL_REST_DESASIGNAR_PUESTO = SERVER + UtilService.getStringProperty("URL_REST_DESASIGNAR_PUESTO");
+	public static final String URL_LISTAR_NUMEROS_PAUSADOS_SECTOR = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_PAUSADOS_SECTOR");
+	public static final String URL_LISTAR_NUMEROS_ATRASADOS_SECTOR = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_ATRASADOS_SECTOR");
+	public static final String URL_LISTAR_NUMEROS_ESPERA_SECTOR = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_ESPERA_SECTOR");
+	public static final String URL_LISTAR_SECTORES_DESVIO = SERVER + UtilService.getStringProperty("URL_LISTAR_SECTORES_DESVIO");
 	
 	public String importarSectoresGafu(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
@@ -29,7 +32,7 @@ public class SectorFacade {
 	
 	public String sectoresAll(String userRol, String user)  {
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGetList(URL_GET_ALL, userRol, user);
+		return  restClient.doGetList(URL_GET_SECTOR_ALL, userRol, user);
 	}
 
 	public String asignarTramiteSector(String input, String userRol) throws Exception {
