@@ -11,7 +11,7 @@ import org.jboss.com.sun.corba.se.impl.corba.EnvironmentImpl;
 public class UtilService {
 
 	private static final String propertiesPath = "/home/ubuntu/EAP-6.4.0/modules/conf/sarp_front.properties";
-	private static final String propertiesPathLocal =  "/Users/guicoduri/PIS/repositorios/bps_front_end/local.properties";
+	private static final String propertiesPathLocal =  "/Users/Martina/workspace/Front/bps_front_end/local.properties";
 
 	public static Integer getIntegerProperty(String key) {    
 		return  Integer.valueOf(getProperty().getProperty(key));
