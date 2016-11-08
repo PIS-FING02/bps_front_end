@@ -1,9 +1,12 @@
-var prioridad = document.getElementById("prioridad").innerHTML;
+document.addEventListener("DOMContentLoaded", function() { 
+	var prioridad = document.getElementById("prioridad").innerHTML;
 
-if(prioridad == "1"){
-	document.getElementById("info-sae-hora").classList.remove('hidden');
-	document.getElementById("info-sae-fecha").classList.remove('hidden');
-}else{
-	document.getElementById("info-sae-hora").classList.add('hidden');
-	document.getElementById("info-sae-fecha").classList.add('hidden');
-}
+	if(prioridad == "1"){
+		document.getElementById("info-sae-hora").classList.remove('hidden');
+		document.getElementById("info-sae-fecha").classList.remove('hidden');
+	}else{
+		document.getElementById("info-sae-hora").classList.add('hidden');
+		document.getElementById("info-sae-fecha").classList.add('hidden');
+	}
+	
+});
