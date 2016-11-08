@@ -5,15 +5,13 @@ import com.sarp.utils.UtilService;
 
 public class NumeroFacade {
 
-<<<<<<< 532882a1e5eba3e862bfc8d231edef46ce178ebc
-	public static final String URL_SACAR_NUMERO = "http://52.52.100.160:8080/SARPService/numberService/solicitarNumero";
-	public static final String URL_GET_METRICAS_NUMEROS = "http://52.52.100.160:8080/SARPService/numberService/listarMetricasNumero";
-	public static final String URL_GET_METRICAS_NUMERO = "http://52.52.100.160:8080/SARPService/numberService/listarMetricasDeNumero";
-	public static final String URL_GET_METRICAS_NUMEROS_ESTADO = "http://52.52.100.160:8080/SARPService/numberService/listarMetricasEstadoNumero";
-=======
 	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
+	
 	public static final String URL_SACAR_NUMERO = SERVER + UtilService.getStringProperty("URL_SACAR_NUMERO");
->>>>>>> add local propertie
+	public static final String URL_GET_METRICAS_NUMEROS = SERVER + UtilService.getStringProperty("URL_GET_METRICAS_NUMEROS");
+	public static final String URL_GET_METRICAS_NUMERO = SERVER + UtilService.getStringProperty("URL_GET_METRICAS_NUMERO");
+	public static final String URL_GET_METRICAS_NUMEROS_ESTADO = SERVER + UtilService.getStringProperty("URL_GET_METRICAS_NUMEROS_ESTADO");
+
 	
 	public String sacar(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
