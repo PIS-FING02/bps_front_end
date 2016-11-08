@@ -10,8 +10,6 @@ public class UtilService {
 
 	private static final String propertiesPath = "/home/ubuntu/EAP-6.4.0/modules/conf/sarp_front.properties";
 
-	private static final String propertiesPathLocal =  "/Users/franciscocabrera/git/bps_front_end/local.properties";
-
 
 	public static Integer getIntegerProperty(String key) {    
 		return  Integer.valueOf(getProperty().getProperty(key));
@@ -28,12 +26,10 @@ public class UtilService {
 			  input = new FileInputStream(propertiesPath);
 			  prop.load(input);  
 		  } catch(FileNotFoundException e) { 
-			  System.out.println("NO ESTA EL ARCHIVO");
 			  try{
-				  System.out.println("BUSCO LOCAL");
 				  input = UtilService.class.getResourceAsStream("local.properties");
 				  prop.load(input);  
-				  System.out.println("ESTAAAAAAAAAAAAAAAAAAAAAAAA");
+				  System.out.println("Enctro local");
 			  }catch(Exception ex) { 
 				  System.out.println("NO LO ENCONTRO AL PROPERTIE NI LOCAL");
 			  }
