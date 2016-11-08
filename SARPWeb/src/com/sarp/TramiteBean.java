@@ -1,13 +1,12 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONTramite;
@@ -15,8 +14,10 @@ import com.sarp.jsons.JSONTramiteRecepcion;
 
 @ManagedBean(name = "tramite", eager = true)
 @ViewScoped
-public class TramiteBean {
+public class TramiteBean implements Serializable{
 
+
+	private static final long serialVersionUID = 1L;
 	private String codigo;
 	private String nombre;
 	private String id_sector;
@@ -26,28 +27,49 @@ public class TramiteBean {
 	private boolean entre = false;
 	private String searchString;
 
-	@ManagedProperty("#{login}")
+	@ManagedProperty("#{sessionScope.login}")
 	public LoginBean login;
-	public SharedBean shared = SharedBean.getInstance();
 	
+	@ManagedProperty("#{sessionScope.shared}")
+	public SharedBean shared;
+	
+	
+	
+	public LoginBean getLogin() {
+		return login;
+	}
+
+	public void setLogin(LoginBean login) {
+		this.login = login;
+	}
+
+	public SharedBean getShared() {
+		return shared;
+	}
+
+	public void setShared(SharedBean shared) {
+		this.shared = shared;
+	}
+
 	public String alta() throws Exception{
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.altaTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El trámite con código " + this.codigo + " y nombre "+ this.nombre + " se creó correctamente.");
+		shared.updateNotice(status, "El trï¿½mite con cï¿½digo " + this.codigo + " y nombre "+ this.nombre + " se creï¿½ correctamente.");
+		
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String baja(String codigo) {
 		JSONTramite jtramite = new JSONTramite(codigo, "nombre");
 		String status = c.bajaTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El trámite con código " + codigo + " se eliminó correctamente.");
+		shared.updateNotice(status, "El trï¿½mite con cï¿½digo " + codigo + " se eliminï¿½ correctamente.");
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String modificar(){
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.modTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El trámite con nombre "+ this.nombre + " se modificó correctamente.");
+		shared.updateNotice(status, "El trï¿½mite con nombre "+ this.nombre + " se modificï¿½ correctamente.");
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -108,7 +130,7 @@ public class TramiteBean {
 		else {
 			List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesSector(idSector, "RESPSEC"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("El sector con identificador " + idSector + " no tiene trámites asignados.");
+				shared.updateNoticeInfo("El sector con identificador " + idSector + " no tiene trï¿½mites asignados.");
 			return list;
 		}
 	}
@@ -120,7 +142,7 @@ public class TramiteBean {
 		else {
 			List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesPuesto(idPuesto, "RESPSEC"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("El puesto con nombre de máquina " + idPuesto + " no tiene trámites asignados.");
+				shared.updateNoticeInfo("El puesto con nombre de mï¿½quina " + idPuesto + " no tiene trï¿½mites asignados.");
 			return list;
 		}
 	}
@@ -129,7 +151,7 @@ public class TramiteBean {
 		if (shared.getRolesMap().get("RECEPCION")) {
 			List<JSONTramiteRecepcion> list = modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(puesto, "RECEPCION"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene trámites habilitados para hacer entrega de números");
+				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene trï¿½mites habilitados para hacer entrega de nï¿½meros");
 			return list;
 		} else {
 			shared.updateNoticeInfo("No tienes permisos suficientes.");

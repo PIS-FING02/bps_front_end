@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.jboss.com.sun.corba.se.impl.corba.EnvironmentImpl;
-
 public class UtilService {
 
 	private static final String propertiesPath = "/home/ubuntu/EAP-6.4.0/modules/conf/sarp_front.properties";

@@ -1,27 +1,24 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONTramite;
 
-@ManagedBean(name = "shared", eager = true)
+@ManagedBean(name = "shared")
 @SessionScoped
-public class SharedBean {
+public class SharedBean implements Serializable{
 	
-	private static SharedBean instance = null;
+
+	private static final long serialVersionUID = 1L;
+
+
 	public SharedBean() {}
 	
-	public static SharedBean getInstance() {
-		instance = instance != null ? instance : new  SharedBean();
-		return instance;
-	}
-
 	private static String icon = "check";
 	private static String notice = "hidden";
 	private static String notice_title = "";
@@ -76,7 +73,7 @@ public class SharedBean {
 	
 	public void updateNotice(String status, String msgPositive ) {
 		if (status.equals("OK")){
-			setNotice_title("Esto es un mensaje de Confirmación.");
+			setNotice_title("Esto es un mensaje de Confirmaciï¿½n.");
 			setNotice_message(msgPositive);
 			setNotice("positive");
 			setIcon("check");
@@ -89,7 +86,7 @@ public class SharedBean {
 	}
 	
 	public void updateNoticeInfo(String msgInfo) {
-		setNotice_title("Este es un mensaje de Información.");
+		setNotice_title("Este es un mensaje de Informaciï¿½n.");
 		setNotice_message(msgInfo);
 		setNotice("info");
 		setIcon("info");

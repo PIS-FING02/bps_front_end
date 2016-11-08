@@ -1,7 +1,9 @@
 package com.sarp;
 
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -10,18 +12,30 @@ import javax.servlet.http.HttpSession;
 import org.jboss.security.SecurityContextAssociation;
 
 
-@ManagedBean(name = "loginBean", eager = true)
+@ManagedBean(name = "loginBean")
 @SessionScoped
-public class LoginBean {
+public class LoginBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String usernameHeader = "Bienvenido";
 	private String password;
 	private String message;
 	private String roles = "";
 	private Boolean loggedIn = false;
-	public SharedBean shared = SharedBean.getInstance();
 	
+	@ManagedProperty("#{sessionScope.shared}")
+	public SharedBean shared;
+	
+	
+	public SharedBean getShared() {
+		return shared;
+	}
+
+	public void setShared(SharedBean shared) {
+		this.shared = shared;
+	}
+
 	public String getUsernameHeader() {
 		return usernameHeader;
 	}
@@ -89,6 +103,10 @@ public class LoginBean {
 	        addRol("OPERADOR", request);
 	        addRol("OPERADORSR", request);
 	        addRol("RECEPCION", request);
+	         
+	        FacesContext context = FacesContext.getCurrentInstance();
+	        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+	        session.setAttribute("username", username);
 
 	        if (roles == ""){
 	            message= "Either Login or Password is wrong";
@@ -129,7 +147,7 @@ public class LoginBean {
         if(session != null) {
         	setUsernameHeader("Bienvenido");
         	session.invalidate();
-        	System.out.println("Se cerró la sesión correctamente");        	
+        	System.out.println("Se cerrï¿½ la sesiï¿½n correctamente");        	
         }
         this.loggedIn = false;
         return "/pages/login.xhtml?faces-redirect=true";

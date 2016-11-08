@@ -1,7 +1,5 @@
 package com.sarp.facade;
 
-import java.io.IOException;
-
 import com.sarp.facade.client.RestClient;
 import com.sarp.utils.UtilService;
 

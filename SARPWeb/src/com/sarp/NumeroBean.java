@@ -1,22 +1,24 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONDatosComp;
 import com.sarp.jsons.JSONNumero;
 import javax.annotation.PostConstruct;
 
+
 @ManagedBean(name = "numero", eager = true)
 @ViewScoped
-public class NumeroBean {
+public class NumeroBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String idTramite;
 	private String idSector;
 	private String prioridad;
@@ -27,8 +29,20 @@ public class NumeroBean {
 
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
-	public SharedBean shared = SharedBean.getInstance();
+
+	@ManagedProperty("#{sessionScope.shared}")
+	public SharedBean shared;
 	
+	
+	
+	public SharedBean getShared() {
+		return shared;
+	}
+
+	public void setShared(SharedBean shared) {
+		this.shared = shared;
+	}
+
 	public void sacarNumero() throws Exception{
 		JSONDatosComp jdatos = new JSONDatosComp(this.doc, this.tipoDoc, this.nombreCompleto);
 		JSONNumero jnumero = new JSONNumero();
@@ -108,7 +122,7 @@ public class NumeroBean {
 		if(idSector != null){
 			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "RESPSEC", shared.getUser()));	
 			if (list == null || list.isEmpty())
-				shared.updateNoticeInfo("No se encontraron números atrasados para el sector con identificador " + idSector + " .");
+				shared.updateNoticeInfo("No se encontraron nï¿½meros atrasados para el sector con identificador " + idSector + " .");
 			return list;
 		}else{
 			return null;
@@ -122,7 +136,7 @@ public class NumeroBean {
 		if(idSector != null){
 			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosAtrasadosSector(idSector, "RESPSEC", shared.getUser()));	
 			if (list == null || list.isEmpty())
-				shared.updateNoticeInfo("No se encontraron números atrasados para el sector con identificador " + idSector + " .");
+				shared.updateNoticeInfo("No se encontraron nï¿½meros atrasados para el sector con identificador " + idSector + " .");
 			return list;
 		}else{
 			return null;
@@ -137,7 +151,7 @@ public class NumeroBean {
 		if(idSector != null){
 			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "RESPSEC", shared.getUser()));	
 			if (list == null || list.isEmpty())
-				shared.updateNoticeInfo("No se encontraron números atrasados para el sector con identificador " + idSector + " .");
+				shared.updateNoticeInfo("No se encontraron nï¿½meros atrasados para el sector con identificador " + idSector + " .");
 			return list;
 		}else{
 			return null;
