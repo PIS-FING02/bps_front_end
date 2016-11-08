@@ -122,7 +122,7 @@ public class NumeroBean implements Serializable{
 		if(idSector != null){
 			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosPausadosSector(idSector, "RESPSEC", shared.getUser()));	
 			if (list == null || list.isEmpty())
-				shared.updateNoticeInfo("No se encontraron n�meros atrasados para el sector con identificador " + idSector + " .");
+				shared.updateNoticeInfo("No se encontraron n�meros pausados para el sector con identificador " + idSector + " .");
 			return list;
 		}else{
 			return null;
@@ -151,7 +151,7 @@ public class NumeroBean implements Serializable{
 		if(idSector != null){
 			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosEnEsperaSector(idSector, "RESPSEC", shared.getUser()));	
 			if (list == null || list.isEmpty())
-				shared.updateNoticeInfo("No se encontraron n�meros atrasados para el sector con identificador " + idSector + " .");
+				shared.updateNoticeInfo("No se encontraron n�meros en espera para el sector con identificador " + idSector + " .");
 			return list;
 		}else{
 			return null;
