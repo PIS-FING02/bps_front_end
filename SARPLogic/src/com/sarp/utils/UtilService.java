@@ -31,7 +31,7 @@ public class UtilService {
 			  System.out.println("NO ESTA EL ARCHIVO");
 			  try{
 				  System.out.println("BUSCO LOCAL");
-				  input = new FileInputStream(propertiesPathLocal);
+				  input = UtilService.class.getResourceAsStream("local.properties");
 				  prop.load(input);  
 				  System.out.println("ESTAAAAAAAAAAAAAAAAAAAAAAAA");
 			  }catch(Exception ex) { 
