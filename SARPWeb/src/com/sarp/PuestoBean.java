@@ -168,10 +168,21 @@ public class PuestoBean implements Serializable{
 		Map<String, Object> requestMap = context.getExternalContext().getSessionMap();
 
 		if (shared.getRolesMap().get("RESPSEC")){	
-			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC",shared.getUser()));
-			if (this.puestosList.isEmpty())
-				shared.updateNoticeInfo("No se encontraron puestos para el sector/es donde tienes autorizaci�n.");
-			return this.puestosList;
+
+			String resp = c.listarPuestos("RESPSEC",shared.getUser());
+			Pattern pat = Pattern.compile("(.*)ERROR(.*)");
+			Matcher numNotFound = pat.matcher(resp);
+		
+			if(!numNotFound.find()){
+				this.puestosList = modeler.toJSONPuestos(resp);
+				if (this.puestosList.isEmpty())
+					shared.updateNoticeInfo("No se encontraron puestos para el sector/es donde tienes autorizaci�n.");
+				return this.puestosList;
+			}else{
+				//shared.updateNotice("ERROR",resp);
+				throw new Exception(resp);
+			}
+			
 		} else {
 			return null;
 		}
@@ -448,36 +459,59 @@ public String llamarNumeroDemanda(String internalId){
 	}
 	
 	public String llamarNumeroPausado(String internalId){
-		JSONNumero num = modeler.toJSONNumero(c.llamarNumeroPausado(internalId,this.maquina, "OPERADOR"));
-		this.externalId = num.getExternalId();
-		this.estadoNumero = num.getEstado();
-		this.prioridad = num.getPrioridad();
-		this.id = num.getId();
-		if(this.prioridad.equals(1)){
-			String[] arrayFechaHora = hora.split("-");
-			this.fecha = arrayFechaHora[0];
-			this.hora = arrayFechaHora[1];
-		}else{
-			this.fecha = "";
-			this.hora = "";
-		}
-		this.idTramite = num.getIdTramite();
-		this.serie= num.getExternalId().split("-")[0];
-		this.externalNum = num.getExternalId().split("-")[1];
-		GregorianCalendar hora_actual = new GregorianCalendar();
-		int dia = Integer.parseInt(this.hora.substring(0, 2));
-		int mes = Integer.parseInt(this.hora.substring(3, 5)) - 1;
-		int ano = Integer.parseInt(this.hora.substring(6, 10));
-		int hora= Integer.parseInt(this.hora.substring(11, 13));
-		int min = Integer.parseInt(this.hora.substring(14));
-		GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
-		this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
-		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+		String resp = c.llamarNumeroPausado(internalId,this.maquina, "OPERADOR");
+		Pattern pat = Pattern.compile("(.*)ERROR(.*)");
+		Matcher numNotFound = pat.matcher(resp);
+	
+		if(!numNotFound.find()){
+			JSONNumero num = modeler.toJSONNumero(resp);
+			this.externalId = num.getExternalId();
+			this.estadoNumero = num.getEstado();
+			this.prioridad = num.getPrioridad();
+			this.id = num.getId();
+			int dia = 0;
+			int mes = 0;
+			int ano = 0;
+			int horaFin= 0;
+			int min = 0;
 			
+			if(this.prioridad.equals(1)){
+				String[] arrayFechaHora = hora.split("-");
+				this.fecha = arrayFechaHora[0];
+				this.hora = arrayFechaHora[1];
+				dia = Integer.parseInt(this.hora.substring(0, 2));
+				mes = Integer.parseInt(this.hora.substring(3, 5)) - 1;
+				ano = Integer.parseInt(this.hora.substring(6, 10));
+				horaFin= Integer.parseInt(this.hora.substring(11, 13));
+				min = Integer.parseInt(this.hora.substring(14));
+			}else{
+				this.fecha = "";
+				this.hora = "";
+			}
+			this.idTramite = num.getIdTramite();
+			this.serie= num.getExternalId().split("-")[0];
+			this.externalNum = num.getExternalId().split("-")[1];
+			GregorianCalendar hora_actual = new GregorianCalendar();
+
+			GregorianCalendar horaNumero = (ano == 0)? new GregorianCalendar(ano, mes, dia, horaFin, min) : new GregorianCalendar();
+			this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
+			if(roles.contains("OPERADORSR")){
+				return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
+				
+			}else{
+				System.out.println("va a redirigir a /pages/operadorAtencion.xhtml?faces-redirect=true operador");
+				return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+			}
 		}else{
-			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
+			if(roles.contains("OPERADORSR")){
+				return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
+				
+			}else{
+				return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+			}
+		
 		}
+		
 	}
 	
 	public String llamarNumeroAtrasado(String internalId){
@@ -505,10 +539,10 @@ public String llamarNumeroDemanda(String internalId){
 		GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
 		this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
 		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
 			
 		}else{
-			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 		}
 	}
 		
