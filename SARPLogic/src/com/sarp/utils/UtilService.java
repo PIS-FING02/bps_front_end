@@ -9,7 +9,9 @@ import java.util.Properties;
 public class UtilService {
 
 	private static final String propertiesPath = "/home/ubuntu/EAP-6.4.0/modules/conf/sarp_front.properties";
-	private static final String propertiesPathLocal =  "C:/Users/Martina/workspace/Front/bps_front_end/local.properties";
+
+	private static final String propertiesPathLocal =  "/Users/facevedo/Documents/frontendPIS/bps_front_end/local.properties";
+
 
 	public static Integer getIntegerProperty(String key) {    
 		return  Integer.valueOf(getProperty().getProperty(key));
@@ -31,6 +33,7 @@ public class UtilService {
 				  System.out.println("BUSCO LOCAL");
 				  input = new FileInputStream(propertiesPathLocal);
 				  prop.load(input);  
+				  System.out.println("ESTAAAAAAAAAAAAAAAAAAAAAAAA");
 			  }catch(Exception ex) { 
 				  System.out.println("NO LO ENCONTRO AL PROPERTIE NI LOCAL");
 			  }
