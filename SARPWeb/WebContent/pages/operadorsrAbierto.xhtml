@@ -24,7 +24,6 @@
 			<div class="top-frame">
 				<c:set value="#{loginBean.username}" target="#{puesto}" property="usuarioId" />
 				<c:set value="#{loginBean.getRoles()}" target="#{puesto}" property="roles" />
-				<c:set value="#{puesto.getOperadorTest()}" target="#{puesto}" property="maquina" />
 				<h:form>
 				<div class="left-frame">
 					<div class="top-line"> Puesto: #{puesto.maquina}</div>
@@ -40,13 +39,18 @@
 					</div>
 				</div>
 				</h:form>
-				<div class="right-frame">
-					<div id="nros-espera" class="top-line"> Números en espera: </div>
-					<h:form id='form-cerrar'>
+				<h:form id='form-cerrar'>
 						<h:commandButton id='cerrar-puesto-button' class="secondary-button estado-puesto-button" value="Cerrar Puesto" action="#{puesto.cerrar}"/>
+						<div class="right-frame">
+							<div id="nros-espera" class="top-line"> Números en espera </div>
+							<ui:repeat id='repeat-cant-numeros' value='#{puesto.getNumEnEspera()}' var='n'>
+								<div class='element-list display-element'>
+									<h:outputText class='puesto-element' value='#{n.nombre} : #{n.cantNumEspera}'/>
+								</div>
+						</ui:repeat>
+						</div>
 					</h:form>
-				</div>
-			</div>
+					</div>
 			<div id="prox-nums-frame" class="prox-nums-frame">				
 				<div class='data-line'>
 					<div class='label'>Próx. Números:</div>
@@ -66,9 +70,11 @@
 				<h:form>
 					<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
 					<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
+					<h:commandButton class="action-button atencion-buttons" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/>
 				</h:form>
 			</div>
 		</div>
+		
 	</div>
 </body>
 </html>

@@ -82,11 +82,15 @@
 		<managed-bean-name>tramite</managed-bean-name>
 		<managed-bean-class>com.sarp.TramiteBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
-				<managed-property>
+		<managed-property>
+			<property-name>puesto</property-name>
+			<value>#{puesto}</value>
+		</managed-property>
+		<managed-property>
 			<property-name>shared</property-name>
 			<value>#{shared}</value>
 		</managed-property>
-				<managed-property>
+		<managed-property>
 			<property-name>login</property-name>
 			<value>#{login}</value>
 		</managed-property>
