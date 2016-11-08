@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -22,7 +23,7 @@ public class MetricasBean {
     private String timeSpent;
     private String lastUpdated;
     private String dateCreated;
-    
+  
 	private String externalId;
 	
 	private List<JSONMetricasPuesto> metricasPuestos;
@@ -30,8 +31,17 @@ public class MetricasBean {
 	
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
-	public SharedBean shared = SharedBean.getInstance();
 
+	@ManagedProperty("#{shared}")
+	public SharedBean shared;
+	
+
+	public SharedBean getShared() {
+		return shared;
+	}
+	public void setShared(SharedBean shared) {
+		this.shared = shared;
+	}
 	public boolean nombreMaquinaVacio(){
 		/*Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String paramNombreMaquina = params.get("nombreMaquina");
@@ -43,7 +53,7 @@ public class MetricasBean {
 		if (shared.getRolesMap().get("CONSULTOR")) {
 			this.metricasPuestos = modeler.toJSONMetricasPuestos(c.listarMetricasPuestos("CONSULTOR", shared.getUser()));
 			if (this.metricasPuestos.isEmpty())
-				shared.updateNoticeInfo("No se encontraron métricas para estos puestos en el sistema.");
+				shared.updateNoticeInfo("No se encontraron mï¿½tricas para estos puestos en el sistema.");
 			return ("/pages/metricasPuesto.xhtml?faces-redirect=true");
 		}else{
 			return null;
@@ -58,7 +68,7 @@ public class MetricasBean {
 			if (shared.getRolesMap().get("CONSULTOR")) {
 				this.metricasPuestos = modeler.toJSONMetricasPuestos(c.listarMetricasPuesto(nombreMaquina,"CONSULTOR", shared.getUser()));
 				if (this.metricasPuestos.isEmpty())
-					shared.updateNoticeInfo("No se encontraron métricas para este puesto en el sistema.");
+					shared.updateNoticeInfo("No se encontraron mï¿½tricas para este puesto en el sistema.");
 				return this.metricasPuestos;
 			}else{
 				return null;
@@ -80,7 +90,7 @@ public class MetricasBean {
 		if (shared.getRolesMap().get("CONSULTOR")) {
 			this.metricasNumeros = modeler.toJSONMetricasNumeros(c.listarMetricasNumeros("CONSULTOR", shared.getUser()));
 			if (this.metricasNumeros.isEmpty())
-				shared.updateNoticeInfo("No se encontraron métricas para estos números en el sistema.");
+				shared.updateNoticeInfo("No se encontraron mï¿½tricas para estos nï¿½meros en el sistema.");
 			return ("/pages/metricasNumero.xhtml?faces-redirect=true");
 		}else{
 			return null;
@@ -92,7 +102,7 @@ public class MetricasBean {
 		if (shared.getRolesMap().get("CONSULTOR")) {
 			this.metricasNumeros = modeler.toJSONMetricasNumeros(c.listarMetricasNumerosEstado("CONSULTOR", shared.getUser()));
 			if (this.metricasNumeros.isEmpty())
-				shared.updateNoticeInfo("No se encontraron métricas para estos números en el sistema.");
+				shared.updateNoticeInfo("No se encontraron mï¿½tricas para estos nï¿½meros en el sistema.");
 			return ("/pages/metricasNumero.xhtml?faces-redirect=true");
 		}else{
 			return null;
@@ -107,7 +117,7 @@ public class MetricasBean {
 			if (shared.getRolesMap().get("CONSULTOR")) {
 				this.metricasNumeros = modeler.toJSONMetricasNumeros(c.listarMetricasNumero(externalId,"CONSULTOR", shared.getUser()));
 				if (this.metricasNumeros.isEmpty())
-					shared.updateNoticeInfo("No se encontraron métricas para este número en el sistema.");
+					shared.updateNoticeInfo("No se encontraron mï¿½tricas para este nï¿½mero en el sistema.");
 				return this.metricasNumeros;
 			}else{
 				return null;
@@ -125,7 +135,7 @@ public class MetricasBean {
 			if (shared.getRolesMap().get("CONSULTOR")) {
 				this.metricasNumeros = modeler.toJSONMetricasNumeros(c.listarMetricasNumeroEstado(externalId,"CONSULTOR", shared.getUser()));
 				if (this.metricasNumeros.isEmpty())
-					shared.updateNoticeInfo("No se encontraron métricas para este número en el sistema.");
+					shared.updateNoticeInfo("No se encontraron mï¿½tricas para este nï¿½mero en el sistema.");
 				return this.metricasNumeros;
 			}else{
 				return null;

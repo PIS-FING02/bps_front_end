@@ -2,6 +2,7 @@ package com.sarp;
 
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +21,19 @@ public class LoginBean {
 	private String message;
 	private String roles = "";
 	private Boolean loggedIn = false;
-	public SharedBean shared = SharedBean.getInstance();
 	
+	@ManagedProperty("#{shared}")
+	public SharedBean shared;
+	
+	
+	public SharedBean getShared() {
+		return shared;
+	}
+
+	public void setShared(SharedBean shared) {
+		this.shared = shared;
+	}
+
 	public String getUsernameHeader() {
 		return usernameHeader;
 	}
@@ -129,7 +141,7 @@ public class LoginBean {
         if(session != null) {
         	setUsernameHeader("Bienvenido");
         	session.invalidate();
-        	System.out.println("Se cerró la sesión correctamente");        	
+        	System.out.println("Se cerrï¿½ la sesiï¿½n correctamente");        	
         }
         this.loggedIn = false;
         return "/pages/login.xhtml?faces-redirect=true";

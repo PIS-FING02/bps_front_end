@@ -3,6 +3,7 @@ package com.sarp;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.sarp.controllers.ControladorREST;
@@ -10,7 +11,7 @@ import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONDisplay;
 
 
-@ManagedBean(name = "display", eager = true)
+@ManagedBean(name = "display")
 @ViewScoped
 public class DisplayBean {
 
@@ -18,20 +19,30 @@ public class DisplayBean {
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONDisplay> displays;
 	private static final JSONModeler modeler = new JSONModeler();
-	public SharedBean shared = SharedBean.getInstance();
+	@ManagedProperty("#{shared}")
+	public SharedBean shared;
+	
+
+	public SharedBean getShared() {
+		return shared;
+	}
+
+	public void setShared(SharedBean shared) {
+		this.shared = shared;
+	}
 
 	public String alta() throws Exception{
 		JSONDisplay jdisplay = new JSONDisplay(this.id);
 		System.out.println(jdisplay.toString());
 		String status= c.altaDisplay(jdisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador "+ this.id + " se creó correctamente.");
+		shared.updateNotice(status, "El display con identificador "+ this.id + " se creï¿½ correctamente.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 	
 	public String baja(String id) {
 		JSONDisplay jdisplay = new JSONDisplay(id);
 		String status = c.bajaDisplay(jdisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador " + id + " se eliminó correctamente.");
+		shared.updateNotice(status, "El display con identificador " + id + " se eliminï¿½ correctamente.");
 		return "/pages/displays.xhtml?faces-redirect=true";
 	}
 
@@ -68,7 +79,7 @@ public class DisplayBean {
 		else {
 			List<JSONDisplay> list = modeler.toJSONDisplays(c.listarDisplaysSector(sectorId, "RESPSEC"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningún display asignado.");
+				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ningï¿½n display asignado.");
 			return list;
 		}
 	}

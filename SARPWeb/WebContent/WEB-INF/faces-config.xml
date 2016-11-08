@@ -14,6 +14,19 @@
 		<managed-bean-name>loginBean</managed-bean-name>
 		<managed-bean-class>com.sarp.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+			<managed-property>
+			<property-name>shared</property-name>
+			<value>#{shared}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>metricas</managed-bean-name>
+		<managed-bean-class>com.sarp.MetricasBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+			<managed-property>
+			<property-name>shared</property-name>
+			<value>#{shared}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>sharedBean</managed-bean-name>
@@ -24,21 +37,41 @@
 		<managed-bean-name>display</managed-bean-name>
 		<managed-bean-class>com.sarp.DisplayBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>shared</property-name>
+			<value>#{shared}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>numero</managed-bean-name>
 		<managed-bean-class>com.sarp.NumeroBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
+			<managed-property>
+			<property-name>shared</property-name>
+			<value>#{shared}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>puesto</managed-bean-name>
 		<managed-bean-class>com.sarp.PuestoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+			<managed-property>
+			<property-name>shared</property-name>
+			<value>#{shared}</value>
+		</managed-property>
+			<managed-property>
+			<property-name>login</property-name>
+			<value>#{login}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>sector</managed-bean-name>
 		<managed-bean-class>com.sarp.SectorBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
+			<managed-property>
+			<property-name>shared</property-name>
+			<value>#{shared}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>test</managed-bean-name>
@@ -49,5 +82,13 @@
 		<managed-bean-name>tramite</managed-bean-name>
 		<managed-bean-class>com.sarp.TramiteBean</managed-bean-class>
 		<managed-bean-scope>view</managed-bean-scope>
+				<managed-property>
+			<property-name>shared</property-name>
+			<value>#{shared}</value>
+		</managed-property>
+				<managed-property>
+			<property-name>login</property-name>
+			<value>#{login}</value>
+		</managed-property>
 	</managed-bean>
 </faces-config>
