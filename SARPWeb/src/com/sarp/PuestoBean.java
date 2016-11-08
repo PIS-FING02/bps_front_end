@@ -1,16 +1,21 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONCantNumEnSector;
@@ -26,8 +31,9 @@ import com.sarp.utils.UtilService;
 
 @ManagedBean(name = "puesto", eager = true)
 @SessionScoped
-public class PuestoBean {
-	
+public class PuestoBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private String estadoComboBox;
 	private String maquina;
 	private String usuarioId;
@@ -65,12 +71,12 @@ public class PuestoBean {
 	private List<JSONPuesto> puestosListDesasignar;
 	private List<JSONPuesto> puestosListBusquedaDesasignar = new ArrayList<JSONPuesto>();
 	
-	@ManagedProperty("#{login}")
+	@ManagedProperty("#{sessionScope.login}")
 	public LoginBean login;
 	@ManagedProperty("#{sector}")
 	public SectorBean sector;
 	
-	@ManagedProperty("#{shared}")
+	@ManagedProperty("#{sessionScope.shared}")
 	public SharedBean shared;
 	
 	private	ControladorREST c = new ControladorREST();
@@ -158,6 +164,9 @@ public class PuestoBean {
 	}
 
 	public List<JSONPuesto> listar() throws Exception{
+		FacesContext context = FacesContext.getCurrentInstance();
+		Map<String, Object> requestMap = context.getExternalContext().getSessionMap();
+
 		if (shared.getRolesMap().get("RESPSEC")){	
 			this.puestosList = modeler.toJSONPuestos(c.listarPuestos("RESPSEC",shared.getUser()));
 			if (this.puestosList.isEmpty())

@@ -76,7 +76,7 @@
 	<managed-bean>
 		<managed-bean-name>test</managed-bean-name>
 		<managed-bean-class>com.sarp.TestBean</managed-bean-class>
-		<managed-bean-scope>view</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>tramite</managed-bean-name>

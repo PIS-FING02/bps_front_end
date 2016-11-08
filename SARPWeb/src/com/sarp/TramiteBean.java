@@ -1,13 +1,12 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONTramite;
@@ -15,8 +14,10 @@ import com.sarp.jsons.JSONTramiteRecepcion;
 
 @ManagedBean(name = "tramite", eager = true)
 @ViewScoped
-public class TramiteBean {
+public class TramiteBean implements Serializable{
 
+
+	private static final long serialVersionUID = 1L;
 	private String codigo;
 	private String nombre;
 	private String id_sector;
@@ -26,10 +27,10 @@ public class TramiteBean {
 	private boolean entre = false;
 	private String searchString;
 
-	@ManagedProperty("#{login}")
+	@ManagedProperty("#{sessionScope.login}")
 	public LoginBean login;
 	
-	@ManagedProperty("#{shared}")
+	@ManagedProperty("#{sessionScope.shared}")
 	public SharedBean shared;
 	
 	
@@ -54,6 +55,7 @@ public class TramiteBean {
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.altaTramite(jtramite.toString(), "ADMIN");
 		shared.updateNotice(status, "El tr�mite con c�digo " + this.codigo + " y nombre "+ this.nombre + " se cre� correctamente.");
+		
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	

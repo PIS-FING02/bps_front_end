@@ -1,5 +1,6 @@
 package com.sarp;
 
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,10 +12,11 @@ import javax.servlet.http.HttpSession;
 import org.jboss.security.SecurityContextAssociation;
 
 
-@ManagedBean(name = "loginBean", eager = true)
+@ManagedBean(name = "loginBean")
 @SessionScoped
-public class LoginBean {
+public class LoginBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String usernameHeader = "Bienvenido";
 	private String password;
@@ -22,7 +24,7 @@ public class LoginBean {
 	private String roles = "";
 	private Boolean loggedIn = false;
 	
-	@ManagedProperty("#{shared}")
+	@ManagedProperty("#{sessionScope.shared}")
 	public SharedBean shared;
 	
 	
@@ -101,6 +103,10 @@ public class LoginBean {
 	        addRol("OPERADOR", request);
 	        addRol("OPERADORSR", request);
 	        addRol("RECEPCION", request);
+	         
+	        FacesContext context = FacesContext.getCurrentInstance();
+	        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+	        session.setAttribute("username", username);
 
 	        if (roles == ""){
 	            message= "Either Login or Password is wrong";

@@ -1,5 +1,6 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +16,9 @@ import com.sarp.jsons.JSONMetricasPuesto;
 
 @ManagedBean(name = "metricas", eager = true)
 @SessionScoped
-public class MetricasBean {
-	
+public class MetricasBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private String nombreMaquina;
     private String usuarioAtencion;
     private String estado;
@@ -32,7 +34,7 @@ public class MetricasBean {
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 
-	@ManagedProperty("#{shared}")
+	@ManagedProperty("#{sessionScope.shared}")
 	public SharedBean shared;
 	
 

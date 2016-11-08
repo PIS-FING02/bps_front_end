@@ -1,23 +1,24 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONDatosComp;
 import com.sarp.jsons.JSONNumero;
 import javax.annotation.PostConstruct;
 
+
 @ManagedBean(name = "numero", eager = true)
 @ViewScoped
-public class NumeroBean {
+public class NumeroBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String idTramite;
 	private String idSector;
 	private String prioridad;
@@ -29,7 +30,7 @@ public class NumeroBean {
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 
-	@ManagedProperty("#{shared}")
+	@ManagedProperty("#{sessionScope.shared}")
 	public SharedBean shared;
 	
 	

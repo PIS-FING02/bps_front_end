@@ -1,19 +1,22 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONTramite;
 
 @ManagedBean(name = "shared")
 @SessionScoped
-public class SharedBean {
+public class SharedBean implements Serializable{
 	
+
+	private static final long serialVersionUID = 1L;
+
+
 	public SharedBean() {}
 	
 	private static String icon = "check";

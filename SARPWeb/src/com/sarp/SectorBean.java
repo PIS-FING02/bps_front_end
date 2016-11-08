@@ -1,17 +1,14 @@
 package com.sarp;
 
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
-
 import javax.faces.bean.ViewScoped;
-
+import javax.faces.context.FacesContext;
 import com.sarp.controllers.ControladorREST;
 import com.sarp.jsonModeler.JSONModeler;
 import com.sarp.jsons.JSONNumero;
@@ -22,8 +19,9 @@ import com.sarp.jsons.JSONSectorTramite;
 
 @ManagedBean(name = "sector", eager = true)
 @ViewScoped
-public class SectorBean {
+public class SectorBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String nombre;
 	private String ruta;
@@ -43,7 +41,7 @@ public class SectorBean {
 	private	ControladorREST c = new ControladorREST();
 	private static final JSONModeler modeler = new JSONModeler();
 	
-	@ManagedProperty("#{shared}")
+	@ManagedProperty("#{sessionScope.shared}")
 	public SharedBean shared;
 	
 	

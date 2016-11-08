@@ -1,7 +1,7 @@
 package com.sarp;
 
+import java.io.Serializable;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -13,13 +13,15 @@ import com.sarp.jsons.JSONDisplay;
 
 @ManagedBean(name = "display")
 @ViewScoped
-public class DisplayBean {
+public class DisplayBean implements Serializable{
 
+
+	private static final long serialVersionUID = 1L;
 	public String id;
 	private	ControladorREST c = new ControladorREST();
 	private List<JSONDisplay> displays;
 	private static final JSONModeler modeler = new JSONModeler();
-	@ManagedProperty("#{shared}")
+	@ManagedProperty("#{sessionScope.shared}")
 	public SharedBean shared;
 	
 
