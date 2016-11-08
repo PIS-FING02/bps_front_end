@@ -6,22 +6,22 @@ import com.sarp.utils.UtilService;
 public class AttentionsFacade {
 	
 	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
-	public static final String URL_ABRIR_PUESTO = SERVER + UtilService.getStringProperty("URL_ABRIR_PUESTO");
-	public static final String URL_CERRAR_PUESTO = SERVER + UtilService.getStringProperty("URL_CERRAR_PUESTO");
-	public static final String URL_LLAMAR_NUMERO = SERVER + UtilService.getStringProperty("URL_LLAMAR_NUMERO");
-	public static final String URL_LISTAR_NUMEROS = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS");
-	public static final String URL_LISTAR_NUMEROS_PAUSADOS = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_PAUSADOS");
-	public static final String URL_LISTAR_NUMEROS_ATRASADOS = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_ATRASADOS");
-	public static final String URL_COMENZAR_ATENCION =SERVER + UtilService.getStringProperty("URL_COMENZAR_ATENCION");
-	public static final String URL_ATRASAR_NUMERO =SERVER + UtilService.getStringProperty("URL_ATRASAR_NUMERO");
-	public static final String URL_PAUSAR_NUMERO =SERVER + UtilService.getStringProperty("URL_PAUSAR_NUMERO");
-	public static final String URL_FINALIZAR_NUMERO = SERVER + UtilService.getStringProperty("URL_FINALIZAR_NUMERO");
-	public static final String URL_LLAMAR_NUMERO_PAUSADO =SERVER + UtilService.getStringProperty("URL_LLAMAR_NUMERO_PAUSADO");
-	public static final String URL_LLAMAR_NUMERO_ATRASADO =SERVER + UtilService.getStringProperty("URL_LLAMAR_NUMERO_ATRASADO");
-	public static final String URL_LLAMAR_NUMERO_DEMANDA =SERVER + UtilService.getStringProperty("URL_LLAMAR_NUMERO_DEMANDA");
-	public static final String URL_RELLAMAR_NUMERO =SERVER + UtilService.getStringProperty("URL_RELLAMAR_NUMERO");
-	public static final String URL_DESVIAR_NUMERO = SERVER + UtilService.getStringProperty("URL_DESVIAR_NUMERO");
-	public static final String URL_CANT_NUM_EN_ESPERA= SERVER + UtilService.getStringProperty("URL_CANT_NUM_EN_ESPERA");
+	public static final String URL_ABRIR_PUESTO =  UtilService.getStringProperty("URL_ABRIR_PUESTO");
+	public static final String URL_CERRAR_PUESTO =  UtilService.getStringProperty("URL_CERRAR_PUESTO");
+	public static final String URL_LLAMAR_NUMERO =  UtilService.getStringProperty("URL_LLAMAR_NUMERO");
+	public static final String URL_LISTAR_NUMEROS =  UtilService.getStringProperty("URL_LISTAR_NUMEROS");
+	public static final String URL_LISTAR_NUMEROS_PAUSADOS =  UtilService.getStringProperty("URL_LISTAR_NUMEROS_PAUSADOS");
+	public static final String URL_LISTAR_NUMEROS_ATRASADOS =  UtilService.getStringProperty("URL_LISTAR_NUMEROS_ATRASADOS");
+	public static final String URL_COMENZAR_ATENCION = UtilService.getStringProperty("URL_COMENZAR_ATENCION");
+	public static final String URL_ATRASAR_NUMERO = UtilService.getStringProperty("URL_ATRASAR_NUMERO");
+	public static final String URL_PAUSAR_NUMERO = UtilService.getStringProperty("URL_PAUSAR_NUMERO");
+	public static final String URL_FINALIZAR_NUMERO =  UtilService.getStringProperty("URL_FINALIZAR_NUMERO");
+	public static final String URL_LLAMAR_NUMERO_PAUSADO = UtilService.getStringProperty("URL_LLAMAR_NUMERO_PAUSADO");
+	public static final String URL_LLAMAR_NUMERO_ATRASADO = UtilService.getStringProperty("URL_LLAMAR_NUMERO_ATRASADO");
+	public static final String URL_LLAMAR_NUMERO_DEMANDA = UtilService.getStringProperty("URL_LLAMAR_NUMERO_DEMANDA");
+	public static final String URL_RELLAMAR_NUMERO = UtilService.getStringProperty("URL_RELLAMAR_NUMERO");
+	public static final String URL_DESVIAR_NUMERO =  UtilService.getStringProperty("URL_DESVIAR_NUMERO");
+	public static final String URL_CANT_NUM_EN_ESPERA=  UtilService.getStringProperty("URL_CANT_NUM_EN_ESPERA");
 	//public static final String URL_LISTAR_TRAMITE_SECTOR=
 	
 	

@@ -7,12 +7,12 @@ public class TramiteFacade {
 
 	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
 
-	public static final String URL_REST_FULL = SERVER + UtilService.getStringProperty("URL_REST_FULL");
-	public static final String URL_GET_ALL = SERVER + UtilService.getStringProperty("URL_GET_ALL");
-	public static final String URL_GET_ALL_SECTOR = SERVER + UtilService.getStringProperty("URL_GET_ALL_SECTOR");
-	public static final String URL_GET_FROM_SECTOR = SERVER + UtilService.getStringProperty("URL_GET_FROM_SECTOR");
-	public static final String URL_GET_FROM_RECEPCION = SERVER + UtilService.getStringProperty("URL_GET_FROM_RECEPCION");
-	public static final String URL_GET_FROM_PUESTO = SERVER + UtilService.getStringProperty("URL_GET_FROM_PUESTO");
+	public static final String URL_REST_FULL = UtilService.getStringProperty("URL_REST_FULL");
+	public static final String URL_GET_ALL = UtilService.getStringProperty("URL_GET_ALL");
+	public static final String URL_GET_ALL_SECTOR = UtilService.getStringProperty("URL_GET_ALL_SECTOR");
+	public static final String URL_GET_FROM_SECTOR = UtilService.getStringProperty("URL_GET_FROM_SECTOR");
+	public static final String URL_GET_FROM_RECEPCION = UtilService.getStringProperty("URL_GET_FROM_RECEPCION");
+	public static final String URL_GET_FROM_PUESTO = UtilService.getStringProperty("URL_GET_FROM_PUESTO");
 	
 	public String alta(String input, String userRol) throws Exception {
 		RestClient restClient = RestClient.getInstance();
