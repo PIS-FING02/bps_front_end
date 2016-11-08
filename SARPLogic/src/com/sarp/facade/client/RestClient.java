@@ -62,8 +62,8 @@ public class RestClient {
 			if (conn.getResponseCode() != 200) {
 				resultado.append("Error");
 			}
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-				(conn.getInputStream())));
+			InputStream instream = conn.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(instream, "UTF-8"));
 	
 			String output;
 			System.out.println("RestClient GET con " + URL );
@@ -295,14 +295,15 @@ public class RestClient {
 			conn.setDoOutput(true);
 			conn.setRequestMethod("PUT");
 			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Accept-Charset", "UTF-8");
 			conn.setRequestProperty("user-rol",userRol);
 
 			OutputStream os = conn.getOutputStream();
 			os.write(input.getBytes());
 			os.flush();
-		
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
+
+			InputStream instream = conn.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(instream, "UTF-8"));
 			
 			String output;
 			System.out.println("RestClient PUT con " + URL+ "input = "+ input );
