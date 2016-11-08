@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -54,8 +57,14 @@ public class TramiteBean implements Serializable{
 	public String alta() throws Exception{
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.altaTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El tr�mite con c�digo " + this.codigo + " y nombre "+ this.nombre + " se cre� correctamente.");
-		
+		Pattern pat = Pattern.compile("(.*)ERROR(.*)");
+		Matcher statusAlta = pat.matcher(status);
+	
+		if(!statusAlta.find())
+			shared.updateNotice(status, "El tr�mite con c�digo " + this.codigo + " y nombre "+ this.nombre + " se cre� correctamente.");
+		else
+			shared.updateNoticeInfo("El tr�mite con c�digo " + this.codigo + " y nombre "+ this.nombre + " ya existe.");
+			
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	

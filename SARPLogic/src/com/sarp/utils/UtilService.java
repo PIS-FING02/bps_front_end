@@ -10,7 +10,7 @@ public class UtilService {
 
 	private static final String propertiesPath = "/home/ubuntu/EAP-6.4.0/modules/conf/sarp_front.properties";
 
-	private static final String propertiesPathLocal =  "/Users/facevedo/Documents/frontendPIS/bps_front_end/local.properties";
+	private static final String propertiesPathLocal =  "/Users/franciscocabrera/git/bps_front_end/local.properties";
 
 
 	public static Integer getIntegerProperty(String key) {    

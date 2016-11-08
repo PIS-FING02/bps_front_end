@@ -476,7 +476,7 @@ public String llamarNumeroDemanda(String internalId){
 			int min = 0;
 			
 
-			String[] arrayFechaHora = hora.split("-");
+			String[] arrayFechaHora = num.getHora().split("-");
 			this.fecha = arrayFechaHora[0];
 			this.hora = arrayFechaHora[1];
 			dia = Integer.parseInt(this.fecha.substring(0, 2));
@@ -525,7 +525,7 @@ public String llamarNumeroDemanda(String internalId){
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
 	
-			String[] arrayFechaHora = hora.split("-");
+			String[] arrayFechaHora = num.getHora().split("-");
 			this.fecha = arrayFechaHora[0];
 			this.hora = arrayFechaHora[1];
 	
