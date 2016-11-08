@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -20,6 +22,7 @@ import com.sarp.jsons.JSONSector;
 import com.sarp.jsons.JSONSectorPuesto;
 import com.sarp.jsons.JSONTramite;
 import com.sarp.utils.UtilService;
+
 
 @ManagedBean(name = "puesto", eager = true)
 @SessionScoped
@@ -255,7 +258,12 @@ public class PuestoBean {
 	
 	public String llamarNumero() throws Exception {
 		String num = c.llamarNumero(this.maquina, "OPERADOR");
-		if(num != null){
+		Pattern pat = Pattern.compile("(.*)ERROR(.*)");
+		Matcher numNotFound = pat.matcher(num);
+	
+		//El numero es null o No se pudo encontrar un numero disponible
+		if(num != null && !numNotFound.find()){
+					
 			JSONNumero jnumero = modeler.toJSONNumero(num);
 			this.externalId = jnumero.getExternalId(); 
 			this.prioridad = jnumero.getPrioridad();
@@ -282,6 +290,7 @@ public class PuestoBean {
 		}else{
 			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
 			this.error = "show";*/
+			shared.updateNoticeInfo("No existe ningún número que pueda atender en este momento");
 			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 	}
