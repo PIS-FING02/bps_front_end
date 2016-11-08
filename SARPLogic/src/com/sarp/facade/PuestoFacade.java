@@ -12,7 +12,7 @@ public class PuestoFacade {
 	public static final String URL_GET_METRICAS_PUESTOS =  UtilService.getStringProperty("URL_GET_METRICAS_PUESTOS");
 	public static final String URL_REST_PUESTO_FULL =  UtilService.getStringProperty("URL_REST_FULL");
 	public static final String URL_GET_PUESTO_ALL =  UtilService.getStringProperty("URL_GET_PUESTO_ALL");
-	public static final String URL_GET_ALL_PUESTO_SECTOR =  UtilService.getStringProperty("URL_GET_ALL_SECTOR");
+	public static final String URL_GET_ALL_PUESTO_SECTOR =  UtilService.getStringProperty("URL_GET_ALL_PUESTO_SECTOR");
 	public static final String URL_ASIG_TRAMITE =  UtilService.getStringProperty("URL_ASIG_TRAMITE");
 	public static final String URL_TRAMITES_ASIGNABLES =  UtilService.getStringProperty("URL_TRAMITES_ASIGNABLES");
 	public static final String URL_DESASIG_TRAMITE =  UtilService.getStringProperty("URL_DESASIG_TRAMITE");
