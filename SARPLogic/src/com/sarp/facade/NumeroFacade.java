@@ -7,10 +7,10 @@ public class NumeroFacade {
 
 	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
 	
-	public static final String URL_SACAR_NUMERO = SERVER + UtilService.getStringProperty("URL_SACAR_NUMERO");
-	public static final String URL_GET_METRICAS_NUMEROS = SERVER + UtilService.getStringProperty("URL_GET_METRICAS_NUMEROS");
-	public static final String URL_GET_METRICAS_NUMERO = SERVER + UtilService.getStringProperty("URL_GET_METRICAS_NUMERO");
-	public static final String URL_GET_METRICAS_NUMEROS_ESTADO = SERVER + UtilService.getStringProperty("URL_GET_METRICAS_NUMEROS_ESTADO");
+	public static final String URL_SACAR_NUMERO = UtilService.getStringProperty("URL_SACAR_NUMERO");
+	public static final String URL_GET_METRICAS_NUMEROS = UtilService.getStringProperty("URL_GET_METRICAS_NUMEROS");
+	public static final String URL_GET_METRICAS_NUMERO = UtilService.getStringProperty("URL_GET_METRICAS_NUMERO");
+	public static final String URL_GET_METRICAS_NUMEROS_ESTADO = UtilService.getStringProperty("URL_GET_METRICAS_NUMEROS_ESTADO");
 
 	
 	public String sacar(String input, String userRol) throws Exception {

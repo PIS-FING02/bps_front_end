@@ -9,20 +9,20 @@ public class SectorFacade {
 	
 	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
 
-	public static final String URL_REST_SECTOR_FULL = SERVER + UtilService.getStringProperty("URL_REST_SECTOR_FULL");
-	public static final String URL_GET_SECTOR_ALL = SERVER + UtilService.getStringProperty("URL_GET_SECTOR_ALL");
-	public static final String URL_REST_GAFU = SERVER + UtilService.getStringProperty("URL_REST_GAFU");
-	public static final String URL_REST_ASIGNAR_TRAMITE = SERVER + UtilService.getStringProperty("URL_REST_ASIGNAR_TRAMITE");
-	public static final String URL_REST_DESASIGNAR_TRAMITE = SERVER + UtilService.getStringProperty("URL_REST_DESASIGNAR_TRAMITE");
-	public static final String URL_REST_ASIGNAR_PUESTO = SERVER + UtilService.getStringProperty("URL_REST_ASIGNAR_PUESTO");
-	public static final String URL_REST_ASIGNAR_DISPLAY = SERVER + UtilService.getStringProperty("URL_REST_ASIGNAR_DISPLAY");
-	public static final String URL_REST_DESASIGNAR_DISPLAY = SERVER + UtilService.getStringProperty("URL_REST_DESASIGNAR_DISPLAY");
-	public static final String URL_LISTAR_NUMEROS_SECTOR = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_SECTOR");
-	public static final String URL_REST_DESASIGNAR_PUESTO = SERVER + UtilService.getStringProperty("URL_REST_DESASIGNAR_PUESTO");
-	public static final String URL_LISTAR_NUMEROS_PAUSADOS_SECTOR = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_PAUSADOS_SECTOR");
-	public static final String URL_LISTAR_NUMEROS_ATRASADOS_SECTOR = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_ATRASADOS_SECTOR");
-	public static final String URL_LISTAR_NUMEROS_ESPERA_SECTOR = SERVER + UtilService.getStringProperty("URL_LISTAR_NUMEROS_ESPERA_SECTOR");
-	public static final String URL_LISTAR_SECTORES_DESVIO = SERVER + UtilService.getStringProperty("URL_LISTAR_SECTORES_DESVIO");
+	public static final String URL_REST_SECTOR_FULL = UtilService.getStringProperty("URL_REST_SECTOR_FULL");
+	public static final String URL_GET_SECTOR_ALL = UtilService.getStringProperty("URL_GET_SECTOR_ALL");
+	public static final String URL_REST_GAFU =  UtilService.getStringProperty("URL_REST_GAFU");
+	public static final String URL_REST_ASIGNAR_TRAMITE =  UtilService.getStringProperty("URL_REST_ASIGNAR_TRAMITE");
+	public static final String URL_REST_DESASIGNAR_TRAMITE =  UtilService.getStringProperty("URL_REST_DESASIGNAR_TRAMITE");
+	public static final String URL_REST_ASIGNAR_PUESTO =  UtilService.getStringProperty("URL_REST_ASIGNAR_PUESTO");
+	public static final String URL_REST_ASIGNAR_DISPLAY =  UtilService.getStringProperty("URL_REST_ASIGNAR_DISPLAY");
+	public static final String URL_REST_DESASIGNAR_DISPLAY =  UtilService.getStringProperty("URL_REST_DESASIGNAR_DISPLAY");
+	public static final String URL_LISTAR_NUMEROS_SECTOR =  UtilService.getStringProperty("URL_LISTAR_NUMEROS_SECTOR");
+	public static final String URL_REST_DESASIGNAR_PUESTO =  UtilService.getStringProperty("URL_REST_DESASIGNAR_PUESTO");
+	public static final String URL_LISTAR_NUMEROS_PAUSADOS_SECTOR =  UtilService.getStringProperty("URL_LISTAR_NUMEROS_PAUSADOS_SECTOR");
+	public static final String URL_LISTAR_NUMEROS_ATRASADOS_SECTOR =  UtilService.getStringProperty("URL_LISTAR_NUMEROS_ATRASADOS_SECTOR");
+	public static final String URL_LISTAR_NUMEROS_ESPERA_SECTOR =  UtilService.getStringProperty("URL_LISTAR_NUMEROS_ESPERA_SECTOR");
+	public static final String URL_LISTAR_SECTORES_DESVIO =  UtilService.getStringProperty("URL_LISTAR_SECTORES_DESVIO");
 	
 	public String importarSectoresGafu(String userRol)  {
 		RestClient restClient = RestClient.getInstance();
