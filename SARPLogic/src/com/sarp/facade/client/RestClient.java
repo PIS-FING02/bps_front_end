@@ -13,11 +13,13 @@ import org.jboss.resteasy.spi.InternalServerErrorException;
 import org.jboss.resteasy.spi.NotFoundException;
 import org.jboss.resteasy.spi.UnauthorizedException;
 
+import com.sarp.utils.UtilService;
+
 public class RestClient {
 
 	private static RestClient instance;
 	private RestClient(){}
-	
+	public static final String SERVER = UtilService.getStringProperty("SERVER_BACK_END");
 	public static RestClient getInstance(){
 		instance = instance != null ? instance : new  RestClient();
 		return instance;
@@ -26,7 +28,7 @@ public class RestClient {
 	public String doPost(String URL, String input, String userRol) throws Exception{
 		StringBuilder resultado = new StringBuilder();
 		System.out.println(input);
-		URL url = new URL(URL);
+		URL url = new URL(SERVER.concat(URL));
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setDoOutput(true);
 		conn.setRequestMethod("POST");
@@ -52,7 +54,7 @@ public class RestClient {
 	public String doGet(String URL, String userRol){
 		StringBuilder resultado = new StringBuilder();
 		try{
-			URL url = new URL(URL);
+			URL url = new URL(SERVER.concat(URL));
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -98,7 +100,7 @@ public class RestClient {
 	public String doGetList(String URL, String userRol, String user){
 		StringBuilder resultado = new StringBuilder();
 		try{
-			URL url = new URL(URL);
+			URL url = new URL(SERVER.concat(URL));
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -145,7 +147,7 @@ public class RestClient {
 	public String doGet(String URL, String userRol, String headerParam){
 		StringBuilder resultado = new StringBuilder();
 		try{
-			URL url = new URL(URL);
+			URL url = new URL(SERVER.concat(URL));
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -193,7 +195,7 @@ public class RestClient {
 			){
 		StringBuilder resultado = new StringBuilder();
 		try{
-			URL url = new URL(URL);
+			URL url = new URL(SERVER.concat(URL));
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -242,7 +244,7 @@ public class RestClient {
 	public String doDelete(String URL, String input, String userRol) {
 		StringBuilder resultado = new StringBuilder();
 		try {
-			URL url = new URL(URL);
+			URL url = new URL(SERVER.concat(URL));
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("DELETE");
@@ -290,7 +292,7 @@ public class RestClient {
 	public String doPut(String URL, String input, String userRol) {
 		StringBuilder resultado = new StringBuilder();
 		try {
-			URL url = new URL(URL);
+			URL url = new URL(SERVER.concat(URL));
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("PUT");
@@ -340,7 +342,7 @@ public class RestClient {
 public String doPut1(String URL, String input, String userRol) {
 	StringBuilder resultado = new StringBuilder();
 	try {
-		URL url = new URL(URL);
+		URL url = new URL(SERVER.concat(URL));
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setDoOutput(true);
 		conn.setRequestMethod("PUT");
@@ -391,7 +393,7 @@ public String doPut1(String URL, String input, String userRol) {
 public String doPut2(String URL, String input, String sector_desvio, String userRol) {
 	StringBuilder resultado = new StringBuilder();
 	try {
-		URL url = new URL(URL);
+		URL url = new URL(SERVER.concat(URL));
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setDoOutput(true);
 		conn.setRequestMethod("PUT");
@@ -446,7 +448,7 @@ public String doPut2(String URL, String input, String sector_desvio, String user
 public String doPut2(String URL, String idPuesto, String userRol) {
 StringBuilder resultado = new StringBuilder();
 try {
-	URL url = new URL(URL);
+	URL url = new URL(SERVER.concat(URL));
 	HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	conn.setDoOutput(true);
 	conn.setRequestMethod("PUT");
