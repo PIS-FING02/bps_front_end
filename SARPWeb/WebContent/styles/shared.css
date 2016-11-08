@@ -273,11 +273,7 @@ input {
 }	
 
 .action-button {
-<<<<<<< HEAD
-	width: auto !important;
-=======
 	width: auto;
->>>>>>> 5171474... Consultor, tildes sector y mensajes
 	background-color:#508110; 
 	color: #fff;
 	border: none;	

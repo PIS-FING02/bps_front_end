@@ -57,6 +57,12 @@ public class SectorBean {
 			if (list.isEmpty())
 				shared.updateNoticeInfo("No tienes sectores asignados.");
 			return shared.getSectoresList();
+		} else if (shared.getRolesMap().get("CONSULTOR")) {
+			List<JSONSector> list = modeler.toJSONSectores(c.listarSectores("CONSULTOR", shared.getUser()));	
+			shared.setSectoresList(list);
+			if (list.isEmpty())
+				shared.updateNoticeInfo("No tienes sectores asignados.");
+			return shared.getSectoresList();
 		} else {
 			shared.updateNoticeInfo("No tienes permisos suficientes.");
 			return null;
