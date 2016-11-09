@@ -832,13 +832,24 @@ public String llamarNumeroDemanda(String internalId){
 	}
 	
 	public  String restaFechas(GregorianCalendar g1,GregorianCalendar g2){
-        g1.add(Calendar.HOUR_OF_DAY, -g2.get(Calendar.HOUR_OF_DAY));
-        g1.add(Calendar.MINUTE, -g2.get(Calendar.MINUTE));
-        g1.add(Calendar.SECOND, -g2.get(Calendar.SECOND));
-        if (g1.get(Calendar.HOUR_OF_DAY) > 0)
-        	return Integer.toString(g1.get(Calendar.HOUR_OF_DAY))+" hora "+Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + "segundos.";        
-        else
-        	return Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + " segundos.";        
+		
+		   if (g1.after(g2)) {
+	            g1.add(Calendar.HOUR_OF_DAY, -g2.get(Calendar.HOUR_OF_DAY));
+	            g1.add(Calendar.MINUTE, -g2.get(Calendar.MINUTE));
+	            g1.add(Calendar.SECOND, -g2.get(Calendar.SECOND));
+	            if (g1.get(Calendar.HOUR_OF_DAY) > 0)
+	            	return Integer.toString(g1.get(Calendar.HOUR_OF_DAY))+" hora "+Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + "segundos.";        
+	            else
+	            	return Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + " segundos.";        
+	        } else {
+	            g2.add(Calendar.HOUR_OF_DAY, -g1.get(Calendar.HOUR_OF_DAY));
+	            g2.add(Calendar.MINUTE, -g1.get(Calendar.MINUTE));
+	            g2.add(Calendar.SECOND, -g1.get(Calendar.SECOND));
+	            if (g1.get(Calendar.HOUR_OF_DAY) > 0)
+	            	return Integer.toString(g2.get(Calendar.HOUR_OF_DAY))+" hora "+Integer.toString(g2.get(Calendar.MINUTE))+" minutos "+Integer.toString(g2.get(Calendar.SECOND)) + "segundos.";        
+	            else
+	            	return Integer.toString(g2.get(Calendar.MINUTE))+" minutos "+Integer.toString(g2.get(Calendar.SECOND)) + " segundos.";        
+	        }
 	}
 
 	public String getSerie() {
