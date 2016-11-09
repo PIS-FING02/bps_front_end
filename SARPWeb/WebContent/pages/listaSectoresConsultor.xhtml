@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
+      xmlns:h="http://java.sun.com/jsf/html">  
 <head>
 	<title>Pantalla Consultor</title>
 
 	<ui:include src="header.xhtml" />
+	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
 </head> 
 
 <body> 
@@ -34,20 +34,22 @@
 				<div id='list-sector-container' class='entity-list-container'>
 					<ui:repeat id='repeat-puestos' value='#{sector.listar()}' var='sectores'>
 						<div idSector='#{sectores.sectorId}' nombre='#{sectores.nombre}' ruta='#{sectores.ruta}' class='hidden'/>
-						<div class='list-entity puesto-element'>
-							<h:outputText class='puesto-element' value='#{sectores.nombre} '/>
-							<div class='icon icon-container'>Métricas</div>
-							<div id='asignar-container' class='asignar-container asignar-container-numeros hidden'>
-								<h:form>
-									<h:link value="Puestos" class="icon" outcome="listaPuestosMetricas">
-										<f:param name="id" value="#{sectores.sectorId}"/>
-										<f:param name="busqueda" value="false" />
-									</h:link>
-									<h:link value="Números" class="icon" outcome="listaNumerosMetricas">
-										<f:param name="id" value="#{sectores.sectorId}"/>
-										<f:param name="busqueda" value="false" />
-									</h:link>
-								</h:form>
+						<div class='list-entity puesto-element list-position-sectores'>
+							<div class='element-list element-list-fourth'>
+								<h:outputText class='puesto-element' value='#{sectores.nombre} '/>
+								<div class='icon icon-container'>Métricas</div>
+								<div id='asignar-container' class='asignar-container asignar-container-numeros position-container hidden'>
+									<h:form>
+										<h:link value="Puestos" class="icon" outcome="listaPuestosMetricas">
+											<f:param name="id" value="#{sectores.sectorId}"/>
+											<f:param name="busqueda" value="false" />
+										</h:link>
+										<h:link value="Números" class="icon" outcome="listaNumerosMetricas">
+											<f:param name="id" value="#{sectores.sectorId}"/>
+											<f:param name="busqueda" value="false" />
+										</h:link>
+									</h:form>
+								</div>
 							</div>
 						</div>
 					</ui:repeat>
@@ -58,20 +60,22 @@
 				<div id='list-sector-container' class='entity-list-container'>
 					<ui:repeat id='repeat-puestos' value='#{sector.listarResultadoBusqueda()}' var='sectores'>
 						<div idSector='#{sectores.sectorId}' nombre='#{sectores.nombre}' ruta='#{sectores.ruta}' class='hidden'/>
-						<div class='list-entity puesto-element'>
-							<h:outputText class='element-list puesto-element' value='#{sectores.nombre} '/>
-							<div class='icon icon-container'>Listar</div>
-							<div id='asignar-container' class='asignar-container hidden'>
-								<h:form>
-									<h:link value="Puestos" class="icon" outcome="listaPuestosMetricas">
-										<f:param name="id" value="#{sectores.sectorId}"/>
-										<f:param name="busqueda" value="false" />
-									</h:link>
-									<h:link value="Números" class="icon" outcome="listaNumerosMetricas">
-										<f:param name="id" value="#{sectores.sectorId}"/>
-										<f:param name="busqueda" value="false" />
-									</h:link>
-								</h:form>
+						<div class='list-entity puesto-element list-position-sectores'>
+							<div class='element-list element-list-fourth'>
+								<h:outputText class='element-list puesto-element' value='#{sectores.nombre} '/>
+								<div class='icon icon-container'>Listar</div>
+								<div id='asignar-container' class='asignar-container hidden position-container'>
+									<h:form>
+										<h:link value="Puestos" class="icon" outcome="listaPuestosMetricas">
+											<f:param name="id" value="#{sectores.sectorId}"/>
+											<f:param name="busqueda" value="false" />
+										</h:link>
+										<h:link value="Números" class="icon" outcome="listaNumerosMetricas">
+											<f:param name="id" value="#{sectores.sectorId}"/>
+											<f:param name="busqueda" value="false" />
+										</h:link>
+									</h:form>
+								</div>
 							</div>
 						</div>
 					</ui:repeat>
@@ -79,6 +83,9 @@
 			</h:form>
 		</div>
 	</div>
-	<ui:include src="notice.xhtml"/>
+	<ui:include src="notice.xhtml" />	
+<script type="text/javascript" src="../scripts/lists.js"></script>
+<script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/entidades.js"></script>
 </body> 
 </html>

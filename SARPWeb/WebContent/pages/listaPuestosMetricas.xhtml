@@ -18,7 +18,7 @@
 				<div class="page-title arrow"> ➨ </div>
 				<h:commandButton class="page-title" value='Consultor' action="#{shared.redirect('consultor')}" />
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirect('listaSectoresConsultor')}" />
+				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirectWithParam('listaSectoresConsultor','busqueda=false')}" />
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div> 
@@ -36,13 +36,13 @@
 				<div id='list-tramites-container' class='page-list'>
 					<h2 class='page-title list-title'>Puestos</h2>
 					<div class='list-container'>
-						<ui:repeat id='repeat-puestos' value="#{puesto.listarParaSector(param['id'])}" var='p'>
+						<ui:repeat id='repeat-puestos' value="#{puesto.listarPuestosDeSector(param['id'])}" var='p'>
 							<div nombreMaquina='#{p.nombreMaquina}' numeroPuesto='#{p.numeroPuesto}'  usuarioId='#{p.usuarioId}' estado='#{p.estado}' class='hidden'/>
 							<h:link value="#{p.nombreMaquina}" class="element-list element-list-link puesto-element" outcome="metricasPuesto?nombreMaquina=#{p.nombreMaquina}" /> 
 						</ui:repeat>
 					</div>
 				</div>
-				<h:commandButton class='action-button' value="Todos los Puestos" action="#{puesto.metricasPuestos()}"/> 
+				<h:commandButton class='action-button' value="Todos los Puestos" action="#{metricas.metricasPuestos()}"/> 
 			</h:form>
 			<h:form id='form-listado-asig-busqueda' rendered="#{(param['busqueda'] eq 'true')}">
 				<div id='list-tramites-container' class='page-list'>
@@ -59,5 +59,8 @@
 		</div>
 	</div>
 	<ui:include src="notice.xhtml"/>
+<script type="text/javascript" src="../scripts/lists.js"></script>
+<script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/entidades.js"></script>
 </body> 
 </html>

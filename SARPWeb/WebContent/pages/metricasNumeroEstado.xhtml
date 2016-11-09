@@ -25,34 +25,28 @@
 			<h:form id='form-sector-numero'>
 				<h:outputText id='numero' class='hidden' value="#{param['internalId']}" />
 			</h:form>	
-			<h:form id='form-listado-metricas'  rendered="#{metricas.numeroVacio()}">
+			<h:form id='form-listado-metricas-estado'  rendered="#{metricas.numeroVacio()}">
 				<div id='list-tramites-container' class='page-list'>
-					<h2 class='page-title list-title'>Métricas Números</h2>
+					<h2 class='page-title list-title'>Métricas Números Estado</h2>
 					<div class='list-container'>
-						<ui:repeat id='repeat-puestos' value="#{metricas.getMetricasNumeros()}" var='n'>
+						<ui:repeat id='repeat-puestos' value="#{metricas.getMetricasNumerosEstado()}" var='n'>
 							<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
-							<div class='top-line puesto-element'> ExternalId: #{n.externalId}</div>
 							<div class='top-line puesto-element'> Estado: #{n.estado}</div>
-							<div class='top-line puesto-element'> Código de Trámite: #{n.codigoTramite}</div>
-							<div class='top-line puesto-element'> Ruta del Sector: #{n.rutaSector}</div>
-							<div class='top-line puesto-element'> Usuario: #{n.usuarioAtencion}</div>
+							<div class='top-line puesto-element'> Tiempo: #{n.timeSpent}</div>
 							<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
 							<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
 						</ui:repeat>
 					</div>
 				</div>
 			</h:form>
-			<h:form id='form-metrica-numero'  rendered="#{!metricas.numeroVacio()}">
+			<h:form id='form-metrica-numero-estado'  rendered="#{!metricas.numeroVacio()}">
 				<div id='list-tramites-container' class='page-list'>
-					<h2 class='page-title list-title'>Métricas Número</h2>
+					<h2 class='page-title list-title'>Métricas Número Estado</h2>
 					<div class='list-container'>
-						<ui:repeat id='repeat-puestos' value="#{metricas.obtenerMetricasNumero()}" var='n'>
+						<ui:repeat id='repeat-puestos' value="#{metricas.obtenerMetricasNumeroEstado()}" var='n'>
 							<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
-							<div class='top-line puesto-element'> ExternalId: #{n.externalId}</div>
 							<div class='top-line puesto-element'> Estado: #{n.estado}</div>
-							<div class='top-line puesto-element'> Código de Trámite: #{n.codigoTramite}</div>
-							<div class='top-line puesto-element'> Ruta del Sector: #{n.rutaSector}</div>
-							<div class='top-line puesto-element'> Usuario: #{n.usuarioAtencion}</div>
+							<div class='top-line puesto-element'> Tiempo: #{n.timeSpent}</div>
 							<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
 							<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
 						</ui:repeat>

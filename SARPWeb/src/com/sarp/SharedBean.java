@@ -69,9 +69,9 @@ public class SharedBean implements Serializable {
 		this.icon = icon;
 	}
 
-	public void updateNotice(String status, String msgPositive) {
-		if (status.equals("OK")) {
-			setNotice_title("Esto es un mensaje de Confirmaciï¿½n.");
+	public void updateNotice(String status, String msgPositive ) {
+		if (status.equals("OK")){
+			setNotice_title("Esto es un mensaje de Confirmación.");
 			setNotice_message(msgPositive);
 			setNotice("positive");
 			setIcon("check");

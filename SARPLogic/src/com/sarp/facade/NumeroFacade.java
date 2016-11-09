@@ -25,7 +25,7 @@ public class NumeroFacade {
 
 	public String listarMetricasNumero(String input, String userRol,String user){
 		RestClient restClient = RestClient.getInstance();
-		return  restClient.doGetList(URL_GET_METRICAS_NUMERO + "?internallId=" + input, userRol, user);
+		return  restClient.doGetList(URL_GET_METRICAS_NUMERO + "?internalId=" + input, userRol, user);
 	}
 
 	public String listarMetricasNumerosEstado(String userRol,String user){
