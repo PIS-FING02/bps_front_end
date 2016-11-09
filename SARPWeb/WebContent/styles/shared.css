@@ -8,8 +8,50 @@ body{
 	margin: 0;
 }
 
+.modal {
+  
+    position: fixed !important; 
+    z-index: 40!important; /* Sit on top */
+    left: 0!important;
+    top: 0!important;
+    width: 100%!important; /* Full width */
+    height: 100%!important; /* Full height */
+    overflow: auto!important; /* Enable scroll if needed */
+    background-color: rgb(0,0,0)!important; /* Fallback color */
+    background-color: rgba(0,0,0,0.4)!important; /* Black w/ opacity */
+}
+
+
+.modal-content {
+    background-color: #fefefe!important;
+    margin: 15% auto!important; /* 15% from the top and centered */
+    padding: 20px!important;
+    border: 1px solid #888!important;
+    width: 600px!important; /* Could be more or less, depending on screen size */
+    height : 200px;
+}
+
+.modal-container{
+	width : 380px;
+	margin-left : 115px;
+	margin-top : 40px;
+	height : 80px;
+	border : 0px solid #a9a9a9!important;
+}
+
+.cerrar-modal{
+	margin-left :115px;
+	color : red;
+}
+.modal-title{
+	margin-left : 115px;
+}
 .body-not-scroll {
 	overflow: hidden;
+}
+
+.linea-lista{
+	width : 100%;
 }
 
 .page-container {
@@ -353,3 +395,4 @@ input {
     background: white;
     margin-bottom: 15px;
 }
+
