@@ -390,6 +390,7 @@ public String llamarNumeroDemanda(String internalId){
 		if(!numNotFound.find()){
 			JSONNumero num = modeler.toJSONNumero(resp);
 			this.externalId = num.getExternalId();
+			this.idSector = num.getIdSector();
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
 			this.id = num.getId();
@@ -423,7 +424,7 @@ public String llamarNumeroDemanda(String internalId){
 		return modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina, "OPERADOR"));
 	}
 	
-	public String showEstadosFinalizar(){
+	public String redirectinalizar(){
 		return "/pages/finalizarAtencion.xhtml?faces-redirect=true&idSector="+ this.idSector;
 	}
 	
@@ -469,6 +470,7 @@ public String llamarNumeroDemanda(String internalId){
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
 			this.id = num.getId();
+			this.idSector = num.getIdSector();
 			int dia = 0;
 			int mes = 0;
 			int ano = 0;
@@ -519,6 +521,7 @@ public String llamarNumeroDemanda(String internalId){
 			this.externalId = num.getExternalId();
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
+			this.idSector = num.getIdSector();
 	
 			String[] arrayFechaHora = num.getHora().split("-");
 			this.fecha = arrayFechaHora[0];
