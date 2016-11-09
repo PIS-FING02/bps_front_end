@@ -13,6 +13,7 @@ import com.sarp.jsons.JSONCantNumEnSector;
 import com.sarp.jsons.JSONDisplay;
 import com.sarp.jsons.JSONEstadoPuesto;
 import com.sarp.jsons.JSONMetricasNumero;
+import com.sarp.jsons.JSONMetricasNumeroEstado;
 import com.sarp.jsons.JSONMetricasPuesto;
 import com.sarp.jsons.JSONNumero;
 import com.sarp.jsons.JSONPuesto;
@@ -194,9 +195,38 @@ public class JSONModeler {
 		JSONObject json;
 		try {
 			json = (JSONObject)new JSONParser().parse(jsonNumero);
-	
+			
+		Integer internalId = ((json.get("internalId") == null) ? null : Integer.parseInt(json.get("internalId").toString()));	
 		String externalId = ((json.get("externalId") == null) ? null : json.get("externalId").toString());
-		JSONMetricasNumero numero = new JSONMetricasNumero(externalId);
+		String estado = ((json.get("estado") == null) ? null : json.get("estado").toString());
+		String codigoTramite = ((json.get("codigoTramite") == null) ? null : json.get("codigoTramite").toString());
+		String rutaSector = ((json.get("rutaSector") == null) ? null : json.get("rutaSector").toString());
+		String usuarioAtencion = ((json.get("usuarioAtencion") == null) ? null : json.get("usuarioAtencion").toString());
+		String lastUpdated = ((json.get("lastUpdated") == null) ? null : json.get("lastUpdated").toString());
+		String dateCreated = ((json.get("dateCreated") == null) ? null : json.get("dateCreated").toString());
+		
+		JSONMetricasNumero numero = new JSONMetricasNumero(internalId, externalId, estado, codigoTramite, rutaSector, 
+				usuarioAtencion, lastUpdated, dateCreated);
+		return numero;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} 
+	}
+	
+	public JSONMetricasNumeroEstado toJSONMetricasNumeroEstado(String jsonNumero) {
+		JSONObject json;
+		try {
+			json = (JSONObject)new JSONParser().parse(jsonNumero);
+			
+		Integer internalId = ((json.get("internalId") == null) ? null : Integer.parseInt(json.get("internalId").toString()));	
+		String estado = ((json.get("estado") == null) ? null : json.get("estado").toString());
+		String timeSpent = ((json.get("timeSpent") == null) ? null : json.get("timeSpent").toString());
+		String lastUpdated = ((json.get("lastUpdated") == null) ? null : json.get("lastUpdated").toString());
+		String dateCreated = ((json.get("dateCreated") == null) ? null : json.get("dateCreated").toString());
+		
+		JSONMetricasNumeroEstado numero = new JSONMetricasNumeroEstado(internalId, estado, timeSpent, lastUpdated, dateCreated);
 		return numero;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -293,6 +323,25 @@ public class JSONModeler {
 	    	}
 			return metricasReturn;
 		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<JSONMetricasNumeroEstado> toJSONMetricasNumerosEstado(String jsonMetricasNumero) throws Exception{
+		JSONParser parser = new JSONParser();
+		Object obj;
+		try {
+			obj = parser.parse(jsonMetricasNumero);
+	        JSONArray array = (JSONArray)obj;
+	        List<JSONMetricasNumeroEstado> metricasReturn = new ArrayList<JSONMetricasNumeroEstado>();
+	        
+	    	Iterator<JSONObject> iterator = array.iterator();
+	    	while (iterator.hasNext()) {
+	    		metricasReturn.add(this.toJSONMetricasNumeroEstado(iterator.next().toJSONString()));
+	    	}
+			return metricasReturn;
+		} catch (ParseException e) { 
 			e.printStackTrace();
 			return null;
 		}

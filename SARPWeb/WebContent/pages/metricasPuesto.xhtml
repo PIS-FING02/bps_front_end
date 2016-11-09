@@ -17,9 +17,7 @@
 				<div class="page-title arrow"> ➨ </div>
 				<h:commandButton class="page-title" value='Consultor' action="#{shared.redirect('consultor')}" />
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirect('listaSectoresConsultor')}" />
-				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton class="page-title" value='Puestos' action="#{shared.redirect('listaPuestosMetricas')}" />
+				<h:commandButton class="page-title" value='Sectores' action="#{shared.redirectWithParam('listaSectoresConsultor','busqueda=false')}" />
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" />
 			</h:form>
 		</div> 
@@ -32,12 +30,14 @@
 					<h2 class='page-title list-title'>Métricas</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{metricas.getMetricasPuestos()}" var='m'>
-							<div class='top-line puesto-element'> Nombre Máquina: #{m.nombreMaquina}</div>
-							<div class='top-line puesto-element'> Estado: #{m.estado}</div>
-							<div class='top-line puesto-element'> Usuario: #{m.usuarioAtencion}</div>
-							<div class='top-line puesto-element'> Tiempo: #{m.timeSpent}</div>
-							<div class='top-line puesto-element'> Última Actualización: #{m.lastUpdated}</div>
-							<div class='top-line puesto-element'> Fecha de Creación: #{m.dateCreated}</div>
+							<div class=" puesto-element element-list">
+								<div> Nombre Máquina: #{m.nombreMaquina}</div>
+								<div> Estado: #{m.estado}</div>
+								<div> Usuario: #{m.usuarioAtencion}</div>
+								<div> Tiempo: #{m.timeSpent}</div>
+								<div> Última Actualización: #{m.lastUpdated}</div>
+								<div> Fecha de Creación: #{m.dateCreated}</div>
+							</div>
 						</ui:repeat>
 					</div>
 				</div>
@@ -47,12 +47,14 @@
 					<h2 class='page-title list-title'>Métricas</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{metricas.obtenerMetricasPuesto()}" var='m'>
-							<div class='top-line puesto-element'> Nombre Máquina: #{m.nombreMaquina}</div>
-							<div class='top-line puesto-element'> Estado: #{m.estado}</div>
-							<div class='top-line puesto-element'> Usuario: #{m.usuarioAtencion}</div>
-							<div class='top-line puesto-element'> Tiempo: #{m.timeSpent}</div>
-							<div class='top-line puesto-element'> Última Actualización: #{m.lastUpdated}</div>
-							<div class='top-line puesto-element'> Fecha de Creación: #{m.dateCreated}</div>
+							<div class=" puesto-element element-list">
+								<div> Nombre Máquina: #{m.nombreMaquina}</div>
+								<div> Estado: #{m.estado}</div>
+								<div> Usuario: #{m.usuarioAtencion}</div>
+								<div> Tiempo: #{m.timeSpent}</div>
+								<div> Última Actualización: #{m.lastUpdated}</div>
+								<div> Fecha de Creación: #{m.dateCreated}</div>
+							</div>
 						</ui:repeat>
 					</div>
 				</div>
@@ -60,5 +62,8 @@
 		</div>
 	</div>
 	<ui:include src="notice.xhtml"/>
+<script type="text/javascript" src="../scripts/lists.js"></script>
+<script type="text/javascript" src="../scripts/shared.js"></script>
+<script type="text/javascript" src="../scripts/entidades.js"></script>
 </body> 
 </html>
