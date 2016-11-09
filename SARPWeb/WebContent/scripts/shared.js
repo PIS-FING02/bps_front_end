@@ -9,6 +9,7 @@
 
 	// CHECK IN-FOMRS INPUTS EMPTY
 	function inputsNotEmpty() {
+		var inFormInputs = document.getElementsByClassName('in-form');
 		var res = true;
 		var i = 0;
 		while (res && i < inFormInputs.length){
@@ -61,7 +62,7 @@
 document.addEventListener("DOMContentLoaded", function() { 
 	
 	var optionButtons = document.getElementsByClassName("option-button");
-	var popup = document.getElementById('action-popup');
+	var popup = document.getElementById('nuevo-numero-popup');
 	var popupTitle = document.getElementById('popup-title');
 	var cancelButton = document.getElementById('popup-cancel-button');
 	var closeButton = document.getElementById('popup-close-button');
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	var entityActionButtons = document.getElementsByClassName('action-button-entity');
 	var listActionButtons = document.getElementsByClassName('action-button-list');
 	var formInputs = document.getElementsByClassName('formInput');
-	var inFormInputs = document.getElementsByClassName('in-form');
+	
 	var popupOpenButtons = document.getElementsByClassName('popup-open-button');
 	var elementsToHide = [];
 	
@@ -91,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// BLOCK PAGE SCROLL WHEN POPUP OPEN
 	for (var i = 0; i < popupOpenButtons.length; i++) {
 		popupOpenButtons[i].addEventListener('click', function(){ 
-			if (!this.classList.contains('deactivated')) {
+			if (!this.classList.contains('deactivated') && !!popup) {
 				popup.classList.remove("hidden");
 				document.getElementsByTagName("BODY")[0].classList.add('body-not-scroll')
 			}

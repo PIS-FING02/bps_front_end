@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	var esSector = !!document.getElementById('form-asociacion:es-sector') ? document.getElementById('form-asociacion:es-sector').innerHTML : null;
 	var entidad = !!document.getElementById('form-asociacion:entidad-llamado') ? document.getElementById('form-asociacion:entidad-llamado').innerHTML : null;
 	var esAsig = !!document.getElementById('form-asociacion:es-asig') ? document.getElementById('form-asociacion:es-asig').innerHTML : null;
-
-
+	var listElements = document.getElementsByClassName('element-list');
+	var listActionButtons = document.getElementsByClassName('action-button-list');
+	
 	//ENABLE ACTION BUTTONS IF ELEMENT SELECTED
 	for (var i = 0; i < listElements.length; i++) {
 		listElements[i].addEventListener('click', function(){
