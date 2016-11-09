@@ -432,17 +432,23 @@ public String llamarNumeroDemanda(String internalId){
 		
 		String json = "{\"nombreMaquina\" : \"" + this.maquina + "\",\"id\":" + this.id.toString() + ",\"tramiteResultado\": "+
 		this.json_estado_tramites.substring(0,this.json_estado_tramites.length()-1) + "]}";
-		
+		String resp;
 		if(!this.es_desvio)
-			c.finalizarAtencion(json, "OPERADOR");
+			resp = c.finalizarAtencion(json, "OPERADOR");
 		else
-			c.desviarFinaizarAtencion(json, this.sector_desvio, "OPERADOR");	
-
-		if(roles.contains("OPERADORSR"))
-			return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
-		else
-			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
-			
+			resp = c.desviarFinaizarAtencion(json, this.sector_desvio, "OPERADOR");	
+		
+		if(resp.startsWith("ERROR")){
+			shared.updateNotice("ERROR",resp);
+			return "/pages/operadorAtendiendo.xhtml?faces-redirect=true";
+		}else{
+			if(roles.contains("OPERADORSR"))
+				return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
+			else
+				return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+		
+		}
+				
 	}
 	
 	public String desviarNumero(String idSector){
