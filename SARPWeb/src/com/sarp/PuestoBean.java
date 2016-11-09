@@ -390,6 +390,7 @@ public String llamarNumeroDemanda(String internalId){
 		if(!numNotFound.find()){
 			JSONNumero num = modeler.toJSONNumero(resp);
 			this.externalId = num.getExternalId();
+			this.idSector = num.getIdSector();
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
 			this.id = num.getId();
@@ -423,7 +424,7 @@ public String llamarNumeroDemanda(String internalId){
 		return modeler.toJSONNumeros(c.listarNumerosAtrasados(this.maquina, "OPERADOR"));
 	}
 	
-	public String showEstadosFinalizar(){
+	public String redirectinalizar(){
 		return "/pages/finalizarAtencion.xhtml?faces-redirect=true&idSector="+ this.idSector;
 	}
 	
@@ -469,6 +470,7 @@ public String llamarNumeroDemanda(String internalId){
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
 			this.id = num.getId();
+			this.idSector = num.getIdSector();
 			int dia = 0;
 			int mes = 0;
 			int ano = 0;
@@ -519,6 +521,7 @@ public String llamarNumeroDemanda(String internalId){
 			this.externalId = num.getExternalId();
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
+			this.idSector = num.getIdSector();
 	
 			String[] arrayFechaHora = num.getHora().split("-");
 			this.fecha = arrayFechaHora[0];
@@ -829,13 +832,24 @@ public String llamarNumeroDemanda(String internalId){
 	}
 	
 	public  String restaFechas(GregorianCalendar g1,GregorianCalendar g2){
-        g1.add(Calendar.HOUR_OF_DAY, -g2.get(Calendar.HOUR_OF_DAY));
-        g1.add(Calendar.MINUTE, -g2.get(Calendar.MINUTE));
-        g1.add(Calendar.SECOND, -g2.get(Calendar.SECOND));
-        if (g1.get(Calendar.HOUR_OF_DAY) > 0)
-        	return Integer.toString(g1.get(Calendar.HOUR_OF_DAY))+" hora "+Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + "segundos.";        
-        else
-        	return Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + " segundos.";        
+		
+		   if (g1.after(g2)) {
+	            g1.add(Calendar.HOUR_OF_DAY, -g2.get(Calendar.HOUR_OF_DAY));
+	            g1.add(Calendar.MINUTE, -g2.get(Calendar.MINUTE));
+	            g1.add(Calendar.SECOND, -g2.get(Calendar.SECOND));
+	            if (g1.get(Calendar.HOUR_OF_DAY) > 0)
+	            	return Integer.toString(g1.get(Calendar.HOUR_OF_DAY))+" hora "+Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + "segundos.";        
+	            else
+	            	return Integer.toString(g1.get(Calendar.MINUTE))+" minutos "+Integer.toString(g1.get(Calendar.SECOND)) + " segundos.";        
+	        } else {
+	            g2.add(Calendar.HOUR_OF_DAY, -g1.get(Calendar.HOUR_OF_DAY));
+	            g2.add(Calendar.MINUTE, -g1.get(Calendar.MINUTE));
+	            g2.add(Calendar.SECOND, -g1.get(Calendar.SECOND));
+	            if (g1.get(Calendar.HOUR_OF_DAY) > 0)
+	            	return Integer.toString(g2.get(Calendar.HOUR_OF_DAY))+" hora "+Integer.toString(g2.get(Calendar.MINUTE))+" minutos "+Integer.toString(g2.get(Calendar.SECOND)) + "segundos.";        
+	            else
+	            	return Integer.toString(g2.get(Calendar.MINUTE))+" minutos "+Integer.toString(g2.get(Calendar.SECOND)) + " segundos.";        
+	        }
 	}
 
 	public String getSerie() {
