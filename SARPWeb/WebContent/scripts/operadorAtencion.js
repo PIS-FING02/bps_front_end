@@ -9,4 +9,33 @@ document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById("info-sae-fecha").classList.add('hidden');
 	}
 	
+	var desviarButton = document.getElementsByClassName('desviar-button');
+	var cerrarModal = document.getElementsByClassName('cerrar-modal');
+	
+	if(!!desviarButton){
+		desviarButton[0].addEventListener('click', function(){
+
+			var modal =  document.getElementById('modal');
+			if(!!modal){
+				document.getElementById("modal").className = "";
+				document.getElementById("modal").className = "modal";
+			}
+				
+		});
+	}
+	
+	if(!!cerrarModal){
+		
+		cerrarModal[0].addEventListener('click', function(){
+			
+			var modal =  document.getElementById('modal');
+			if(!!modal){
+				
+				document.getElementById("modal").className = "";
+				document.getElementById("modal").className = "modal hidden";
+			}
+			
+		});
+	}
+	
 });
