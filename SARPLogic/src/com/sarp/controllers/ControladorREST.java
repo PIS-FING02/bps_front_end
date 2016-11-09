@@ -3,8 +3,11 @@ package com.sarp.controllers;
 import com.sarp.facade.PuestoFacade;
 import com.sarp.facade.SectorFacade;
 import com.sarp.facade.TramiteFacade;
+import com.sarp.utils.UtilService;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import com.sarp.facade.AttentionsFacade;
 import com.sarp.facade.DisplayFacade;
@@ -278,5 +281,9 @@ public class ControladorREST {
 	
 	public String listarMetricasNumeroEstado(String externalId, String userRol, String user){
 		return this.numeroFacade.listarMetricasNumeroEstado(externalId,userRol,user);
+	}
+
+	public List<String> listarRsultados() {
+		return  Arrays.asList(UtilService.getStringProperty("RESULTADO_ATENCION").split("&"));
 	}
 }

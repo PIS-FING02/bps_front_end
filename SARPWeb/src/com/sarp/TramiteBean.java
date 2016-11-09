@@ -136,15 +136,6 @@ public class TramiteBean implements Serializable{
 			return null;
 	}
 	
-	public List<String> listar1() throws Exception{
-		List<String> resultado = new ArrayList<String>();
-		resultado.add("Exito");
-		resultado.add("Error");
-		resultado.add("Desviado");
-		resultado.add("Otro");
-		return resultado;
-	}
-	
 	public List<JSONTramite> listarDeSector(String idSector) throws Exception {
 		shared.clean();
 		if (idSector == "")

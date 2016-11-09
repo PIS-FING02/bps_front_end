@@ -876,5 +876,9 @@ public String llamarNumeroDemanda(String internalId){
 	public void setEstadoComboBox(String estadoComboBox) {
 		this.estadoComboBox = estadoComboBox;
 	}
+	
+	public List<String> listarResultados() throws Exception{
+		return c.listarRsultados();
+	}
 
 }
