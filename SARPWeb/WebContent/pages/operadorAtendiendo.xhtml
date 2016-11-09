@@ -74,11 +74,17 @@
 					<h:commandButton class="action-button atender-button" value="Finalizar" action="#{puesto.redirectinalizar()}"/>
 					<h:commandButton class="secondary-button atencion-buttons" value="Pausar" action="#{puesto.pausar()}"/> 
 					<div class="action-button desviar-button">Desviar</div>
-						<div id='asignar-container' class='asignar-container hidden'>
+					<div id="modal" class="modal hidden">
+						<div id='asignar-container' class='asignar-container modal-content'>
 							<div class='asignar-container-triangle'/>
-							<ui:repeat id='repeat-tramites' value="#{puesto.listarSectoresDesvio()}" var='s'>
-								<h:commandButton class="icon asignar-sector-button tipo-puesto asig-tramite" value="#{s.nombre}" action="#{puesto.desviarNumero(s.sectorId)}"/>
-							</ui:repeat>
+							<h2 class='modal-title'>Sectores para Desviar</h2>
+								<div id='list-sector-container' class='list-container modal-container'>
+									<ui:repeat id='repeat-tramites' value="#{puesto.listarSectoresDesvio()}" var='s'>
+										<h:commandButton class="icon asignar-sector-button tipo-puesto asig-tramite linea-lista" value="#{s.nombre}" action="#{puesto.desviarNumero(s.sectorId)}"/>
+									</ui:repeat>
+								</div>
+							<a class='cerrar-modal'>Cerrar</a>
+							</div>		
 					</div>
 				</h:form>
 			</div>

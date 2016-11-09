@@ -603,10 +603,15 @@ public String llamarNumeroDemanda(String internalId){
 	
 	public List<JSONSector> listarSectoresDesvio() throws Exception{
 		System.out.println(idSector);
-		if (shared.getRolesMap().get("OPERADOR"))
-			return modeler.toJSONSectores(c.listarSectoresDesvio(this.idSector, "OPERADOR"));
-		else
-			return  modeler.toJSONSectores(c.listarSectoresDesvio(this.idSector, "OPERADORSR"));
+		String resp;
+		if (shared.getRolesMap().get("OPERADOR")){
+			resp = c.listarSectoresDesvio(this.idSector, "OPERADOR");
+			return modeler.toJSONSectores(resp);
+		}else{
+			resp = c.listarSectoresDesvio(this.idSector, "OPERADORSR");
+			return  modeler.toJSONSectores(resp);
+		}
+			
 		
 	}
 
