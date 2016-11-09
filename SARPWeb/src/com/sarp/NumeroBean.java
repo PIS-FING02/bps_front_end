@@ -56,7 +56,11 @@ public class NumeroBean implements Serializable{
 		this.tipoDoc="";
 		this.doc="";
 		this.nombreCompleto="";
-		shared.updateNotice("OK", "El numero " + status + " para el tramite con codigo " + this.idTramite + " en el sector con identificador " + this.idSector + " fue entregado con exito.");
+		if (status.startsWith("ERROR")) {
+			shared.updateNotice(status, "");
+		} else {
+			shared.updateNotice("OK", "El numero " + status + " para el tramite con codigo " + this.idTramite + " en el sector con identificador " + this.idSector + " fue entregado con exito.");	
+		}
 	}	
 
 	public String getPrioridad() {
