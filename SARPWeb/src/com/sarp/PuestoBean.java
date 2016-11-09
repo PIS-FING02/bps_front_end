@@ -259,6 +259,20 @@ public class PuestoBean implements Serializable{
 				this.estadoNumero =  jestadoPuesto.getNumero().getEstado();
 				this.prioridad = jestadoPuesto.getNumero().getPrioridad();
 				this.idSector = jestadoPuesto.getNumero().getIdSector();
+				String[] arrayFechaHora = jestadoPuesto.getNumero().getHora().split("-");
+				this.fecha = arrayFechaHora[0];
+				this.hora = arrayFechaHora[1];
+				this.idTramite = jestadoPuesto.getNumero().getIdTramite();
+				this.serie= jestadoPuesto.getNumero().getExternalId().split("-")[0];
+				this.externalNum = jestadoPuesto.getNumero().getExternalId().split("-")[1];
+				GregorianCalendar hora_actual = new GregorianCalendar();
+				int dia = Integer.parseInt(this.fecha.substring(0, 2));
+				int mes = Integer.parseInt(this.fecha.substring(3, 5)) - 1;
+				int ano = Integer.parseInt(this.fecha.substring(6, 10));
+				int hora= Integer.parseInt(this.hora.substring(0, 2));
+				int min = Integer.parseInt(this.hora.substring(3,5));
+				GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
+				this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
 
 			}
 			
@@ -320,7 +334,11 @@ public class PuestoBean implements Serializable{
 			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
 			this.error = "show";*/
 			shared.updateNoticeInfo("No existe ningún número que pueda atender en este momento");
-			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+			if(roles.contains("OPERADORSR")){
+				return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
+			}else{
+				return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+			}
 		}
 	}
 	
@@ -374,6 +392,7 @@ public String llamarNumeroDemanda(String internalId){
 			this.externalId = num.getExternalId();
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
+			this.id = num.getId();
 			String[] arrayFechaHora = num.getHora().split("-");
 			this.fecha = arrayFechaHora[0];
 			this.hora = arrayFechaHora[1];
@@ -389,15 +408,11 @@ public String llamarNumeroDemanda(String internalId){
 			GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
 			this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
 		}else{
-			System.out.println("va a redirigir a /pages/operadorAtencion.xhtml?faces-redirect=true operador");
-			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
 		}
 			
-		if(roles.contains("OPERADORSR")){
-			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
-		}else{
-			return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
-			}
+	return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+
 	}
 
 	public List<JSONNumero> listarNumerosPausados() {
@@ -420,13 +435,13 @@ public String llamarNumeroDemanda(String internalId){
 		if(!this.es_desvio)
 			c.finalizarAtencion(json, "OPERADOR");
 		else
-			c.desviarFinaizarAtencion(json, this.sector_desvio, "OPERADOR");
+			c.desviarFinaizarAtencion(json, this.sector_desvio, "OPERADOR");	
 
-		
-		if(shared.getRolesMap().containsKey("OPERADOR"))
-			return "/pages/operadorAbierto.xhtml?faces-redirect";
-		else
+		if(roles.contains("OPERADORSR"))
 			return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
+		else
+			return "/pages/operadorAbierto.xhtml?faces-redirect=true";
+			
 	}
 	
 	public String desviarNumero(String idSector){
@@ -476,13 +491,8 @@ public String llamarNumeroDemanda(String internalId){
 
 			GregorianCalendar horaNumero = (ano == 0)? new GregorianCalendar(ano, mes, dia, horaFin, min) : new GregorianCalendar();
 			this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
-			if(roles.contains("OPERADORSR")){
-				return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
-				
-			}else{
-				System.out.println("va a redirigir a /pages/operadorAtencion.xhtml?faces-redirect=true operador");
-				return "/pages/operadorAtencion.xhtml?faces-redirect=true";
-			}
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+			
 		}else{
 			if(roles.contains("OPERADORSR")){
 				return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
@@ -505,6 +515,7 @@ public String llamarNumeroDemanda(String internalId){
 			
 			
 			JSONNumero num = modeler.toJSONNumero(resp);
+			this.id = num.getId();
 			this.externalId = num.getExternalId();
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
@@ -524,12 +535,9 @@ public String llamarNumeroDemanda(String internalId){
 			int min = Integer.parseInt(this.hora.substring(3,5));
 			GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
 			this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
-			if(roles.contains("OPERADORSR")){
-				return "/pages/operadorsrAtencion.xhtml?faces-redirect=true";
-				
-			}else{
-				return "/pages/operadorAtencion.xhtml?faces-redirect=true";
-			}
+			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
+
+			
 		}else{
 			if(roles.contains("OPERADORSR")){
 				return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
