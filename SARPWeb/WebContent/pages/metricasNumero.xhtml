@@ -30,14 +30,16 @@
 					<h2 class='page-title list-title'>Métricas Números</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{metricas.getMetricasNumeros()}" var='n'>
-							<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
-							<div class='top-line puesto-element'> ExternalId: #{n.externalId}</div>
-							<div class='top-line puesto-element'> Estado: #{n.estado}</div>
-							<div class='top-line puesto-element'> Código de Trámite: #{n.codigoTramite}</div>
-							<div class='top-line puesto-element'> Ruta del Sector: #{n.rutaSector}</div>
-							<div class='top-line puesto-element'> Usuario: #{n.usuarioAtencion}</div>
-							<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
-							<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
+							<div class=" puesto-element element-list">
+								<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
+								<div class='top-line puesto-element'> ExternalId: #{n.externalId}</div>
+								<div class='top-line puesto-element'> Estado: #{n.estado}</div>
+								<div class='top-line puesto-element'> Código de Trámite: #{n.codigoTramite}</div>
+								<div class='top-line puesto-element'> Ruta del Sector: #{n.rutaSector}</div>
+								<div class='top-line puesto-element'> Usuario: #{n.usuarioAtencion}</div>
+								<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
+								<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
+							</div>
 						</ui:repeat>
 					</div>
 				</div>
@@ -47,14 +49,16 @@
 					<h2 class='page-title list-title'>Métricas Número</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{metricas.obtenerMetricasNumero()}" var='n'>
-							<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
-							<div class='top-line puesto-element'> ExternalId: #{n.externalId}</div>
-							<div class='top-line puesto-element'> Estado: #{n.estado}</div>
-							<div class='top-line puesto-element'> Código de Trámite: #{n.codigoTramite}</div>
-							<div class='top-line puesto-element'> Ruta del Sector: #{n.rutaSector}</div>
-							<div class='top-line puesto-element'> Usuario: #{n.usuarioAtencion}</div>
-							<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
-							<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
+							<div class=" puesto-element element-list">
+								<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
+								<div class='top-line puesto-element'> ExternalId: #{n.externalId}</div>
+								<div class='top-line puesto-element'> Estado: #{n.estado}</div>
+								<div class='top-line puesto-element'> Código de Trámite: #{n.codigoTramite}</div>
+								<div class='top-line puesto-element'> Ruta del Sector: #{n.rutaSector}</div>
+								<div class='top-line puesto-element'> Usuario: #{n.usuarioAtencion}</div>
+								<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
+								<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
+							</div>
 						</ui:repeat>
 					</div>
 				</div>

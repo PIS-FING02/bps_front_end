@@ -576,6 +576,7 @@ public String llamarNumeroDemanda(String internalId){
            		this.puestosListBusqueda.add(puestoIter);
            	}
 	    }
+		this.searchString = "";
 		return ("/pages/" + page + ".xhtml?busqueda=true&faces-redirect=true");
 	}
 	
@@ -588,6 +589,7 @@ public String llamarNumeroDemanda(String internalId){
            		this.puestosListBusqueda.add(puestoIter);
            	}
 	    }
+		this.searchString = "";
 		return ("/pages/" + page + ".xhtml?busqueda=true&faces-redirect=true");
 	}
 	
@@ -604,6 +606,7 @@ public String llamarNumeroDemanda(String internalId){
 	           		this.puestosListBusquedaDesasignar.add(puestoIter);
 	           	}
 		    }
+			this.searchString = "";
 			return ("/pages/" + page + ".xhtml?busqueda=true&esSec=true&esAsig=false&entidad=puesto&faces-redirect=true");
 		}else{ 
 			this.puestosListBusquedaAsignar.clear();

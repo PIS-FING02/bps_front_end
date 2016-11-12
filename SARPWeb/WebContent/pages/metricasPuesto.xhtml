@@ -27,7 +27,7 @@
 			</h:form>	
 			<h:form id='form-listado-metricas'  rendered="#{metricas.nombreMaquinaVacio()}">
 				<div id='list-tramites-container' class='page-list'>
-					<h2 class='page-title list-title'>Métricas</h2>
+					<h2 class='page-title list-title'>Métricas Puestos</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{metricas.getMetricasPuestos()}" var='m'>
 							<div class=" puesto-element element-list">
@@ -44,7 +44,7 @@
 			</h:form>
 			<h:form id='form-metrica-puesto'  rendered="#{!metricas.nombreMaquinaVacio()}">
 				<div id='list-tramites-container' class='page-list'>
-					<h2 class='page-title list-title'>Métricas</h2>
+					<h2 class='page-title list-title'>Métricas Puesto</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{metricas.obtenerMetricasPuesto()}" var='m'>
 							<div class=" puesto-element element-list">
