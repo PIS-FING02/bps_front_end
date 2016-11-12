@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	if(prioridad == "1"){
 		document.getElementById("info-sae-hora").classList.remove('hidden');
 		document.getElementById("info-sae-fecha").classList.remove('hidden');
+		document.getElementById("info-numero").classList.add('hidden');
 	}else{
 		document.getElementById("info-sae-hora").classList.add('hidden');
 		document.getElementById("info-sae-fecha").classList.add('hidden');

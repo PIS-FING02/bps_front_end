@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		var a_classes = sectores[i].querySelectorAll('a')
 		for (var j = 0; j < countEstados; j++){
 			a_classes[j].addEventListener('click', function(){
+					document.getElementById("form-finalizar:finalizar").classList.remove('deactivated');
 					var  estado = this.getAttribute('id');
 					var id_tramite = this.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
 					json_estado_tramites = json_estado_tramites + '{ "codigo":"'+id_tramite+'" , "resultadoAtencion":"' + estado +'" },';

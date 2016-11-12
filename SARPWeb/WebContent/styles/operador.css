@@ -71,7 +71,7 @@
 .data-line{
 	display: inline-block;
 	width: 100%;
-	margin: 10px;
+	margin: 3px;
 }
 
 .text-box{ 
@@ -84,6 +84,7 @@
     overflow-y: scroll;
     max-height: 80px;
 }
+
 
 a{
 	color: black;
