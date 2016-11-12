@@ -77,8 +77,9 @@
 					<div id="modal" class="modal hidden">
 						<div id='asignar-container' class='asignar-container modal-content'>
 							<div class='asignar-container-triangle'/>
-							<h2 class='modal-title'>Sectores para Desviar</h2>
+							<h2 class='modal-title desvio-modal'>Sectores para Desviar</h2>
 								<div id='list-sector-container' class='list-container modal-container'>
+									<p id='noDesvio'></p>
 									<ui:repeat id='repeat-tramites' value="#{puesto.listarSectoresDesvio()}" var='s'>
 										<h:commandButton class="icon asignar-sector-button tipo-puesto asig-tramite linea-lista" value="#{s.nombre}" action="#{puesto.desviarNumero(s.sectorId)}"/>
 									</ui:repeat>
