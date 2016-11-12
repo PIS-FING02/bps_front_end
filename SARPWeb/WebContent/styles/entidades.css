@@ -112,3 +112,8 @@
 #list-puesto-container .details-link {
 	width: auto;
 }
+
+.list-position-sectores{
+	position: absolute;
+	right: 75px !important;
+}

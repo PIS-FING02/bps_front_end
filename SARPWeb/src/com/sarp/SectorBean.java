@@ -127,42 +127,42 @@ public class SectorBean implements Serializable{
 	public String asignarTramiteSector() throws Exception {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
 		String status = this.c.asignarTramiteSector(jsectortramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El trï¿½mite con cï¿½digo "+ this.codigo + " se asignï¿½ correctamente al sector con cï¿½digo " + this.id + ".");
+		shared.updateNotice(status, "El trámite con código "+ this.codigo + " se asignó correctamente al sector con código " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String asignarDisplaySector() throws Exception {
 		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id, this.displayId);
 		String status = this.c.asignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se asignï¿½ correctamente al sector con cï¿½digo " + this.id + ".");
+		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se asignó correctamente al sector con código " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String asignarPuestoSector() throws Exception {
 		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id, this.nombreMaquina);
 		String status = this.c.asignarPuestoSector(jsectorpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de mï¿½quina "+ this.nombreMaquina + " se asignï¿½ correctamente al sector con cï¿½digo " + this.id + ".");
+		shared.updateNotice(status, "El puesto con nombre de máquina "+ this.nombreMaquina + " se asignó correctamente al sector con código " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarTramiteSector() {
 		JSONSectorTramite jsectortramite = new JSONSectorTramite(this.codigo, this.id);
 		String status = this.c.desasignarTramiteSector( jsectortramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El trï¿½mite con cï¿½digo "+ this.codigo + " se desasignï¿½ correctamente del sector con cï¿½digo " + this.id + ".");
+		shared.updateNotice(status, "El trámite con código "+ this.codigo + " se desasignó correctamente del sector con código " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarDisplaySector() {
 		JSONSectorDisplay jsectordisplay = new JSONSectorDisplay(this.id, this.displayId);
 		String status = this.c.desasignarDisplayoSector( jsectordisplay.toString(), "ADMIN");
-		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se desasignï¿½ correctamente del sector con cï¿½digo " + this.id + ".");
+		shared.updateNotice(status, "El display con identificador "+ this.displayId + " se desasignó correctamente del sector con código " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String desasignarPuestoSector() {
 		JSONSectorPuesto jsectorpuesto = new JSONSectorPuesto(this.id,this.nombreMaquina);
 		String status =this.c.desasignarPuestoSector( jsectorpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de mï¿½quina "+ this.nombreMaquina + " se desasignï¿½ correctamente al sector con cï¿½digo " + this.id + ".");
+		shared.updateNotice(status, "El puesto con nombre de máquina "+ this.nombreMaquina + " se desasignó correctamente al sector con código " + this.id + ".");
 		return "/pages/sectores.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -174,7 +174,7 @@ public class SectorBean implements Serializable{
 		if (idSector != null) {
 			List<JSONNumero> list = modeler.toJSONNumeros(c.listarNumerosSector(idSector, "ADMIN"));
 			if (list == null || list.isEmpty()) 
-				shared.updateNoticeInfo("No se encontraron nï¿½meros en el sistema para el sector con identificador " + idSector + " .");
+				shared.updateNoticeInfo("No se encontraron números en el sistema para el sector con identificador " + idSector + " .");
 			return list;
 		} else
 			return null;

@@ -18,9 +18,9 @@
 				<h:commandButton class="page-title" value='Menu' action="#{shared.redirect('menu')}"/>
 				<div class="page-title arrow"> ➨ </div>
 				<h:commandButton id='title-admin' class="page-title hidden" value='Administración' action="#{shared.redirect('admin')}"/>
-				<h:commandButton id='title-gestion' class="page-title hidden" value='Gestion' action="#{shared.redirect('respSector')}"/>
+				<h:commandButton id='title-gestion' class="page-title hidden" value='Gestión' action="#{shared.redirect('respSector')}"/>
 				<div class="page-title arrow"> ➨ </div>
-				<h:commandButton id='title-tramites' class="page-title hidden" value='Tramites' action="#{shared.redirectWithParam('tramites', 'busqueda=false')}"/>
+				<h:commandButton id='title-tramites' class="page-title hidden" value='Trámites' action="#{shared.redirectWithParam('tramites', 'busqueda=false')}"/>
 				<h:commandButton id='title-displays' class="page-title hidden" value='Displays' action="#{shared.redirect('displays')}"/>
 				<h:commandButton id='title-puestos' class="page-title hidden" value='Puestos' action="#{shared.redirectWithParam('puestos', 'busqueda=false')}"/>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}"/> 
@@ -31,7 +31,7 @@
 			<h:form id='form'>
 				<!-- TRAMITE -->
 				<div id="codigo-tramite" class="form-line hidden">
-					<label for="codigo-tramite">Codigo:</label>
+					<label for="codigo-tramite">Código:</label>
 					<h:inputText id='tramite-selected-codigo' class="formInput" value="#{tramite.codigo}" />
 				</div>
 				<div id="nombre-tramite" class="form-line hidden">
@@ -67,7 +67,7 @@
 					<input id='puesto-selected-usuario-dummy' class="formInput read-only hidden" value="No hay usuario" />
 				</div>
 				<div id="numero-puesto" class="form-line hidden">
-					<label for="numero-puesto">Numero:</label>
+					<label for="numero-puesto">Número:</label>
 					<h:inputText id='puesto-selected-numero' class="formInput" value="#{puesto.numero}" />
 				</div>
 				<div id="estado-puesto" class="form-line hidden">
