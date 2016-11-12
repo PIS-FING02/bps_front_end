@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 <head>
 	<title>Pantalla Consultor</title>
-	<ui:include src="header.xhtml" />
+	<ui:include src="header.xhtml" /> 
 	<link rel="stylesheet" type="text/css" href="../styles/entidades.css"/>
 </head> 
 <body> 
@@ -26,14 +26,15 @@
 			</h:form>	
 			<h:form id='form-listado-sectores'>
 				<h2 class='page-title list-title'>Números</h2>
-				<div id='list-sector-container' class='entity-list-container'>
-					<ui:repeat id='repeat-puestos' value='#{sector.listarNumerosSector()}' var='n'>
-						<div idNumero='#{n.id}' class='hidden'/>		
-						<div class='list-entity puesto-element list-position-sectores'>
+				<div id='list-sector-container' class='page-list'>
+					<div class='list-container'>
+						<ui:repeat id='repeat-puestos' value='#{sector.listarNumerosSector()}' var='n'>
+							<div idNumero='#{n.id}' class='hidden'/>		
 							<div class='element-list element-list-fourth'>
 								<h:outputText class='puesto-element' value='#{n.externalId} '/>
 								<div class='icon icon-container'>Información</div>
-								<div id='asignar-container' class='asignar-container asignar-container-numeros position-container hidden'>
+								<div id='asignar-container' class='list-position-numeros asignar-container asignar-container-numeros hidden'>
+									<div class='asignar-container-triangle asignar-container-triangle-numeros'/>	
 									<h:link value="General" class="icon" outcome="metricasNumero">
 										<f:param name="internalId" value="#{n.id}"/>
 									</h:link>
@@ -42,8 +43,8 @@
 									</h:link>
 								</div>
 							</div>
-						</div>
-					</ui:repeat>
+						</ui:repeat>
+					</div>
 				</div>
 				<h:commandButton class='action-button' value="Todos los Números" action="#{metricas.metricasNumeros()}"/> 
 				<h:commandButton class='action-button' value="Todos los Números - Estados" action="#{metricas.metricasNumerosEstado()}"/> 

@@ -30,11 +30,13 @@
 					<h2 class='page-title list-title'>Métricas Números Estado</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{metricas.getMetricasNumerosEstado()}" var='n'>
-							<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
-							<div class='top-line puesto-element'> Estado: #{n.estado}</div>
-							<div class='top-line puesto-element'> Tiempo: #{n.timeSpent}</div>
-							<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
-							<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
+							<div class=" puesto-element element-list">
+								<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
+								<div class='top-line puesto-element'> Estado: #{n.estado}</div>
+								<div class='top-line puesto-element'> Tiempo: #{n.timeSpent}</div>
+								<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
+								<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
+							</div>
 						</ui:repeat>
 					</div>
 				</div>
@@ -44,11 +46,13 @@
 					<h2 class='page-title list-title'>Métricas Número Estado</h2>
 					<div class='list-container'>
 						<ui:repeat id='repeat-puestos' value="#{metricas.obtenerMetricasNumeroEstado()}" var='n'>
-							<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
-							<div class='top-line puesto-element'> Estado: #{n.estado}</div>
-							<div class='top-line puesto-element'> Tiempo: #{n.timeSpent}</div>
-							<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
-							<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
+							<div class=" puesto-element element-list">
+								<div class='top-line puesto-element'> InternalId: #{n.internalId}</div>
+								<div class='top-line puesto-element'> Estado: #{n.estado}</div>
+								<div class='top-line puesto-element'> Tiempo: #{n.timeSpent}</div>
+								<div class='top-line puesto-element'> Última Actualización: #{n.lastUpdated}</div>
+								<div class='top-line puesto-element'> Fecha de Creación: #{n.dateCreated}</div>
+							</div>
 						</ui:repeat>
 					</div>
 				</div>
