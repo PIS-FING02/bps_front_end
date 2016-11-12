@@ -38,4 +38,13 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	}
 	
+	//No existen sector para desviar
+	if(!!document.getElementsByClassName('desvio-modal').length && !!!document.getElementsByClassName('asignar-sector-button').length){
+		var noDesvio = document.getElementById('noDesvio');
+		if(!!noDesvio){
+			noDesvio.innerHTML = "El Sector al que pertenece este número no tiene sectores configurados para desvio."
+		}
+	}
+	
+	
 });
