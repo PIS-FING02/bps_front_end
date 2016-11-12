@@ -395,11 +395,3 @@ input {
     background: white;
     margin-bottom: 15px;
 }
-
-.list-position-sectores{
-	position: relative;
-}
-
-.position-container{
-	right: 75px !important;
-}

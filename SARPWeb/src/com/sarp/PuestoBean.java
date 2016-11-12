@@ -115,9 +115,9 @@ public class PuestoBean implements Serializable{
 		String response = c.asignarPuestoSector(jsectorpuesto.toString(), "RESPSEC");
 		
 		if (status.contains("existe")) {
-			shared.updateNotice(response, "El puesto con nombre de m√°quina "+ this.maquina + " ya se encontraba en el sistema, se asign√≥ correctamente al sector con c√≥digo " + this.idSector + ".");
+			shared.updateNotice(response, "El puesto con nombre de m·quina "+ this.maquina + " ya se encontraba en el sistema, se asignÛ correctamente al sector con cÛdigo " + this.idSector + ".");
 		} else if (status.equals("OK")) {
-			shared.updateNotice(response, "El puesto con nombre de m√°quina "+ this.maquina + " fue creado y se asign√≥ correctamente al sector con c√≥digo " + this.idSector + ".");
+			shared.updateNotice(response, "El puesto con nombre de m·quina "+ this.maquina + " fue creado y se asignÛ correctamente al sector con cÛdigo " + this.idSector + ".");
 		} else {
 			shared.updateNotice(status, "");
 		}
@@ -127,7 +127,7 @@ public class PuestoBean implements Serializable{
 	public String baja(String maquina) throws Exception{
 		JSONPuesto jpuesto = new JSONPuesto(maquina, "id", 0, "CERRADO");
 		String status = c.bajaPuesto(jpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de m√°quina "+ maquina + " se elimin√≥ correctamente.");
+		shared.updateNotice(status, "El puesto con nombre de m·quina "+ maquina + " se eliminÛ correctamente.");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -136,7 +136,7 @@ public class PuestoBean implements Serializable{
 		JSONPuesto jpuesto = new JSONPuesto(this.maquina, this.usuarioId, numero, this.estadoComboBox);
 		System.out.println(jpuesto);
 		String status = c.modPuesto(jpuesto.toString(), "RESPSEC");
-		shared.updateNotice(status, "El puesto con nombre de m√°quina "+ this.maquina + " se modific√≥ correctamente.");
+		shared.updateNotice(status, "El puesto con nombre de m·quina "+ this.maquina + " se modificÛ correctamente.");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -157,7 +157,7 @@ public class PuestoBean implements Serializable{
 			if(!numNotFound.find()){
 				this.puestosList = modeler.toJSONPuestos(resp);
 				if (this.puestosList.isEmpty())
-					shared.updateNoticeInfo("No se encontraron puestos para el sector/es donde tienes autorizaci√≥n.");
+					shared.updateNoticeInfo("No se encontraron puestos para el sector/es donde tienes autorizaciÛn.");
 				return this.puestosList;
 			}else{
 				//shared.updateNotice("ERROR",resp);
@@ -190,7 +190,7 @@ public class PuestoBean implements Serializable{
 		shared.clean();
 		List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesSector(this.maquina, "RESPSEC"));
 		if (list.isEmpty())
-			shared.updateNoticeInfo("El puesto con nombre de m√°quina " + this.maquina + " no tiene ning√∫n tr√°mite asignado.");
+			shared.updateNoticeInfo("El puesto con nombre de m·quina " + this.maquina + " no tiene ning˙n tr·mite asignado.");
 		return list;
 	}
 	
@@ -201,7 +201,7 @@ public class PuestoBean implements Serializable{
 		}else{
 			this.puestosListDesasignar = modeler.toJSONPuestos(c.listarPuestosSector(sectorId, "RESPSEC"));
 			if (this.puestosListDesasignar.isEmpty())
-				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ning√∫n puesto asignado.");
+				shared.updateNoticeInfo("El sector con identificador " + sectorId + " no tiene ning˙n puesto asignado.");
 			return this.puestosListDesasignar;
 		}
 	}
@@ -212,11 +212,11 @@ public class PuestoBean implements Serializable{
 			try {
 				List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesAsignables(maquina, "RESPSEC"));
 				if (list.isEmpty())
-					shared.updateNoticeInfo("No se encontraron tr√°mites disponibles para asignarle al puesto con nombre de m√°quina " + maquina + ".");
+					shared.updateNoticeInfo("No se encontraron tr·mites disponibles para asignarle al puesto con nombre de m·quina " + maquina + ".");
 				return list;
 			} catch (Exception e) {
 				e.printStackTrace();
-				shared.updateNoticeInfo("El puesto con nombre de m√°quina " + maquina + " no tiene ning√∫n sector asociado.");
+				shared.updateNoticeInfo("El puesto con nombre de m·quina " + maquina + " no tiene ning˙n sector asociado.");
 				return null;
 			}
 		} else {
@@ -227,14 +227,14 @@ public class PuestoBean implements Serializable{
 	public String asignarTramitePuesto() throws Exception {
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.asignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El tr√°mite con c√≥digo "+ this.codigo + " se asign√≥ correctamente al puesto con nombre de m√°quina " + this.maquina + ".");
+		shared.updateNotice(status, "El tr·mite con cÛdigo "+ this.codigo + " se asignÛ correctamente al puesto con nombre de m·quina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 
 	public String desasignarTramitePuesto() {  
 		JSONPuestoTramite jppuestotramiteuestotramite = new JSONPuestoTramite(this.codigo, this.maquina);
 		String status = c.desasignarTramite(jppuestotramiteuestotramite.toString(), "RESPSEC");
-		shared.updateNotice(status, "El tr√°mite con c√≥digo "+ this.codigo + " se desasign√≥ correctamente del puesto con nombre de m√°quina " + this.maquina + ".");
+		shared.updateNotice(status, "El tr·mite con cÛdigo "+ this.codigo + " se desasignÛ correctamente del puesto con nombre de m·quina " + this.maquina + ".");
 		return "/pages/puestos.xhtml?busqueda=false&faces-redirect=true";
 	}
 
@@ -333,7 +333,7 @@ public class PuestoBean implements Serializable{
 		}else{
 			/*this.error_message = "No tienes nÔøΩmeros disponibles para llamar en este momento";
 			this.error = "show";*/
-			shared.updateNoticeInfo("No existe ning√∫n n√∫mero que pueda atender en este momento");
+			shared.updateNoticeInfo("No existe ning˙n n˙mero que pueda atender en este momento");
 			if(roles.contains("OPERADORSR")){
 				return "/pages/operadorsrAbierto.xhtml?faces-redirect=true";
 			}else{
@@ -579,9 +579,24 @@ public String llamarNumeroDemanda(String internalId){
 		return ("/pages/" + page + ".xhtml?busqueda=true&faces-redirect=true");
 	}
 	
+	public String listarPuestosBusqueda(String page, String paramid){
+		this.puestosListBusqueda.clear();
+		Iterator<JSONPuesto> iter = this.puestosListDesasignar.iterator();
+		while(iter.hasNext()){
+			JSONPuesto puestoIter = iter.next();
+           	if(puestoIter.getNombreMaquina().toLowerCase().contains(this.searchString.toLowerCase())){
+           		this.puestosListBusqueda.add(puestoIter);
+           	}
+	    }
+		return ("/pages/" + page + ".xhtml?busqueda=true&faces-redirect=true");
+	}
+	
 	public String listarPuestosBusquedaAsignaciones(String page,boolean esAsig, String sectorId){
-		if(!esAsig){
-			this.puestosListBusquedaDesasignar.clear();
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String esAsigParam = params.get("esAsig");
+		
+		if(esAsigParam.equals(false)){
+			this.puestosListBusquedaAsignar.clear();
 			Iterator<JSONPuesto> iter = this.puestosListDesasignar.iterator();
 			while(iter.hasNext()){
 				JSONPuesto puestoIter = iter.next();
@@ -589,7 +604,7 @@ public String llamarNumeroDemanda(String internalId){
 	           		this.puestosListBusquedaDesasignar.add(puestoIter);
 	           	}
 		    }
-			return ("/pages/" + page + ".xhtml?busqueda=true&esSec=true&esAsig=false&entidad=puesto&id=BPS&faces-redirect=true");
+			return ("/pages/" + page + ".xhtml?busqueda=true&esSec=true&esAsig=false&entidad=puesto&faces-redirect=true");
 		}else{ 
 			this.puestosListBusquedaAsignar.clear();
 			Iterator<JSONPuesto> iter = this.puestosListAsignar.iterator();
@@ -599,7 +614,7 @@ public String llamarNumeroDemanda(String internalId){
 	           		this.puestosListBusquedaAsignar.add(puestoIter);
 	           	}
 		    }
-			return ("/pages/" + page + ".xhtml?busqueda=true&esSec=true&esAsig=true&entidad=puesto&id=BPS&faces-redirect=true");
+			return ("/pages/" + page + ".xhtml?busqueda=true&esSec=true&esAsig=true&entidad=puesto&faces-redirect=true");
 		}
 	}
 	

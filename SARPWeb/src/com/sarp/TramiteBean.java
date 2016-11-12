@@ -39,10 +39,6 @@ public class TramiteBean implements Serializable{
 	@ManagedProperty("#{sessionScope.puesto}")
 	public PuestoBean puesto;
 	
-	
-	
-	
-	
 	public PuestoBean getPuesto() {
 		return puesto;
 	}
@@ -74,9 +70,9 @@ public class TramiteBean implements Serializable{
 		Matcher statusAlta = pat.matcher(status);
 	
 		if(!statusAlta.find())
-			shared.updateNotice(status, "El trï¿½mite con cï¿½digo " + this.codigo + " y nombre "+ this.nombre + " se creï¿½ correctamente.");
+			shared.updateNotice(status, "El trámite con código " + this.codigo + " y nombre "+ this.nombre + " se creó correctamente.");
 		else
-			shared.updateNoticeInfo("El trï¿½mite con cï¿½digo " + this.codigo + " y nombre "+ this.nombre + " ya existe.");
+			shared.updateNoticeInfo("El trámite con código " + this.codigo + " y nombre "+ this.nombre + " ya existe.");
 			
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
@@ -84,14 +80,14 @@ public class TramiteBean implements Serializable{
 	public String baja(String codigo) {
 		JSONTramite jtramite = new JSONTramite(codigo, "nombre");
 		String status = c.bajaTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El trï¿½mite con cï¿½digo " + codigo + " se eliminï¿½ correctamente.");
+		shared.updateNotice(status, "El trámite con código " + codigo + " se eliminó correctamente.");
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
 	public String modificar(){
 		JSONTramite jtramite = new JSONTramite(this.codigo, this.nombre);
 		String status = c.modTramite(jtramite.toString(), "ADMIN");
-		shared.updateNotice(status, "El trï¿½mite con nombre "+ this.nombre + " se modificï¿½ correctamente.");
+		shared.updateNotice(status, "El trámite con nombre "+ this.nombre + " se modificó correctamente.");
 		return "/pages/tramites.xhtml?busqueda=false&faces-redirect=true";
 	}
 	
@@ -143,7 +139,7 @@ public class TramiteBean implements Serializable{
 		else {
 			List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesSector(idSector, "RESPSEC"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("El sector con identificador " + idSector + " no tiene trï¿½mites asignados.");
+				shared.updateNoticeInfo("El sector con identificador " + idSector + " no tiene trámites asignados.");
 			return list;
 		}
 	}
@@ -155,7 +151,7 @@ public class TramiteBean implements Serializable{
 		else {
 			List<JSONTramite> list = modeler.toJSONTramites(c.listarTramitesPuesto(idPuesto, "RESPSEC"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("El puesto con nombre de mï¿½quina " + idPuesto + " no tiene trï¿½mites asignados.");
+				shared.updateNoticeInfo("El puesto con nombre de máquina " + idPuesto + " no tiene trámites asignados.");
 			return list;
 		}
 	}
@@ -164,7 +160,7 @@ public class TramiteBean implements Serializable{
 		if (shared.getRolesMap().get("RECEPCION")) {
 			List<JSONTramiteRecepcion> list = modeler.toJSONTramitesRecepcion(c.listarTramitesRecepcion(this.puesto.getMaquina(), "RECEPCION"));
 			if (list.isEmpty())
-				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene trï¿½mites habilitados para hacer entrega de nï¿½meros");
+				shared.updateNoticeInfo("Tu puesto, " + puesto + ", no tiene trámites habilitados para hacer entrega de números");
 			return list;
 		} else {
 			shared.updateNoticeInfo("No tienes permisos suficientes.");

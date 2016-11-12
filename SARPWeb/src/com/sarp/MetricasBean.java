@@ -58,7 +58,7 @@ public class MetricasBean implements Serializable{
 		if (shared.getRolesMap().get("CONSULTOR")) {
 			this.metricasPuestos = modeler.toJSONMetricasPuestos(c.listarMetricasPuestos("CONSULTOR", shared.getUser()));
 			if (this.metricasPuestos.isEmpty())
-				shared.updateNoticeInfo("No se encontraron mï¿½tricas para estos puestos en el sistema.");
+				shared.updateNoticeInfo("No se encontraron métricas para estos puestos en el sistema.");
 			return ("/pages/metricasPuesto.xhtml?faces-redirect=true");
 		}else{
 			return null;

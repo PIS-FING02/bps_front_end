@@ -147,7 +147,7 @@ public class LoginBean implements Serializable{
         if(session != null) {
         	setUsernameHeader("Bienvenido");
         	session.invalidate();
-        	System.out.println("Se cerrï¿½ la sesiï¿½n correctamente");        	
+        	System.out.println("Se cerró la sesión correctamente");        	
         }
         this.loggedIn = false;
         return "/pages/login.xhtml?faces-redirect=true";

@@ -20,7 +20,7 @@
 				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
 				<div class="page-title arrow"> ➨ </div>
 				<h:commandButton class="page-title" value='Administración' action="#{shared.redirect('admin')}" />
-				<div class="page-title page-title-last"> ➨  Tramites </div>
+				<div class="page-title page-title-last"> ➨  Trámites </div>
 				<h:commandButton class="action-button" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 			</h:form>
 		</div> 
@@ -29,12 +29,13 @@
 			<h:commandButton class="icon-search" image='../images/lupa.png' action="#{tramite.listarTramitesBusqueda('tramites')}" /> 
 		</h:form>
 		<a id='alta-tramite' class='icon icon-alta alta-button tipo-tramite' 
-			href='forms.xhtml?tipoForm=altaTramite'>Crear Tramite</a>
+			href='forms.xhtml?tipoForm=altaTramite'>Crear Trámite</a>
 		<div class="page-frame">
 			<h:form id='form-asociacion'>
 				<h:outputText id='busqueda' class='hidden' value="#{param['busqueda']}" />
 			</h:form>	
 			<h:form id='form-listado-tramites' rendered="#{param['busqueda'] eq 'false'}">
+				<a class='page-title list-title' href="tramites.xhtml?busqueda=false">Trámites</a>
 				<div id='list-tramites-container' class='page-list'>
 					<div class='list-container'>
 						<ui:repeat id='repeat-tramites' value='#{tramite.listar()}' var='t'>
@@ -51,6 +52,7 @@
 				</div>
 			</h:form>
 			<h:form id='form-listado-tramites-busqueda' rendered="#{param['busqueda'] eq 'true'}">
+				<a class='page-title list-title' href="tramites.xhtml?busqueda=false">Trámites</a>
 				<div id='list-tramites-container' class='list-container'>
 					<ui:repeat id='repeat-tramites' value='#{tramite.listarResultadoBusqueda()}' var='t'>
 						<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>

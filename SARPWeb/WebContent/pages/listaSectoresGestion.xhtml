@@ -16,7 +16,7 @@
 <body> 
 	<div id='entidad' class="page-container page-sectores"> 
 		<div class="page-title-container">
-			<h:form>
+			<h:form id='form-links'>
 				<h:commandButton class="page-title" value='Menú Principal' action="#{shared.redirect('menu')}" />
 				<div class="page-title arrow"> ➨ </div>
 				<h:commandButton class="page-title" value='Gestión' action="#{shared.redirect('respSector')}" />
@@ -56,21 +56,24 @@
 			</h:form>
 			<h:form id='form-listado-sectores-busqueda' rendered="#{param['busqueda'] eq 'true'}">
 				<a class='page-title list-title' href="listaSectoresGestion.xhtml?busqueda=false">Sectores</a>
-				<div id='list-sector-container' class='entity-list-container'>
-					<ui:repeat id='repeat-puestos' value='#{sector.listarResultadoBusqueda()}' var='sectores'>
-						<div idSector='#{sectores.sectorId}' nombre='#{sectores.nombre}' ruta='#{sectores.ruta}' class='hidden'/>
-						<div class='list-entity element-list-fourth'>
-							<h:outputText class='element-list puesto-element' value='#{sectores.nombre} '/>
-							<div class='icon icon-container'>Listar</div>
-							<div id='asignar-container' class='asignar-container hidden'>
-								<h:form>
-									<h:link value="Números en Espera" class="icon" outcome="listarEnEspera?idSector=#{sectores.sectorId}" />
-									<h:link value="Números Pausados" class="icon" outcome="listarPausados?idSector=#{sectores.sectorId}" />
-									<h:link value="Números Atrasados" class="icon" outcome="listarAtrasados?idSector=#{sectores.sectorId}" />
-								</h:form>
+				<div id='list-sector-container' class='page-list'>
+					<div class='list-container'>
+						<ui:repeat id='repeat-puestos' value='#{sector.listarResultadoBusqueda()}' var='sectores'>
+							<div idSector='#{sectores.sectorId}' nombre='#{sectores.nombre}' ruta='#{sectores.ruta}' class='hidden'/>
+							<div class='element-list element-list-fourth'>
+								<h:outputText class='puesto-element' value='#{sectores.nombre} '/>
+								<div class='icon icon-container'>Listar</div>
+								<div id='asignar-container' class='asignar-container asignar-container-numeros hidden'>
+									<div class='asignar-container-triangle asignar-container-triangle-numeros'/>
+									<h:form>
+										<h:link value="En Espera" class="icon" outcome="listarEnEspera?idSector=#{sectores.sectorId}" />
+										<h:link value="Pausados" class="icon" outcome="listarPausados?idSector=#{sectores.sectorId}" />
+										<h:link value="Atrasados" class="icon" outcome="listarAtrasados?idSector=#{sectores.sectorId}" />
+									</h:form>
+								</div>
 							</div>
-						</div>
-					</ui:repeat>
+						</ui:repeat>
+					</div>
 				</div>
 			</h:form>
 		</div>
