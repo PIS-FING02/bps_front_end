@@ -17,11 +17,8 @@
 <body> 
 <div id='entidad' class="page-container"> 
 		<div class="page-title-container">
-			<a class="page-title" href="menu.xhtml">Menú Principal</a>
-			<div class="page-title arrow"> ➨ </div>
-			<a class="page-title" href="respSector.xhtml">Gestión</a>
-			<div class="page-title arrow"> ➨ </div>
-			<a class="page-title" href="puestos.xhtml">Puestos</a>
+			<a class="page-title" href="menu.xhtml"> Menú Principal </a>
+			<div class="page-title page-title-last"> ➨  Atención </div>
 			<h:form id="myForm">
 				<h:commandButton class="action-button deactivated" value="Cerrar Sesión" action="#{loginBean.Logout()}" /> 
 				<h:outputText id='num_sector' class="hidden" value="#{param['idSector']}" />

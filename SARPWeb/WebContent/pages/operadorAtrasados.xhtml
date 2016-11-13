@@ -29,27 +29,27 @@
 					<div class="top-line"> Puesto: #{puesto.maquina}</div>
 					<div class="top-line"> Sectores:
 							<ui:repeat id='repeat-sectores' value='#{puesto.getSectores()}' var='s'>
-								<h:outputText class='puesto-element' value=' #{s.nombre}'/>
+								<h:outputText class='puesto-element' value=' - #{s.nombre}'/>
 							</ui:repeat>
 					 </div>
 					<div class="top-line"> Trámites: 
 						<ui:repeat id='repeat-tramites' value='#{puesto.getTramites()}' var='t'>
-								<h:outputText class='puesto-element' value=' #{t.nombre}'/>
+								<h:outputText class='puesto-element' value=' - #{t.nombre}'/>
 						</ui:repeat>
 					</div>
 				</div>
 				</h:form>
-				<div class="right-frame">
-					<h:form id='form-cerrar'>
-						<h:commandButton id='cerrar-puesto-button' class="secondary-button estado-puesto-button" value="Cerrar Puesto" action="#{puesto.cerrar}"/>
-							<div id="nros-espera" class="top-line"> Números en espera </div>
-							<ui:repeat id='repeat-' value='#{puesto.getNumEnEspera()}' var='n'>
-								<div class='element-list display-element'>
-									<h:outputText class='puesto-element' value='#{n.nombre} : #{n.cantNumEspera}'/>
-								</div>
-							</ui:repeat>
-					</h:form>
-				</div>
+				<h:form id='form-cerrar'>
+					<h:commandButton id='cerrar-puesto-button' class="secondary-button estado-puesto-button" value="Cerrar Puesto" action="#{puesto.cerrar}"/>
+					<div class="right-frame">	
+						<div id="nros-espera" class="top-line"> Números en espera </div>
+						<ui:repeat id='repeat-' value='#{puesto.getNumEnEspera()}' var='n'>
+							<div class='element-list display-element'>
+								<h:outputText class='puesto-element' value='#{n.nombre} : #{n.cantNumEspera}'/>
+							</div>
+						</ui:repeat>
+					</div>
+				</h:form>
 			</div>
 			<div id="prox-nums-frame" class="prox-nums-frame">				
 				<div class='data-line'>

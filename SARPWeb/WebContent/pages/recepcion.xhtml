@@ -32,11 +32,11 @@
 			<div class="options-footer">
 				<div class="reference-container"> 
 					<div class="color-reference no-select-color-reference"></div>
-					<div> No seleccionado</div>
+					<div> Seleccionado</div>
 				</div>
 				<div class="reference-container">
 					<div class="color-reference"></div>
-					<div> Seleccionado</div>
+					<div> No Seleccionado</div>
 				</div>
 				<div class="action-button popup-open-button deactivated" id="open-popup-button">Confirmar Número</div>
 			</div>	
@@ -56,7 +56,7 @@
 						<input class="sector-selected read-only" readonly="readonly"></input>
 					</div>
 					<div class="form-line">	
-						<label >Tramite: </label>
+						<label >Trámite: </label>
 						<input class="tramite-selected read-only" readonly="readonly"></input>
 					</div>
 					<div class="form-line">
@@ -64,9 +64,9 @@
 						<h:inputText id="nombre" class="formInput" value="#{numero.nombreCompleto}" />
 					</div>
 					<div class="form-line">
-						<h:outputLabel for="tipoDoc" value="Tipo de Doc.: " />
+						<h:outputLabel for="tipoDoc" value="Tipo Doc.: " />
 						<h:selectOneMenu id='tipoDoc' class='combo-box combo-box-recepcion' value="#{numero.tipoDoc}">
-						   <f:selectItem itemValue="CEDULA" itemLabel="CEDULA" />
+						   <f:selectItem itemValue="CEDULA" itemLabel="CI" />
 						   <f:selectItem itemValue="RUT" itemLabel="RUT" />	   	
 						</h:selectOneMenu>
 					</div>
