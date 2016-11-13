@@ -145,6 +145,8 @@
       <url-pattern>/pages/operadorAtendiendo.xhtml</url-pattern>
       <url-pattern>/pages/operadorAtrasados.xhtml</url-pattern>
       <url-pattern>/pages/operadorPausados.xhtml</url-pattern>
+      <url-pattern>/pages/finalizarAtencion.xhtml</url-pattern>
+      <url-pattern>/pages/finalizarAtencion.jsf</url-pattern>
       <url-pattern>/pages/operador.jsf</url-pattern>
       <url-pattern>/pages/operadorsrAbierto.jsf</url-pattern>
       <url-pattern>/pages/operadorAtencion.jsf</url-pattern>
