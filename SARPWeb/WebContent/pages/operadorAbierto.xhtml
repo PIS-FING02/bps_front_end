@@ -29,12 +29,12 @@
 					<div class="top-line"> Puesto: #{puesto.maquina}</div>
 					<div class="top-line"> Sectores:
 							<ui:repeat id='repeat-sectores' value='#{puesto.getSectores()}' var='s'>
-								<h:outputText class='puesto-element' value=' #{s.nombre}'/>
+								<h:outputText class='puesto-element' value=' - #{s.nombre}'/>
 							</ui:repeat>
 					 </div>
 					<div class="top-line"> Trámites: 
 						<ui:repeat id='repeat-tramites' value='#{puesto.getTramites()}' var='t'>
-								<h:outputText class='puesto-element' value=' #{t.nombre}'/>
+								<h:outputText class='puesto-element' value=' - #{t.nombre}'/>
 						</ui:repeat>
 					</div>
 				</div>
@@ -51,13 +51,13 @@
 						</div>
 					</h:form>
 				</div>
-			</div>
-			<div class="bottom-form">
-				<h:form id='form-llamar'>
-					<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
-					<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
-					<h:commandButton class="action-button atencion-buttons" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/>
-				</h:form>
+				<div class="bottom-form">
+					<h:form id='form-llamar'>
+						<h:commandButton class="action-button ver-atrasados-button" value="Ver Atrasados" action="#{puesto.verAtrasados}"/>
+						<h:commandButton class="secondary-button ver-pausados-button" value="Ver Pausados" action="#{puesto.verPausados}" />
+						<h:commandButton class="action-button atencion-buttons" value="Llamar Siguiente" action="#{puesto.llamarNumero}"/>
+					</h:form>
+				</div>
 			</div>
 		</div>
 		<ui:include src="notice.xhtml"/>
