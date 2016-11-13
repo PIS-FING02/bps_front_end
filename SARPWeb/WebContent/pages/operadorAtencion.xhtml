@@ -45,13 +45,19 @@
 			<div>
 				<div id="left-frame" class="left-frame">
 					<div class="data-line">
-						<div class="label"> Serie: #{puesto.serie} </div>
+						<div class="label"><h2>Serie: #{puesto.serie}</h2></div>
 					</div>
-					<div class="data-line">
-						<div class="label"> Número: #{puesto.externalNum}</div>
+					<div class="data-line" id="info-numero">
+						<div class="label letra-numero"><h2>Número: #{puesto.externalNum}</h2></div>
+					</div>
+					<div class="data-line hidden" id="info-sae-hora">
+						<div class="label"> Hora: #{puesto.hora}</div>
+					</div>
+					<div class="data-line hidden" id="info-sae-fecha">
+						<div class="label" > Fecha de Entrega:  #{puesto.fecha} </div>
 					</div>
 					<div class="data-line" >
-						<div class="label"> Tiempo de Espera: #{puesto.tiempoEspera}</div>
+						<div class="label"><h4>Tiempo de Espera: #{puesto.tiempoEspera} </h4></div>
 					</div>
 				</div>
 				<h:form>

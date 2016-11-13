@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById('form:sector-selected-nombre').readOnly = 'true';
 		document.getElementById('form:sector-selected-ruta').readOnly = 'true';
 		document.getElementById('form-links:title-gestion').classList.remove('hidden');
-		document.getElementById('form-links:title-puestos').classList.remove('hidden');
+		document.getElementById('form-links:title-sectores').classList.remove('hidden');
 		document.getElementById('form:sector-selected-id').value = getURLParameter('id').replace("+", " ");
 		document.getElementById('form:sector-selected-nombre').value = getURLParameter('nombre').replace("+", " ");
 		document.getElementById('form:sector-selected-ruta').value = getURLParameter('ruta').replace("+", " ");

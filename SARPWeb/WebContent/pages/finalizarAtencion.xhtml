@@ -27,7 +27,7 @@
 				<h:outputText id='num_sector' class="hidden" value="#{param['idSector']}" />
 			</h:form>
 		</div> 
-		<div class="page-frame">
+		<div class="page-frame"><h3>Asignar resultado de fin de atención</h3>
 			<div id='list-tramites-container' class='page-list'>
 				<ui:repeat id='repeat-tramites' value="#{tramite.listarDeSector(param['idSector'])}" var='t'>
 					<div codigo='#{t.codigo}' nombre='#{t.nombre}' class='hidden'/>
@@ -46,7 +46,7 @@
 			</div>
 			<h:form id='form-finalizar'>
 				<h:inputHidden id="json_estado_tramites" value="#{puesto.json_estado_tramites}" />
-				<h:commandButton class="num-line action-button" value="Confirmar" action="#{puesto.finalizarAtencion()}"/>
+				<h:commandButton class="num-line action-button deactivated" id="finalizar" value="Confirmar" action="#{puesto.finalizarAtencion()}"/>
 				<h:commandButton class="action-button cancel-button" value="Cancelar" action="#{shared.redirect('operadorAtendiendo')}"/>
 			</h:form>
 		</div>

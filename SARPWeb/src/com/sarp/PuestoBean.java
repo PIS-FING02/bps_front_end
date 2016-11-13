@@ -263,8 +263,13 @@ public class PuestoBean implements Serializable{
 				this.fecha = arrayFechaHora[0];
 				this.hora = arrayFechaHora[1];
 				this.idTramite = jestadoPuesto.getNumero().getIdTramite();
-				this.serie= jestadoPuesto.getNumero().getExternalId().split("-")[0];
-				this.externalNum = jestadoPuesto.getNumero().getExternalId().split("-")[1];
+				if(this.prioridad == 1){
+					this.serie = jestadoPuesto.getNumero().getExternalId();
+				}
+				else{
+					this.serie= jestadoPuesto.getNumero().getExternalId().split("-")[0];
+					this.externalNum = jestadoPuesto.getNumero().getExternalId().split("-")[1];
+				}			
 				GregorianCalendar hora_actual = new GregorianCalendar();
 				int dia = Integer.parseInt(this.fecha.substring(0, 2));
 				int mes = Integer.parseInt(this.fecha.substring(3, 5)) - 1;
@@ -313,14 +318,13 @@ public class PuestoBean implements Serializable{
 			this.idSector = jnumero.getIdSector();
 			this.id = jnumero.getId();
 			this.hora = jnumero.getHora();
-
-			if(this.prioridad.equals(1)){
-				String[] arrayFechaHora = jnumero.getHora().split("-");
-				this.fecha = arrayFechaHora[0];
-				this.hora = arrayFechaHora[1];
+			if(this.prioridad.equals(2)){
+				this.serie= jnumero.getExternalId().split("-")[0];
+				this.externalNum = jnumero.getExternalId().split("-")[1];
 			}
-			this.serie= jnumero.getExternalId().split("-")[0];
-			this.externalNum = jnumero.getExternalId().split("-")[1];
+			else{
+				this.serie = jnumero.getExternalId();
+			}
 			GregorianCalendar hora_actual = new GregorianCalendar();
 			int dia = Integer.parseInt(this.hora.substring(0, 2));
 			int mes = Integer.parseInt(this.hora.substring(3, 5)) - 1;
@@ -329,6 +333,11 @@ public class PuestoBean implements Serializable{
 			int min = Integer.parseInt(this.hora.substring(14));
 			GregorianCalendar horaNumero = new GregorianCalendar(ano, mes, dia, hora, min);
 			this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
+			if(this.prioridad.equals(1)){
+				String[] arrayFechaHora = jnumero.getHora().split("-");
+				this.fecha = arrayFechaHora[0];
+				this.hora = arrayFechaHora[1];
+			}
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
 		}else{
 			/*this.error_message = "No tienes n�meros disponibles para llamar en este momento";
@@ -398,8 +407,13 @@ public String llamarNumeroDemanda(String internalId){
 			this.fecha = arrayFechaHora[0];
 			this.hora = arrayFechaHora[1];
 			this.idTramite = num.getIdTramite();
-			this.serie= num.getExternalId().split("-")[0];
-			this.externalNum = num.getExternalId().split("-")[1];
+			if(this.prioridad == 1){
+				this.serie = num.getExternalId();
+			}
+			else{
+				this.serie= num.getExternalId().split("-")[0];
+				this.externalNum = num.getExternalId().split("-")[1];
+			}			
 			GregorianCalendar hora_actual = new GregorianCalendar();
 			int dia = Integer.parseInt(this.fecha.substring(0, 2));
 			int mes = Integer.parseInt(this.fecha.substring(3, 5)) - 1;
@@ -493,10 +507,14 @@ public String llamarNumeroDemanda(String internalId){
 			min = Integer.parseInt(this.hora.substring(3,5));
 	
 			this.idTramite = num.getIdTramite();
-			this.serie= num.getExternalId().split("-")[0];
-			this.externalNum = num.getExternalId().split("-")[1];
+			if(this.prioridad == 1){
+				this.serie = num.getExternalId();
+			}
+			else{
+				this.serie= num.getExternalId().split("-")[0];
+				this.externalNum = num.getExternalId().split("-")[1];
+			}			
 			GregorianCalendar hora_actual = new GregorianCalendar();
-
 			GregorianCalendar horaNumero = (ano == 0)? new GregorianCalendar(ano, mes, dia, horaFin, min) : new GregorianCalendar();
 			this.tiempoEspera = this.restaFechas(hora_actual, horaNumero);
 			return "/pages/operadorAtencion.xhtml?faces-redirect=true";
@@ -528,14 +546,17 @@ public String llamarNumeroDemanda(String internalId){
 			this.estadoNumero = num.getEstado();
 			this.prioridad = num.getPrioridad();
 			this.idSector = num.getIdSector();
-	
 			String[] arrayFechaHora = num.getHora().split("-");
 			this.fecha = arrayFechaHora[0];
 			this.hora = arrayFechaHora[1];
-	
 			this.idTramite = num.getIdTramite();
-			this.serie= num.getExternalId().split("-")[0];
-			this.externalNum = num.getExternalId().split("-")[1];
+			if(this.prioridad == 1){
+				this.serie = num.getExternalId();
+			}
+			else{
+				this.serie= num.getExternalId().split("-")[0];
+				this.externalNum = num.getExternalId().split("-")[1];
+			}			
 			GregorianCalendar hora_actual = new GregorianCalendar();
 			int dia = Integer.parseInt(this.fecha.substring(0, 2));
 			int mes = Integer.parseInt(this.fecha.substring(3, 5)) - 1;
